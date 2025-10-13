@@ -47,7 +47,7 @@ const crawler_config_payload = {
             "llm_config": {
               "type": "LLMConfig",
               "params": {"provider":"ollama/llama3", "api_token":"none", "base_url":"http://host.docker.internal:11434"},
-              //"params": {"provider":"openai/gpt-4o-mini", "api_token":"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"},
+              //"params": {"provider":"openai/gpt-4o-mini", "api_token":""},
               
               
               
