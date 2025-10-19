@@ -1,5 +1,7 @@
 <script setup lang="ts">
 const { t } = useI18n()
+const router = useRouter()
+const localePath = useLocalePath()
 
 const features = ref([
   {
@@ -18,12 +20,16 @@ const features = ref([
     icon: 'i-lucide-sun-moon'
   }
 ])
+const searchModel = ref('')
 </script>
 
 <template>
+  <div>
   <UPageSection
     :title="$t('welcome.title')"
     :description="$t('welcome.description')"
     :features="features"
   />
+  <UInput v-model="searchModel" icon="i-lucide-search" :placeholder="$t('search.placeholder')" class="w-full" @change="router.replace(localePath(`/search?q=${searchModel}`))" />
+  </div>
 </template>

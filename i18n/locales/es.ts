@@ -14,5 +14,18 @@ export default{
             title: 'New to Bitcoin?',
             description: 'Start investing your bitcoin savings today with cashback in Bitcoin (Satsback) on your everyday purchases.'
         }
+    },
+    "search": {
+        "productGroups": {
+            "SATSBACK": "Satsback",
+            "PAY_WITH_BITCOIN": "Pay with Bitcoin"
+        },
+        "searchPlaceholder": "Search for products...",
+        "noResults": "No results found",
+        "resultsFound": "{count} results found",
+        "showMoreResults": "Show more results",
+        "noMoreResults": "No more results",
+        "loading": "Loading...",
+        "poweredBy": "Search powered by Algolia"
     }
 }

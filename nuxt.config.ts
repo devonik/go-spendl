@@ -2,16 +2,19 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-
+  runtimeConfig: {
+    algoliaAppId: process.env.ALGOLIA_APP_ID,
+    algoliaApiKey: process.env.ALGOLIA_API_KEY,
+  },  
   modules: [
     '@nuxt/eslint',
     '@nuxt/image',
     '@nuxt/test-utils',
     '@nuxt/ui',
     '@nuxtjs/i18n',
-    '@nuxtjs/algolia'
+    '@nuxt/fonts'
   ],
-  css: ['~/assets/css/main.css'],
+  css: ['~/assets/css/main.css', 'instantsearch.css/themes/algolia-min.css'],
   icon: {
     customCollections: [{
       prefix: 'custom',
@@ -27,7 +30,7 @@ export default defineNuxtConfig({
         file: 'es.ts'
       },
     ],
-    defaultLocale: 'en',
+    defaultLocale: 'de',
     skipSettingLocaleOnNavigate: true,
   }
 })

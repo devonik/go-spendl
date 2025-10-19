@@ -1,2 +1,24 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
+
+@theme {
+  --font-display: "Rubik", "sans-serif";
+}
+
+@theme static {
+  --color-primary: #007AFF;
+  --color-secondary: #12131A;
+  --color-success: #00FFA3;
+  --color-info: #F5F7FA;
+  --color-warning: #FFB800;
+  --color-neutral: #F5F7FA;
+  --color-test: #1E1E2F;
+}
+
+:root {
+  font-family: Rubik, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Inter Bold", sans-serif ;
+}

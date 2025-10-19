@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 import shopDomains from '~/assets/shop-domain';
+import {AisHighlight} from "vue-instantsearch/vue3/es";
+import type { AlgoliaProduct } from '~/types/algolia';
 
 const props = defineProps<{
-  product: Product
+  product: AlgoliaProduct
 }>()
-
-const localePath = useLocalePath()
 
 const shopDomain = computed(() => {
   if(!props.product.shopDomain) return null
@@ -18,70 +18,74 @@ const shopDomain = computed(() => {
 
 <!-- A card component to display product information with image, price, and discounts -->
 <template>
-  <UCard class="product-card">
-    <div class="flex justify-between items-center mb-2">
-        <span class="ml-2 font-semibold">{{ product.brand }}</span>
+  <UCard class="product-card flex flex-col" variant="subtle" :ui="{ body: 'flex-grow flex flex-col' }">
+    <template #header>
+      <div class="flex justify-between items-center">
+          <span class="font-semibold dark:text-neutral">{{ product.brand }}</span>
 
-        <img
-            v-if="shopDomain"
-            :src="shopDomain.logoUrl"
-            :alt="shopDomain.name"
-            >
-    </div>
+          <img
+              v-if="shopDomain"
+              :src="shopDomain.logoUrl"
+              :alt="shopDomain.name"
+              class="h-[24px]"
+              >
+      </div>
+    </template>
     
-    <!-- Product Image -->
-    <img
-      :src="product.imageUrl"
-      :alt="product.name"
-      class="w-full h-48 object-contain mb-4">
+      <!-- Product Image -->
+      <img
+        :src="product.imageUrl"
+        :alt="product.name"
+        class="w-full h-32 object-contain mb-4">
 
-    <!-- Product Title -->
-    <h3 class="text-lg font-semibold mb-2 line-clamp-2">{{ product.name }}</h3>
+      <!-- Product Title -->
+      <h3 class="text-lg font-semibold mb-2 flex-grow dark:text-neutral">
+        <ais-highlight attribute="name" :hit="product" />
+      </h3>
 
-    <!-- Price and Discount Section -->
-    <div class="space-y-2">
-      <div class="flex items-center justify-between">
-        <span class="text-lg font-bold">{{ product.price.toString().replaceAll('.', ',') }}€</span>
-        
-        
-        <!-- Bitcoin Discount Badge -->
-        <UBadge
-          v-if="product.bitcoinDiscount"
-          color="warning"
-          class="ml-2"
-        >
-          {{ product.bitcoinDiscount.percent }}% BTC Discount
-        </UBadge>
-        
-        <!-- Satsback Badge -->
-        <UBadge
-          v-if="shopDomain?.satsbackPercent"
-          color="secondary"
-          class="ml-2"
-        >
-        <UIcon name="i-custom-satsback" class="size-6"/> 
-          {{ shopDomain.satsbackPercent }}% Satsback
-        </UBadge>
+      <!-- Price and Discount Section -->
+      <div class="space-y-2">
+        <div class="flex items-center justify-between">
+          <span class="text-lg font-bold dark:text-neutral">{{ product.price.toString().replaceAll('.', ',') }} €</span>
+          
+          
+          <!-- Bitcoin Discount Badge -->
+          <UBadge
+            v-if="product.group === 'payWithBitcoin'"
+            color="warning"
+            class="ml-2"
+          >
+            
+            <UIcon name="i-lucide-bitcoin" class="size-6" />
+            {{ $t('product.btcDiscount', { percent: 3 }) }}
+          </UBadge>
+          
+          <!-- Satsback Badge -->
+          <UBadge
+            v-if="shopDomain?.satsbackPercent"
+            color="secondary"
+            class="ml-2"
+          >
+          <UIcon name="i-custom-satsback" class="size-6"/> 
+            <span class="dark:text-white">{{ shopDomain.satsbackPercent }}% Satsback</span>
+          </UBadge>
+        </div>
+
       </div>
 
-      <!-- Discounted Price -->
-      <p v-if="product.bitcoinDiscount" class="text-sm text-green-600 dark:text-green-400">
-        Final Price: {{ product.bitcoinDiscount.finalPrice }}
-      </p>
-    </div>
-
     <!-- Details Link -->
-    <div class="mt-4">
-      <UButton
-        :href="product.sourceUrl"
-        _target="_blank"
-        color="primary"
-        variant="soft"
-        block
-      >
-        Order on partner site
-      </UButton>
-    </div>
+    <template #footer>
+        <UButton
+          :href="product.sourceUrl"
+          _target="_blank"
+          color="primary"
+          variant="soft"
+          icon="i-lucide-shopping-cart"
+          block
+        >
+          {{ $t('product.order') }}
+        </UButton>
+    </template>
   </UCard>
 </template>
 

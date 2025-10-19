@@ -16,5 +16,30 @@ export default{
             title: 'Neu bei Bitcoin?',
             description: 'Investiere noch heute deine Bitcoin-Ersparnisse mit Cashback in Bitcoin (Satsback) bei deinen alltäglichen Einkäufen.'
         }
+    },
+    "product": {
+        "btcDiscount": "{percent}% BTC Rabatt",
+        "order": "Bestelle auf der Partnerseite"
+    },
+    "search": {
+        "filter": {
+            "label": "Filter",
+            "clearAllFilters": "Bereinige alle Filter",
+            "categories": "Kategorien",
+            "brands": "Marken",
+            "colors": "Farben",
+            "priceRange": "Preisbereich"
+        },
+        "productGroups": {
+            "satsback": "Satsback",
+            "payWithBitcoin": "Bezahlbar mit Bitcoin"
+        },
+        "info": "{hits} treffer in {time}ms für {query}",
+        "placeholder": "Suche nach Produkt...",
+        "noResults": "Keine Ergebnisse gefunden",
+        "resultsFound": "{count} Ergebnisse gefunden",
+        "showMoreResults": "Zeige mehr Ergebnisse",
+        "noMoreResults": "Keine weiteren Ergebnisse",
+        "loading": "Lade..."
     }
 }
