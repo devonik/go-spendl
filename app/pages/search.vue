@@ -4,6 +4,10 @@ import { useRouteQuery } from '@vueuse/router'
 import { liteClient as algoliasearch } from 'algoliasearch/lite'
 import { AisConfigure, AisInfiniteHits, AisInstantSearch, AisPoweredBy, AisSearchBox, AisStateResults, AisVoiceSearch } from 'vue-instantsearch/vue3/es'
 
+definePageMeta({
+  title: 'search.title',
+})
+
 const { error } = await useFetch('/api/algolia/health')
 const { data } = await useFetch('/api/algolia/api')
 

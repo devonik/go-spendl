@@ -32,5 +32,6 @@ export default defineNuxtConfig({
     ],
     defaultLocale: 'de',
     skipSettingLocaleOnNavigate: true,
+    baseUrl: 'https://gospendl.com',
   },
 })

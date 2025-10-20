@@ -1,7 +1,9 @@
+import { title } from 'node:process'
+
 export default {
   welcome: {
     title: 'Hola a GoSpendl!',
-    description: 'La aplicación de comparación de precios para productos con descuento en Bitcoin, cashback con bitcoins y mucho más',
+    description: 'La aplicación de comparación de precios para productos con descuento en Bitcoin, cashback con bitcoin y mucho más',
     feature1: {
       title: 'Payable with Bitcoin',
       description: 'You can search for products and compare prices on various online stores where you can pay with Bitcoin.',
@@ -16,6 +18,7 @@ export default {
     },
   },
   search: {
+    title: 'Search Products',
     productGroups: {
       SATSBACK: 'Satsback',
       PAY_WITH_BITCOIN: 'Pay with Bitcoin',

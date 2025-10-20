@@ -1,3 +1,20 @@
+<script setup lang="ts">
+const { t } = useI18n()
+const title = t('welcome.title')
+const description = t('welcome.description')
+useSeoMeta({
+  title,
+  titleTemplate: (titleChunk) => {
+    return titleChunk ? `${titleChunk} - GoSpendl` : 'GoSpendl'
+  },
+  ogTitle: title,
+  description,
+  ogDescription: description,
+  ogImage: '/logo-light.png',
+  twitterCard: 'summary_large_image',
+})
+</script>
+
 <template>
   <UApp>
     <LayoutHeader />

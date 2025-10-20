@@ -1,7 +1,9 @@
+import { title } from 'node:process'
+
 export default {
   welcome: {
     title: 'Willkommen bei GoSpendl!',
-    description: 'Die Preisvergleichs-App für Bitcoin reduzierte Produkte, Cashback mit Bitcoins und vieles mehr',
+    description: 'Die Preisvergleichs-App für Bitcoin reduzierte Produkte, Cashback mit Bitcoin und vieles mehr',
     feature1: {
       title: 'Bezahlbar mit Bitcoin',
       description: 'Du kannst nach Produkten suchen und Preise bei verschiedenen Onlineshops vergleichen, bei denen du mit Bitcoin bezahlen kannst.',
@@ -20,6 +22,7 @@ export default {
     order: 'Bestelle auf der Partnerseite',
   },
   search: {
+    title: 'Produkte suchen',
     filter: {
       label: 'Filter',
       clearAllFilters: 'Bereinige alle Filter',

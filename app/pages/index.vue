@@ -1,4 +1,8 @@
 <script setup lang="ts">
+definePageMeta({
+  title: 'welcome.title',
+})
+
 const { t } = useI18n()
 const router = useRouter()
 const localePath = useLocalePath()

@@ -2,7 +2,7 @@ export default {
   noInternet: 'No Internet connection',
   welcome: {
     title: 'Welcome to GoSpendl!',
-    description: 'The price comparison app for Bitcoin discounted products, cashback with bitcoins and much more',
+    description: 'The price comparison app for Bitcoin discounted products, cashback with bitcoin and much more',
     feature1: {
       title: 'Payable with Bitcoin',
       description: 'You can search for products and compare prices on various online stores where you can pay with Bitcoin.',
@@ -21,6 +21,7 @@ export default {
     order: 'Order on partner site',
   },
   search: {
+    title: 'Search Products',
     filter: {
       label: 'Filter',
       clearAllFilters: 'Clear all filters',
