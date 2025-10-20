@@ -14,7 +14,7 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     '@nuxt/fonts',
   ],
-  css: ['~/assets/css/main.css', 'instantsearch.css/themes/algolia-min.css'],
+  css: ['~/assets/css/main.css'],
   icon: {
     customCollections: [{
       prefix: 'custom',
