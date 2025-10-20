@@ -5,21 +5,21 @@ export default defineNuxtConfig({
   runtimeConfig: {
     algoliaAppId: process.env.ALGOLIA_APP_ID,
     algoliaApiKey: process.env.ALGOLIA_API_KEY,
-  },  
+  },
   modules: [
     '@nuxt/eslint',
     '@nuxt/image',
     '@nuxt/test-utils',
     '@nuxt/ui',
     '@nuxtjs/i18n',
-    '@nuxt/fonts'
+    '@nuxt/fonts',
   ],
   css: ['~/assets/css/main.css', 'instantsearch.css/themes/algolia-min.css'],
   icon: {
     customCollections: [{
       prefix: 'custom',
-      dir: './app/assets/icons'
-    }]
+      dir: './app/assets/icons',
+    }],
   },
   i18n: {
     locales: [
@@ -27,10 +27,10 @@ export default defineNuxtConfig({
       { code: 'de', language: 'de-DE', name: 'Deutsch', file: 'de.ts' },
       {
         code: 'es',
-        file: 'es.ts'
+        file: 'es.ts',
       },
     ],
     defaultLocale: 'de',
     skipSettingLocaleOnNavigate: true,
-  }
+  },
 })

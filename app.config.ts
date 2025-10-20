@@ -1,12 +1,12 @@
 export default defineAppConfig({
   ui: {
     colors: {
-      test: 'purple'
+      test: 'purple',
     },
     theme: {
-        color: [
-            'test'
-        ]
-    }
-  }
+      color: [
+        'test',
+      ],
+    },
+  },
 })

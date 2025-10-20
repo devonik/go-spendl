@@ -1,3 +1,33 @@
+<script setup lang="ts">
+import products from '../../assets/products'
+
+const route = useRoute()
+const id = computed(() => route.params.id as string)
+
+// Find the product based on the ID parameter
+const product = computed(() => {
+  return products.find(p => p.value === id.value)
+})
+
+// Extract brand name from product label (assumes format includes brand name)
+const productBrand = computed(() => {
+  if (!product.value)
+    return ''
+
+  // This example assumes the brand is the first word in the product label
+  // You might want to adjust this logic based on your actual data structure
+  return product.value.label.split(' ')[0]
+})
+
+// Handle 404 if product is not found
+if (!product.value) {
+  throw createError({
+    statusCode: 404,
+    message: 'Product not found',
+  })
+}
+</script>
+
 <template>
   <UContainer>
     <div v-if="product" class="py-8">
@@ -18,15 +48,20 @@
           <img
             :src="product.avatar.src"
             :alt="product.avatar.alt"
-            class="w-full h-auto object-contain">
+            class="w-full h-auto object-contain"
+          >
         </div>
 
         <!-- Product Details Section -->
         <div class="space-y-6">
           <!-- Brand & Title -->
           <div>
-            <UBadge color="primary" class="mb-2">{{ productBrand }}</UBadge>
-            <h1 class="text-2xl font-bold">{{ product.label }}</h1>
+            <UBadge color="primary" class="mb-2">
+              {{ productBrand }}
+            </UBadge>
+            <h1 class="text-2xl font-bold">
+              {{ product.label }}
+            </h1>
           </div>
 
           <!-- Price Section -->
@@ -34,7 +69,7 @@
             <!-- Original Price -->
             <div class="flex items-center gap-2">
               <span class="text-2xl font-bold">{{ product.price }}</span>
-              
+
               <!-- Bitcoin Discount Badge -->
               <UBadge
                 v-if="product.bitcoinDiscount"
@@ -43,7 +78,7 @@
               >
                 {{ product.bitcoinDiscount.percent }}% BTC Discount
               </UBadge>
-              
+
               <!-- Satsback Badge -->
               <UBadge
                 v-if="product.satsbackPercent"
@@ -97,7 +132,9 @@
         name="i-heroicons-exclamation-triangle"
         class="w-16 h-16 mx-auto mb-4 text-warning"
       />
-      <h2 class="text-xl font-semibold mb-2">Product Not Found</h2>
+      <h2 class="text-xl font-semibold mb-2">
+        Product Not Found
+      </h2>
       <p class="text-gray-500 mb-4">
         The product you're looking for doesn't exist or has been removed.
       </p>
@@ -110,32 +147,3 @@
     </div>
   </UContainer>
 </template>
-
-<script setup lang="ts">
-import products from '../../assets/products'
-
-const route = useRoute()
-const id = computed(() => route.params.id as string)
-
-// Find the product based on the ID parameter
-const product = computed(() => {
-  return products.find(p => p.value === id.value)
-})
-
-// Extract brand name from product label (assumes format includes brand name)
-const productBrand = computed(() => {
-  if (!product.value) return ''
-  
-  // This example assumes the brand is the first word in the product label
-  // You might want to adjust this logic based on your actual data structure
-  return product.value.label.split(' ')[0]
-})
-
-// Handle 404 if product is not found
-if (!product.value) {
-  throw createError({
-    statusCode: 404,
-    message: 'Product not found'
-  })
-}
-</script>

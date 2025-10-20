@@ -1,45 +1,43 @@
-import { de } from "@nuxt/ui/runtime/locale/index.js";
-
-export default{
-    "welcome": {
-        "title": "Willkommen bei GoSpendl!",
-        "description": "Die Preisvergleichs-App für Bitcoin reduzierte Produkte, Cashback mit Bitcoins und vieles mehr",
-        "feature1": {
-            title: 'Bezahlbar mit Bitcoin',
-            description: 'Du kannst nach Produkten suchen und Preise bei verschiedenen Onlineshops vergleichen, bei denen du mit Bitcoin bezahlen kannst.'
-        },
-        "feature2": {
-            title: 'Cashback mit Satsback',
-            description: 'Du kannst nach Produkten suchen und Preise bei verschiedenen Onlineshops vergleichen, bei denen du Cashback in Bitcoin (Satsback) erhalten kannst.'
-        },
-        "feature3": {
-            title: 'Neu bei Bitcoin?',
-            description: 'Investiere noch heute deine Bitcoin-Ersparnisse mit Cashback in Bitcoin (Satsback) bei deinen alltäglichen Einkäufen.'
-        }
+export default {
+  welcome: {
+    title: 'Willkommen bei GoSpendl!',
+    description: 'Die Preisvergleichs-App für Bitcoin reduzierte Produkte, Cashback mit Bitcoins und vieles mehr',
+    feature1: {
+      title: 'Bezahlbar mit Bitcoin',
+      description: 'Du kannst nach Produkten suchen und Preise bei verschiedenen Onlineshops vergleichen, bei denen du mit Bitcoin bezahlen kannst.',
     },
-    "product": {
-        "btcDiscount": "{percent}% BTC Rabatt",
-        "order": "Bestelle auf der Partnerseite"
+    feature2: {
+      title: 'Cashback mit Satsback',
+      description: 'Du kannst nach Produkten suchen und Preise bei verschiedenen Onlineshops vergleichen, bei denen du Cashback in Bitcoin (Satsback) erhalten kannst.',
     },
-    "search": {
-        "filter": {
-            "label": "Filter",
-            "clearAllFilters": "Bereinige alle Filter",
-            "categories": "Kategorien",
-            "brands": "Marken",
-            "colors": "Farben",
-            "priceRange": "Preisbereich"
-        },
-        "productGroups": {
-            "satsback": "Satsback",
-            "payWithBitcoin": "Bezahlbar mit Bitcoin"
-        },
-        "info": "{hits} treffer in {time}ms für {query}",
-        "placeholder": "Suche nach Produkt...",
-        "noResults": "Keine Ergebnisse gefunden",
-        "resultsFound": "{count} Ergebnisse gefunden",
-        "showMoreResults": "Zeige mehr Ergebnisse",
-        "noMoreResults": "Keine weiteren Ergebnisse",
-        "loading": "Lade..."
-    }
+    feature3: {
+      title: 'Neu bei Bitcoin?',
+      description: 'Investiere noch heute deine Bitcoin-Ersparnisse mit Cashback in Bitcoin (Satsback) bei deinen alltäglichen Einkäufen.',
+    },
+  },
+  product: {
+    btcDiscount: '{percent}% BTC Rabatt',
+    order: 'Bestelle auf der Partnerseite',
+  },
+  search: {
+    filter: {
+      label: 'Filter',
+      clearAllFilters: 'Bereinige alle Filter',
+      categories: 'Kategorien',
+      brands: 'Marken',
+      colors: 'Farben',
+      priceRange: 'Preisbereich',
+    },
+    productGroups: {
+      satsback: 'Satsback',
+      payWithBitcoin: 'Bezahlbar mit Bitcoin',
+    },
+    info: '{hits} treffer in {time}ms für {query}',
+    placeholder: 'Suche nach Produkt...',
+    noResults: 'Keine Ergebnisse gefunden',
+    resultsFound: '{count} Ergebnisse gefunden',
+    showMoreResults: 'Zeige mehr Ergebnisse',
+    noMoreResults: 'Keine weiteren Ergebnisse',
+    loading: 'Lade...',
+  },
 }

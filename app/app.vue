@@ -1,6 +1,6 @@
 <template>
   <UApp>
-    <LayoutHeader/>
+    <LayoutHeader />
     <UMain>
       <NuxtLayout>
         <UContainer class="py-6">
@@ -9,6 +9,6 @@
       </NuxtLayout>
     </UMain>
     <USeparator icon="i-simple-icons-nuxtdotjs" type="dashed" class="h-px" />
-    <LayoutFooter/>
+    <LayoutFooter />
   </UApp>
 </template>

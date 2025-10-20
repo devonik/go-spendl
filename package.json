@@ -2,6 +2,7 @@
   "name": "go-spendl",
   "type": "module",
   "private": true,
+  "packageManager": "pnpm@10.5.0+sha512.11106a5916c7406fe4b8cb8e3067974b8728f47308a4f5ac5e850304afa6f57e2847d7950dfe78877d8d36bfb401d381c4215db3a4c3547ffa63c14333a6fa51",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
@@ -26,5 +27,11 @@
     "vue-instantsearch": "^4.21.3",
     "vue-router": "^4.5.1"
   },
-  "packageManager": "pnpm@10.5.0+sha512.11106a5916c7406fe4b8cb8e3067974b8728f47308a4f5ac5e850304afa6f57e2847d7950dfe78877d8d36bfb401d381c4215db3a4c3547ffa63c14333a6fa51"
+  "devDependencies": {
+    "@antfu/eslint-config": "^6.0.0",
+    "@iconify-json/lucide": "^1.2.70",
+    "@types/node": "^24.8.1",
+    "@unocss/eslint-plugin": "^66.5.3",
+    "eslint": "^9.37.0"
+  }
 }

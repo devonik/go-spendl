@@ -8,10 +8,10 @@ defineProps<{
 
 <template>
   <UApp>
-    <LayoutHeader/>
+    <LayoutHeader />
 
     <UError :error="error" />
 
-    <LayoutFooter/>
+    <LayoutFooter />
   </UApp>
 </template>
