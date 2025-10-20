@@ -30,14 +30,14 @@ const searchModel = ref('')
       :features="features"
     >
       <template #description>
-        <div class="flex flex-col gap-8 ">
+        <div class="flex flex-col gap-8">
           {{ $t('welcome.description') }}
 
           <UInput
             v-model="searchModel"
             icon="i-lucide-search"
             :placeholder="$t('search.placeholder')"
-            class="w-md m-auto"
+            class="m-auto min-w-[150px] max-w-lg w-full"
             @change="router.replace(localePath(`/search?q=${searchModel}`))"
           />
         </div>
