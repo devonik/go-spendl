@@ -15,8 +15,8 @@ const features = ref([
     icon: 'i-custom-satsback',
   },
   {
-    title: t('welcome.feature2.title'),
-    description: t('welcome.feature2.description'),
+    title: t('welcome.feature3.title'),
+    description: t('welcome.feature3.description'),
     icon: 'i-lucide-sun-moon',
   },
 ])
@@ -24,12 +24,24 @@ const searchModel = ref('')
 </script>
 
 <template>
-  <div>
+  <div class="flex flex-col">
     <UPageSection
       :title="$t('welcome.title')"
-      :description="$t('welcome.description')"
       :features="features"
-    />
-    <UInput v-model="searchModel" icon="i-lucide-search" :placeholder="$t('search.placeholder')" class="w-full" @change="router.replace(localePath(`/search?q=${searchModel}`))" />
+    >
+      <template #description>
+        <div class="flex flex-col gap-8 ">
+          {{ $t('welcome.description') }}
+
+          <UInput
+            v-model="searchModel"
+            icon="i-lucide-search"
+            :placeholder="$t('search.placeholder')"
+            class="w-md m-auto"
+            @change="router.replace(localePath(`/search?q=${searchModel}`))"
+          />
+        </div>
+      </template>
+    </UPageSection>
   </div>
 </template>

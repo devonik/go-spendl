@@ -12,7 +12,7 @@ export default {
     },
     feature3: {
       title: 'New to Bitcoin?',
-      description: 'Start investing your bitcoin savings today with cashback in Bitcoin (Satsback) on your everyday purchases.',
+      description: 'Do you not own any Bitcoin yet? Then order something and get cashback in Bitcoin (Satsback) on your daily purchases.',
     },
   },
   search: {

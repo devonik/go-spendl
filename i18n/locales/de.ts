@@ -11,8 +11,8 @@ export default {
       description: 'Du kannst nach Produkten suchen und Preise bei verschiedenen Onlineshops vergleichen, bei denen du Cashback in Bitcoin (Satsback) erhalten kannst.',
     },
     feature3: {
-      title: 'Neu bei Bitcoin?',
-      description: 'Investiere noch heute deine Bitcoin-Ersparnisse mit Cashback in Bitcoin (Satsback) bei deinen alltäglichen Einkäufen.',
+      title: 'Neu im Bitcoin?',
+      description: 'Besitzt du noch kein Bitcoin? Dann bestelle etwas und erhalte Cashback in Bitcoin (Satsback) auf deine täglichen Einkäufe.',
     },
   },
   product: {
