@@ -83,6 +83,9 @@ const shopDomain = computed(() => {
         block
       >
         {{ $t('product.order') }}
+        <template #trailing>
+          <UIcon name="i-lucide-arrow-right" class="size-5" />
+        </template>
       </UButton>
     </template>
   </UCard>

@@ -39,7 +39,7 @@ export default {
   },
   product: {
     btcDiscount: '{percent}% BTC Rabatt',
-    order: 'Bestelle auf der Partnerseite',
+    order: 'Zum Shop',
   },
   search: {
     title: 'Suchergebnisse',

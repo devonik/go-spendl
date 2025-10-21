@@ -40,7 +40,7 @@ export default {
   },
   product: {
     btcDiscount: '{percent}% BTC Discount',
-    order: 'Order on partner site',
+    order: 'Go to shop',
   },
   search: {
     title: 'Search results',
