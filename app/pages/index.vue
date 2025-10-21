@@ -32,6 +32,7 @@ const searchModel = ref('')
     <UPageSection
       :title="$t('welcome.title')"
       :features="features"
+      :ui="{ container: 'py-4 sm:py-12 lg:py-20' }"
     >
       <template #description>
         <div class="flex flex-col gap-8">

@@ -34,4 +34,5 @@ export default defineNuxtConfig({
     skipSettingLocaleOnNavigate: true,
     baseUrl: 'https://gospendl.com',
   },
+
 })
