@@ -24,7 +24,13 @@ const items = computed<NavigationMenuItem[]>(() => [
 ])
 
 const logoUrl = computed(() => {
-  return colorMode.value === 'dark' ? '/logo-dark.png' : '/logo-light.png'
+  switch (colorMode.value) {
+    case 'dark':
+      return '/logo-dark.png'
+    case 'light':
+      return '/logo-light.png'
+  }
+  return null
 })
 </script>
 
@@ -32,7 +38,7 @@ const logoUrl = computed(() => {
   <UHeader mode="drawer">
     <template #left>
       <NuxtLink class="font-bold" :to="localePath('/')">
-        <img :src="logoUrl" alt="Go Spendl Logo" width="80">
+        <img v-if="logoUrl" :src="logoUrl" alt="Go Spendl Logo" width="80">
       </NuxtLink>
     </template>
     <UNavigationMenu :items="items" />
