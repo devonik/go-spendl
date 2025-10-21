@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { Analytics } from '@vercel/analytics/nuxt'
+
 const { t } = useI18n()
 const title = t('welcome.title')
 const description = t('welcome.description')
@@ -27,5 +29,6 @@ useSeoMeta({
     </UMain>
     <USeparator icon="i-simple-icons-nuxtdotjs" type="dashed" class="h-px" />
     <LayoutFooter />
+    <Analytics />
   </UApp>
 </template>
