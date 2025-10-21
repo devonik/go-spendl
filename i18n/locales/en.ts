@@ -44,9 +44,16 @@ export default {
   },
   search: {
     title: 'Search results',
+    sortBy: {
+      price: {
+        placeholder: 'Sort by price',
+        asc: 'Price asc.',
+        desc: 'Price desc.',
+      },
+    },
     filter: {
       label: 'Filter',
-      clearAllFilters: 'Clear all filters',
+      clearAllFilters: 'Reset',
       categories: 'Categories',
       brands: 'Brands',
       colors: 'Colors',

@@ -2,12 +2,13 @@
 import type { AlgoliaProduct } from '~/types/algolia'
 import { useRouteQuery } from '@vueuse/router'
 import { liteClient as algoliasearch } from 'algoliasearch/lite'
-import { AisConfigure, AisInfiniteHits, AisInstantSearch, AisPoweredBy, AisSearchBox, AisStateResults, AisVoiceSearch } from 'vue-instantsearch/vue3/es'
+import { AisConfigure, AisInfiniteHits, AisInstantSearch, AisPoweredBy, AisSearchBox, AisSortBy, AisStateResults, AisVoiceSearch } from 'vue-instantsearch/vue3/es'
 
 definePageMeta({
   title: 'search.title',
 })
 
+const { t } = useI18n()
 const { error } = await useFetch('/api/algolia/health')
 const { data } = await useFetch('/api/algolia/api')
 
@@ -110,24 +111,43 @@ const queryModel = useRouteQuery('q', '')
           </UInputMenu>
         </template>
       </ais-autocomplete> -->
-        <AisStateResults>
-          <template #default="{ status, state: { query }, results: { nbHits, processingTimeMS } }">
-            <p v-show="status === 'stalled'">
-              <UProgress animation="swing" />
-            </p>
-            <i18n-t keypath="search.info" tag="p">
-              <template #hits>
-                <strong>{{ nbHits }}</strong>
-              </template>
-              <template #time>
-                <strong>{{ processingTimeMS }}</strong>
-              </template>
-              <template #query>
-                <q>{{ query }}</q>
-              </template>
-            </i18n-t>
-          </template>
-        </AisStateResults>
+        <div class="flex justify-between gap-4">
+          <AisStateResults>
+            <template #default="{ status, state: { query }, results: { nbHits, processingTimeMS } }">
+              <p v-show="status === 'stalled'">
+                <UProgress animation="swing" />
+              </p>
+              <i18n-t keypath="search.info" tag="p">
+                <template #hits>
+                  <strong>{{ nbHits }}</strong>
+                </template>
+                <template #time>
+                  <strong>{{ processingTimeMS }}</strong>
+                </template>
+                <template #query>
+                  <q>{{ query }}</q>
+                </template>
+              </i18n-t>
+            </template>
+          </AisStateResults>
+
+          <!-- Sort -->
+          <AisSortBy
+            :items="[
+              { value: 'prod_products_price_asc', label: t('search.sortBy.price.asc'), icon: 'i-lucide-arrow-up' },
+              { value: 'prod_products_price_desc', label: t('search.sortBy.price.desc'), icon: 'i-lucide-arrow-down' },
+            ]"
+          >
+            <template #default="{ items, currentRefinement, refine }">
+              <USelect
+                :items="items"
+                :placeholder="$t('search.sortBy.price.placeholder')"
+                :ui="{ content: 'min-w-fit' }"
+                @update:model-value="value => refine(value)"
+              />
+            </template>
+          </AisSortBy>
+        </div>
         <AisInfiniteHits>
           <template
             #default="{

@@ -43,9 +43,16 @@ export default {
   },
   search: {
     title: 'Suchergebnisse',
+    sortBy: {
+      price: {
+        placeholder: 'Sortiere nach Preis',
+        asc: 'Preis aufsteigend',
+        desc: 'Preis absteigend',
+      },
+    },
     filter: {
       label: 'Filter',
-      clearAllFilters: 'Bereinige alle Filter',
+      clearAllFilters: 'Zurücksetzen',
       categories: 'Kategorien',
       brands: 'Marken',
       colors: 'Farben',
