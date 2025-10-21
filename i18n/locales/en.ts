@@ -43,7 +43,7 @@ export default {
     order: 'Order on partner site',
   },
   search: {
-    title: 'Search Products',
+    title: 'Search results',
     filter: {
       label: 'Filter',
       clearAllFilters: 'Clear all filters',

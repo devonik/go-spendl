@@ -42,7 +42,7 @@ export default {
     order: 'Bestelle auf der Partnerseite',
   },
   search: {
-    title: 'Produkte suchen',
+    title: 'Suchergebnisse',
     filter: {
       label: 'Filter',
       clearAllFilters: 'Bereinige alle Filter',

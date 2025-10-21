@@ -21,6 +21,9 @@ const queryModel = useRouteQuery('q', '')
 </script>
 
 <template>
+  <h2 class="text-3xl sm:text-4xl lg:text-5xl text-pretty tracking-tight font-bold text-highlighted text-center mb-6">
+    {{ $t('search.title') }}
+  </h2>
   <ClientOnly>
     <template #fallback>
       <!-- this will be rendered on server side -->
