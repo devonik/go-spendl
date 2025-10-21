@@ -34,7 +34,7 @@ export default {
     },
     contact: {
       title: 'Kontakt',
-      text: 'Hast du Fragen, Feedback oder möchtest mit uns zusammenarbeiten. Schreib uns gerne an info{\'@\'}gospendl.com oder besuche unsere Social Media Kanäle.',
+      text: 'Hast du Fragen, Feedback oder möchtest mit uns zusammenarbeiten. Schreib uns gerne an {email} oder besuche unsere Social Media Kanäle.',
     },
   },
   product: {

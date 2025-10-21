@@ -3,27 +3,9 @@ definePageMeta({
   title: 'welcome.title',
 })
 
-const { t } = useI18n()
 const router = useRouter()
 const localePath = useLocalePath()
 
-const features = ref([
-  {
-    title: t('welcome.feature1.title'),
-    description: t('welcome.feature1.description'),
-    icon: 'i-lucide-bitcoin',
-  },
-  {
-    title: t('welcome.feature2.title'),
-    description: t('welcome.feature2.description'),
-    icon: 'i-custom-satsback',
-  },
-  {
-    title: t('welcome.feature3.title'),
-    description: t('welcome.feature3.description'),
-    icon: 'i-lucide-sun-moon',
-  },
-])
 const searchModel = ref('')
 </script>
 
@@ -31,9 +13,26 @@ const searchModel = ref('')
   <div class="flex flex-col">
     <UPageSection
       :title="$t('welcome.title')"
-      :features="features"
       :ui="{ container: 'py-4 sm:py-12 lg:py-20' }"
     >
+      <template #features>
+        <UPageFeature
+          :title="$t('welcome.feature1.title')"
+          :description="$t('welcome.feature1.description')"
+          icon="i-lucide-bitcoin"
+          :ui="{ leadingIcon: 'text-[#f7931a]' }"
+        />
+        <UPageFeature
+          :title="$t('welcome.feature2.title')"
+          :description="$t('welcome.feature2.description')"
+          icon="i-custom-satsback"
+        />
+        <UPageFeature
+          :title="$t('welcome.feature3.title')"
+          :description="$t('welcome.feature3.description')"
+          icon="i-lucide-rocket"
+        />
+      </template>
       <template #description>
         <div class="flex flex-col gap-8">
           {{ $t('welcome.description') }}
@@ -50,3 +49,9 @@ const searchModel = ref('')
     </UPageSection>
   </div>
 </template>
+
+<style>
+.iconify+.i-lucide:bitcoin{
+  color: red !important;
+}
+</style>

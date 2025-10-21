@@ -35,7 +35,7 @@ export default {
     },
     contact: {
       title: 'Contact',
-      text: 'Do you have any questions, feedback, or would you like to work with us? Feel free to write to us at info{\'@\'}gospendl.com or visit our social media channels.',
+      text: 'Do you have any questions, feedback, or would you like to work with us? Feel free to write to us at {email} or visit our social media channels.',
     },
   },
   product: {
