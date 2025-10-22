@@ -25,10 +25,6 @@ export default defineNuxtConfig({
     locales: [
       { code: 'en', language: 'en-US', name: 'English', file: 'en.ts' },
       { code: 'de', language: 'de-DE', name: 'Deutsch', file: 'de.ts' },
-      {
-        code: 'es',
-        file: 'es.ts',
-      },
     ],
     defaultLocale: 'de',
     skipSettingLocaleOnNavigate: true,

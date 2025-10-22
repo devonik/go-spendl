@@ -2,7 +2,7 @@
 const route = useRoute()
 const { t } = useI18n()
 const head = useLocaleHead()
-const title = computed(() => t(route.meta.title ?? 'layouts.title', t('layouts.title')))
+const title = computed(() => t(route.meta.title ?? 'welcome.title', t('welcome.title')))
 </script>
 
 <template>
@@ -16,6 +16,7 @@ const title = computed(() => t(route.meta.title ?? 'layouts.title', t('layouts.t
         <template v-for="meta in head.meta" :key="meta.key">
           <Meta :id="meta.key" :property="meta.property" :content="meta.content" />
         </template>
+        <link crossorigin href="https://EFU0EZXFMM-dsn.algolia.net" rel="preconnect">
       </Head>
       <Body>
         <slot />

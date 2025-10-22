@@ -6,6 +6,9 @@ import shopDomains from '~/assets/shop-domain'
 const props = defineProps<{
   product: AlgoliaProduct
 }>()
+defineEmits<{
+  (e: 'clickOrder'): void
+}>()
 
 const shopDomain = computed(() => {
   if (!props.product.shopDomain)
@@ -74,19 +77,24 @@ const shopDomain = computed(() => {
 
     <!-- Details Link -->
     <template #footer>
-      <UButton
+      <a
         :href="product.sourceUrl"
-        _target="_blank"
-        color="primary"
-        variant="soft"
-        icon="i-lucide-shopping-cart"
-        block
+        target="_blank"
       >
-        {{ $t('product.order') }}
-        <template #trailing>
-          <UIcon name="i-lucide-arrow-right" class="size-5" />
-        </template>
-      </UButton>
+        <UButton
+          class="cursor-pointer"
+          color="primary"
+          variant="soft"
+          icon="i-lucide-shopping-cart"
+          block
+          @click="$emit('clickOrder')"
+        >
+          {{ $t('product.order') }}
+          <template #trailing>
+            <UIcon name="i-lucide-arrow-right" class="size-5" />
+          </template>
+        </UButton>
+      </a>
     </template>
   </UCard>
 </template>

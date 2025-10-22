@@ -62,10 +62,13 @@ const queryModel = useRouteQuery('q', '')
               v-model="queryModel" class="w-full" :placeholder="$t('search.placeholder')" @update:model-value="value => refine(value)"
             >
               <template #trailing>
-                <span :hidden="!isSearchStalled">{{ $t('search.loading') }}</span>
+                <span :hidden="!isSearchStalled" class="mr-3">{{ $t('search.loading') }}</span>
                 <AisVoiceSearch />
               </template>
             </UInput>
+          </template>
+          <template #submit-icon>
+            🔎
           </template>
         </AisSearchBox>
         <!-- <ais-autocomplete >
@@ -155,7 +158,8 @@ const queryModel = useRouteQuery('q', '')
               refinePrevious,
               refineNext,
               isLastPage,
-            } : {items: AlgoliaProduct[], refinePrevious: () => void, refineNext: () => void, isLastPage: boolean, sendEvent: (eventName: string, eventData: object) => void}"
+              sendEvent,
+            } : {items: AlgoliaProduct[], refinePrevious: () => void, refineNext: () => void, isLastPage: boolean, sendEvent: (eventType: 'click' | 'conversion', hit: any, eventName: string) => void}"
           >
             <div v-if="pageModel > 1" class="justify-self-center mb-3">
               <UButton
@@ -171,6 +175,7 @@ const queryModel = useRouteQuery('q', '')
                 v-for="product in items"
                 :key="product.objectID"
                 :product="product"
+                @click-order="sendEvent('conversion', product, 'User clicked on order button')"
               />
             </div>
             <div class="justify-self-center mt-3">

@@ -27,7 +27,7 @@ useSeoMeta({
         </UContainer>
       </NuxtLayout>
     </UMain>
-    <USeparator icon="i-simple-icons-nuxtdotjs" type="dashed" class="h-px" />
+    <USeparator icon="i-custom-gospendl" type="dashed" class="h-px text-red" />
     <LayoutFooter />
     <Analytics />
   </UApp>
