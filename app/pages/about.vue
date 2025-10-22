@@ -20,7 +20,7 @@ definePageMeta({
       <UPageFeature
         :title="$t('about.howWeWork.title')"
         :description="$t('about.howWeWork.text')"
-        icon="i-custom-network"
+        icon="i-lucide-network"
       />
       <UPageFeature
         :title="$t('about.security.title')"
