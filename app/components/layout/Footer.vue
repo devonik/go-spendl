@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { NavigationMenuItem } from '@nuxt/ui'
 import type { Locale } from 'vue-i18n'
-import { de, en, es } from '@nuxt/ui/locale'
+import { de, en } from '@nuxt/ui/locale'
 
 const { locale, setLocale, loadLocaleMessages } = useI18n()
 const items: NavigationMenuItem[] = [
@@ -31,8 +31,8 @@ async function switchLanguage(lang: Locale) {
     <template #right>
       <ULocaleSelect
         v-model="locale"
-        :locales="[en, de, es]"
-        @update:model-value="switchLanguage($event)"
+        :locales="[en, de]"
+        @update:model-value="value => switchLanguage(value as Locale)"
       />
     </template>
   </UFooter>

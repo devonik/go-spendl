@@ -1,8 +1,7 @@
 <script lang="ts" setup>
-import type { AlgoliaProduct } from '~/types/algolia'
 import { useRouteQuery } from '@vueuse/router'
 import { liteClient as algoliasearch } from 'algoliasearch/lite'
-import { AisConfigure, AisInfiniteHits, AisInstantSearch, AisPoweredBy, AisSearchBox, AisSortBy, AisStateResults, AisVoiceSearch } from 'vue-instantsearch/vue3/es'
+import { AisConfigure, AisInstantSearch, AisPoweredBy, AisSearchBox, AisSortBy, AisStateResults, AisVoiceSearch } from 'vue-instantsearch/vue3/es'
 
 definePageMeta({
   title: 'search.title',
@@ -141,7 +140,7 @@ const queryModel = useRouteQuery('q', '')
               { value: 'prod_products_price_desc', label: t('search.sortBy.price.desc'), icon: 'i-lucide-arrow-down' },
             ]"
           >
-            <template #default="{ items, currentRefinement, refine }">
+            <template #default="{ items, refine }">
               <USelect
                 :items="items"
                 :placeholder="$t('search.sortBy.price.placeholder')"
@@ -151,43 +150,7 @@ const queryModel = useRouteQuery('q', '')
             </template>
           </AisSortBy>
         </div>
-        <AisInfiniteHits>
-          <template
-            #default="{
-              items,
-              refinePrevious,
-              refineNext,
-              isLastPage,
-              sendEvent,
-            } : {items: AlgoliaProduct[], refinePrevious: () => void, refineNext: () => void, isLastPage: boolean, sendEvent: (eventType: 'click' | 'conversion', hit: any, eventName: string) => void}"
-          >
-            <div v-if="pageModel > 1" class="justify-self-center mb-3">
-              <UButton
-                color="primary"
-                :label="isLastPage ? $t('search.noMoreResults') : $t('search.showMoreResults')" @click=" () => {
-                  pageModel--
-                  refinePrevious()
-                }"
-              />
-            </div>
-            <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-              <ProductCard
-                v-for="product in items"
-                :key="product.objectID"
-                :product="product"
-                @click-order="sendEvent('conversion', product, 'User clicked on order button')"
-              />
-            </div>
-            <div class="justify-self-center mt-3">
-              <UButton
-                :label="isLastPage ? $t('search.noMoreResults') : $t('search.showMoreResults')" :disabled="isLastPage" @click=" () => {
-                  pageModel++
-                  refineNext()
-                }"
-              />
-            </div>
-          </template>
-        </AisInfiniteHits>
+        <SearchResultHits v-model:page="pageModel" v-model:query="queryModel" />
         <AisConfigure
           :hits-per-page.camel="20"
         />

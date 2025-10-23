@@ -1,3 +1,5 @@
+import type { Locale } from 'vue-i18n'
+
 export default [
   {
     domain: 'baur.de',
@@ -6,6 +8,7 @@ export default [
     country: 'DE',
     currency: 'EUR',
     satsbackPercent: 2,
+    getSearchUrl: (searchTerm: string) => `https://www.baur.de/s/${encodeURIComponent(searchTerm)}`,
   },
   {
     domain: 'galaxus.de',
@@ -14,6 +17,7 @@ export default [
     country: 'DE',
     currency: 'EUR',
     satsbackPercent: 1.5,
+    getSearchUrl: (searchTerm: string, locale: Locale) => `https://www.galaxus.de/${locale}/search?q=${encodeURIComponent(searchTerm)}`,
   },
   {
     domain: 'netto-online.de',
@@ -22,6 +26,7 @@ export default [
     country: 'DE',
     currency: 'EUR',
     satsbackPercent: 2,
+    getSearchUrl: (searchTerm: string) => `https://www.netto-online.de/INTERSHOP/web/WFS/Plus-NettoDE-Site/de_DE/-/EUR/ViewMMPParametricSearch-SimpleOfferSearch?SearchTerm=${encodeURIComponent(searchTerm)}&Region=1&MeatMarketType=2&KW=43`,
   },
   {
     domain: 'running-point.de',
@@ -30,5 +35,15 @@ export default [
     country: 'DE',
     currency: 'EUR',
     satsbackPercent: 3.2,
+    getSearchUrl: (searchTerm: string) => `https://www.running-point.de/search/?q=${encodeURIComponent(searchTerm)}&lang=de_DE`,
+  },
+  {
+    domain: 'shopinbit.de',
+    name: 'Shopinbit',
+    logoUrl: 'https://shopinbit.com/media/54/27/a8/1684356931/iconapple.png',
+    country: 'DE',
+    currency: 'EUR',
+    group: 'payWithBitcoin',
+    getSearchUrl: (searchTerm: string, locale: Locale) => `https://shopinbit.com/${locale}/search?search=${encodeURIComponent(searchTerm)}`,
   },
 ]
