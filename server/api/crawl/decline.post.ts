@@ -9,7 +9,7 @@ export default defineEventHandler(async (event) => {
   if (!body.fileUrl)
     throw new Error('fileUrl is missing')
 
-  del(body.fileUrl)
+  await del(body.fileUrl)
 
   sendSlackMessage(config.slackWebhookUrl, {
     title: `:x: Crawl task declined. Data has been deleted. Old URL ${body.fileUrl}`,

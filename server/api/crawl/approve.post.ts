@@ -9,13 +9,12 @@ export default defineEventHandler(async (event) => {
   if (!body.fileUrl)
     throw new Error('fileUrl is missing')
 
-  upsetAlgoliaObjects(body.productsToUpload, config).then((response) => {
-    sendSlackMessage(config.slackWebhookUrl, {
-      title: `:checkered_flag: Algolia upload for taskId ${body.fileUrl} with *${response[0]?.objectIDs.length || 0}* items finished`,
-    })
-    // Delete file from vercel storage
-    del(body.fileUrl)
+  const response = await upsetAlgoliaObjects(body.productsToUpload, config)
+  sendSlackMessage(config.slackWebhookUrl, {
+    title: `:checkered_flag: Algolia upload for taskId ${body.fileUrl} with *${response[0]?.objectIDs.length || 0}* items finished`,
   })
+  // Delete file from vercel storage
+  await del(body.fileUrl)
 
   return { success: true }
 })

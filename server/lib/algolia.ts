@@ -1,7 +1,6 @@
 import type { NitroRuntimeConfig } from 'nitropack/types'
 import type { AlgoliaProduct } from '~~/types/algolia'
 import { algoliasearch } from 'algoliasearch'
-import sendSlackMessage from './send-slack-message'
 
 export function getClient(config: NitroRuntimeConfig) {
   return algoliasearch(config.public.algoliaAppId, config.algoliaWriteApiKey)
