@@ -186,7 +186,7 @@ export default defineEventHandler(async (event) => {
       results: {
         extracted_content: string
       }[]
-    } = await $fetch('http://localhost:11235/crawl', {
+    } = await $fetch(`${config.crawl4AiUrl}/crawl`, {
       method: 'post',
       body: crawl_payload,
     })

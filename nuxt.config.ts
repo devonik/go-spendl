@@ -10,6 +10,7 @@ export default defineNuxtConfig({
       algoliaAppId: process.env.ALGOLIA_APP_ID,
       algoliaProductIndex: process.env.ALGOLIA_PRODUCT_INDEX,
     },
+    crawl4AiUrl: process.env.CRAWL4AI_URL,
     isCrawlUploadAutomaticEnabled: process.env.CRAWL_UPLOAD_AUTOMATIC,
     baseUrl: process.env.BASE_URL,
     vercelBlobStorageWriteToken: process.env.BLOB_READ_WRITE_TOKEN,
