@@ -1,12 +1,19 @@
 <script lang="ts" setup>
 import type shopDomains from '~/assets/shop-domain'
 
-defineProps<{
-  productPlaceholder: typeof shopDomains[0] & { sourceUrl: string }
+const props = defineProps<{
+  productPlaceholder: typeof shopDomains[0]
+  query: string
 }>()
 defineEmits<{
   (e: 'clickOrder'): void
 }>()
+
+const { locale } = useI18n()
+
+const sourceUrl = computed(() => {
+  return props.productPlaceholder.getSearchUrl ? props.productPlaceholder.getSearchUrl(props.query, locale.value) : ''
+})
 </script>
 
 <!-- A card component to display product information with image, price, and discounts -->
@@ -49,7 +56,7 @@ defineEmits<{
     </div>
     <template #footer>
       <a
-        :href="productPlaceholder.sourceUrl"
+        :href="sourceUrl"
         target="_blank"
       >
         <UButton

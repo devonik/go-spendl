@@ -3,8 +3,16 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   runtimeConfig: {
-    algoliaAppId: process.env.ALGOLIA_APP_ID,
-    algoliaApiKey: process.env.ALGOLIA_API_KEY,
+    algoliaSearchApiKey: process.env.ALGOLIA_SEARCH_API_KEY,
+    algoliaWriteApiKey: process.env.ALGOLIA_WRITE_API_KEY,
+    slackWebhookUrl: process.env.NUXT_SLACK_WEBHOOK_URL,
+    public: {
+      algoliaAppId: process.env.ALGOLIA_APP_ID,
+      algoliaProductIndex: process.env.ALGOLIA_PRODUCT_INDEX,
+    },
+    isCrawlUploadAutomaticEnabled: process.env.CRAWL_UPLOAD_AUTOMATIC,
+    baseUrl: process.env.BASE_URL,
+    vercelBlobStorageWriteToken: process.env.BLOB_READ_WRITE_TOKEN,
   },
   modules: [
     '@nuxt/eslint',
@@ -30,5 +38,4 @@ export default defineNuxtConfig({
     skipSettingLocaleOnNavigate: true,
     baseUrl: 'https://gospendl.com',
   },
-
 })

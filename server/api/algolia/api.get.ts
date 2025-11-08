@@ -1,10 +1,10 @@
-import { algoliasearch } from 'algoliasearch'
+import { getClient } from '~~/server/lib/algolia'
 
 export default defineEventHandler(async () => {
   const config = useRuntimeConfig()
-  const client = algoliasearch(config.algoliaAppId, config.algoliaApiKey)
+  const client = getClient(config)
   return client.generateSecuredApiKey({
-    parentApiKey: config.algoliaApiKey,
-    restrictions: { validUntil: 2524604400, restrictIndices: ['prod_products', 'prod_products_price_asc', 'prod_products_price_desc'] },
+    parentApiKey: config.algoliaSearchApiKey,
+    restrictions: { validUntil: 2524604400, restrictIndices: [config.public.algoliaProductIndex, `${config.public.algoliaProductIndex}_price_asc`, `${config.public.algoliaProductIndex}_price_desc`] },
   })
 })

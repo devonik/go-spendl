@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { useDebounce } from '@vueuse/core'
 import { useRouteQuery } from '@vueuse/router'
 import { liteClient as algoliasearch } from 'algoliasearch/lite'
 import { AisConfigure, AisInstantSearch, AisPoweredBy, AisSearchBox, AisSortBy, AisStateResults, AisVoiceSearch } from 'vue-instantsearch/vue3/es'
@@ -10,14 +11,22 @@ definePageMeta({
 const { t } = useI18n()
 const { error } = await useFetch('/api/algolia/health')
 const { data } = await useFetch('/api/algolia/api')
+const config = useRuntimeConfig()
 
 const searchClient = algoliasearch(
-  'EFU0EZXFMM',
+  config.public.algoliaAppId,
   data.value,
 )
 
 const pageModel = useRouteQuery('p', '1', { transform: Number })
 const queryModel = useRouteQuery('q', '')
+
+function executeSearch() {
+  // TODO does not work ?
+  /* searchClient.search({
+    requests: [{ indexName: config.public.algoliaProductIndex, query: queryModel.value }],
+  }) */
+}
 </script>
 
 <template>
@@ -37,7 +46,7 @@ const queryModel = useRouteQuery('q', '')
     <AisInstantSearch
       v-else
       :search-client="searchClient"
-      index-name="prod_products"
+      :index-name="config.public.algoliaProductIndex"
       class="flex flex-col md:flex-row gap-6"
       :insights="true"
       :future="{
@@ -150,7 +159,7 @@ const queryModel = useRouteQuery('q', '')
             </template>
           </AisSortBy>
         </div>
-        <SearchResultHits v-model:page="pageModel" v-model:query="queryModel" />
+        <SearchResultHits v-model:page="pageModel" v-model:query="queryModel" @re-search="executeSearch" />
         <AisConfigure
           :hits-per-page.camel="20"
         />

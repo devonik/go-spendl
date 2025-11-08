@@ -10,6 +10,7 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
+
   "dependencies": {
     "@nuxt/eslint": "1.9.0",
     "@nuxt/fonts": "0.11.4",
@@ -18,15 +19,19 @@
     "@nuxt/ui": "4.0.0",
     "@nuxtjs/i18n": "10.1.0",
     "@vercel/analytics": "^1.5.0",
+    "@vercel/blob": "^2.0.0",
     "@vueuse/router": "^13.9.0",
+    "add": "^2.0.6",
     "algoliasearch": "^5.40.0",
     "eslint": "^9.0.0",
     "nuxt": "^4.1.2",
     "tailwindcss": "^4.1.13",
     "typescript": "^5.6.3",
+    "uuid": "^13.0.0",
     "vue": "^3.5.22",
     "vue-instantsearch": "^4.21.3",
-    "vue-router": "^4.5.1"
+    "vue-router": "^4.5.1",
+    "zod": "^4.1.12"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^6.0.0",

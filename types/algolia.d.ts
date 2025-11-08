@@ -1,15 +1,16 @@
-export interface AlgoliaProduct {
+export interface AlgoliaProduct extends Record<string, unknown> {
   name: string
   sourceUrl: string
   brand: string
-  description: string
-  price: number
-  imageUrl: string
+  description?: string
+  price: string
+  imageSrc?: string
+  imageSrcset?: string
   shopDomain: string
   group: string
-  colors: string
-  objectID: string
-  _highlightResult: HighlightResult
+  colors?: string
+  objectID?: string
+  _highlightResult?: HighlightResult
 }
 
 export interface HighlightResult {

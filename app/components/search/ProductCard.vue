@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { AlgoliaProduct } from '~/types/algolia'
+import type { AlgoliaProduct } from '~~/types/algolia'
 import { AisHighlight } from 'vue-instantsearch/vue3/es'
 import shopDomains from '~/assets/shop-domain'
 
@@ -36,9 +36,10 @@ const shopDomain = computed(() => {
       </div>
     </template>
 
-    <!-- Product Image -->
+    <!-- Product Image. TODO remove .imageUrl is deprecated but for now weve old products in the index  -->
     <img
-      :src="product.imageUrl"
+      :src="product.imageSrc || product.imageUrl"
+      :srcset="product.imageSrcset"
       :alt="product.name"
       class="w-full h-32 object-contain mb-4"
     >
@@ -51,7 +52,7 @@ const shopDomain = computed(() => {
     <!-- Price and Discount Section -->
     <div class="space-y-2">
       <div class="flex items-center justify-between">
-        <span class="text-lg font-bold dark:text-neutral">{{ product.price.toString().replaceAll('.', ',') }} €</span>
+        <span class="text-lg font-bold dark:text-neutral">{{ product.price }} €</span>
 
         <!-- Bitcoin Discount Badge -->
         <UBadge
