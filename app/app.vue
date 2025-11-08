@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Analytics } from '@vercel/analytics/nuxt'
+import { SpeedInsights } from '@vercel/speed-insights/nuxt'
 
 const { t } = useI18n()
 const title = t('welcome.title')
@@ -30,5 +31,6 @@ useSeoMeta({
     <USeparator icon="i-custom-gospendl" type="dashed" class="h-px text-red" />
     <LayoutFooter />
     <Analytics />
+    <SpeedInsights />
   </UApp>
 </template>
