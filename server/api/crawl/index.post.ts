@@ -81,7 +81,6 @@ export default defineEventHandler(async (event) => {
       exclude_social_media_links: true,
       // Wait 2s before capturing final HTML
       delay_before_return_html: 2.0,
-      page_timeout: 60000,
       // Specifically strip <form> elements
       remove_forms: true,
       // Attempt to remove modals/popups
