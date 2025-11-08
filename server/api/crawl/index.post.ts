@@ -29,11 +29,11 @@ export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig()
   const body = await readBody<{ query: string, locale: Locale, domain: keyof typeof shopConfig }>(event)
   const taskId = uuidv4()
-
-  console.info('Crawl - START with body', body)
+  const runConfig = { ...body, config: { taskId, isCrawlUploadAutomaticEnabled: config.isCrawlUploadAutomaticEnabled, crawlUrl: config.crawl4AiUrl } }
+  console.info('Crawl - START with body', runConfig)
   sendSlackMessage(config.slackWebhookUrl, {
     title: ':arrow_forward: *New Crawling started with*',
-    jsonString: JSON.stringify({ ...body, config: { taskId, isCrawlUploadAutomaticEnabled: config.isCrawlUploadAutomaticEnabled } }),
+    jsonString: JSON.stringify(runConfig),
   })
 
   if (!body.query || !body.locale)
