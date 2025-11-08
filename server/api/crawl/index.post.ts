@@ -163,6 +163,7 @@ export default defineEventHandler(async (event) => {
     testOnlyDomains = { [body.domain]: shopConfig[body.domain] }
   }
 
+  console.info(`Crawl - starting crawl on ${testOnlyDomains ? Object.keys(testOnlyDomains) : Object.keys(shopConfig)} domains`)
   for (const [key, value] of Object.entries(testOnlyDomains || shopConfig)) {
     const partialCrawlInfo: ParticalCrawlInfo = {
       domain: key,
