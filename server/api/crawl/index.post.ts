@@ -7,6 +7,33 @@ import { upsetAlgoliaObjects } from '../../lib/algolia'
 import sendSlackMessage from '../../lib/send-slack-message'
 import shopConfig, { toTest } from '../../utils/shop-config'
 
+interface CrawlerRunConfig {
+  type: 'CrawlerRunConfig'
+  params: {
+    js_only?: boolean
+    js_code?: string[]
+    wait_for?: string
+    wait_for_images: boolean
+    session_id: string
+    exclude_all_images: boolean
+    exclude_external_links: boolean
+    exclude_social_media_domains: boolean
+    exclude_social_media_links: boolean
+    remove_forms: boolean
+    remove_overlay_elements: boolean
+    keep_data_attributes: boolean
+    extraction_strategy: Record<string, unknown>
+    // scan_full_page?: boolean
+    // scroll_delay?: number
+    // virtual_scroll_config?: Record<string, unknown>
+    // proxy_config?: Record<string, unknown>
+    magic: boolean
+    simulate_user: boolean
+    override_navigator: boolean
+    scan_full_page?: boolean
+    scroll_delay?: number
+  }
+}
 interface CrawledItem {
   objectID: string
   name: string
@@ -23,6 +50,44 @@ interface CrawledItem {
   color2?: string
   color3?: string
   colorMore?: string
+}
+
+interface ParticalCrawlInfo {
+  domain: string
+  crawledItems?: CrawledItem[]
+  info?: string
+}
+
+function generateJSLoadMoreScript(loadMoreSelector: string): string {
+  if (!loadMoreSelector)
+    throw new Error('Cannot generateJSLoadMoreScript: loadMoreSelector is required')
+  return `
+      (async () => {
+
+        await document.querySelector('${loadMoreSelector}').click();
+        await new Promise(r => setTimeout(r, 300));
+        const scrollStep = 100; // Amount to scroll each time
+        const scrollInterval = 100; // Time in milliseconds between each scroll (adjust for speed)
+        const scrollingElement = document.documentElement || document.body; // Cross-browser compatibility
+
+        const scrollIntervalId = setInterval(() => {
+          // Check if we are at the bottom of the page
+          // (scrollTop + clientHeight) should be approximately equal to scrollHeight
+          if (
+            Math.ceil(scrollingElement.scrollTop + scrollingElement.clientHeight) >=
+            scrollingElement.scrollHeight
+          ) {
+            // If at the bottom, stop the interval
+            clearInterval(scrollIntervalId);
+            window.finish = true;
+            console.log('Finished scrolling');
+          } else {
+            // Otherwise, scroll down by the defined step
+            window.scrollBy(0, scrollStep);
+          }
+        }, scrollInterval);
+    })();
+    `
 }
 
 export default defineEventHandler(async (event) => {
@@ -59,11 +124,8 @@ export default defineEventHandler(async (event) => {
       },
     },
   }
-  const clickLoadMore = `
-    document.querySelector('main > div:nth-child(6) > div:nth-child(6) > div:nth-child(2) > section > div:nth-child(1) > div:nth-child(3) > button').click();
-    `
 
-  const crawler_config_payload = {
+  const crawler_config_payload: CrawlerRunConfig = {
     type: 'CrawlerRunConfig',
     params: {
       /* proxy_config: {
@@ -73,23 +135,19 @@ export default defineEventHandler(async (event) => {
           server: '194.28.226.156:3128',
         },
       }, */
-      js_only: false,
+      // Mark that we do not re-navigate, but run JS in the same session:
+      // js_only: true,
+      wait_for_images: true,
       session_id: randomUUID(),
       exclude_all_images: true,
       exclude_external_links: true,
       exclude_social_media_domains: true,
       exclude_social_media_links: true,
-      // Wait 2s before capturing final HTML
-      delay_before_return_html: 2.0,
-      page_timeout: 120000,
       // Specifically strip <form> elements
       remove_forms: true,
       // Attempt to remove modals/popups
       remove_overlay_elements: true,
       keep_data_attributes: false,
-      only_text: true,
-      // js_code: clickLoadMore,
-      // wait_for: 'js:() => document.readyState === \'complete\'',
       extraction_strategy: {},
       // magic=True tries multiple stealth features.
       // - simulate_user=True mimics mouse movements or random delays.
@@ -100,49 +158,11 @@ export default defineEventHandler(async (event) => {
       // Tells the crawler to try scrolling the entire page
       scan_full_page: true,
       // Delay (seconds) between scroll steps
-      scroll_delay: 1,
-      /* extraction_strategy: {
-        type: 'LLMExtractionStrategy',
-        params: {
-          llm_config: {
-            type: 'LLMConfig',
-            // params: { provider: 'ollama/llama3', api_token: 'none', base_url: 'http://host.docker.internal:11434' },
-            params: { provider: 'openai/gpt-4o-mini', api_token: '' },
-
-          },
-          schema: {
-            name: 'Name of the Product e.g. Schwarze Jacke',
-            sourceUrl: 'Detail URL of the product',
-            brand: 'The brand of the product e.g. Garmin',
-            description: 'Description of the product e.g. 45mm lang, diverse farben',
-            price: 'Price of the product e.g. 15€',
-            imageSrc: 'Image src of the product',
-            shopDomain: 'Add the shop domain e.g. baur.de',
-            group: 'satsback',
-            colors: 'Color options of the product. E.g. Braun, Schwarz',
-          },
-          extraction_type: 'schema',
-          instruction: 'From the crawled content, extract all products within the css class product-card-grid with name, price, description, imageUrl, color',
-        },
-      }, */
-      /* virtual_scroll_config: {
-        type: "VirtualScrollConfig",
-        params: {
-          container_selector:"#feed",      // CSS selector for scrollable container
-          scroll_count:20,                 // Number of scrolls to perform
-          scroll_by:"container_height",    // How much to scroll each time
-          wait_after_scroll:0.5           // Wait time (seconds) after each scroll
-        }
-      } */
+      scroll_delay: 0.5,
     },
   }
 
   // Crawl every url
-  interface ParticalCrawlInfo {
-    domain: string
-    crawledItems?: CrawledItem[]
-    info?: string
-  }
   const runInfo: {
     totalCrawledItems: number
     totalUploadedToAlgolia: number
@@ -175,10 +195,30 @@ export default defineEventHandler(async (event) => {
         schema: value.productCssShema,
       },
     }
-    const searchURL = value.searchURL(body.query, body.locale)
+
+    const searchURLs = [value.searchURL(body.query, body.locale)]
+    // PAGING handling
+    // pageQueryParam is set if we can simplay add a query param to get page 2,3,4...
+    // loadMoreSelector is set if we need to click a button to load more items
+    if (value.paging) {
+      if (value.paging.pageQueryParam) {
+      // Add paging pages
+        const url = new URL(searchURLs[0])
+        url.searchParams.set(value.paging.pageQueryParam, '2')
+        console.info(`Crawl - added paging param to url: ${url.toString()}`)
+        searchURLs.push(url.toString())
+      }
+      else if (value.paging.loadMoreSelector) {
+      // If paging is configured as loadMoreSelector add js code
+        if (value.paging && value.paging.loadMoreSelector) {
+          crawler_config_payload.params.js_code = [generateJSLoadMoreScript(value.paging.loadMoreSelector)]
+          crawler_config_payload.params.wait_for = 'js: () => window.finish === true'
+        }
+      }
+    }
+
     const crawl_payload = {
-      // TODO change search url for each config
-      urls: [searchURL],
+      urls: searchURLs,
       browser_config: browser_config_payload,
       crawler_config: crawler_config_payload,
     }
@@ -191,11 +231,15 @@ export default defineEventHandler(async (event) => {
       method: 'post',
       body: crawl_payload,
     })
-    const items: CrawledItem[] = JSON.parse(response.results[0].extracted_content)
+
+    const items: CrawledItem[] = response.results.reduce((accumulator, currentObj) => {
+      const json = JSON.parse(currentObj.extracted_content)
+      return accumulator.concat(json)
+    }, [])
 
     partialCrawlInfo.crawledItems = items
     if (items.length === 0) {
-      partialCrawlInfo.info = `no items found for domain ${key}. Check if the domain is correct. Either the URL ${searchURL} is wrong, the CSS config is old oder there are just no items`
+      partialCrawlInfo.info = `no items found for domain ${key}. Check if the domain is correct. Either the URLs ${searchURLs} is wrong, the CSS config is old oder there are just no items`
       console.info(partialCrawlInfo.info)
     }
 
@@ -204,7 +248,11 @@ export default defineEventHandler(async (event) => {
       slackBodyRunInfo += `${partialCrawlInfo.info}\n`
     slackBodyRunInfo += '-----------\n'
 
-    const formattedResults: AlgoliaProduct[] = items.map((item) => {
+    items.filter(item => !item.price).forEach((item) => {
+      slackBodyRunInfo += `- Item without price found: ${item.name} - ${item.sourceUrl}. Double check why price not crawled\n\n`
+    })
+
+    const formattedResults: AlgoliaProduct[] = items.filter(item => item.price).map((item) => {
       // Get a copy from item without the colors
       const { color1, color2, color3, colorMore, ...rest } = item
       let colors = item.color1
@@ -215,7 +263,7 @@ export default defineEventHandler(async (event) => {
       if (item.colorMore)
         colors += `, ${item.colorMore}`
 
-      const formattedResult = {
+      return {
         ...rest,
         objectID: `${key}-${item.name.replace(/[^a-z0-9 ]/gi, '').replaceAll(' ', '-').toLowerCase()}`,
         group: value.group,
@@ -223,15 +271,19 @@ export default defineEventHandler(async (event) => {
         colors,
         sourceUrl: !item.sourceUrl.includes('http') ? `https://${key}${item.sourceUrl}` : item.sourceUrl,
       }
+    })
 
-      for (const [key, value] of Object.entries(formattedResult)) {
+    if (formattedResults[0]) {
+      for (const [key, value] of Object.entries(formattedResults[0])) {
         if (key !== 'name')
           slackBodyRunInfo += `- ${key}: ${value}\n`
       }
-      slackBodyRunInfo += '\n\n'
+    }
+    else {
+      slackBodyRunInfo += `- Could not read product data\n`
+    }
 
-      return formattedResult
-    })
+    slackBodyRunInfo += '\n\n'
     slackBodyRunInfo += '\n-----------\n'
     algoliaProducts = [...algoliaProducts, ...formattedResults]
     console.info(`Crawl - finish partial crawl ${items.length} items for domain ${key}`)

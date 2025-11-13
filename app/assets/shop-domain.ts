@@ -26,7 +26,8 @@ export default [
     country: 'DE',
     currency: 'EUR',
     satsbackPercent: 2,
-    getSearchUrl: (searchTerm: string) => `https://www.netto-online.de/INTERSHOP/web/WFS/Plus-NettoDE-Site/de_DE/-/EUR/ViewMMPParametricSearch-SimpleOfferSearch?SearchTerm=${encodeURIComponent(searchTerm)}&Region=1&MeatMarketType=2&KW=43`,
+    getSearchUrl: (searchTerm: string) => `https://www.netto-online.de/INTERSHOP/web/WFS/Plus-NettoDE-Site/de_DE/-/EUR/ViewMMPParametricSearch-Browse?SearchScope=product&SearchTerm=${encodeURIComponent(searchTerm)}`,
+
   },
   {
     domain: 'running-point.de',

@@ -5,6 +5,10 @@ export default {
     searchURL: (query: string) => `https://www.baur.de/s/${query}/`,
     category: 'e-commerce',
     group: 'satsback',
+    paging: {
+      loadMoreSelector: 'main > div:nth-child(6) > div:nth-child(6) > div:nth-child(2) > section > div:nth-child(1) > div:nth-child(3) > button',
+      pageQueryParam: 'p',
+    },
     productCssShema: {
       type: 'dict',
       value: {
@@ -80,6 +84,10 @@ export default {
     searchURL: (query: string, locale: Locale) => `https://shopinbit.com/${locale}/search?search=${query}`,
     category: 'e-commerce',
     group: 'payWithBitcoin',
+    paging: {
+      loadMoreSelector: '.page-item .page-next',
+      pageQueryParam: 'p',
+    },
     productCssShema: {
       type: 'dict',
       value: {
@@ -126,6 +134,9 @@ export default {
     searchURL: (query: string, locale: Locale) => `https://www.galaxus.de/${locale}/search?q=${query}`,
     category: 'e-commerce',
     group: 'satsback',
+    paging: {
+      loadMoreSelector: '#pageContent > div > section:nth-child(2) > div:last-child button',
+    },
     productCssShema: {
       type: 'dict',
       value: {
@@ -181,6 +192,7 @@ export default {
     },
   },
   // Blocked from outside europe. Proxy ?
+  // Skip Paging cause is complicated there is no p query param the load more button is a link to a new page
   'netto-online.de': {
     searchURL: (query: string) => `https://www.netto-online.de/INTERSHOP/web/WFS/Plus-NettoDE-Site/de_DE/-/EUR/ViewMMPParametricSearch-SimpleOfferSearch?SearchTerm=${query}&Region=1&MeatMarketType=2&KW=43`,
     category: 'e-commerce',
@@ -228,10 +240,12 @@ export default {
       },
     },
   },
+  // Skip Paging cause via paging click but no p query param
   'running-point.de': {
     searchURL: (query: string) => `https://www.running-point.de/search/?q=${query}&lang=de_DE`,
     category: 'e-commerce',
     group: 'satsback',
+
     productCssShema: {
       type: 'dict',
       value: {
