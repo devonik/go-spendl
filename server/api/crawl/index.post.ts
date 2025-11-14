@@ -12,6 +12,8 @@ interface CrawlerRunConfig {
   params: {
     js_only?: boolean
     js_code?: string[]
+    // Timeout for page navigation or JS steps. Increase for slow sites. In MS. Default 60000
+    page_timeout?: number
     wait_for?: string
     wait_for_images: boolean
     session_id: string
@@ -23,10 +25,8 @@ interface CrawlerRunConfig {
     remove_overlay_elements: boolean
     keep_data_attributes: boolean
     extraction_strategy: Record<string, unknown>
-    // scan_full_page?: boolean
-    // scroll_delay?: number
-    // virtual_scroll_config?: Record<string, unknown>
-    // proxy_config?: Record<string, unknown>
+    virtual_scroll_config?: Record<string, unknown>
+    proxy_config?: Record<string, unknown>
     magic: boolean
     simulate_user: boolean
     override_navigator: boolean
@@ -211,6 +211,9 @@ export default defineEventHandler(async (event) => {
       else if (value.paging.loadMoreSelector) {
       // If paging is configured as loadMoreSelector add js code
         if (value.paging && value.paging.loadMoreSelector) {
+          // crawler_config_payload.params.page_timeout = 120000
+          // Do not scan full page if we add js lazy load (cause it also scrolls after pressing the button)
+          crawler_config_payload.params.scan_full_page = false
           crawler_config_payload.params.js_code = [generateJSLoadMoreScript(value.paging.loadMoreSelector)]
           crawler_config_payload.params.wait_for = 'js: () => window.finish === true'
         }
@@ -231,6 +234,8 @@ export default defineEventHandler(async (event) => {
       method: 'post',
       body: crawl_payload,
     })
+
+    console.log('response', response)
 
     const items: CrawledItem[] = response.results.reduce((accumulator, currentObj) => {
       const json = JSON.parse(currentObj.extracted_content)
