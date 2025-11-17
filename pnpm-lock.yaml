@@ -22,19 +22,19 @@ importers:
         version: 3.19.2(magicast@0.3.5)(typescript@5.9.2)
       '@nuxt/ui':
         specifier: 4.0.0
-        version: 4.0.0(@babel/parser@7.28.4)(@vercel/blob@2.0.0)(axios@1.12.2)(change-case@5.4.4)(db0@0.3.2)(embla-carousel@8.6.0)(ioredis@5.8.0)(magicast@0.3.5)(typescript@5.9.2)(vite@7.1.7(@types/node@24.8.1)(jiti@2.6.0)(lightningcss@1.30.1)(terser@5.44.0)(yaml@2.8.1))(vue-router@4.5.1(vue@3.5.22(typescript@5.9.2)))(vue@3.5.22(typescript@5.9.2))(zod@4.1.12)
+        version: 4.0.0(@babel/parser@7.28.4)(@vercel/blob@2.0.0)(axios@1.12.2)(change-case@5.4.4)(db0@0.3.2)(embla-carousel@8.6.0)(ioredis@5.8.0)(magicast@0.3.5)(react@19.2.0)(typescript@5.9.2)(vite@7.1.7(@types/node@24.8.1)(jiti@2.6.0)(lightningcss@1.30.1)(terser@5.44.0)(yaml@2.8.1))(vue-router@4.5.1(vue@3.5.22(typescript@5.9.2)))(vue@3.5.22(typescript@5.9.2))(zod@4.1.12)
       '@nuxtjs/i18n':
         specifier: 10.1.0
         version: 10.1.0(@vercel/blob@2.0.0)(@vue/compiler-dom@3.5.22)(db0@0.3.2)(eslint@9.36.0(jiti@2.6.0))(ioredis@5.8.0)(magicast@0.3.5)(rollup@4.52.3)(vue@3.5.22(typescript@5.9.2))
       '@vercel/analytics':
         specifier: ^1.5.0
-        version: 1.5.0(vue-router@4.5.1(vue@3.5.22(typescript@5.9.2)))(vue@3.5.22(typescript@5.9.2))
+        version: 1.5.0(react@19.2.0)(vue-router@4.5.1(vue@3.5.22(typescript@5.9.2)))(vue@3.5.22(typescript@5.9.2))
       '@vercel/blob':
         specifier: ^2.0.0
         version: 2.0.0
       '@vercel/speed-insights':
         specifier: ^1.2.0
-        version: 1.2.0(vue-router@4.5.1(vue@3.5.22(typescript@5.9.2)))(vue@3.5.22(typescript@5.9.2))
+        version: 1.2.0(react@19.2.0)(vue-router@4.5.1(vue@3.5.22(typescript@5.9.2)))(vue@3.5.22(typescript@5.9.2))
       '@vueuse/router':
         specifier: ^13.9.0
         version: 13.9.0(vue-router@4.5.1(vue@3.5.22(typescript@5.9.2)))(vue@3.5.22(typescript@5.9.2))
@@ -47,6 +47,9 @@ importers:
       eslint:
         specifier: ^9.0.0
         version: 9.36.0(jiti@2.6.0)
+      instantsearch.js:
+        specifier: ^4.83.0
+        version: 4.83.0(algoliasearch@5.40.0)
       nuxt:
         specifier: ^4.1.2
         version: 4.1.2(@parcel/watcher@2.5.1)(@types/node@24.8.1)(@vercel/blob@2.0.0)(@vue/compiler-sfc@3.5.22)(db0@0.3.2)(eslint@9.36.0(jiti@2.6.0))(ioredis@5.8.0)(lightningcss@1.30.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.52.3)(terser@5.44.0)(typescript@5.9.2)(vite@7.1.7(@types/node@24.8.1)(jiti@2.6.0)(lightningcss@1.30.1)(terser@5.44.0)(yaml@2.8.1))(yaml@2.8.1)
@@ -2474,6 +2477,11 @@ packages:
     peerDependencies:
       algoliasearch: '>= 3.1 < 6'
 
+  algoliasearch-helper@3.26.1:
+    resolution: {integrity: sha512-CAlCxm4fYBXtvc5MamDzP6Svu8rW4z9me4DCBY1rQ2UDJ0u0flWmusQ8M3nOExZsLLRcUwUPoRAPMrhzOG3erw==}
+    peerDependencies:
+      algoliasearch: '>= 3.1 < 6'
+
   algoliasearch@5.40.0:
     resolution: {integrity: sha512-a9aIL2E3Z7uYUPMCmjMFFd5MWhn+ccTubEvnMy7rOTZCB62dXBJtz0R5BZ/TPuX3R9ocBsgWuAbGWQ+Ph4Fmlg==}
     engines: {node: '>= 14.0.0'}
@@ -3783,8 +3791,16 @@ packages:
   instantsearch-ui-components@0.11.2:
     resolution: {integrity: sha512-XxwqUY6NifxSvHYfyfJRiGhqYqHXQFcFNOEjNyFptB9HOkx14yCdayKar4BZxGx353FnFD6b4Z8LdzbGud+RFA==}
 
+  instantsearch-ui-components@0.14.0:
+    resolution: {integrity: sha512-SX04/mWtHp6DLFrHVJWJHvsMmF6Ppo9pAxqBuW+herAd6L/CJPuY/Sy4f3LSkUUIybJ9USVzuO6uIUJyi3xAcw==}
+
   instantsearch.js@4.80.0:
     resolution: {integrity: sha512-l2HTW6+tBs2hGrby43Y7HbWayTifFFKk/ikRU5BXFpCigG6CRAYZLE1NFifAskaj3SVQiY8O8B/T6hJyeMsScA==}
+    peerDependencies:
+      algoliasearch: '>= 3.1 < 6'
+
+  instantsearch.js@4.83.0:
+    resolution: {integrity: sha512-/JmiKCAJwJbh4E+LbdYJWe/OQO1ZwbAHiPmz1NImdRInQW0aPI1w8iwjo6fxg1J1lk4Jd6ERd28KYhviI5fJdw==}
     peerDependencies:
       algoliasearch: '>= 3.1 < 6'
 
@@ -4132,6 +4148,15 @@ packages:
 
   markdown-table@3.0.4:
     resolution: {integrity: sha512-wiYz4+JrLyb/DqW2hkFJxP7Vd7JuTDm77fvbM8VfEQdmSMqcImWeeRbHwZjBjIFki/VaMK2BhFi7oUUZeM5bqw==}
+
+  markdown-to-jsx@7.7.17:
+    resolution: {integrity: sha512-7mG/1feQ0TX5I7YyMZVDgCC/y2I3CiEhIRQIhyov9nGBP5eoVrOXXHuL5ZP8GRfxVZKRiXWJgwXkb9It+nQZfQ==}
+    engines: {node: '>= 10'}
+    peerDependencies:
+      react: '>= 0.14.0'
+    peerDependenciesMeta:
+      react:
+        optional: true
 
   math-intrinsics@1.1.0:
     resolution: {integrity: sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g==}
@@ -4925,6 +4950,10 @@ packages:
   rc@1.2.8:
     resolution: {integrity: sha512-y3bGgqKj3QBdxLbLkomlohkvsA8gdAiUQlSBJnBhfn+BPxg4bc62d8TcBW15wavDfgexCgccckhcZvywyQYPOw==}
     hasBin: true
+
+  react@19.2.0:
+    resolution: {integrity: sha512-tmbWg6W31tQLeB5cdIBOicJDJRR2KzXsV7uSK9iNfLWQ5bIZfxuPEHp7M8wiHyHnn0DD1i7w3Zmin0FtkrwoCQ==}
+    engines: {node: '>=0.10.0'}
 
   readable-stream@2.3.8:
     resolution: {integrity: sha512-8p0AUk4XODgIewSi0l8Epjs+EVnWiK7NoDIEGU0HhE7+ZyY8D1IMY7odu5lRrFXGg71L15KG8QrPmum45RTtdA==}
@@ -5882,6 +5911,11 @@ packages:
     resolution: {integrity: sha512-zK7YHHz4ZXpW89AHXUPbQVGKI7uvkd3hzusTdotCg1UxyaVtg0zFJSTfW/Dq5f7OBBVnq6cZIaC8Ti4hb6dtCA==}
     engines: {node: '>= 14'}
 
+  zod-to-json-schema@3.24.6:
+    resolution: {integrity: sha512-h/z3PKvcTcTetyjl1fkj79MHNEjm+HpD6NXheWjzOekY7kV+lwDYnHw+ivHkijnCSMz1yJaWBD9vu/Fcmk+vEg==}
+    peerDependencies:
+      zod: ^3.24.1
+
   zod@4.1.12:
     resolution: {integrity: sha512-JInaHOamG8pt5+Ey8kGmdcAcg3OL9reK8ltczgHTAwNhMys/6ThXHityHxVV2p3fkw/c+MAvBHFVYHFZDmjMCQ==}
 
@@ -6012,7 +6046,7 @@ snapshots:
       '@eslint-community/eslint-plugin-eslint-comments': 4.5.0(eslint@9.36.0(jiti@2.6.0))
       '@eslint/markdown': 7.4.0
       '@stylistic/eslint-plugin': 5.4.0(eslint@9.36.0(jiti@2.6.0))
-      '@typescript-eslint/eslint-plugin': 8.46.1(@typescript-eslint/parser@8.46.1(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.2))(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.2)
+      '@typescript-eslint/eslint-plugin': 8.46.1(@typescript-eslint/parser@8.45.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.2))(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.2)
       '@typescript-eslint/parser': 8.46.1(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.2)
       '@vitest/eslint-plugin': 1.3.23(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.2)
       ansis: 4.2.0
@@ -7105,7 +7139,7 @@ snapshots:
       - magicast
       - typescript
 
-  '@nuxt/ui@4.0.0(@babel/parser@7.28.4)(@vercel/blob@2.0.0)(axios@1.12.2)(change-case@5.4.4)(db0@0.3.2)(embla-carousel@8.6.0)(ioredis@5.8.0)(magicast@0.3.5)(typescript@5.9.2)(vite@7.1.7(@types/node@24.8.1)(jiti@2.6.0)(lightningcss@1.30.1)(terser@5.44.0)(yaml@2.8.1))(vue-router@4.5.1(vue@3.5.22(typescript@5.9.2)))(vue@3.5.22(typescript@5.9.2))(zod@4.1.12)':
+  '@nuxt/ui@4.0.0(@babel/parser@7.28.4)(@vercel/blob@2.0.0)(axios@1.12.2)(change-case@5.4.4)(db0@0.3.2)(embla-carousel@8.6.0)(ioredis@5.8.0)(magicast@0.3.5)(react@19.2.0)(typescript@5.9.2)(vite@7.1.7(@types/node@24.8.1)(jiti@2.6.0)(lightningcss@1.30.1)(terser@5.44.0)(yaml@2.8.1))(vue-router@4.5.1(vue@3.5.22(typescript@5.9.2)))(vue@3.5.22(typescript@5.9.2))(zod@4.1.12)':
     dependencies:
       '@ai-sdk/vue': 2.0.81(vue@3.5.22(typescript@5.9.2))(zod@4.1.12)
       '@iconify/vue': 5.0.0(vue@3.5.22(typescript@5.9.2))
@@ -7138,7 +7172,7 @@ snapshots:
       knitwork: 1.2.0
       magic-string: 0.30.19
       mlly: 1.8.0
-      motion-v: 1.7.2(@vueuse/core@13.9.0(vue@3.5.22(typescript@5.9.2)))(vue@3.5.22(typescript@5.9.2))
+      motion-v: 1.7.2(@vueuse/core@13.9.0(vue@3.5.22(typescript@5.9.2)))(react@19.2.0)(vue@3.5.22(typescript@5.9.2))
       ohash: 2.0.11
       pathe: 2.0.3
       reka-ui: 2.5.0(typescript@5.9.2)(vue@3.5.22(typescript@5.9.2))
@@ -7971,10 +8005,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/eslint-plugin@8.46.1(@typescript-eslint/parser@8.46.1(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.2))(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.2)':
+  '@typescript-eslint/eslint-plugin@8.46.1(@typescript-eslint/parser@8.45.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.2))(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.2)':
     dependencies:
       '@eslint-community/regexpp': 4.12.1
-      '@typescript-eslint/parser': 8.46.1(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.2)
+      '@typescript-eslint/parser': 8.45.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.2)
       '@typescript-eslint/scope-manager': 8.46.1
       '@typescript-eslint/type-utils': 8.46.1(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.2)
       '@typescript-eslint/utils': 8.46.1(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.2)
@@ -8230,8 +8264,9 @@ snapshots:
   '@unrs/resolver-binding-win32-x64-msvc@1.11.1':
     optional: true
 
-  '@vercel/analytics@1.5.0(vue-router@4.5.1(vue@3.5.22(typescript@5.9.2)))(vue@3.5.22(typescript@5.9.2))':
+  '@vercel/analytics@1.5.0(react@19.2.0)(vue-router@4.5.1(vue@3.5.22(typescript@5.9.2)))(vue@3.5.22(typescript@5.9.2))':
     optionalDependencies:
+      react: 19.2.0
       vue: 3.5.22(typescript@5.9.2)
       vue-router: 4.5.1(vue@3.5.22(typescript@5.9.2))
 
@@ -8264,8 +8299,9 @@ snapshots:
 
   '@vercel/oidc@3.0.3': {}
 
-  '@vercel/speed-insights@1.2.0(vue-router@4.5.1(vue@3.5.22(typescript@5.9.2)))(vue@3.5.22(typescript@5.9.2))':
+  '@vercel/speed-insights@1.2.0(react@19.2.0)(vue-router@4.5.1(vue@3.5.22(typescript@5.9.2)))(vue@3.5.22(typescript@5.9.2))':
     optionalDependencies:
+      react: 19.2.0
       vue: 3.5.22(typescript@5.9.2)
       vue-router: 4.5.1(vue@3.5.22(typescript@5.9.2))
 
@@ -8549,6 +8585,11 @@ snapshots:
       uri-js: 4.4.1
 
   algoliasearch-helper@3.26.0(algoliasearch@5.40.0):
+    dependencies:
+      '@algolia/events': 4.0.1
+      algoliasearch: 5.40.0
+
+  algoliasearch-helper@3.26.1(algoliasearch@5.40.0):
     dependencies:
       '@algolia/events': 4.0.1
       algoliasearch: 5.40.0
@@ -9513,7 +9554,7 @@ snapshots:
     dependencies:
       eslint: 9.36.0(jiti@2.6.0)
     optionalDependencies:
-      '@typescript-eslint/eslint-plugin': 8.46.1(@typescript-eslint/parser@8.46.1(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.2))(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.2)
+      '@typescript-eslint/eslint-plugin': 8.46.1(@typescript-eslint/parser@8.45.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.2))(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.2)
 
   eslint-plugin-vue@10.5.0(@stylistic/eslint-plugin@5.4.0(eslint@9.36.0(jiti@2.6.0)))(@typescript-eslint/parser@8.45.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.2))(eslint@9.36.0(jiti@2.6.0))(vue-eslint-parser@10.2.0(eslint@9.36.0(jiti@2.6.0))):
     dependencies:
@@ -9786,11 +9827,13 @@ snapshots:
 
   fraction.js@4.3.7: {}
 
-  framer-motion@12.23.12:
+  framer-motion@12.23.12(react@19.2.0):
     dependencies:
       motion-dom: 12.23.12
       motion-utils: 12.23.6
       tslib: 2.8.1
+    optionalDependencies:
+      react: 19.2.0
 
   fresh@2.0.0: {}
 
@@ -10002,6 +10045,16 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.28.4
 
+  instantsearch-ui-components@0.14.0(react@19.2.0):
+    dependencies:
+      '@babel/runtime': 7.28.4
+      ai: 5.0.81(zod@4.1.12)
+      markdown-to-jsx: 7.7.17(react@19.2.0)
+      zod: 4.1.12
+      zod-to-json-schema: 3.24.6(zod@4.1.12)
+    transitivePeerDependencies:
+      - react
+
   instantsearch.js@4.80.0(algoliasearch@5.40.0):
     dependencies:
       '@algolia/events': 4.0.1
@@ -10017,6 +10070,26 @@ snapshots:
       preact: 10.27.2
       qs: 6.9.7
       search-insights: 2.17.3
+
+  instantsearch.js@4.83.0(algoliasearch@5.40.0):
+    dependencies:
+      '@algolia/events': 4.0.1
+      '@types/dom-speech-recognition': 0.0.1
+      '@types/google.maps': 3.58.1
+      '@types/hogan.js': 3.0.5
+      '@types/qs': 6.14.0
+      ai: 5.0.81(zod@4.1.12)
+      algoliasearch: 5.40.0
+      algoliasearch-helper: 3.26.1(algoliasearch@5.40.0)
+      hogan.js: 3.0.2
+      htm: 3.1.1
+      instantsearch-ui-components: 0.14.0(react@19.2.0)
+      preact: 10.27.2
+      qs: 6.9.7
+      react: 19.2.0
+      search-insights: 2.17.3
+      zod: 4.1.12
+      zod-to-json-schema: 3.24.6(zod@4.1.12)
 
   ioredis@5.8.0:
     dependencies:
@@ -10361,6 +10434,10 @@ snapshots:
       source-map-js: 1.2.1
 
   markdown-table@3.0.4: {}
+
+  markdown-to-jsx@7.7.17(react@19.2.0):
+    optionalDependencies:
+      react: 19.2.0
 
   math-intrinsics@1.1.0:
     optional: true
@@ -10760,10 +10837,10 @@ snapshots:
 
   motion-utils@12.23.6: {}
 
-  motion-v@1.7.2(@vueuse/core@13.9.0(vue@3.5.22(typescript@5.9.2)))(vue@3.5.22(typescript@5.9.2)):
+  motion-v@1.7.2(@vueuse/core@13.9.0(vue@3.5.22(typescript@5.9.2)))(react@19.2.0)(vue@3.5.22(typescript@5.9.2)):
     dependencies:
       '@vueuse/core': 13.9.0(vue@3.5.22(typescript@5.9.2))
-      framer-motion: 12.23.12
+      framer-motion: 12.23.12(react@19.2.0)
       hey-listen: 1.0.8
       motion-dom: 12.23.12
       vue: 3.5.22(typescript@5.9.2)
@@ -11564,6 +11641,8 @@ snapshots:
       minimist: 1.2.8
       strip-json-comments: 2.0.1
     optional: true
+
+  react@19.2.0: {}
 
   readable-stream@2.3.8:
     dependencies:
@@ -12612,6 +12691,10 @@ snapshots:
       archiver-utils: 5.0.2
       compress-commons: 6.0.2
       readable-stream: 4.7.0
+
+  zod-to-json-schema@3.24.6(zod@4.1.12):
+    dependencies:
+      zod: 4.1.12
 
   zod@4.1.12: {}
 

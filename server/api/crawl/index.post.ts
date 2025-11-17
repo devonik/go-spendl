@@ -93,6 +93,10 @@ function generateJSLoadMoreScript(loadMoreSelector: string): string {
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig()
   const body = await readBody<{ query: string, locale: Locale, domain: keyof typeof shopConfig }>(event)
+
+  if (!body.query || !body.locale)
+    throw new Error('Body must contain query and locale')
+
   const taskId = uuidv4()
   const runConfig = { ...body, config: { taskId, isCrawlUploadAutomaticEnabled: config.isCrawlUploadAutomaticEnabled, crawlUrl: config.crawl4AiUrl } }
   console.info('Crawl - START with body', runConfig)
@@ -100,9 +104,6 @@ export default defineEventHandler(async (event) => {
     title: ':arrow_forward: *New Crawling started with*',
     jsonString: JSON.stringify(runConfig),
   })
-
-  if (!body.query || !body.locale)
-    throw new Error('Body must contain query and locale')
 
   const browser_config_payload = {
     type: 'BrowserConfig',

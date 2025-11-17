@@ -1,8 +1,7 @@
 <script lang="ts" setup>
-import { useDebounce } from '@vueuse/core'
 import { useRouteQuery } from '@vueuse/router'
 import { liteClient as algoliasearch } from 'algoliasearch/lite'
-import { AisConfigure, AisInstantSearch, AisPoweredBy, AisSearchBox, AisSortBy, AisStateResults, AisVoiceSearch } from 'vue-instantsearch/vue3/es'
+import { AisConfigure, AisInstantSearch, AisPoweredBy, AisSortBy, AisStateResults } from 'vue-instantsearch/vue3/es'
 
 definePageMeta({
   title: 'search.title',
@@ -20,13 +19,6 @@ const searchClient = algoliasearch(
 
 const pageModel = useRouteQuery('p', '1', { transform: Number })
 const queryModel = useRouteQuery('q', '')
-
-function executeSearch() {
-  // TODO does not work ?
-  /* searchClient.search({
-    requests: [{ indexName: config.public.algoliaProductIndex, query: queryModel.value }],
-  }) */
-}
 </script>
 
 <template>
@@ -64,64 +56,11 @@ function executeSearch() {
       </AisStateResults>
 
       <div class="flex flex-col gap-6 flex-grow">
-        <AisSearchBox>
-          <template #default="{ isSearchStalled, refine }">
-            <UInput
-              v-model="queryModel" class="w-full" :placeholder="$t('search.placeholder')" @update:model-value="value => refine(value)"
-            >
-              <template #trailing>
-                <span :hidden="!isSearchStalled" class="mr-3">{{ $t('search.loading') }}</span>
-                <AisVoiceSearch />
-              </template>
-            </UInput>
-          </template>
-          <template #submit-icon>
-            🔎
-          </template>
-        </AisSearchBox>
-        <!-- <ais-autocomplete >
-        <template #default="{ currentRefinement, indices, refine }">
-          currentRefinement: {{ currentRefinement }}
-          <UInputMenu
-            :model-value="currentRefinement" icon="i-lucide-search" placeholder="Search product..." :items="[
-            {
-              type: 'separator'
-            },
-            {
-              type: 'label',
-              label: 'Satsback'
-            },
-
-            ...indices.map(i => i.hits).flat().map(hit => ({
-              label: hit.name,
-              imageUrl: hit.imageUrl,
-              price: `$${hit.price}`,
-              bitcoinDiscount: hit.bitcoinDiscount ? { finalPrice: `$${(hit.price * (1 - hit.bitcoinDiscount / 100)).toFixed(2)}` } : undefined,
-              satsbackPercent: hit.satsbackPercent
-            }))
-          ]" class="w-full" @update:model-value="(value) => refine(value.label)">
-            <template #item="{ item, index}">
-                    <div class="w-full flex items-center">
-                        <nuxt-img :src="item.imageUrl" class="w-6 h-6 rounded-full mr-2" />
-                        <span>{{ item.label }}</span>
-                    </div>
-                    <div class="flex mt-1 text-sm text-muted font-medium">
-                        <div class="mr-3">
-                            <span class="" :class="{'line-through' : item.bitcoinDiscount}">{{ item.price }}</span>
-                        </div>
-                        <div v-if="item.bitcoinDiscount" class="text-yellow-500 flex gap-1">
-                            <UIcon name="i-lucide-bitcoin" class="size-6 text-yellow-500" />
-                            <span class="m-auto">{{item.bitcoinDiscount.finalPrice }}</span>
-                        </div>
-                        <div v-else-if="item.satsbackPercent" class="flex gap-1">
-                            <UIcon name="i-custom-satsback" class="size-6"/>
-                            <span class="m-auto">{{ item.satsbackPercent }}% Satsback</span>
-                        </div>
-                    </div>
-            </template>
-          </UInputMenu>
-        </template>
-      </ais-autocomplete> -->
+        <SearchDebouncedSearchBox
+          v-model="queryModel"
+          :delay="500"
+          :placeholder="$t('search.placeholder')"
+        />
         <div class="flex justify-between gap-4">
           <AisStateResults>
             <template #default="{ status, state: { query }, results: { nbHits, processingTimeMS } }">
@@ -159,32 +98,10 @@ function executeSearch() {
             </template>
           </AisSortBy>
         </div>
-        <SearchResultHits v-model:page="pageModel" v-model:query="queryModel" @re-search="executeSearch" />
+        <SearchResultHits v-model:page="pageModel" v-model:query="queryModel" />
         <AisConfigure
           :hits-per-page.camel="20"
         />
-        <!-- <ais-pagination >
-        <template
-            #default="{
-              currentRefinement,
-              nbPages,
-              nbHits,
-              pages,
-              isFirstPage,
-              isLastPage,
-              refine,
-              createURL,
-            }"
-          >
-          <UPagination
-            v-model:page="page"
-            class="justify-self-center"
-            show-edges
-            :items-per-page="20"
-            :total="nbHits"
-            @update:page="value => refine(value)" />
-        </template>
-      </ais-pagination> -->
         <AisStateResults>
           <AisPoweredBy />
         </AisStateResults>

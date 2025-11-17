@@ -1,13 +1,9 @@
 <script lang="ts" setup>
-import type { Locale } from 'vue-i18n'
 import type { AlgoliaProduct } from '~~/types/algolia'
 import { useDebounceFn } from '@vueuse/core'
 import { AisInfiniteHits } from 'vue-instantsearch/vue3/es'
 import shopDomain from '~/assets/shop-domain'
 
-const emits = defineEmits<{
-  (e: 'reSearch'): void
-}>()
 const page = defineModel('page', {
   type: Number,
   required: false,
@@ -32,7 +28,6 @@ const handleItemsDataChangeDebounce = useDebounceFn((items: AlgoliaProduct[]) =>
         // domain: 'netto-online.de',
       },
     })
-    setTimeout(() => emits('reSearch'), 15000)
     emptyResultsCatchedOnce.value = true
   }
 }, 1000)
