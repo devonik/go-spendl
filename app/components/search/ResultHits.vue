@@ -29,7 +29,7 @@ const handleItemsDataChangeDebounce = useDebounceFn((items: AlgoliaProduct[]) =>
         query: encodeURIComponent(query.value),
         locale: locale.value,
         // Test single domain or 'all' default
-        // domain: 'netto-online.de',
+        domain: 'baur.de',
       },
     })
     setTimeout(() => emits('reSearch'), 15000)

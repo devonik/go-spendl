@@ -32,6 +32,16 @@ interface CrawlerRunConfig {
     override_navigator: boolean
     scan_full_page?: boolean
     scroll_delay?: number
+    webhook_config: {
+      // Required. Your HTTP(S) endpoint to receive notifications
+      webhook_url: string
+      // Default false. Include full result data in webhook payload (default: false)
+      webhook_data_in_payload?: boolean
+      // Optional. Additional headers to include in the webhook request
+      webhook_headers?: {
+        [key: string]: string
+      }
+    }
   }
 }
 interface CrawledItem {
@@ -112,8 +122,8 @@ export default defineEventHandler(async (event) => {
       // enable_stealth: true,
       // Set headless to false to see the browser window - local machine only
       headless: true,
-      viewport_width: 1280,
-      viewport_height: 720,
+      viewport_width: 800,
+      viewport_height: 600,
       headers: {
         // Set a standard User-Agent string (low entropy) - neccessary for galaxus.de
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
@@ -159,6 +169,12 @@ export default defineEventHandler(async (event) => {
       scan_full_page: true,
       // Delay (seconds) between scroll steps
       scroll_delay: 0.5,
+      webhook_config: {
+        webhook_url: 'http://localhost:3000/api/crawl/webhook',
+        webhook_headers: {
+          'X-Webhook-Secret': '123',
+        },
+      },
     },
   }
 
@@ -184,7 +200,15 @@ export default defineEventHandler(async (event) => {
   }
 
   console.info(`Crawl - starting crawl on ${testOnlyDomains ? Object.keys(testOnlyDomains) : Object.keys(shopConfig)} domains`)
-  for (const [key, value] of Object.entries(testOnlyDomains || shopConfig)) {
+  const domains = Object.entries(testOnlyDomains || shopConfig)
+  for (const [key, value] of domains) {
+    if (key === domains[domains.length - 1][0]) {
+      console.log('Crawler at last domain')
+      if (!crawler_config_payload.params.webhook_config?.webhook_headers)
+        crawler_config_payload.params.webhook_config.webhook_headers = {}
+      crawler_config_payload.params.webhook_config.webhook_headers['X-Final-Domain'] = key
+    }
+
     const partialCrawlInfo: ParticalCrawlInfo = {
       domain: key,
     }
@@ -211,7 +235,6 @@ export default defineEventHandler(async (event) => {
       else if (value.paging.loadMoreSelector) {
       // If paging is configured as loadMoreSelector add js code
         if (value.paging && value.paging.loadMoreSelector) {
-          // crawler_config_payload.params.page_timeout = 120000
           // Do not scan full page if we add js lazy load (cause it also scrolls after pressing the button)
           crawler_config_payload.params.scan_full_page = false
           crawler_config_payload.params.js_code = [generateJSLoadMoreScript(value.paging.loadMoreSelector)]
@@ -230,14 +253,14 @@ export default defineEventHandler(async (event) => {
       results: {
         extracted_content: string
       }[]
-    } = await $fetch(`${config.crawl4AiUrl}/crawl`, {
+    } = await $fetch(`${config.crawl4AiUrl}/crawl/job`, {
       method: 'post',
       body: crawl_payload,
     })
 
     console.log('response', response)
 
-    const items: CrawledItem[] = response.results.reduce((accumulator, currentObj) => {
+    /* const items: CrawledItem[] = response.results.reduce((accumulator, currentObj) => {
       const json = JSON.parse(currentObj.extracted_content)
       return accumulator.concat(json)
     }, [])
@@ -293,7 +316,7 @@ export default defineEventHandler(async (event) => {
     algoliaProducts = [...algoliaProducts, ...formattedResults]
     console.info(`Crawl - finish partial crawl ${items.length} items for domain ${key}`)
 
-    runInfo.shops.push(partialCrawlInfo)
+    runInfo.shops.push(partialCrawlInfo) */
   }
   runInfo.totalCrawledItems = algoliaProducts.length
 
