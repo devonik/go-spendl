@@ -52,22 +52,29 @@ export default defineEventHandler(async (event) => {
 
   // Define schema to extract contents into
   const schema = z.object({
-    name: z.string().describe('Name of the Product e.g. Schwarze Jacke'),
-    sourceUrl: z.string().describe('Detail URL of the product'),
-    brand: z.string().describe('The brand of the product e.g. Garmin'),
-    description: z.string().describe('Description of the product e.g. 45mm lang, diverse farben'),
-    price: z.string().describe('Price of the product e.g. 15€'),
-    imageUrl: z.string().describe('Image of the product'),
-    shopDomain: z.string().describe('Add the shop domain e.g. baur.de'),
-    group: z.string().describe('It is satsback'),
-    colors: z.string().describe('Color options of the product. E.g. Braun, Schwarz'),
-
+    products: z.array(
+      z.object({
+        name: z.string().describe('Name of the Product e.g. Schwarze Jacke'),
+        sourceUrl: z.string().describe('Detail URL of the product'),
+        brand: z.string().describe('The brand of the product e.g. Garmin'),
+        features: z.string().describe('Features of the product e.g. 45mm lang, diverse farben'),
+        price: z.string().describe('Price of the product e.g. 15€'),
+        imageUrl: z.string().describe('Image of the product'),
+        shopDomain: z.string().describe('Add the shop domain e.g. baur.de'),
+        group: z.string().describe('It is satsback'),
+        colors: z.string().describe('Color options of the product. E.g. Braun, Schwarz'),
+      }),
+    ),
   })
+  console.log('schema', z.toJSONSchema(schema))
 
   const response = await firecrawl.scrape('https://www.baur.de/s/hose/', {
     formats: [
-      { type: 'json', schema: { type: 'object', properties: { name: { type: 'string' } }, required: ['name'] } },
+      { type: 'json', schema },
     ],
+    // Get your results up to 500% faster when you don’t need the absolute freshest data. Control freshness via maxAge:
+    // 604800000 = 1 week
+    maxAge: 604800000,
   })
 
   console.log('scrape result', response)
