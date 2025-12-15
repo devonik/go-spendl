@@ -32,16 +32,16 @@ interface CrawlerRunConfig {
     override_navigator: boolean
     scan_full_page?: boolean
     scroll_delay?: number
-    webhook_config: {
-      // Required. Your HTTP(S) endpoint to receive notifications
-      webhook_url: string
-      // Default false. Include full result data in webhook payload (default: false)
-      webhook_data_in_payload?: boolean
-      // Optional. Additional headers to include in the webhook request
-      webhook_headers?: {
-        [key: string]: string
-      }
-    }
+  }
+}
+interface CrawlerWebhookPayload {
+  // Required. Your HTTP(S) endpoint to receive notifications
+  webhook_url: string
+  // Default false. Include full result data in webhook payload (default: false)
+  webhook_data_in_payload?: boolean
+  // Optional. Additional headers to include in the webhook request
+  webhook_headers?: {
+    [key: string]: string
   }
 }
 interface CrawledItem {
@@ -169,12 +169,14 @@ export default defineEventHandler(async (event) => {
       scan_full_page: true,
       // Delay (seconds) between scroll steps
       scroll_delay: 0.5,
-      webhook_config: {
-        webhook_url: 'http://localhost:3000/api/crawl/webhook',
-        webhook_headers: {
-          'X-Webhook-Secret': '123',
-        },
-      },
+    },
+  }
+
+  const webhook_config: CrawlerWebhookPayload = {
+    webhook_url: 'http://localhost:3000/api/crawl/webhook',
+    webhook_data_in_payload: true,
+    webhook_headers: {
+      'X-Webhook-Secret': '123',
     },
   }
 
@@ -188,9 +190,6 @@ export default defineEventHandler(async (event) => {
     totalUploadedToAlgolia: 0,
     shops: [],
   }
-  let algoliaProducts: AlgoliaProduct[] = []
-
-  let slackBodyRunInfo = ''
 
   let testOnlyDomains
 
@@ -204,9 +203,7 @@ export default defineEventHandler(async (event) => {
   for (const [key, value] of domains) {
     if (key === domains[domains.length - 1][0]) {
       console.log('Crawler at last domain')
-      if (!crawler_config_payload.params.webhook_config?.webhook_headers)
-        crawler_config_payload.params.webhook_config.webhook_headers = {}
-      crawler_config_payload.params.webhook_config.webhook_headers['X-Final-Domain'] = key
+      webhook_config.webhook_headers['X-Final-Domain'] = key
     }
 
     const partialCrawlInfo: ParticalCrawlInfo = {
@@ -247,6 +244,7 @@ export default defineEventHandler(async (event) => {
       urls: searchURLs,
       browser_config: browser_config_payload,
       crawler_config: crawler_config_payload,
+      webhook_config,
     }
 
     const response: {
