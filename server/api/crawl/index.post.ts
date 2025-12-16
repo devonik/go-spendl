@@ -1,71 +1,13 @@
 import type { Locale } from 'vue-i18n'
-import type { AlgoliaProduct } from '~~/types/algolia'
+import type { CrawlerRunConfig, CrawlerWebhookPayload } from '~~/types/crawler'
 import { randomUUID } from 'node:crypto'
-import { put } from '@vercel/blob'
 import { v4 as uuidv4 } from 'uuid'
-import { upsetAlgoliaObjects } from '../../lib/algolia'
 import sendSlackMessage from '../../lib/send-slack-message'
-import shopConfig, { toTest } from '../../utils/shop-config'
-
-interface CrawlerRunConfig {
-  type: 'CrawlerRunConfig'
-  params: {
-    js_only?: boolean
-    js_code?: string[]
-    // Timeout for page navigation or JS steps. Increase for slow sites. In MS. Default 60000
-    page_timeout?: number
-    wait_for?: string
-    wait_for_images: boolean
-    session_id: string
-    exclude_all_images: boolean
-    exclude_external_links: boolean
-    exclude_social_media_domains: boolean
-    exclude_social_media_links: boolean
-    remove_forms: boolean
-    remove_overlay_elements: boolean
-    keep_data_attributes: boolean
-    extraction_strategy: Record<string, unknown>
-    virtual_scroll_config?: Record<string, unknown>
-    proxy_config?: Record<string, unknown>
-    magic: boolean
-    simulate_user: boolean
-    override_navigator: boolean
-    scan_full_page?: boolean
-    scroll_delay?: number
-  }
-}
-interface CrawlerWebhookPayload {
-  // Required. Your HTTP(S) endpoint to receive notifications
-  webhook_url: string
-  // Default false. Include full result data in webhook payload (default: false)
-  webhook_data_in_payload?: boolean
-  // Optional. Additional headers to include in the webhook request
-  webhook_headers?: {
-    [key: string]: string
-  }
-}
-interface CrawledItem {
-  objectID: string
-  name: string
-  sourceUrl: string
-  brand: string
-  price: string
-  description?: string
-  imageSrc?: string
-  imageSrcset?: string
-  imageAlt?: string
-  shopDomain: string
-  group: string
-  color1?: string
-  color2?: string
-  color3?: string
-  colorMore?: string
-}
+import shopConfig from '../../utils/shop-config'
 
 interface ParticalCrawlInfo {
   domain: string
-  crawledItems?: CrawledItem[]
-  info?: string
+  task_id?: string
 }
 
 function generateJSLoadMoreScript(loadMoreSelector: string): string {
@@ -173,21 +115,17 @@ export default defineEventHandler(async (event) => {
   }
 
   const webhook_config: CrawlerWebhookPayload = {
-    webhook_url: 'http://localhost:3000/api/crawl/webhook',
+    webhook_url: `${config.baseUrl}/api/crawl/webhook`,
     webhook_data_in_payload: true,
     webhook_headers: {
-      'X-Webhook-Secret': '123',
+      'X-Webhook-Secret': config.crawlWebhookSecret,
     },
   }
 
   // Crawl every url
   const runInfo: {
-    totalCrawledItems: number
-    totalUploadedToAlgolia: number
     shops: ParticalCrawlInfo[]
   } = {
-    totalCrawledItems: 0,
-    totalUploadedToAlgolia: 0,
     shops: [],
   }
 
@@ -201,10 +139,8 @@ export default defineEventHandler(async (event) => {
   console.info(`Crawl - starting crawl on ${testOnlyDomains ? Object.keys(testOnlyDomains) : Object.keys(shopConfig)} domains`)
   const domains = Object.entries(testOnlyDomains || shopConfig)
   for (const [key, value] of domains) {
-    if (key === domains[domains.length - 1][0]) {
-      console.log('Crawler at last domain')
-      webhook_config.webhook_headers['X-Final-Domain'] = key
-    }
+    webhook_config.webhook_headers['X-Domain'] = key
+    webhook_config.webhook_headers['X-Group'] = value.group
 
     const partialCrawlInfo: ParticalCrawlInfo = {
       domain: key,
@@ -248,107 +184,22 @@ export default defineEventHandler(async (event) => {
     }
 
     const response: {
-      results: {
-        extracted_content: string
-      }[]
+      task_id: string
     } = await $fetch(`${config.crawl4AiUrl}/crawl/job`, {
       method: 'post',
       body: crawl_payload,
     })
 
-    console.log('response', response)
+    partialCrawlInfo.task_id = response.task_id
+    console.info(`Crawl - Job with takeId ${partialCrawlInfo.task_id} started for domain ${partialCrawlInfo.domain}`)
 
-    /* const items: CrawledItem[] = response.results.reduce((accumulator, currentObj) => {
-      const json = JSON.parse(currentObj.extracted_content)
-      return accumulator.concat(json)
-    }, [])
-
-    partialCrawlInfo.crawledItems = items
-    if (items.length === 0) {
-      partialCrawlInfo.info = `no items found for domain ${key}. Check if the domain is correct. Either the URLs ${searchURLs} is wrong, the CSS config is old oder there are just no items`
-      console.info(partialCrawlInfo.info)
-    }
-
-    slackBodyRunInfo += `${partialCrawlInfo.domain}\n`
-    if (partialCrawlInfo.info)
-      slackBodyRunInfo += `${partialCrawlInfo.info}\n`
-    slackBodyRunInfo += '-----------\n'
-
-    items.filter(item => !item.price).forEach((item) => {
-      slackBodyRunInfo += `- Item without price found: ${item.name} - ${item.sourceUrl}. Double check why price not crawled\n\n`
-    })
-
-    const formattedResults: AlgoliaProduct[] = items.filter(item => item.price).map((item) => {
-      // Get a copy from item without the colors
-      const { color1, color2, color3, colorMore, ...rest } = item
-      let colors = item.color1
-      if (item.color2)
-        colors += `, ${item.color2}`
-      if (item.color3)
-        colors += `, ${item.color3}`
-      if (item.colorMore)
-        colors += `, ${item.colorMore}`
-
-      return {
-        ...rest,
-        objectID: `${key}-${item.name.replace(/[^a-z0-9 ]/gi, '').replaceAll(' ', '-').toLowerCase()}`,
-        group: value.group,
-        shopDomain: key,
-        colors,
-        sourceUrl: !item.sourceUrl.includes('http') ? `https://${key}${item.sourceUrl}` : item.sourceUrl,
-      }
-    })
-
-    if (formattedResults[0]) {
-      for (const [key, value] of Object.entries(formattedResults[0])) {
-        if (key !== 'name')
-          slackBodyRunInfo += `- ${key}: ${value}\n`
-      }
-    }
-    else {
-      slackBodyRunInfo += `- Could not read product data\n`
-    }
-
-    slackBodyRunInfo += '\n\n'
-    slackBodyRunInfo += '\n-----------\n'
-    algoliaProducts = [...algoliaProducts, ...formattedResults]
-    console.info(`Crawl - finish partial crawl ${items.length} items for domain ${key}`)
-
-    runInfo.shops.push(partialCrawlInfo) */
+    runInfo.shops.push(partialCrawlInfo)
   }
-  runInfo.totalCrawledItems = algoliaProducts.length
-
-  console.info(`Crawl - FINISH with ${algoliaProducts.length} items`)
 
   await sendSlackMessage(config.slackWebhookUrl, {
-    title: `:wrench: Crawled *${algoliaProducts.length}* items ready to upload to algolia. Automatic upload is ${config.isCrawlUploadAutomaticEnabled === 'true' ? 'activated' : 'deactivated'}`,
-    richTextBody: slackBodyRunInfo,
+    title: `:wrench: Crawl Jobs started for *${runInfo.shops.length}* domains. Automatic upload is ${config.isCrawlUploadAutomaticEnabled === 'true' ? 'activated' : 'deactivated'}`,
+    richTextBody: runInfo.shops.map(shop => `- *${shop.task_id}* - ${shop.domain}`).join('\n'),
   })
-  if (config.isCrawlUploadAutomaticEnabled === 'true') {
-    upsetAlgoliaObjects(algoliaProducts, config).then((response) => {
-      runInfo.totalUploadedToAlgolia = algoliaProducts.length
-
-      sendSlackMessage(config.slackWebhookUrl, {
-        title: `:checkered_flag: Algolia upload for taskId *${taskId}* with *${response[0]?.objectIDs.length || 0}* items finished. @Marcel @niklas.grieger`,
-      })
-    })
-  }
-  else {
-    // Create task for approvement
-    // await useStorage().setItem(`upload:${taskId}`, algoliaProducts)
-    const { url } = await put(`crawl/to-approve/${config.public.algoliaProductIndex}-${taskId}.json`, JSON.stringify(algoliaProducts), { access: 'public', contentType: 'application/json' })
-    if (algoliaProducts.length === 0) {
-      sendSlackMessage(config.slackWebhookUrl, {
-        title: `:checkered_flag: No products found by crawler`,
-      })
-    }
-    else {
-      sendSlackMessage(config.slackWebhookUrl, {
-        title: `:wrench: Automatice upload to algolia is disable so waiting for appove of *${algoliaProducts.length}* to upload to algolia. @Marcel @niklas.grieger`,
-        approveUploadActionUrl: `${config.baseUrl}/internal/approve-crawl?fileUrl=${url}`,
-      })
-    }
-  }
 
   return { success: true }
 })
