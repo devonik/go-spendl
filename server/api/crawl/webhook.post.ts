@@ -90,6 +90,11 @@ export default defineEventHandler(async (event) => {
       slackInfo += `- Item without price found: ${item.name} - ${item.sourceUrl}. Double check why price not crawled\n\n`
     })
 
+    sendSlackMessage(config.slackWebhookUrl, {
+      title: `:wrench: *${body.task_id}* Crawl finish and ${items.length || 0} items are ready to upload`,
+      jsonString: slackInfo,
+    })
+
     const formattedResults: AlgoliaProduct[] = items.filter(item => item.price).map((item) => {
       // Get a copy from item without the colors
       const { color1, color2, color3, colorMore, ...rest } = item
