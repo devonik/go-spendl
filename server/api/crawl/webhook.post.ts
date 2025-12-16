@@ -12,7 +12,7 @@ interface CompleteCrawlWebhookPayload {
   urls: string[]
   data?: {
     success: true
-    results: any
+    results: Crawl4AIData[]
     server_processing_time_s: number
     server_memory_delta_mb: number
     server_peak_memory_mb: number
@@ -21,7 +21,30 @@ interface CompleteCrawlWebhookPayload {
 }
 
 interface Crawl4AIData {
-  extracted_content: string
+  url: string
+  html: string
+  fit_html: string
+  success: boolean
+  cleaned_html: unknown
+  media: Record<string, unknown>
+  links: Record<string, unknown>
+  downloaded_files: unknown
+  js_execution_result: unknown
+  screenshot: unknown
+  pdf: unknown
+  mhtml: unknown
+  extracted_content: string | null
+  metadata: Record<string, unknown> | null
+  error_message: string | null
+  session_id: unknown
+  response_headers: unknown
+  status_code: unknown
+  ssl_certificate: unknown
+  dispatch_result: unknown
+  redirected_url: unknown
+  network_requests: unknown
+  console_messages: unknown
+  tables: unknown[]
 }
 
 export default defineEventHandler(async (event) => {
@@ -63,7 +86,7 @@ export default defineEventHandler(async (event) => {
   }
 
   if (body.status === 'failed') {
-    console.error(`Crawl task ${body.task_id} failed with error: ${body.error}`)
+    console.error(`Crawl task ${body.task_id} failed with error`, body.error)
     sendSlackMessage(config.slackWebhookUrl, {
       title: `:sob: *${body.task_id}* Crawl failed for domain ${domain}`,
       jsonString: body.error,
@@ -73,7 +96,20 @@ export default defineEventHandler(async (event) => {
   else if (body.status === 'completed') {
     console.log('body.data?.results', body.data?.results)
     console.log('STRINGIFY body.data?.results', JSON.stringify(body.data?.results))
-    const items: CrawledItem[] = body.data?.results.reduce((accumulator: Crawl4AIData[], currentObj: Crawl4AIData) => {
+    if (!body.data?.results[0].success) {
+      sendSlackMessage(config.slackWebhookUrl, {
+        title: `:sob: *${body.task_id}* Crawl failed for domain ${domain}`,
+        jsonString: 'Check crawler errors in railway or logs in vercel',
+      })
+      console.error(`Crawl task ${body.task_id} failed with error`, body.data?.results[0].error_message)
+      throw createError({
+        statusCode: 500,
+        statusMessage: 'Check crawler errors in railway',
+      })
+    }
+    const items: CrawledItem[] = body.data?.results.reduce((accumulator, currentObj) => {
+      if (!currentObj.extracted_content)
+        return []
       const json = JSON.parse(currentObj.extracted_content)
       return accumulator.concat(json)
     }, [])
