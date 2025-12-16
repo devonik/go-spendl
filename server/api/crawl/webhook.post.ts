@@ -121,13 +121,13 @@ export default defineEventHandler(async (event) => {
       })
       return { success: true }
     }
-    slackInfo = `Extracted ${items.length || 0} items.\n`
+    slackInfo = `Extracted ${items.length || 0} items. Search URLs ${body.urls.join(', ')}\n`
     items.filter(item => !item.price).forEach((item) => {
       slackInfo += `- Item without price found: ${item.name} - ${item.sourceUrl}. Double check why price not crawled\n\n`
     })
 
     sendSlackMessage(config.slackWebhookUrl, {
-      title: `:wrench: *${body.task_id}* Crawl finish and ${items.length || 0} items are ready to upload`,
+      title: `:wrench: *${body.task_id}* Crawl finish and ${items.length || 0} items were found`,
       jsonString: slackInfo,
     })
 
@@ -161,6 +161,8 @@ export default defineEventHandler(async (event) => {
     }
     else {
     // Create task for approvement
+      if (formattedResults.length === 0)
+        return
       const { url } = await put(`crawl/to-approve/${config.public.algoliaProductIndex}-${body.task_id}.json`, JSON.stringify(formattedResults), { access: 'public', contentType: 'application/json' })
 
       sendSlackMessage(config.slackWebhookUrl, {
