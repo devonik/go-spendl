@@ -49,7 +49,6 @@ export default {
 </script>
 
 <template>
-  <input v-model="query" type="search" class="ais-SearchBox-input w-full">
   <UInput
     v-model="query"
   >
