@@ -1,7 +1,6 @@
 import type { Locale } from 'vue-i18n'
 import type { CrawlerRunConfig, CrawlerWebhookPayload } from '~~/types/crawler'
 import { randomUUID } from 'node:crypto'
-import { v4 as uuidv4 } from 'uuid'
 import sendSlackMessage from '../../lib/send-slack-message'
 import shopConfig from '../../utils/shop-config'
 
@@ -48,9 +47,7 @@ export default defineEventHandler(async (event) => {
 
   if (!body.query || !body.locale)
     throw new Error('Body must contain query and locale')
-
-  const taskId = uuidv4()
-  const runConfig = { ...body, config: { taskId, isCrawlUploadAutomaticEnabled: config.isCrawlUploadAutomaticEnabled, crawlUrl: config.crawl4AiUrl } }
+  const runConfig = { ...body, config: { isCrawlUploadAutomaticEnabled: config.isCrawlUploadAutomaticEnabled, crawlUrl: config.crawl4AiUrl } }
   console.info('Crawl - START with body', runConfig)
   sendSlackMessage(config.slackWebhookUrl, {
     title: ':arrow_forward: *New Crawling started with*',
@@ -64,7 +61,7 @@ export default defineEventHandler(async (event) => {
       // Caution this options remove the webdriver property from navigator but it's need for galaxus.de as example
       // enable_stealth: true,
       // Set headless to false to see the browser window - local machine only
-      headless: true,
+      headless: false,
       viewport_width: 800,
       viewport_height: 600,
       headers: {
@@ -101,7 +98,28 @@ export default defineEventHandler(async (event) => {
       // Attempt to remove modals/popups
       remove_overlay_elements: true,
       keep_data_attributes: false,
-      extraction_strategy: {},
+      extraction_strategy: {
+        type: 'LLMExtractionStrategy',
+        params: {
+          llm_config: {
+            type: 'LLMConfig',
+            params: { provider: 'ollama/llama3.1', api_token: 'none', base_url: 'http://host.docker.internal:11434' },
+            // params: { provider: 'openai/gpt-4o-mini', api_token: '' },
+
+          },
+          instruction: `Extract product information from the given URL and respond the data with schema {
+            name: 'Name of the Product e.g. Schwarze Jacke',
+            sourceUrl: 'Detail URL of the product',
+            brand: 'The brand of the product e.g. Garmin',
+            description: 'Description of the product e.g. 45mm lang, diverse farben',
+            price: 'Price of the product e.g. 15€',
+            imageSrc: 'Image src of the product',
+            shopDomain: 'Add the shop domain e.g. baur.de',
+            group: 'satsback',
+            colors: 'Color options of the product. E.g. Braun, Schwarz',
+          }`,
+        },
+      },
       // magic=True tries multiple stealth features.
       // - simulate_user=True mimics mouse movements or random delays.
       // - override_navigator=True fakes some navigator properties (like user agent checks).
@@ -145,13 +163,6 @@ export default defineEventHandler(async (event) => {
 
     const partialCrawlInfo: ParticalCrawlInfo = {
       domain: key,
-    }
-
-    crawler_config_payload.params.extraction_strategy = {
-      type: 'JsonCssExtractionStrategy',
-      params: {
-        schema: value.productCssShema,
-      },
     }
 
     const searchURLs = [value.searchURL(body.query, body.locale)]
