@@ -25,7 +25,7 @@ const handleItemsDataChangeDebounce = useDebounceFn((items: AlgoliaProduct[]) =>
         query: encodeURIComponent(query.value),
         locale: locale.value,
         // Test single domain or 'all' default
-        // domain: 'baur.de',
+        domain: 'baur.de',
       },
     })
     emptyResultsCatchedOnce.value = true
