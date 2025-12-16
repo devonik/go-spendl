@@ -94,8 +94,6 @@ export default defineEventHandler(async (event) => {
     return { success: false, message: `Crawl task failed: ${body.error}` }
   }
   else if (body.status === 'completed') {
-    console.log('body.data?.results', body.data?.results)
-    console.log('STRINGIFY body.data?.results', JSON.stringify(body.data?.results))
     if (!body.data?.results[0].success) {
       sendSlackMessage(config.slackWebhookUrl, {
         title: `:sob: *${body.task_id}* Crawl failed for domain ${domain}`,

@@ -192,7 +192,7 @@ export default defineEventHandler(async (event) => {
     })
 
     partialCrawlInfo.task_id = response.task_id
-    console.info(`Crawl - Job with takeId ${partialCrawlInfo.task_id} started for domain ${partialCrawlInfo.domain}`)
+    console.info(`Crawl - Job with taskId ${partialCrawlInfo.task_id} started for domain ${partialCrawlInfo.domain}`)
 
     runInfo.shops.push(partialCrawlInfo)
   }
