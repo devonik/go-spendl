@@ -23,6 +23,7 @@ export default {
       localQuery: this.modelValue,
     }
   },
+
   computed: {
     query: {
       get() {

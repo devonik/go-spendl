@@ -45,7 +45,7 @@ const queryModel = useRouteQuery('q', '')
         preserveSharedStateOnUnmount: true,
       }"
       :initial-ui-state="{
-        prod_products: {
+        [config.public.algoliaProductIndex]: {
           query: queryModel,
           page: pageModel,
         },
