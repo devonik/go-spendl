@@ -22,10 +22,11 @@ export interface BrowserConfig {
     enable_stealth?: boolean
   }
 }
-
 export interface CrawlerRunConfig {
   type: 'CrawlerRunConfig'
   params: {
+    /** https://docs.crawl4ai.com/core/cache-modes/ */
+    cache_mode?: CacheMode
     js_only?: boolean
     js_code?: string[]
     // Timeout for page navigation or JS steps. Increase for slow sites. In MS. Default 60000

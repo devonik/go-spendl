@@ -10,6 +10,19 @@ interface ParticalCrawlInfo {
   task_id?: string
 }
 
+export const CacheMode = Object.freeze({
+  /** Normal caching (read/write) */
+  ENABLED: 1,
+  /** No caching at all */
+  DISABLED: 2,
+  /** Only read from cache */
+  READ_ONLY: 3,
+  /** Only write to cache */
+  WRITE_ONLY: 4,
+  /** Skip cache for this operation */
+  BYPASS: 5,
+})
+
 function generateJSLoadMoreScript(loadMoreSelector: string): string {
   if (!loadMoreSelector)
     throw new Error('Cannot generateJSLoadMoreScript: loadMoreSelector is required')
@@ -89,6 +102,7 @@ export default defineEventHandler(async (event) => {
       }, */
       // Mark that we do not re-navigate, but run JS in the same session:
       // js_only: true,
+      cache_mode: CacheMode.BYPASS,
       wait_for_images: true,
       session_id: randomUUID(),
       exclude_all_images: true,
@@ -153,14 +167,14 @@ export default defineEventHandler(async (event) => {
     // loadMoreSelector is set if we need to click a button to load more items
     if (value.paging) {
       if (value.paging.pageQueryParam) {
-      // Add paging pages
+        // Add paging pages
         const url = new URL(searchURLs[0])
         url.searchParams.set(value.paging.pageQueryParam, '2')
         console.info(`Crawl - added paging param to url: ${url.toString()}`)
         searchURLs.push(url.toString())
       }
       else if (value.paging.loadMoreSelector) {
-      // If paging is configured as loadMoreSelector add js code
+        // If paging is configured as loadMoreSelector add js code
         if (value.paging && value.paging.loadMoreSelector) {
           // Do not scan full page if we add js lazy load (cause it also scrolls after pressing the button)
           // crawler_config_payload.params.scan_full_page = false
