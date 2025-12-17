@@ -203,8 +203,52 @@ export default defineEventHandler(async (event) => {
       method: 'post',
       body: {
         url: searchURLs[0],
-        q: 'Extract a list of products with  the given schema',
-        provider: 'openai/gpt-4o-mini',
+        // q: `'Extract a list of product information. You will find all information in the given url'`,
+        q: `
+You are a highly skilled data extraction assistant specializing in e-commerce product information. Your task is to extract specific details from the provided text content.
+
+**INSTRUCTIONS:**
+1.  Carefully read the entire website https://www.baur.de/s/hose/?p=2.
+2.  Extract the information for all the "TARGET FIELDS" listed.
+3.  If a piece of information is not available in the text, return 'null' for that field.
+4.  Return the extracted data exclusively as a structured JSON object.
+5.  Do not include any introductory text, explanations, or conversational filler in your output, only the JSON object.
+
+**TARGET FIELDS:**
+*   'productName': The full name of the product.
+*   'sourceUrl': 'Detail URL of the product'.
+*   'brand': The brand name (e.g., "Nike", "Apple").
+*   'description': A brief summary of the product's main features and benefits.
+*   'price': The numerical price, including the currency symbol (e.g., "$19.99").
+*   'imageSrc': The URL of the primary product image.
+*   'currency': The currency code (e.g., "USD", "EUR").
+*   'availability': The stock status (e.g., "In Stock", "Out of Stock").
+*   'sku': The Stock Keeping Unit or product ID.
+*   'shopDomain': "Add the shop domain e.g. baur.de",
+*   'group': 'static value "satsback"',
+*   'colors': 'Color options of the product. E.g. Braun, Schwarz'
+
+**INPUT TEXT:**
+[INSERT THE RAW TEXT CONTENT OR HTML HERE]
+
+**OUTPUT FORMAT EXAMPLE (Few-shot example is optional but helpful):**
+{
+  "productName": "Example Product Title",
+  "sourceUrl": "https://shopinbit.com/de/Apple-iPhone-17-Pro-Max/SW10687.6",
+  "brand": "Example Brand",
+  "price": "$50.00",
+  "imageSrc": "http://example.com/images/main.jpg",
+  "currency": "USD",
+  "availability": "In Stock",
+  "description": "A wonderful product that does amazing things.",
+  "sku": "12345-AB",
+  "shopDomain": "baur.de",
+  "group": "satsback",
+  "colors": "Black, Green"
+}
+
+**OUTPUT (Only the JSON object):**`,
+        provider: 'ollama/llama3.1',
         schema: `{
           "name": "Name of the Product e.g. Schwarze Jacke",
           "sourceUrl": "Detail URL of the product",
@@ -218,7 +262,7 @@ export default defineEventHandler(async (event) => {
         }
         `,
         // schema: '{"title": "string", "author": "string", "date": "string", "points": ["string"]}',
-        cache: false,
+        cache: true,
         webhook_config: {
           webhook_url: 'http://localhost:3000/api/crawl/webhook',
           webhook_data_in_payload: true,

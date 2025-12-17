@@ -39,7 +39,7 @@ export default [
     getSearchUrl: (searchTerm: string) => `https://www.running-point.de/search/?q=${encodeURIComponent(searchTerm)}&lang=de_DE`,
   },
   {
-    domain: 'shopinbit.de',
+    domain: 'shopinbit.com',
     name: 'Shopinbit',
     logoUrl: 'https://shopinbit.com/media/54/27/a8/1684356931/iconapple.png',
     country: 'DE',
