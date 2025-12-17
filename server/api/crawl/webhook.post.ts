@@ -84,6 +84,7 @@ export default defineEventHandler(async (event) => {
       statusMessage: 'Unauthorized',
     })
   }
+  console.log('webhook body', body.data?.results)
 
   if (body.status === 'failed') {
     console.error(`Crawl task ${body.task_id} failed with error`, body.error)

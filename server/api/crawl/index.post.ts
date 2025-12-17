@@ -64,17 +64,17 @@ export default defineEventHandler(async (event) => {
       // Caution this options remove the webdriver property from navigator but it's need for galaxus.de as example
       // enable_stealth: true,
       // Set headless to false to see the browser window - local machine only
-      headless: true,
+      headless: false,
       viewport_width: 800,
       viewport_height: 600,
-      headers: {
+      /* headers: {
         // Set a standard User-Agent string (low entropy) - neccessary for galaxus.de
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
         // Provide the client hints (high entropy values are derived from these) - neccessary for galaxus.de
         'Sec-CH-UA': '"Not_A Brand";v="99", "Google Chrome";v="120", "Chromium";v="120"',
         'Sec-CH-UA-Mobile': '?0',
         'Sec-CH-UA-Platform': '"Windows"',
-      },
+      }, */
     },
   }
 

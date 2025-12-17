@@ -80,7 +80,7 @@ export default {
       },
     },
   },
-  'shopinbit.de': {
+  'shopinbit.com': {
     searchURL: (query: string, locale: Locale) => `https://shopinbit.com/${locale}/search?search=${query}`,
     category: 'e-commerce',
     group: 'payWithBitcoin',
