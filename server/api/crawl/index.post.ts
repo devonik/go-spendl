@@ -15,9 +15,12 @@ function generateJSLoadMoreScript(loadMoreSelector: string): string {
     throw new Error('Cannot generateJSLoadMoreScript: loadMoreSelector is required')
   return `
       (async () => {
+        // Remove dialog by button click. Introduced since scroll is blocked in galaxus.de otherwise
 
         await document.querySelector('${loadMoreSelector}').click();
-        await new Promise(r => setTimeout(r, 300));
+
+        // TODO Scroll method. Not needed anymore since crawl4ai 0.7.8 but maybe in the feature ? Was needed for lazy loading
+        /* await new Promise(r => setTimeout(r, 300));
         const scrollStep = 100; // Amount to scroll each time
         const scrollInterval = 100; // Time in milliseconds between each scroll (adjust for speed)
         const scrollingElement = document.documentElement || document.body; // Cross-browser compatibility
@@ -37,7 +40,7 @@ function generateJSLoadMoreScript(loadMoreSelector: string): string {
             // Otherwise, scroll down by the defined step
             window.scrollBy(0, scrollStep);
           }
-        }, scrollInterval);
+        }, scrollInterval); */
     })();
     `
 }
@@ -60,21 +63,17 @@ export default defineEventHandler(async (event) => {
   const browser_config_payload: BrowserConfig = {
     type: 'BrowserConfig',
     params: {
-      // https://docs.crawl4ai.com/advanced/undetected-browser/#anti-bot-features-comparison
-      // Caution this options remove the webdriver property from navigator but it's need for galaxus.de as example
-      // enable_stealth: true,
-      // Set headless to false to see the browser window - local machine only
-      headless: false,
-      viewport_width: 800,
-      viewport_height: 600,
-      /* headers: {
+      headless: true,
+      viewport_width: 1900,
+      viewport_height: 1200,
+      headers: {
         // Set a standard User-Agent string (low entropy) - neccessary for galaxus.de
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
         // Provide the client hints (high entropy values are derived from these) - neccessary for galaxus.de
         'Sec-CH-UA': '"Not_A Brand";v="99", "Google Chrome";v="120", "Chromium";v="120"',
         'Sec-CH-UA-Mobile': '?0',
         'Sec-CH-UA-Platform': '"Windows"',
-      }, */
+      },
     },
   }
 
@@ -98,14 +97,8 @@ export default defineEventHandler(async (event) => {
       exclude_social_media_links: true,
       // Specifically strip <form> elements
       remove_forms: true,
-      // Attempt to remove modals/popups
-      remove_overlay_elements: true,
       keep_data_attributes: false,
       extraction_strategy: {},
-      // magic=True tries multiple stealth features.
-      // - simulate_user=True mimics mouse movements or random delays.
-      // - override_navigator=True fakes some navigator properties (like user agent checks).
-      magic: true,
       simulate_user: true,
       override_navigator: true,
       // Tells the crawler to try scrolling the entire page
@@ -170,7 +163,7 @@ export default defineEventHandler(async (event) => {
       // If paging is configured as loadMoreSelector add js code
         if (value.paging && value.paging.loadMoreSelector) {
           // Do not scan full page if we add js lazy load (cause it also scrolls after pressing the button)
-          crawler_config_payload.params.scan_full_page = false
+          // crawler_config_payload.params.scan_full_page = false
           crawler_config_payload.params.js_code = [generateJSLoadMoreScript(value.paging.loadMoreSelector)]
           crawler_config_payload.params.wait_for = 'js: () => window.finish === true'
         }

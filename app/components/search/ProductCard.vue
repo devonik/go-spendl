@@ -74,6 +74,9 @@ const shopDomain = computed(() => {
           <span class="dark:text-white">{{ shopDomain.satsbackPercent }}% Satsback</span>
         </UBadge>
       </div>
+      <p v-if="product.description" class="text-sm text-gray-400">
+        {{ product.description }}
+      </p>
     </div>
 
     <!-- Details Link -->

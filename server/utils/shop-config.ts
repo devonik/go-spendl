@@ -91,7 +91,7 @@ export default {
     productCssShema: {
       type: 'dict',
       value: {
-        baseSelector: '.product-box',
+        baseSelector: '.cms-element-product-listing .product-box',
         fields: [
           {
             name: 'name',
@@ -135,12 +135,12 @@ export default {
     category: 'e-commerce',
     group: 'satsback',
     paging: {
-      loadMoreSelector: '#pageContent > div > section:nth-child(2) > div:last-child button',
+      loadMoreSelector: '#pageContent > section > div:last-child button',
     },
     productCssShema: {
       type: 'dict',
       value: {
-        baseSelector: '#pageContent article',
+        baseSelector: '#pageContent > section article',
         fields: [
           {
             name: 'name',
@@ -184,7 +184,7 @@ export default {
           },
           {
             name: 'description',
-            selector: 'div:nth-child(6) p:nth-child(3)',
+            selector: 'div:nth-child(6) > p:nth-child(2)',
             type: 'text',
           },
         ],

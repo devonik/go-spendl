@@ -143,9 +143,11 @@ export default defineEventHandler(async (event) => {
       if (item.colorMore)
         colors += `, ${item.colorMore}`
 
+      const itemNameSterilized = item.name.replace(/[^a-z0-9 ]/gi, '').replaceAll(' ', '-').toLowerCase()
+      const descriptionSterilized = item.description?.replace(/[^a-z0-9 ]/gi, '').replaceAll(' ', '-').toLowerCase()
       return {
         ...rest,
-        objectID: `${domain}-${item.name.replace(/[^a-z0-9 ]/gi, '').replaceAll(' ', '-').toLowerCase()}`,
+        objectID: `${domain}-${descriptionSterilized ? `${itemNameSterilized}-${descriptionSterilized}` : itemNameSterilized}`,
         group,
         shopDomain: domain,
         colors,
