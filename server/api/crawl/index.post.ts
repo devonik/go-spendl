@@ -107,7 +107,7 @@ export default defineEventHandler(async (event) => {
             // params: { provider: 'openai/gpt-4o-mini', api_token: '' },
 
           },
-          instruction: `Extract product information from the given URL and respond the data with schema {
+          schema: {
             name: 'Name of the Product e.g. Schwarze Jacke',
             sourceUrl: 'Detail URL of the product',
             brand: 'The brand of the product e.g. Garmin',
@@ -117,7 +117,9 @@ export default defineEventHandler(async (event) => {
             shopDomain: 'Add the shop domain e.g. baur.de',
             group: 'satsback',
             colors: 'Color options of the product. E.g. Braun, Schwarz',
-          }`,
+          },
+          extraction_type: 'schema',
+          instruction: 'Extract product information from the given URL and respond the data with the given schema',
         },
       },
       // magic=True tries multiple stealth features.
@@ -197,9 +199,36 @@ export default defineEventHandler(async (event) => {
 
     const response: {
       task_id: string
-    } = await $fetch(`${config.crawl4AiUrl}/crawl/job`, {
+    } = await $fetch(`${config.crawl4AiUrl}/llm/job`, {
       method: 'post',
-      body: crawl_payload,
+      body: {
+        url: searchURLs[0],
+        q: 'Extract a list of products with  the given schema',
+        provider: 'openai/gpt-4o-mini',
+        schema: `{
+          "name": "Name of the Product e.g. Schwarze Jacke",
+          "sourceUrl": "Detail URL of the product",
+          "brand": "The brand of the product e.g. Garmin",
+          "description": "Description of the product e.g. 45mm lang, diverse farben",
+          "price": "Price of the product e.g. 15€",
+          "imageSrc": "Image src of the product",
+          "shopDomain": "Add the shop domain e.g. baur.de",
+          "group": "satsback",
+          "colors": "Color options of the product. E.g. Braun, Schwarz"
+        }
+        `,
+        // schema: '{"title": "string", "author": "string", "date": "string", "points": ["string"]}',
+        cache: false,
+        webhook_config: {
+          webhook_url: 'http://localhost:3000/api/crawl/webhook',
+          webhook_data_in_payload: true,
+          webhook_headers: {
+            'X-Webhook-Secret': 'Start123',
+            'X-Domain': key,
+            'X-Group': value.group,
+          },
+        },
+      },
     })
 
     partialCrawlInfo.task_id = response.task_id
