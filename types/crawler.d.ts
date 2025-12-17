@@ -1,3 +1,20 @@
+export interface CrawlJobPayload {
+  // See https://github.com/unclecode/crawl4ai/blob/a87e8c1c9e1f60e9418057d3d9d9b6ea1a8174af/deploy/docker/job.py#L46C7-L46C22
+  urls: string[]
+  crawler_config: CrawlerRunConfig
+  browser_config: BrowserConfig
+  webhook_config?: CrawlerWebhookPayload
+}
+
+export interface BrowserConfig {
+  type: 'BrowserConfig'
+  params: {
+    headless: boolean
+    viewport_width: number
+    viewport_height: number
+    headers: Record<string, string>
+  }
+}
 export interface CrawlerRunConfig {
   type: 'CrawlerRunConfig'
   params: {

@@ -1,5 +1,5 @@
 import type { Locale } from 'vue-i18n'
-import type { CrawlerRunConfig, CrawlerWebhookPayload } from '~~/types/crawler'
+import type { BrowserConfig, CrawlerRunConfig, CrawlerWebhookPayload, CrawlJobPayload } from '~~/types/crawler'
 import { randomUUID } from 'node:crypto'
 import { v4 as uuidv4 } from 'uuid'
 import sendSlackMessage from '../../lib/send-slack-message'
@@ -57,7 +57,7 @@ export default defineEventHandler(async (event) => {
     jsonString: JSON.stringify(runConfig),
   })
 
-  const browser_config_payload = {
+  const browser_config_payload: BrowserConfig = {
     type: 'BrowserConfig',
     params: {
       // https://docs.crawl4ai.com/advanced/undetected-browser/#anti-bot-features-comparison
@@ -177,7 +177,7 @@ export default defineEventHandler(async (event) => {
       }
     }
 
-    const crawl_payload = {
+    const crawl_payload: CrawlJobPayload = {
       urls: searchURLs,
       browser_config: browser_config_payload,
       crawler_config: crawler_config_payload,
