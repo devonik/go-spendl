@@ -85,6 +85,7 @@ export interface WebhookHeaders {
   'X-Webhook-Secret': string
   'X-Domain'?: string
   'X-Group'?: string
+  'X-Initial-Query'?: string
 }
 export interface CrawlerWebhookPayload {
   // Required. Your HTTP(S) endpoint to receive notifications

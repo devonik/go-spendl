@@ -127,6 +127,7 @@ export default defineEventHandler(async (event) => {
     webhook_data_in_payload: true,
     webhook_headers: {
       'X-Webhook-Secret': config.crawlWebhookSecret,
+      'X-Initial-Query': body.query,
     },
   }
 

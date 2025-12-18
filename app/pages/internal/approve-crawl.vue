@@ -7,7 +7,7 @@ import * as z from 'zod'
 const { query } = useRoute()
 const status = ref<'loading' | 'loaded' | 'declined' | 'approved' | 'empty'>()
 
-const jsonContent = ref()
+const jsonContent = ref<{ initialQuery: string, items: Schema }>()
 const schema = z.array(
   z.object({
     name: z.string('Required'),
@@ -34,8 +34,8 @@ const model = ref<Schema>()
 onMounted(async () => {
   if (query.fileUrl) {
     status.value = 'loading'
-    jsonContent.value = await $fetch(query.fileUrl as string)
-    model.value = jsonContent.value
+    jsonContent.value = await $fetch<{ initialQuery: string, items: Schema }>(query.fileUrl as string)
+    model.value = jsonContent.value.items
     status.value = model.value?.length ? 'loaded' : 'empty'
   }
   else {
@@ -48,6 +48,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
     method: 'POST',
     body: {
       fileUrl: query.fileUrl,
+      initialQuery: jsonContent.value?.initialQuery,
       productsToUpload: event.data,
     },
   })

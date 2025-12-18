@@ -3,6 +3,7 @@ import type { CrawledItem } from '~~/types/crawler'
 import { put } from '@vercel/blob'
 import { upsetAlgoliaObjects } from '~~/server/lib/algolia'
 import sendSlackMessage from '~~/server/lib/send-slack-message'
+import { peers } from '~~/server/routes/ws'
 
 interface CompleteCrawlWebhookPayload {
   task_id: string
@@ -59,6 +60,7 @@ export default defineEventHandler(async (event) => {
   const group = headers['X-Group'.toLowerCase()]
   const domain = headers['X-Domain'.toLowerCase()]
   const secret = headers['X-Webhook-Secret'.toLowerCase()]
+  const initialQuery = headers['X-Initial-Query'.toLowerCase()]
   if (!group) {
     throw createError({
       statusCode: 400,
@@ -75,6 +77,12 @@ export default defineEventHandler(async (event) => {
     throw createError({
       statusCode: 400,
       statusMessage: 'Header X-Webhook-Secret is missing',
+    })
+  }
+  if (!initialQuery) {
+    throw createError({
+      statusCode: 400,
+      statusMessage: 'Header X-Initial-Query is missing',
     })
   }
 
@@ -160,13 +168,14 @@ export default defineEventHandler(async (event) => {
         sendSlackMessage(config.slackWebhookUrl, {
           title: `:checkered_flag: *${body.task_id}* Algolia upload with *${response[0]?.objectIDs.length || 0}* items finished. @Marcel @niklas.grieger`,
         })
+        peers.forEach(peer => peer.send(`${response[0]?.objectIDs.length || 0} new search results. You can now search for ${initialQuery}`))
       })
     }
     else {
     // Create task for approvement
       if (formattedResults.length === 0)
         return
-      const { url } = await put(`crawl/to-approve/${config.public.algoliaProductIndex}-${body.task_id}.json`, JSON.stringify(formattedResults), { access: 'public', contentType: 'application/json' })
+      const { url } = await put(`crawl/to-approve/${config.public.algoliaProductIndex}-${body.task_id}.json`, JSON.stringify({ initialQuery, items: formattedResults }), { access: 'public', contentType: 'application/json' })
 
       sendSlackMessage(config.slackWebhookUrl, {
         title: `:wrench: *${body.task_id}* Automatic Algolia update is disabled and task is waiting for appove of *${formattedResults.length}* items. @Marcel @niklas.grieger`,

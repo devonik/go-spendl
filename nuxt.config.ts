@@ -23,6 +23,7 @@ export default defineNuxtConfig({
     '@nuxt/ui',
     '@nuxtjs/i18n',
     '@nuxt/fonts',
+    '@vueuse/nuxt',
   ],
   css: ['~/assets/css/main.css'],
   icon: {
@@ -39,5 +40,10 @@ export default defineNuxtConfig({
     defaultLocale: 'de',
     skipSettingLocaleOnNavigate: true,
     baseUrl: 'https://gospendl.com',
+  },
+  nitro: {
+    experimental: {
+      websocket: true,
+    },
   },
 })
