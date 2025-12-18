@@ -55,7 +55,7 @@ const queryModel = useRouteQuery('q', '')
         <SearchFilter />
       </AisStateResults>
 
-      <div class="flex flex-col gap-6 flex-grow">
+      <div class="flex flex-col gap-6 grow">
         <SearchDebouncedSearchBox
           v-model="queryModel"
           :delay="500"

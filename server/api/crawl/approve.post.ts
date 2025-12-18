@@ -14,7 +14,7 @@ export default defineEventHandler(async (event) => {
   sendSlackMessage(config.slackWebhookUrl, {
     title: `:checkered_flag: Algolia upload for taskId ${body.fileUrl} with *${response[0]?.objectIDs.length || 0}* items finished`,
   })
-  peers.forEach(peer => peer.send(`${response[0]?.objectIDs.length || 0} new search results. You can now search for ${body.initialQuery}`))
+  peers.forEach(peer => peer.send(`{"source": "crawl.newData", "meta": { "itemCount": ${response[0]?.objectIDs.length || 0}, "initialQuery": "${body.initialQuery}" } }`))
   // Delete file from vercel storage
   await del(body.fileUrl)
 

@@ -41,6 +41,12 @@ export default {
       },
     },
   },
+  watch: {
+    modelValue(value) {
+      this.localQuery = value
+      this.state.refine(value)
+    },
+  },
   unmounted() {
     if (this.timerId) {
       clearTimeout(this.timerId)

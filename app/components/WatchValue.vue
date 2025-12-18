@@ -8,6 +8,10 @@ export default {
       required: true,
       type: undefined, // Allows any type
     },
+    immediate: {
+      type: Boolean,
+      default: false,
+    },
   },
   emits: ['change'],
   setup(props, { emit }) {
@@ -16,6 +20,7 @@ export default {
       (val) => {
         emit('change', val)
       },
+      { immediate: props.immediate },
     )
   },
   render() {

@@ -168,7 +168,7 @@ export default defineEventHandler(async (event) => {
         sendSlackMessage(config.slackWebhookUrl, {
           title: `:checkered_flag: *${body.task_id}* Algolia upload with *${response[0]?.objectIDs.length || 0}* items finished. @Marcel @niklas.grieger`,
         })
-        peers.forEach(peer => peer.send(`${response[0]?.objectIDs.length || 0} new search results. You can now search for ${initialQuery}`))
+        peers.forEach(peer => peer.send(`{"source": "crawl.newData", "meta": { "itemCount": ${response[0]?.objectIDs.length || 0}, "initialQuery": "${formattedResults[0].name.substring(0, 5)}" } }`))
       })
     }
     else {

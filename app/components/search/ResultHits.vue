@@ -4,6 +4,9 @@ import { useDebounceFn } from '@vueuse/core'
 import { AisInfiniteHits } from 'vue-instantsearch/vue3/es'
 import shopDomain from '~/assets/shop-domain'
 
+const { locale } = useI18n()
+const toast = useToast()
+
 const page = defineModel('page', {
   type: Number,
   required: false,
@@ -13,12 +16,17 @@ const query = defineModel('query', {
   type: String,
   required: true,
 })
-const { locale } = useI18n()
 
 const emptyResultsCatchedOnce = ref(false)
 
 const handleItemsDataChangeDebounce = useDebounceFn((items: AlgoliaProduct[]) => {
   if (items.length === 0 && !emptyResultsCatchedOnce.value) {
+    toast.add({
+      title: 'Searching for more data',
+      description: `We have no data for your search. We'll look for it in the background. In the meanwhile you can visit our partners directly (see cards)`,
+      color: 'primary',
+      icon: 'i-lucide-search',
+    })
     $fetch('/api/crawl', {
       method: 'POST',
       body: {
@@ -89,7 +97,7 @@ const handleItemsDataChangeDebounce = useDebounceFn((items: AlgoliaProduct[]) =>
           }"
         />
       </div>
-      <WatchValue :value="items" @change="handleItemsDataChangeDebounce" />
+      <WatchValue :value="items" immediate @change="handleItemsDataChangeDebounce" />
     </template>
   </AisInfiniteHits>
 </template>

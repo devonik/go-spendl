@@ -2,8 +2,6 @@
 definePageMeta({
   title: 'welcome.title',
 })
-
-const router = useRouter()
 const localePath = useLocalePath()
 
 const searchModel = ref('')
@@ -42,7 +40,7 @@ const searchModel = ref('')
             icon="i-lucide-search"
             :placeholder="$t('search.placeholder')"
             class="m-auto min-w-[150px] max-w-lg w-full"
-            @change="router.replace(localePath(`/search?q=${searchModel}`))"
+            @change="navigateTo(localePath(`/search?q=${searchModel}`))"
           />
         </div>
       </template>
