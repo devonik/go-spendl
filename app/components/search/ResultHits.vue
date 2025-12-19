@@ -20,13 +20,13 @@ const query = defineModel('query', {
 const emptyResultsCatchedOnce = ref(false)
 
 const handleItemsDataChangeDebounce = useDebounceFn((items: AlgoliaProduct[]) => {
+  toast.add({
+    title: 'Searching for more data',
+    description: `We have no data for your search. We'll look for it in the background. In the meanwhile you can visit our partners directly (see cards)`,
+    color: 'primary',
+    icon: 'i-lucide-search',
+  })
   if (items.length === 0 && !emptyResultsCatchedOnce.value) {
-    toast.add({
-      title: 'Searching for more data',
-      description: `We have no data for your search. We'll look for it in the background. In the meanwhile you can visit our partners directly (see cards)`,
-      color: 'primary',
-      icon: 'i-lucide-search',
-    })
     $fetch('/api/crawl', {
       method: 'POST',
       body: {
