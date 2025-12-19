@@ -56,7 +56,7 @@ const { open } = useWebSocket('/ws', {
           title: 'New message',
           description: typeof event.data === 'string' ? event.data : await event.data.text(),
           color: 'primary',
-          icon: 'i-lucide-info
+          icon: 'i-lucide-info',
         })
       }
     }
