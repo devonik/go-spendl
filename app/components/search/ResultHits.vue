@@ -4,6 +4,7 @@ import { useDebounceFn } from '@vueuse/core'
 import { AisInfiniteHits } from 'vue-instantsearch/vue3/es'
 import shopDomain from '~/assets/shop-domain'
 
+const localePath = useLocalePath()
 const { locale } = useI18n()
 const toast = useToast()
 
@@ -16,17 +17,22 @@ const query = defineModel('query', {
   type: String,
   required: true,
 })
+const serverMessages = ref<{
+  text: string
+  actionLink?: string
+}[]>([])
 
 const emptyResultsCatchedOnce = ref(false)
 
 const handleItemsDataChangeDebounce = useDebounceFn((items: AlgoliaProduct[]) => {
-  toast.add({
-    title: 'Searching for more data',
-    description: `We have no data for your search. We'll look for it in the background. In the meanwhile you can visit our partners directly (see cards)`,
-    color: 'primary',
-    icon: 'i-lucide-search',
-  })
+  serverMessages.value = []
   if (items.length === 0 && !emptyResultsCatchedOnce.value) {
+    toast.add({
+      title: 'Searching for more data',
+      description: `We have no data for your search. We'll search for it in the background.`,
+      color: 'primary',
+      icon: 'i-lucide-search',
+    })
     $fetch('/api/crawl', {
       method: 'POST',
       body: {
@@ -39,6 +45,36 @@ const handleItemsDataChangeDebounce = useDebounceFn((items: AlgoliaProduct[]) =>
     emptyResultsCatchedOnce.value = true
   }
 }, 1000)
+
+interface WebsocketJsonMessage {
+  source: string
+  meta: Record<string, string>
+}
+const { open } = useWebSocket('/ws', {
+  immediate: false,
+  async onMessage(ws, event) {
+    try {
+      const json: WebsocketJsonMessage = JSON.parse(event.data)
+      if (json.source === 'crawl.newData') {
+        serverMessages.value?.push({
+          text: `${json.meta.itemCount} new items available. You can search now for ${json.meta.initialQuery}`,
+          actionLink: `/search?q=${json.meta.initialQuery}`,
+        })
+      }
+      else {
+        serverMessages.value?.push({
+          text: typeof event.data === 'string' ? event.data : await event.data.text(),
+        })
+      }
+    }
+    catch (error) {
+      console.error('Could not parse json from websocket image', error, event)
+    }
+  },
+})
+onMounted(() => {
+  open()
+})
 </script>
 
 <template>
@@ -73,9 +109,21 @@ const handleItemsDataChangeDebounce = useDebounceFn((items: AlgoliaProduct[]) =>
         />
       </div>
       <div v-else>
-        <p class="text-sm text-gray-600 mb-3">
-          Mit jeder Suche vervollständigst du unsere Datenbank. Vielen Dank
-        </p>
+        <div v-if="serverMessages.length === 0" class="mb-3 flex items-center gap-3">
+          <div class="w-6 h-6 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
+          We'll search for it in the background... <strong>In the meanwhile you can go directly visit one of the shop's</strong>
+        </div>
+        <UBanner
+          v-for="message in serverMessages" :key="message.text" :title="message.text" icon="i-lucide-info" :actions="[{
+            label: 'Search',
+            color: 'info',
+            variant: 'subtle',
+            class: 'cursor-pointer',
+            leadingIcon: 'i-lucide-search',
+            onClick: () => { message.actionLink ? navigateTo(localePath(message.actionLink)) : undefined },
+          }] "
+          class="mb-3"
+        />
 
         <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
           <SearchProductCardPlaceholder
