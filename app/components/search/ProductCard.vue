@@ -52,7 +52,7 @@ const shopDomain = computed(() => {
     <!-- Price and Discount Section -->
     <div class="space-y-2">
       <div class="flex items-center justify-between">
-        <span class="text-lg font-bold dark:text-neutral">{{ product.price }} €</span>
+        <span class="text-lg font-bold dark:text-neutral">{{ product.price }}</span>
 
         <!-- Bitcoin Discount Badge -->
         <UBadge
