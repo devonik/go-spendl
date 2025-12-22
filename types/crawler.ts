@@ -39,10 +39,14 @@ export interface CrawlerRunConfig {
   params: {
     /** https://docs.crawl4ai.com/core/cache-modes/ */
     cache_mode?: number
+    // True means “I’m continuing in the same session with new JS steps, no new full navigation.”
     js_only?: boolean
-    js_code?: string[]
-    // Timeout for page navigation or JS steps. Increase for slow sites. In MS. Default 60000
+    // can be a single string or a list of strings.
+    js_code?: string | string[]
+    // (ms): Overall page load or script execution time limit. Increase for slow sites. Default 60000
     page_timeout?: number
+    // (seconds): Wait an extra moment before capturing the final HTML.
+    delay_before_return_html?: number
     wait_for?: string
     wait_for_images: boolean
     session_id: string

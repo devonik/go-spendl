@@ -28,12 +28,41 @@ function generateJSLoadMoreScript(loadMoreSelector: string): string {
     throw new Error('Cannot generateJSLoadMoreScript: loadMoreSelector is required')
   return `
       (async () => {
-        // Remove dialog by button click. Introduced since scroll is blocked in galaxus.de otherwise
+        // Remove dialog by button click. Introduced since scroll is blocked in galaxus.de otherwi
+        //await document.querySelector('dialog button:nth-child(2)').click();
+        function scrollByWithCallback(x, y, callback) {
+          // Check if the browser supports the 'scrollend' event
+          if ('onscrollend' in window) {
+            const handleScrollEnd = () => {
+              window.removeEventListener('scrollend', handleScrollEnd);
+              callback();
+            };
 
-        await document.querySelector('${loadMoreSelector}').click();
+            window.addEventListener('scrollend', handleScrollEnd);
+            // Perform the scroll
+            window.scrollBy({
+              left: x,
+              top: y,
+              behavior: 'smooth' // 'smooth' is optional but recommended for user experience
+            });
+          } else {
+            // Use the reliable timeout fallback for older browsers
+            console.warn('scrollend event not supported, using setTimeout fallback.');
+            scrollToFallback(x, y, callback);
+          }
+        }
+
+        await new Promise(r => setTimeout(r, 1000));
+        // Example Usage:
+        scrollByWithCallback(0, document.querySelector('#pageContent section').scrollHeight, async () => {
+          console.log('Scrolling of 500px down has finished!');
+          await new Promise(r => setTimeout(r, 1000));
+          await document.querySelector('${loadMoreSelector}').click();
+          window.finish = true
+        });
 
         // TODO Scroll method. Not needed anymore since crawl4ai 0.7.8 but maybe in the feature ? Was needed for lazy loading
-        /* await new Promise(r => setTimeout(r, 300));
+        /*await new Promise(r => setTimeout(r, 300));
         const scrollStep = 100; // Amount to scroll each time
         const scrollInterval = 100; // Time in milliseconds between each scroll (adjust for speed)
         const scrollingElement = document.documentElement || document.body; // Cross-browser compatibility
@@ -53,7 +82,7 @@ function generateJSLoadMoreScript(loadMoreSelector: string): string {
             // Otherwise, scroll down by the defined step
             window.scrollBy(0, scrollStep);
           }
-        }, scrollInterval); */
+        }, scrollInterval);*/
     })();
     `
 }
@@ -76,7 +105,7 @@ export default defineEventHandler(async (event) => {
   const browser_config_payload: BrowserConfig = {
     type: 'BrowserConfig',
     params: {
-      headless: true,
+      headless: false,
       viewport_width: 1900,
       viewport_height: 1200,
       headers: {
@@ -119,6 +148,8 @@ export default defineEventHandler(async (event) => {
       scan_full_page: true,
       // Delay (seconds) between scroll steps
       scroll_delay: 0.5,
+      page_timeout: 60000, // 60s limit
+      delay_before_return_html: 2.5,
     },
   }
 
@@ -181,6 +212,7 @@ export default defineEventHandler(async (event) => {
           // crawler_config_payload.params.scan_full_page = false
           crawler_config_payload.params.js_code = [generateJSLoadMoreScript(value.paging.loadMoreSelector)]
           crawler_config_payload.params.wait_for = 'js: () => window.finish === true'
+          crawler_config_payload.params.js_only = false
         }
       }
     }

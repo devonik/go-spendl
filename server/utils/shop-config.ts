@@ -135,12 +135,13 @@ export default {
     category: 'e-commerce',
     group: 'satsback',
     paging: {
-      loadMoreSelector: '#pageContent > section > div:last-child button',
+      loadMoreSelector: '#pageContent section > div:last-child button',
+      customPagingQueryParam: 'take',
     },
     productCssShema: {
       type: 'dict',
       value: {
-        baseSelector: '#pageContent > section article',
+        baseSelector: '#pageContent section article',
         fields: [
           {
             name: 'name',
