@@ -55,12 +55,12 @@ async function redirectToStore(store: Store) {
           color="warning"
         >
           <UIcon name="i-lucide-bitcoin" class="size-6" />
-          {{ $t('product.btcDiscount', { percent: 3 }) }}
+          {{ $t('product.btcDiscount', { value: store.discountValue }) }}
         </UBadge>
 
         <!-- Satsback Badge -->
         <UBadge
-          v-if="store.text"
+          v-else-if="store.text"
           color="secondary"
         >
           <UIcon name="i-custom-satsback" class="size-6" />

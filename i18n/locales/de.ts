@@ -39,7 +39,7 @@ export default {
     },
   },
   product: {
-    btcDiscount: '{percent}% BTC Rabatt',
+    btcDiscount: '{value} BTC Rabatt',
     order: 'Zum Shop',
   },
   search: {

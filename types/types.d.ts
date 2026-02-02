@@ -1,6 +1,7 @@
 export interface Store {
   name: string
   text: string
+  discountValue?: string
   slug: string
   group: 'satsback' | 'payWithBitcoin'
   image: string
@@ -8,6 +9,6 @@ export interface Store {
   store_id: string
   created_at: string
   updated_at: string
-  category: string
-  categoryConfidence: number
+  category?: string
+  categoryConfidence?: number
 }

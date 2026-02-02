@@ -13,15 +13,16 @@ async function extendStores(stores: Store[]) {
 }
 export const cachedStores = defineCachedFunction(async (country: string) => {
   // Get satsback stores
-  const data: any = await $fetch<Store[]>(`https://satsback.com/api/v2/gospendl/stores/${country}`)
+  const data = await $fetch<Store[]>(`https://satsback.com/api/v2/gospendl/stores/${country}`)
 
   // Add shopinbit
-  data.shift({
+  data.unshift({
     name: 'Shopinbit',
-    text: 'Shopinbit',
+    text: '3% BTC Rabatt',
+    discountValue: '3%',
     slug: 'shopinbit',
     group: 'payWithBitcoin',
-    image: 'https://shopinbit.com/logo.png',
+    image: 'https://shopinbit.com/media/54/27/a8/1684356931/iconapple.png',
     description: 'Shopinbit is an online store that allows you to shop with Bitcoin and other cryptocurrencies. They offer a wide range of products including electronics, fashion, home goods, and more. With Shopinbit, you can enjoy the convenience of shopping online while using your favorite digital currencies.',
     store_id: 'shopinbit',
     created_at: new Date().toISOString(),
