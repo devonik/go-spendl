@@ -25,3 +25,5 @@ logs
 
 #Nuxt font
 .data
+
+/server/api/test/

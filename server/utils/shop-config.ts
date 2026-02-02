@@ -1,7 +1,7 @@
 import type { Locale } from 'vue-i18n'
 
 export default {
-  'baur.de': {
+  'baur': {
     searchURL: (query: string) => `https://www.baur.de/s/${query}/`,
     category: 'e-commerce',
     group: 'satsback',
@@ -80,7 +80,7 @@ export default {
       },
     },
   },
-  'shopinbit.com': {
+  'shopinbit': {
     searchURL: (query: string, locale: Locale) => `https://shopinbit.com/${locale}/search?search=${query}`,
     category: 'e-commerce',
     group: 'payWithBitcoin',
@@ -106,7 +106,7 @@ export default {
           },
           {
             name: 'brand',
-            selector: '',
+            selector: '.product-manufacturer',
             type: 'text',
           },
           {
@@ -130,7 +130,7 @@ export default {
       },
     },
   },
-  'galaxus.de': {
+  'galaxus': {
     searchURL: (query: string, locale: Locale) => `https://www.galaxus.de/${locale}/search?q=${query}`,
     category: 'e-commerce',
     group: 'satsback',
@@ -194,7 +194,7 @@ export default {
   },
   // Blocked from outside europe. Proxy ?
   // Skip Paging cause is complicated there is no p query param the load more button is a link to a new page
-  'netto-online.de': {
+  'netto-online': {
     searchURL: (query: string) => `https://www.netto-online.de/INTERSHOP/web/WFS/Plus-NettoDE-Site/de_DE/-/EUR/ViewMMPParametricSearch-SimpleOfferSearch?SearchTerm=${query}&Region=1&MeatMarketType=2&KW=43`,
     category: 'e-commerce',
     group: 'satsback',
@@ -242,7 +242,7 @@ export default {
     },
   },
   // Skip Paging cause via paging click but no p query param
-  'running-point.de': {
+  'running-point': {
     searchURL: (query: string) => `https://www.running-point.de/search/?q=${query}&lang=de_DE`,
     category: 'e-commerce',
     group: 'satsback',

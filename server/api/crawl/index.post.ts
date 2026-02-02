@@ -105,7 +105,7 @@ export default defineEventHandler(async (event) => {
   const browser_config_payload: BrowserConfig = {
     type: 'BrowserConfig',
     params: {
-      headless: false,
+      headless: true,
       viewport_width: 1900,
       viewport_height: 1200,
       headers: {

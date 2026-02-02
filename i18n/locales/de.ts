@@ -14,6 +14,7 @@ export default {
       title: 'Neu im Bitcoin?',
       description: 'Shoppe online mit Satsback und erhalte deine ersten Satoshis als Cashback.',
     },
+    ourPartners: 'Unsere Partner',
   },
   about: {
     aboutUs: {
@@ -69,5 +70,59 @@ export default {
     showMoreResults: 'Zeige mehr Ergebnisse',
     noMoreResults: 'Keine weiteren Ergebnisse',
     loading: 'Lade...',
+  },
+  categories: {
+    'airline': 'Fluggesellschaft',
+    'hotels': 'Hotels',
+    'accommodation': 'Unterkünfte',
+    'travel': 'Reisen',
+    'activities': 'Aktivitäten',
+    'parking': 'Parken',
+
+    'security': 'Sicherheit',
+    'software': 'Software',
+    'esim': 'eSIM',
+
+    'telecom': 'Telekommunikation',
+    'energy': 'Energie',
+
+    'marketplace': 'Marktplatz',
+    'b2b': 'B2B',
+    'retail': 'Einzelhandel',
+    'departmentstore': 'Kaufhaus',
+
+    'fashion': 'Mode',
+    'sportswear': 'Sportbekleidung',
+    'sneakers': 'Sneaker',
+    'lingerie': 'Dessous',
+    'lifestyle': 'Lifestyle',
+
+    'food': 'Lebensmittel',
+    'spices': 'Gewürze',
+    'wine': 'Wein',
+
+    'household': 'Haushalt',
+    'appliances': 'Haushaltsgeräte',
+    'furniture': 'Möbel',
+    'materials': 'Materialien',
+
+    'automotive': 'Autozubehör',
+    'motorsports': 'Motorsport',
+
+    'electronics': 'Elektronik',
+    '3dprinting': '3D-Druck',
+
+    'pharmacy': 'Apotheke',
+    'cosmetics': 'Kosmetik',
+    'fitness': 'Fitness',
+
+    'pets': 'Haustiere',
+    'charity': 'Wohltätigkeit',
+
+    'education': 'Bildung',
+    'books': 'Bücher',
+    'photography': 'Fotografie',
+
+    'other': 'Sonstiges',
   },
 }
