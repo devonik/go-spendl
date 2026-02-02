@@ -17,9 +17,18 @@ export function useSatsbackApi() {
         content: 'get-token',
       })
     }
-    catch (error) {
-      toast.add({ title: 'Nostr Events declined', description: 'Please accept the nostr events used for authentification, otherwise we cannot provide your personalized shop link', color: 'error' })
-      throw new Error('Nostr authentification events declined')
+    catch (error: unknown) {
+      let errorMessage = 'Unknown'
+      if (String(error).includes('denied')) {
+        errorMessage = 'Nostr authentification events declined'
+        toast.add({ title: 'Nostr Events declined', description: 'Please accept the nostr events used for authentification, otherwise we cannot provide your personalized shop link', color: 'error' })
+      }
+      else if (String(error).includes('window.nostr is undefined')) {
+        errorMessage = 'Cannot sign events cause Nostr authentification not possible. Need window.nostr that is given by browser extentions'
+        // TODO force user to install browser extentions
+        toast.add({ title: 'Missing chrome extention for nostr authentification', description: 'Please install the browser extention "nos2x" or "Alby"', color: 'error' })
+      }
+      throw new Error(errorMessage)
     }
     return await $fetch('/api/satsback/get-token', { method: 'post', body: signedEventGetToken })
   }
@@ -52,8 +61,17 @@ export function useSatsbackApi() {
       })
     }
     catch (error) {
-      toast.add({ title: 'Nostr Events declined', description: 'Please accept the nostr events used for authentification, otherwise we cannot provide your personalized shop link', color: 'error' })
-      throw new Error('Nostr authentification events declined')
+      let errorMessage = 'Unknown'
+      if (String(error).includes('denied')) {
+        errorMessage = 'Nostr authentification events declined'
+        toast.add({ title: 'Nostr Events declined', description: 'Please accept the nostr events used for authentification, otherwise we cannot provide your personalized shop link', color: 'error' })
+      }
+      else if (String(error).includes('window.nostr is undefined')) {
+        errorMessage = 'Cannot sign events cause Nostr authentification not possible. Need window.nostr that is given by browser extentions'
+        // TODO force user to install browser extentions
+        toast.add({ title: 'Missing chrome extention for nostr authentification', description: 'Please install the browser extention "nos2x" or "Alby"', color: 'error' })
+      }
+      throw new Error(errorMessage)
     }
     return await $fetch('/api/satsback/create-user', { method: 'post', body: signedEventCreate })
   }
@@ -78,6 +96,8 @@ export function useSatsbackApi() {
         }
       }
     }
+    if (!userId)
+      return
     const response = await $fetch<VisitStoreResponse>('/api/satsback/redirect', {
       method: 'post',
       body: {

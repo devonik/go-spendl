@@ -15,11 +15,11 @@ const satsbackApi = useSatsbackApi()
 const isStoreLinkLoading = ref(false)
 
 async function redirectToStore(store: Store) {
-  console.log('store', store)
   if (store.group === 'satsback') {
     isStoreLinkLoading.value = true
-    const redirectUrl = satsbackApi.getStoreLink(store.store_id).then((redirectUrl) => {
-      window.open(redirectUrl, '_blank')
+    satsbackApi.getStoreLink(store.store_id).then((redirectUrl) => {
+      if (redirectUrl)
+        window.open(redirectUrl, '_blank')
     }).finally(() => {
       isStoreLinkLoading.value = false
     })
