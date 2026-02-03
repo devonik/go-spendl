@@ -9,6 +9,8 @@ const localePath = useLocalePath()
 const searchModel = ref('')
 
 const { data: stores, pending: storesPending } = useLazyFetch<Store[]>(`/api/stores?country=germany`)
+
+const filteredStores = ref()
 </script>
 
 <template>
@@ -55,12 +57,17 @@ const { data: stores, pending: storesPending } = useLazyFetch<Store[]>(`/api/sto
       :ui="{ container: 'pt-0!', title: 'text-2xl sm:text-3xl lg:text-4xl pb-3' }"
     >
       <template #description>
+        <CategoriesAutocomplete
+          v-if="!storesPending" class="mb-3" @change="value => {
+            filteredStores = value ? stores?.filter(store => store.category === value) : stores
+          }"
+        />
         <UScrollArea
           class="h-150 w-full overflow-auto" :ui="{ viewport: 'gap-4 flex flex-row flex-wrap gap-6 justify-center' }"
         >
           <UProgress v-if="storesPending" animation="swing" />
           <SearchStoreCard
-            v-for="(shop, index) in stores"
+            v-for="(shop, index) in filteredStores || stores"
             :key="index"
             class="flex-auto"
             :store="shop"

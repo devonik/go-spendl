@@ -27,7 +27,7 @@ export const CATEGORY_RULES = [
   },
   {
     category: 'categories.activities',
-    keywords: ['activities', 'experiences', 'tours', 'erlebnisse', 'tickets'],
+    keywords: ['activities', 'experiences', 'tours', 'erlebnisse', 'tickets', 'sport'],
   },
   {
     category: 'categories.parking',
@@ -143,7 +143,7 @@ export const CATEGORY_RULES = [
   // Electronics & Tech
   {
     category: 'categories.electronics',
-    keywords: ['electronics', 'hardware', 'computer', 'laptop', 'elektronik'],
+    keywords: ['electronics', 'hardware', 'computer', 'laptop', 'elektronik', 'smartphone'],
   },
   {
     category: 'categories.3dprinting',
@@ -153,7 +153,7 @@ export const CATEGORY_RULES = [
   // Health & Personal Care
   {
     category: 'categories.pharmacy',
-    keywords: ['pharmacy', 'medicine', 'apotheke'],
+    keywords: ['pharmacy', 'medicine', 'apotheke', 'zahngesundheit'],
   },
   {
     category: 'categories.cosmetics',
