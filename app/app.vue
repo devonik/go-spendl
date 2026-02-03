@@ -18,10 +18,6 @@ useSeoMeta({
   ogImage: '/logo-light.png',
   twitterCard: 'summary_large_image',
 })
-
-onMounted(() => {
-  open()
-})
 </script>
 
 <template>

@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import type { GetTokenResponse, VisitStoreResponse } from '~~/types/satsback'
 import type { Store } from '~~/types/types'
 
 defineProps<{
@@ -25,7 +24,7 @@ async function redirectToStore(store: Store) {
     })
   }
   else {
-    // location.href = 'https://google.de'
+    window.open('https://shopinbit.com', '_blank')
   }
 }
 </script>
