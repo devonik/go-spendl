@@ -1,9 +1,12 @@
+import type { ButtonProps } from '@nuxt/ui'
 import { ConfirmDialog } from '#components'
 
 export interface ConfirmDialogOptions {
   title: string
   description?: string
-  setEmail?: (value: string) => void
+  body?: boolean
+  linkGroups?: Record<string, ButtonProps[]>
+  setEmail?: (value?: string) => void
 }
 
 export function useConfirmDialog() {

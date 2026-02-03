@@ -26,7 +26,44 @@ export function useSatsbackApi() {
       else if (String(error).includes('window.nostr is undefined')) {
         errorMessage = 'Cannot sign events cause Nostr authentification not possible. Need window.nostr that is given by browser extentions'
         // TODO force user to install browser extentions
-        toast.add({ title: 'Missing chrome extention for nostr authentification', description: 'Please install the browser extention "nos2x" or "Alby"', color: 'error' })
+        await confirm({
+          title: 'Missing browser extention for nostr authentification',
+          description: 'Please install the browser extention "nos2x" or "Alby"',
+          linkGroups: {
+            nos2x: [
+              {
+                label: 'Chrome',
+                icon: 'i-custom-chrome',
+                variant: 'outline',
+                href: 'https://chromewebstore.google.com/detail/nos2x/kpgefcfmnafjgpblomihpgmejjdanjjp',
+                target: '_blank',
+              },
+              {
+                label: 'Firefox',
+                icon: 'i-custom-firefox',
+                variant: 'outline',
+                href: 'https://addons.mozilla.org/en-US/firefox/addon/nos2x-fox/',
+                target: '_blank',
+              },
+            ],
+            Alby: [
+              {
+                label: 'Chrome',
+                icon: 'i-custom-chrome',
+                variant: 'outline',
+                href: 'https://chromewebstore.google.com/detail/alby-bitcoin-wallet-for-l/iokeahhehimjnekafflcihljlcjccdbe',
+                target: '_blank',
+              },
+              {
+                label: 'Firefox',
+                icon: 'i-custom-firefox',
+                variant: 'outline',
+                href: 'https://addons.mozilla.org/en-US/firefox/addon/alby/',
+                target: '_blank',
+              },
+            ],
+          },
+        })
       }
       throw new Error(errorMessage)
     }
@@ -39,8 +76,20 @@ export function useSatsbackApi() {
       const confirmed = await confirm({
         title: 'New account: Enter your Lightning email',
         description: 'We need your Lightning email to be able to payout your gathered Satsback',
-        setEmail: (value: string) => {
+        setEmail: (value?: string) => {
           email = value
+        },
+
+        linkGroups: {
+          0: [
+            {
+              label: 'About the Lightning Address',
+              icon: 'i-custom-lightning',
+              variant: 'ghost',
+              href: 'https://lightningaddress.com/',
+              target: '_blank',
+            },
+          ],
         },
       })
       console.log('dialog confirmed', confirmed)
