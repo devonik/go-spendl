@@ -14,7 +14,12 @@ export default {
       title: 'Neu im Bitcoin?',
       description: 'Shoppe online mit Satsback und erhalte deine ersten Satoshis als Cashback.',
     },
-    ourPartners: 'Unsere Partner',
+    link1: {
+      title: 'Entdecke Shops',
+    },
+  },
+  stores: {
+    title: 'Shops',
   },
   about: {
     aboutUs: {

@@ -1,23 +1,31 @@
 <script setup lang="ts">
-import type { Store } from '~~/types/types'
+import type { ButtonProps } from '@nuxt/ui'
 
 definePageMeta({
   title: 'welcome.title',
 })
 const localePath = useLocalePath()
+const { t } = useI18n()
 
 const searchModel = ref('')
 
-const { data: stores, pending: storesPending } = useLazyFetch<Store[]>(`/api/stores?country=germany`)
-
-const filteredStores = ref()
+const links = ref<ButtonProps[]>([
+  {
+    label: t('welcome.link1.title'),
+    to: localePath('/stores'),
+    color: 'primary',
+    variant: 'subtle',
+    trailingIcon: 'i-lucide-arrow-right',
+  },
+])
 </script>
 
 <template>
   <div class="flex flex-col">
     <UPageSection
       :title="$t('welcome.title')"
-      :ui="{ container: 'py-4 sm:py-12 lg:py-20' }"
+      :ui="{ container: 'py-4 sm:py-4 lg:py-4' }"
+      :links="links"
     >
       <template #description>
         <div class="flex flex-col gap-8">
@@ -50,29 +58,6 @@ const filteredStores = ref()
           :description="$t('welcome.feature3.description')"
           icon="i-lucide-rocket"
         />
-      </template>
-    </UPageSection>
-    <UPageSection
-      :title="$t('welcome.ourPartners')"
-      :ui="{ container: 'pt-0!', title: 'text-2xl sm:text-3xl lg:text-4xl pb-3' }"
-    >
-      <template #description>
-        <CategoriesAutocomplete
-          v-if="!storesPending" class="mb-3" @change="value => {
-            filteredStores = value ? stores?.filter(store => store.category === value) : stores
-          }"
-        />
-        <UScrollArea
-          class="h-150 w-full overflow-auto" :ui="{ viewport: 'gap-4 flex flex-row flex-wrap gap-6 justify-center' }"
-        >
-          <UProgress v-if="storesPending" animation="swing" />
-          <SearchStoreCard
-            v-for="(shop, index) in filteredStores || stores"
-            :key="index"
-            class="flex-auto"
-            :store="shop"
-          />
-        </UScrollArea>
       </template>
     </UPageSection>
   </div>

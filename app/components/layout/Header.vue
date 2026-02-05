@@ -17,6 +17,11 @@ const items = computed<NavigationMenuItem[]>(() => [
     active: route.path === localePath('/search'),
   },
   {
+    label: 'Stores',
+    to: localePath('/stores'),
+    active: route.path.startsWith(localePath('/stores')),
+  },
+  {
     label: 'About',
     to: localePath('/about'),
     active: route.path.startsWith(localePath('/about')),

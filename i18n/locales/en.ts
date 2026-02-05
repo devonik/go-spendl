@@ -15,7 +15,12 @@ export default {
       title: 'New to Bitcoin?',
       description: 'Do you not own any Bitcoin yet? Shop online with Satsback and get your first Satoshis as cashback.',
     },
-    ourPartners: 'Our Partners',
+    link1: {
+      title: 'Explore shops',
+    },
+  },
+  stores: {
+    title: 'Shops',
   },
   about: {
     aboutUs: {

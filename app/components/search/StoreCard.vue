@@ -31,7 +31,7 @@ async function redirectToStore(store: Store) {
 
 <!-- A card component to display product information with image, price, and discounts -->
 <template>
-  <UCard class="flex flex-col items-center p-6" variant="subtle">
+  <UCard class="flex flex-col items-center p-6" variant="subtle" :ui="{ body: 'grow flex flex-col justify-between' }">
     <template #header>
       <div class="flex justify-between items-center">
         <img
@@ -42,30 +42,28 @@ async function redirectToStore(store: Store) {
         >
       </div>
     </template>
-    <div class="justify-items-center">
-      <h3 class="text-lg font-semibold mb-2 grow dark:text-neutral">
-        {{ store.name }}
-      </h3>
-      <!-- Price and Discount Section -->
-      <div class="space-y-2">
-        <!-- Bitcoin Discount Badge -->
-        <UBadge
-          v-if="store.group === 'payWithBitcoin'"
-          color="warning"
-        >
-          <UIcon name="i-lucide-bitcoin" class="size-6" />
-          {{ $t('product.btcDiscount', { value: store.discountValue }) }}
-        </UBadge>
+    <h3 class="text-lg font-semibold mb-2 grow dark:text-neutral">
+      {{ store.name }}
+    </h3>
+    <!-- Price and Discount Section -->
+    <div class="space-y-2">
+      <!-- Bitcoin Discount Badge -->
+      <UBadge
+        v-if="store.group === 'payWithBitcoin'"
+        color="warning"
+      >
+        <UIcon name="i-lucide-bitcoin" class="size-6" />
+        {{ $t('product.btcDiscount', { value: store.discountValue }) }}
+      </UBadge>
 
-        <!-- Satsback Badge -->
-        <UBadge
-          v-else-if="store.text"
-          color="secondary"
-        >
-          <UIcon name="i-custom-satsback" class="size-6" />
-          <span class="dark:text-white">{{ store.text }}</span>
-        </UBadge>
-      </div>
+      <!-- Satsback Badge -->
+      <UBadge
+        v-else-if="store.text"
+        color="secondary"
+      >
+        <UIcon name="i-custom-satsback" class="size-6" />
+        <span class="dark:text-white">{{ store.text }}</span>
+      </UBadge>
     </div>
     <template #footer>
       <UButton

@@ -9,7 +9,7 @@ definePageMeta({
     :title="$t('about.aboutUs.title')"
     :description="$t('about.aboutUs.text')"
     orientation="horizontal"
-    :ui="{ container: 'py-4 sm:py-12 lg:py-20' }"
+    :ui="{ container: 'py-4 sm:py-4 lg:py-4' }"
   >
     <template #features>
       <UPageFeature
