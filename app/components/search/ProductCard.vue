@@ -61,17 +61,17 @@ const shopDomain = computed(() => {
           class="ml-2"
         >
           <UIcon name="i-lucide-bitcoin" class="size-6" />
-          {{ $t('product.btcDiscount', { percent: 3 }) }}
+          {{ $t('product.btcDiscount', { value: shopDomain?.discountValue }) }}
         </UBadge>
 
         <!-- Satsback Badge -->
         <UBadge
-          v-if="shopDomain?.satsbackPercent"
+          v-else
           color="secondary"
           class="ml-2"
         >
           <UIcon name="i-custom-satsback" class="size-6" />
-          <span class="dark:text-white">{{ shopDomain.satsbackPercent }}% Satsback</span>
+          <span class="dark:text-white">{{ shopDomain?.discountValue }} Satsback</span>
         </UBadge>
       </div>
       <p v-if="product.description" class="text-sm text-gray-400">
