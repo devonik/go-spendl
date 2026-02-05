@@ -7,6 +7,6 @@ export default defineEventHandler(async (event) => {
   }
   const stores = await cachedStores(query.country as string).catch(() => 0)
 
-  console.log('import.meta.env.DEV')
+  console.log('import.meta.dev: ', import.meta.dev)
   return stores
 })

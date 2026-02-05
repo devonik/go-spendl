@@ -31,7 +31,7 @@ export const cachedStores = defineCachedFunction(async (country: string) => {
 
   return extendStores(data)
 }, {
-  maxAge: import.meta.dev ? 0 : 24 * 60 * 60 * 1000, // 5 seconds in dev, 24 hours in prod
+  maxAge: import.meta.dev ? 5 * 1000 : 24 * 60 * 60 * 1000, // 5 seconds in dev, 24 hours in prod
   name: 'satsbackStores',
   getKey: (country: string) => country,
 })
