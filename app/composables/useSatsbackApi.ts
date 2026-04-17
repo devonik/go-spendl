@@ -9,6 +9,7 @@ export function useSatsbackApi() {
   const toast = useToast()
   const confirm = useConfirmDialog()
   const token = useSatsbackToken()
+  const userId = useSatsbackUserId()
   const { $satsbackFetch } = useNuxtApp()
 
   async function getUserToken() {
@@ -74,6 +75,7 @@ export function useSatsbackApi() {
     const resp = await $fetch('/api/satsback/get-token', { method: 'post', body: signedEventGetToken })
     if (resp && 'token' in resp) {
       token.value = resp.token as string
+      userId.value = resp.userId as string
     }
     return resp
   }
@@ -133,21 +135,21 @@ export function useSatsbackApi() {
     return await $fetch('/api/satsback/create-user', { method: 'post', body: signedEventCreate })
   }
 
-  async function getStoreLink(storeId: string) {
-    let userId
+  async function ensureAuth() {
+    if (token.value && userId.value) return
+
     try {
-      const userTokenResp = await getUserToken()
-      if (userTokenResp && 'userId' in userTokenResp)
-        userId = userTokenResp.userId as string
+      await getUserToken()
     }
     catch (error: unknown) {
       const statusCode = (error as { statusCode?: number }).statusCode
       if (statusCode === 404) {
-        console.warn('Statsback Auth: GetToken reponded with 404. You have to create a new satsback account')
+        console.warn('Statsback Auth: GetToken responded with 404. Creating new satsback account')
         try {
           const createUserResp = await createUser()
-          if (createUserResp && 'userId' in createUserResp)
-            userId = createUserResp.userId as string
+          if (createUserResp && 'userId' in createUserResp) {
+            userId.value = createUserResp.userId as string
+          }
         }
         catch (createError: unknown) {
           const errData = (createError as { data?: { data?: { message?: string } } }).data
@@ -156,17 +158,37 @@ export function useSatsbackApi() {
           throw new Error('Statsback Auth: Could not authorize')
         }
       }
+      else {
+        throw error
+      }
     }
-    if (!userId)
-      return
-    const response = await $fetch<VisitStoreResponse>('/api/satsback/redirect', {
-      method: 'post',
-      body: {
-        userId,
-        storeId,
-      },
-    })
-    return response.redirect_url
+  }
+
+  async function getStoreLink(storeId: string) {
+    await ensureAuth()
+    if (!userId.value) return
+
+    try {
+      const response = await $fetch<VisitStoreResponse>('/api/satsback/redirect', {
+        method: 'post',
+        body: { userId: userId.value, storeId },
+      })
+      return response.redirect_url
+    }
+    catch (err: unknown) {
+      if ((err as { statusCode?: number }).statusCode === 401) {
+        token.value = null
+        userId.value = null
+        await ensureAuth()
+        if (!userId.value) return
+        const response = await $fetch<VisitStoreResponse>('/api/satsback/redirect', {
+          method: 'post',
+          body: { userId: userId.value, storeId },
+        })
+        return response.redirect_url
+      }
+      throw err
+    }
   }
   async function getClicks() {
     if (!token.value) {
