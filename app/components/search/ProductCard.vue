@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import type { AlgoliaProduct } from '~~/types/algolia'
 import { AisHighlight } from 'vue-instantsearch/vue3/es'
-import shopDomains from '~/assets/shop-domain'
 
 const props = defineProps<{
   product: AlgoliaProduct
@@ -10,14 +9,46 @@ defineEmits<{
   (e: 'clickOrder'): void
 }>()
 
-const shopDomain = computed(() => {
-  if (!props.product.shopDomain)
-    return null
-  const domain = shopDomains.find(d => d.domain === props.product.shopDomain)
-  if (!domain)
-    return null
-  return domain
-})
+const { data: stores } = useStores()
+
+const shopDomain = computed(() =>
+  stores.value?.find(s => s.slug === props.product.shopDomain) ?? null,
+)
+
+const isSatsback = computed(() => shopDomain.value?.group === 'satsback' && shopDomain.value?.store_id)
+
+const isModalOpen = ref(false)
+const isRedirectLoading = ref(false)
+const copied = ref(false)
+
+const { getStoreLink } = useSatsbackApi()
+
+function handleOrderClick() {
+  if (isSatsback.value) {
+    isModalOpen.value = true
+  }
+  else {
+    window.open(props.product.sourceUrl, '_blank')
+  }
+}
+
+async function copyProductName() {
+  await navigator.clipboard.writeText(props.product.name)
+  copied.value = true
+  setTimeout(() => copied.value = false, 2000)
+}
+
+async function openStore() {
+  if (!shopDomain.value?.store_id) return
+  isRedirectLoading.value = true
+  try {
+    const url = await getStoreLink(shopDomain.value.store_id)
+    if (url) window.open(url, '_blank')
+  }
+  finally {
+    isRedirectLoading.value = false
+  }
+}
 </script>
 
 <!-- A card component to display product information with image, price, and discounts -->
@@ -29,7 +60,7 @@ const shopDomain = computed(() => {
 
         <img
           v-if="shopDomain"
-          :src="shopDomain.logoUrl"
+          :src="shopDomain.image"
           :alt="shopDomain.name"
           class="h-[24px]"
         >
@@ -81,26 +112,59 @@ const shopDomain = computed(() => {
 
     <!-- Details Link -->
     <template #footer>
-      <a
-        :href="product.sourceUrl"
-        target="_blank"
+      <UButton
+        class="cursor-pointer"
+        color="primary"
+        variant="soft"
+        icon="i-lucide-shopping-cart"
+        block
+        @click="handleOrderClick"
       >
+        {{ $t('product.order') }}
+        <template #trailing>
+          <UIcon name="i-lucide-arrow-right" class="size-5" />
+        </template>
+      </UButton>
+    </template>
+  </UCard>
+
+  <UModal v-model:open="isModalOpen">
+    <template #content>
+      <div class="p-6 space-y-4">
+        <h3 class="text-lg font-semibold">
+          Search for this product on {{ shopDomain?.name }}
+        </h3>
+        <p class="text-sm text-gray-500">
+          Copy the product name, then open the store and search for it to earn Satsback.
+        </p>
+
+        <div class="flex items-center gap-2 rounded-md border px-3 py-2 bg-gray-50 dark:bg-gray-900">
+          <span class="flex-grow text-sm font-medium truncate">{{ product.name }}</span>
+          <UButton
+            size="xs"
+            variant="ghost"
+            :icon="copied ? 'i-lucide-check' : 'i-lucide-copy'"
+            :color="copied ? 'success' : 'neutral'"
+            @click="copyProductName"
+          />
+        </div>
+
         <UButton
-          class="cursor-pointer"
-          color="primary"
-          variant="soft"
-          icon="i-lucide-shopping-cart"
           block
-          @click="$emit('clickOrder')"
+          color="primary"
+          :loading="isRedirectLoading"
+          loading-icon="i-lucide-loader"
+          icon="i-lucide-shopping-cart"
+          @click="openStore"
         >
-          {{ $t('product.order') }}
+          Open {{ shopDomain?.name }}
           <template #trailing>
             <UIcon name="i-lucide-arrow-right" class="size-5" />
           </template>
         </UButton>
-      </a>
+      </div>
     </template>
-  </UCard>
+  </UModal>
 </template>
 
 <style scoped>

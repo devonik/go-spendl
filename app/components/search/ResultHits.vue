@@ -2,9 +2,9 @@
 import type { AlgoliaProduct } from '~~/types/algolia'
 import { useDebounceFn } from '@vueuse/core'
 import { AisInfiniteHits } from 'vue-instantsearch/vue3/es'
-import shopDomain from '~/assets/shop-domain'
 
 const localePath = useLocalePath()
+const { data: stores } = useStores()
 const { locale } = useI18n()
 const toast = useToast()
 
@@ -127,7 +127,7 @@ onMounted(() => {
 
         <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
           <SearchProductCardPlaceholder
-            v-for="(shop, index) in shopDomain"
+            v-for="(shop, index) in stores"
             :key="index"
             :query="query"
             :product-placeholder="shop"

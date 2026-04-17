@@ -7,7 +7,11 @@ async function extendStores(stores: Store[]) {
     if (detectCategoryResult.confidence === 0) {
       console.warn('Map category to store: Could not detect category for store', { slug: store.slug, description: store.description })
     }
-    return { ...store, group: store.group ?? 'satsback', category: detectCategoryResult.category, categoryConfidence: detectCategoryResult.confidence,
+    return {
+      ...store,
+      group: store.group ?? 'satsback',
+      category: detectCategoryResult.category,
+      categoryConfidence: detectCategoryResult.confidence,
     }
   })
 }
