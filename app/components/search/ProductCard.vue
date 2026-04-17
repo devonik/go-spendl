@@ -97,12 +97,12 @@ async function openStore() {
 
         <!-- Satsback Badge -->
         <UBadge
-          v-else
+          v-else-if="shopDomain?.text"
           color="secondary"
           class="ml-2"
         >
           <UIcon name="i-custom-satsback" class="size-6" />
-          <span class="dark:text-white">{{ shopDomain?.discountValue }} Satsback</span>
+          <span class="dark:text-white">{{ shopDomain.text }}</span>
         </UBadge>
       </div>
       <p v-if="product.description" class="text-sm text-gray-400">
