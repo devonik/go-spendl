@@ -1,16 +1,20 @@
-import type { VisitStoreResponse } from '~~/types/satsback'
+import type { UserClickHistoryItem, VisitStoreResponse } from '~~/types/satsback'
 
 const SATSBACK_NOSTR_GET_TOKEN_KIND = 27237
 const SATSBACK_NOSTR_CREATE_USER_KIND = 27236
 
+type NostrWindow = Window & { nostr?: { signEvent: (event: object) => Promise<object> } }
+
 export function useSatsbackApi() {
   const toast = useToast()
   const confirm = useConfirmDialog()
+  const token = useSatsbackToken()
+  const { $satsbackFetch } = useNuxtApp()
 
   async function getUserToken() {
     let signedEventGetToken
     try {
-      signedEventGetToken = await window.nostr.signEvent({
+      signedEventGetToken = await (window as NostrWindow).nostr?.signEvent({
         kind: SATSBACK_NOSTR_GET_TOKEN_KIND,
         created_at: Math.floor(Date.now() / 1000),
         tags: [['partner', 'gospendl'], ['country', 'de']],
@@ -67,15 +71,20 @@ export function useSatsbackApi() {
       }
       throw new Error(errorMessage)
     }
-    return await $fetch('/api/satsback/get-token', { method: 'post', body: signedEventGetToken })
+    const resp = await $fetch('/api/satsback/get-token', { method: 'post', body: signedEventGetToken })
+    if (resp && 'token' in resp) {
+      token.value = resp.token as string
+    }
+    return resp
   }
+
   async function createUser() {
     let signedEventCreate
     try {
       let email
       const confirmed = await confirm({
-        title: 'New account: Enter your Lightning email',
-        description: 'We need your Lightning email to be able to payout your gathered Satsback',
+        title: 'New account: Enter your Lightning address',
+        description: 'We need your Lightning address to be able to payout your gathered Satsback',
         setEmail: (value?: string) => {
           email = value
         },
@@ -92,7 +101,6 @@ export function useSatsbackApi() {
           ],
         },
       })
-      console.log('dialog confirmed', confirmed)
 
       if (!confirmed) {
         toast.add({ title: 'Could not create user', description: 'We need your Lightning email to be able to payout your Satsback. If you have no Lightning account yet please create one and try again.', color: 'error' })
@@ -102,7 +110,7 @@ export function useSatsbackApi() {
         throw new Error('Statsback Auth: New account email is not set')
       }
 
-      signedEventCreate = await window.nostr.signEvent({
+      signedEventCreate = await (window as NostrWindow).nostr?.signEvent({
         kind: SATSBACK_NOSTR_CREATE_USER_KIND,
         created_at: Math.floor(Date.now() / 1000),
         tags: [['partner', 'gospendl'], ['country', 'de'], ['payout_address', email]],
@@ -129,18 +137,22 @@ export function useSatsbackApi() {
     let userId
     try {
       const userTokenResp = await getUserToken()
-      userId = userTokenResp?.userId
+      if (userTokenResp && 'userId' in userTokenResp)
+        userId = userTokenResp.userId as string
     }
-    catch (error) {
-      if (error.statusCode === 404) {
+    catch (error: unknown) {
+      const statusCode = (error as { statusCode?: number }).statusCode
+      if (statusCode === 404) {
         console.warn('Statsback Auth: GetToken reponded with 404. You have to create a new satsback account')
         try {
           const createUserResp = await createUser()
-          userId = createUserResp?.userId
+          if (createUserResp && 'userId' in createUserResp)
+            userId = createUserResp.userId as string
         }
-        catch (error) {
-          if (error.data.data && error.data.data.message)
-            toast.add({ title: 'Could not create user', description: error.data.data.message, color: 'error' })
+        catch (createError: unknown) {
+          const errData = (createError as { data?: { data?: { message?: string } } }).data
+          if (errData?.data?.message)
+            toast.add({ title: 'Could not create user', description: errData.data.message, color: 'error' })
           throw new Error('Statsback Auth: Could not authorize')
         }
       }
@@ -156,7 +168,25 @@ export function useSatsbackApi() {
     })
     return response.redirect_url
   }
+  async function getClicks() {
+    if (!token.value) {
+      await getUserToken()
+    }
+    try {
+      return await $satsbackFetch<{ data: UserClickHistoryItem[] }>('/api/satsback/user/clicks')
+    }
+    catch (err: unknown) {
+      if ((err as { statusCode?: number }).statusCode === 401) {
+        token.value = null
+        await getUserToken()
+        return await $satsbackFetch<{ data: UserClickHistoryItem[] }>('/api/satsback/user/clicks')
+      }
+      throw err
+    }
+  }
+
   return {
     getStoreLink,
+    getClicks,
   }
 }

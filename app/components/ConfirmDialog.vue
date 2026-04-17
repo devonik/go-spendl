@@ -27,7 +27,7 @@ function handleConfirm() {
   >
     <template v-if="body" #body>
       <div class="flex flex-col gap-3">
-        <UInput v-if="props.setEmail" v-model="email" trailing-icon="i-lucide-at-sign" placeholder="Enter your email" class="w-full" />
+        <UInput v-if="props.setEmail" v-model="email" trailing-icon="i-lucide-at-sign" placeholder="Lightning address" class="w-full" />
         <template v-if="linkGroups && Object.keys(linkGroups).length === 1">
           <div class="flex flex-wrap gap-3">
             <UButton v-for="link in linkGroups[0]" v-bind="link" :key="link.label" />

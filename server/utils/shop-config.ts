@@ -1,5 +1,118 @@
 import type { Locale } from 'vue-i18n'
 
+export const GENERIC_SHOPS = {
+  shopware: {
+    searchURL: (rootUrl: string, query: string, locale?: Locale) => {
+      if (!locale)
+        return `${rootUrl}/search?search=${query}`
+      else return `${rootUrl}/${locale}/search?search=${query}`
+    },
+    category: 'e-commerce',
+    group: 'payWithBitcoin',
+    paging: {
+      loadMoreSelector: '.page-next',
+      pageQueryParam: 'p',
+    },
+    productCssShema: {
+      type: 'dict',
+      value: {
+        baseSelector: '.cms-element-product-listing .product-box',
+        fields: [
+          {
+            name: 'name',
+            selector: '.product-name',
+            type: 'text',
+          },
+          {
+            name: 'sourceUrl',
+            selector: '.product-name',
+            type: 'attribute',
+            attribute: 'href',
+          },
+          {
+            name: 'brand',
+            selector: '.product-manufacturer',
+            type: 'text',
+          },
+          {
+            name: 'price',
+            selector: '.product-price',
+            type: 'text',
+          },
+          {
+            name: 'imageSrc',
+            selector: '.product-image',
+            type: 'attribute',
+            attribute: 'src',
+          },
+          {
+            name: 'imageSrcset',
+            selector: '.product-image',
+            type: 'attribute',
+            attribute: 'srcset',
+          },
+          {
+            name: 'imageAlt',
+            selector: '.product-image',
+            type: 'attribute',
+            attribute: 'alt',
+          },
+        ],
+      },
+    },
+  },
+  shopify: {
+    searchURL: (rootUrl: string, query: string) => `${rootUrl}/search?q=${query}`,
+    category: 'e-commerce',
+    group: 'payWithBitcoin',
+    paging: {
+      loadMoreSelector: '.next',
+      pageQueryParam: 'p',
+    },
+    productCssShema: {
+      type: 'dict',
+      value: {
+        baseSelector: '.grid--uniform',
+        fields: [
+          {
+            name: 'name',
+            selector: '.grid-product__title',
+            type: 'text',
+          },
+          {
+            name: 'sourceUrl',
+            selector: '.grid-product__link',
+            type: 'attribute',
+            attribute: 'href',
+          },
+          {
+            name: 'price',
+            selector: '.grid-product__price',
+            type: 'text',
+          },
+          {
+            name: 'imageSrc',
+            selector: '.grid__image-contain',
+            type: 'attribute',
+            attribute: 'src',
+          },
+          {
+            name: 'imageSrcset',
+            selector: '.grid__image-contain',
+            type: 'attribute',
+            attribute: 'srcset',
+          },
+          {
+            name: 'imageAlt',
+            selector: '.grid__image-contain',
+            type: 'attribute',
+            attribute: 'alt',
+          },
+        ],
+      },
+    },
+  },
+}
 export default {
   'baur': {
     searchURL: (query: string) => `https://www.baur.de/s/${query}/`,
@@ -81,54 +194,8 @@ export default {
     },
   },
   'shopinbit': {
-    searchURL: (query: string, locale: Locale) => `https://shopinbit.com/${locale}/search?search=${query}`,
-    category: 'e-commerce',
-    group: 'payWithBitcoin',
-    paging: {
-      loadMoreSelector: '.page-item .page-next',
-      pageQueryParam: 'p',
-    },
-    productCssShema: {
-      type: 'dict',
-      value: {
-        baseSelector: '.cms-element-product-listing .product-box',
-        fields: [
-          {
-            name: 'name',
-            selector: '.product-name',
-            type: 'text',
-          },
-          {
-            name: 'sourceUrl',
-            selector: 'a:nth-child(1)',
-            type: 'attribute',
-            attribute: 'href',
-          },
-          {
-            name: 'brand',
-            selector: '.product-manufacturer',
-            type: 'text',
-          },
-          {
-            name: 'price',
-            selector: '.product-price',
-            type: 'text',
-          },
-          {
-            name: 'imageSrc',
-            selector: '.product-image',
-            type: 'attribute',
-            attribute: 'src',
-          },
-          {
-            name: 'imageAlt',
-            selector: '.product-image',
-            type: 'attribute',
-            attribute: 'alt',
-          },
-        ],
-      },
-    },
+    ...GENERIC_SHOPS.shopware,
+    // searchURL: (query: string, locale: Locale) => `https://shopinbit.com/${locale}/search?search=${query}`,
   },
   'galaxus': {
     searchURL: (query: string, locale: Locale) => `https://www.galaxus.de/${locale}/search?q=${query}`,

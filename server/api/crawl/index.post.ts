@@ -190,6 +190,7 @@ export default defineEventHandler(async (event) => {
       type: 'JsonCssExtractionStrategy',
       params: {
         schema: value.productCssShema,
+        verbose: true,
       },
     }
 

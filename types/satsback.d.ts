@@ -13,3 +13,26 @@ export interface CreateUserResponse {
   message: string
   satsback_user_id: string
 }
+export interface UserClickHistoryItem {
+  id: string
+  store_name: string
+  created_at: string
+}
+export interface UserPayoutItem {
+  id: string
+  payout_type: string
+  amount: string
+  status: string
+  created_at: string
+  updated_at: string
+}
+export interface UserHistoryItem {
+  id: string
+  type: string
+  amount: number
+  status: string
+  store_name: string
+  order_value: string
+  created_at: string
+  updated_at: string
+}
