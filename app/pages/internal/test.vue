@@ -2,7 +2,7 @@
 import type { TableColumn } from '@nuxt/ui'
 import type { UserClickHistoryItem, UserHistoryItem, UserPayoutItem } from '~~/types/satsback'
 
-const { $satsbackFetch } = useNuxtApp()
+const { getClicks, getHistory, getPayouts } = useSatsbackApi()
 
 // --- Clicks ---
 const clicks = ref<UserClickHistoryItem[]>([])
@@ -19,8 +19,8 @@ async function fetchClicks() {
   clicksStatus.value = 'loading'
   clicksError.value = undefined
   try {
-    const resp = await $satsbackFetch<{ data: UserClickHistoryItem[] }>('/api/satsback/user/clicks')
-    clicks.value = resp.data
+    const resp = await getClicks()
+    clicks.value = resp?.data ?? []
     clicksStatus.value = 'success'
   }
   catch (err: unknown) {
@@ -47,8 +47,8 @@ async function fetchHistory() {
   historyStatus.value = 'loading'
   historyError.value = undefined
   try {
-    const resp = await $satsbackFetch<{ data: UserHistoryItem[] }>('/api/satsback/user/history')
-    history.value = resp.data
+    const resp = await getHistory()
+    history.value = resp?.data ?? []
     historyStatus.value = 'success'
   }
   catch (err: unknown) {
@@ -74,8 +74,8 @@ async function fetchPayouts() {
   payoutsStatus.value = 'loading'
   payoutsError.value = undefined
   try {
-    const resp = await $satsbackFetch<{ data: UserPayoutItem[] }>('/api/satsback/user/payouts')
-    payouts.value = resp.data
+    const resp = await getPayouts()
+    payouts.value = resp?.data ?? []
     payoutsStatus.value = 'success'
   }
   catch (err: unknown) {

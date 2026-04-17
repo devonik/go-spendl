@@ -1,4 +1,4 @@
-import type { UserClickHistoryItem, VisitStoreResponse } from '~~/types/satsback'
+import type { UserClickHistoryItem, UserHistoryItem, UserPayoutItem, VisitStoreResponse } from '~~/types/satsback'
 
 const SATSBACK_NOSTR_GET_TOKEN_KIND = 27237
 const SATSBACK_NOSTR_CREATE_USER_KIND = 27236
@@ -190,25 +190,38 @@ export function useSatsbackApi() {
       throw err
     }
   }
-  async function getClicks() {
-    if (!token.value) {
-      await getUserToken()
-    }
+  async function withAuth<T>(call: () => Promise<T>): Promise<T> {
+    await ensureAuth()
     try {
-      return await $satsbackFetch<{ data: UserClickHistoryItem[] }>('/api/satsback/user/clicks')
+      return await call()
     }
     catch (err: unknown) {
       if ((err as { statusCode?: number }).statusCode === 401) {
         token.value = null
-        await getUserToken()
-        return await $satsbackFetch<{ data: UserClickHistoryItem[] }>('/api/satsback/user/clicks')
+        userId.value = null
+        await ensureAuth()
+        return await call()
       }
       throw err
     }
   }
 
+  function getClicks() {
+    return withAuth(() => $satsbackFetch<{ data: UserClickHistoryItem[] }>('/api/satsback/user/clicks'))
+  }
+
+  function getHistory() {
+    return withAuth(() => $satsbackFetch<{ data: UserHistoryItem[] }>('/api/satsback/user/history'))
+  }
+
+  function getPayouts() {
+    return withAuth(() => $satsbackFetch<{ data: UserPayoutItem[] }>('/api/satsback/user/payouts'))
+  }
+
   return {
     getStoreLink,
     getClicks,
+    getHistory,
+    getPayouts,
   }
 }

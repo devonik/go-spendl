@@ -9,6 +9,6 @@ export default defineEventHandler(async (event) => {
       Authorization: `Bearer ${event.context.authToken}`,
     },
   })
-  console.info('Satsback Auth: New user created')
+  console.info('Satsback User History Clicks', reponse)
   return reponse
 })
