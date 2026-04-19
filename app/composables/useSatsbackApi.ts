@@ -146,10 +146,8 @@ export function useSatsbackApi() {
       if (statusCode === 404) {
         console.warn('Statsback Auth: GetToken responded with 404. Creating new satsback account')
         try {
-          const createUserResp = await createUser()
-          if (createUserResp && 'userId' in createUserResp) {
-            userId.value = createUserResp.userId as string
-          }
+          await createUser()
+          await getUserToken()
         }
         catch (createError: unknown) {
           const errData = (createError as { data?: { data?: { message?: string } } }).data
