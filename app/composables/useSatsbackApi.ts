@@ -5,6 +5,8 @@ const SATSBACK_NOSTR_CREATE_USER_KIND = 27236
 
 type NostrWindow = Window & { nostr?: { signEvent: (event: object) => Promise<object> } }
 
+let authInProgress: Promise<void> | null = null
+
 export function useSatsbackApi() {
   const toast = useToast()
   const confirm = useConfirmDialog()
@@ -72,11 +74,9 @@ export function useSatsbackApi() {
       }
       throw new Error(errorMessage)
     }
-    const resp = await $fetch('/api/satsback/get-token', { method: 'post', body: signedEventGetToken })
-    if (resp && 'token' in resp) {
-      token.value = resp.token as string
-      userId.value = resp.userId as string
-    }
+    const resp = await $fetch<{ userId: string, token: string }>('/api/satsback/get-token', { method: 'post', body: signedEventGetToken })
+    token.value = resp.token
+    userId.value = resp.userId
     return resp
   }
 
@@ -136,72 +136,56 @@ export function useSatsbackApi() {
   }
 
   async function ensureAuth() {
-    if (token.value && userId.value) return
+    if (token.value && userId.value)
+      return
 
-    try {
-      await getUserToken()
-    }
-    catch (error: unknown) {
-      const statusCode = (error as { statusCode?: number }).statusCode
-      if (statusCode === 404) {
-        console.warn('Statsback Auth: GetToken responded with 404. Creating new satsback account')
+    if (!authInProgress) {
+      authInProgress = (async () => {
         try {
-          await createUser()
           await getUserToken()
         }
-        catch (createError: unknown) {
-          const errData = (createError as { data?: { data?: { message?: string } } }).data
-          if (errData?.data?.message)
-            toast.add({ title: 'Could not create user', description: errData.data.message, color: 'error' })
-          throw new Error('Statsback Auth: Could not authorize')
+        catch (error: unknown) {
+          const statusCode = (error as { statusCode?: number }).statusCode
+          if (statusCode === 404) {
+            console.warn('Statsback Auth: GetToken responded with 404. Creating new satsback account')
+            try {
+              await createUser()
+              await getUserToken()
+            }
+            catch (createError: unknown) {
+              const errData = (createError as { data?: { data?: { message?: string } } }).data
+              if (errData?.data?.message)
+                toast.add({ title: 'Could not create user', description: errData.data.message, color: 'error' })
+              throw new Error('Statsback Auth: Could not authorize')
+            }
+          }
+          else {
+            throw error
+          }
         }
-      }
-      else {
-        throw error
-      }
+        finally {
+          authInProgress = null
+        }
+      })()
     }
+
+    return authInProgress
   }
 
   async function getStoreLink(storeId: string) {
     await ensureAuth()
-    if (!userId.value) return
+    if (!userId.value)
+      return
 
-    try {
-      const response = await $fetch<VisitStoreResponse>('/api/satsback/redirect', {
-        method: 'post',
-        body: { userId: userId.value, storeId },
-      })
-      return response.redirect_url
-    }
-    catch (err: unknown) {
-      if ((err as { statusCode?: number }).statusCode === 401) {
-        token.value = null
-        userId.value = null
-        await ensureAuth()
-        if (!userId.value) return
-        const response = await $fetch<VisitStoreResponse>('/api/satsback/redirect', {
-          method: 'post',
-          body: { userId: userId.value, storeId },
-        })
-        return response.redirect_url
-      }
-      throw err
-    }
+    const response = await $fetch<VisitStoreResponse>('/api/satsback/redirect', {
+      method: 'post',
+      body: { userId: userId.value, storeId },
+    })
+    return response.redirect_url
   }
   async function withAuth<T>(call: () => Promise<T>): Promise<T> {
     await ensureAuth()
-    try {
-      return await call()
-    }
-    catch (err: unknown) {
-      if ((err as { statusCode?: number }).statusCode === 401) {
-        token.value = null
-        userId.value = null
-        await ensureAuth()
-        return await call()
-      }
-      throw err
-    }
+    return await call()
   }
 
   function getClicks() {

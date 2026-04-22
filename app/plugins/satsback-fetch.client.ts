@@ -5,7 +5,7 @@ export default defineNuxtPlugin(() => {
     provide: {
       satsbackFetch: $fetch.create({
         onRequest({ options }) {
-          if (token.value) {
+if (token.value) {
             options.headers = {
               ...options.headers,
               Authorization: `Bearer ${token.value}`,
