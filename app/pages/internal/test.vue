@@ -83,30 +83,6 @@ async function fetchPayouts() {
     payoutsStatus.value = 'error'
   }
 }
-
-// --- Migrate shopDomain ---
-const migrateStatus = ref<'idle' | 'loading' | 'success' | 'error'>('idle')
-const migrateResult = ref<string>()
-
-async function migrateShopDomain() {
-  // eslint-disable-next-line no-alert
-  const secret = window.prompt('Enter internal secret:')
-  if (!secret) return
-  migrateStatus.value = 'loading'
-  migrateResult.value = undefined
-  try {
-    const resp = await $fetch<{ updated: number, message: string }>('/api/internal/migrate-shop-domain', {
-      method: 'POST',
-      headers: { 'x-internal-secret': secret },
-    })
-    migrateResult.value = resp.message
-    migrateStatus.value = 'success'
-  }
-  catch (err: unknown) {
-    migrateResult.value = String(err)
-    migrateStatus.value = 'error'
-  }
-}
 </script>
 
 <template>
@@ -177,19 +153,5 @@ async function migrateShopDomain() {
       </div>
     </section>
 
-    <!-- Migrate shopDomain -->
-    <section class="space-y-4">
-      <div class="flex items-center gap-4">
-        <h2 class="text-lg font-semibold">
-          Migrate Algolia shopDomain (baur.de → baur)
-        </h2>
-        <UButton size="sm" color="warning" :loading="migrateStatus === 'loading'" @click="migrateShopDomain">
-          Run Migration
-        </UButton>
-      </div>
-
-      <UAlert v-if="migrateStatus === 'error'" color="error" :description="migrateResult" />
-      <UAlert v-if="migrateStatus === 'success'" color="success" :description="migrateResult" />
-    </section>
   </div>
 </template>
