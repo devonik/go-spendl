@@ -97,6 +97,7 @@ async function fetchPayouts() {
         <h2 class="text-lg font-semibold">
           GET /api/satsback/user/clicks
         </h2>
+        <p>Retrieves the user's click history.</p>
         <UButton size="sm" :loading="clicksStatus === 'loading'" @click="fetchClicks">
           Fetch
         </UButton>
@@ -118,6 +119,7 @@ async function fetchPayouts() {
         <h2 class="text-lg font-semibold">
           GET /api/satsback/user/history
         </h2>
+        <p>Retrieves the user's transaction and activity history.</p>
         <UButton size="sm" :loading="historyStatus === 'loading'" @click="fetchHistory">
           Fetch
         </UButton>
@@ -138,6 +140,7 @@ async function fetchPayouts() {
         <h2 class="text-lg font-semibold">
           GET /api/satsback/user/payouts
         </h2>
+        <p>Retrieves the user's payout history.</p>
         <UButton size="sm" :loading="payoutsStatus === 'loading'" @click="fetchPayouts">
           Fetch
         </UButton>
@@ -152,6 +155,5 @@ async function fetchPayouts() {
         <UTable v-else :data="payouts" :columns="payoutColumns" />
       </div>
     </section>
-
   </div>
 </template>
