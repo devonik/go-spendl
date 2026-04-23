@@ -1,3 +1,5 @@
+import categories from './categories.en.json'
+
 export default {
   noInternet: 'No Internet connection',
   welcome: {
@@ -77,58 +79,5 @@ export default {
     noMoreResults: 'No more results',
     loading: 'Loading...',
   },
-  categories: {
-    'airline': 'Airline',
-    'hotels': 'Hotels',
-    'accommodation': 'Accommodation',
-    'travel': 'Travel',
-    'activities': 'Activities',
-    'parking': 'Parking',
-
-    'security': 'Security',
-    'software': 'Software',
-    'esim': 'eSIM',
-
-    'telecom': 'Telecom',
-    'energy': 'Energy',
-
-    'marketplace': 'Marketplace',
-    'b2b': 'B2B',
-    'retail': 'Retail',
-    'departmentstore': 'Department Store',
-
-    'fashion': 'Fashion',
-    'sportswear': 'Sportswear',
-    'sneakers': 'Sneakers',
-    'lingerie': 'Lingerie',
-    'lifestyle': 'Lifestyle',
-
-    'food': 'Food',
-    'spices': 'Spices',
-    'wine': 'Wine',
-
-    'household': 'Household',
-    'appliances': 'Appliances',
-    'furniture': 'Furniture',
-    'materials': 'Materials',
-
-    'automotive': 'Automotive',
-    'motorsports': 'Motorsports',
-
-    'electronics': 'Electronics',
-    '3dprinting': '3D Printing',
-
-    'pharmacy': 'Pharmacy',
-    'cosmetics': 'Cosmetics',
-    'fitness': 'Fitness',
-
-    'pets': 'Pets',
-    'charity': 'Charity',
-
-    'education': 'Education',
-    'books': 'Books',
-    'photography': 'Photography',
-
-    'other': 'Other',
-  },
+  categories,
 }

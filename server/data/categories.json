@@ -1,0 +1,272 @@
+[
+  {
+    "key": "categories.3dprinting",
+    "labelDe": "3D-Druck",
+    "labelEn": "3D Printing"
+  },
+  {
+    "key": "categories.accommodation",
+    "labelDe": "Unterkünfte",
+    "labelEn": "Accommodation"
+  },
+  {
+    "key": "categories.activities",
+    "labelDe": "Aktivitäten",
+    "labelEn": "Activities"
+  },
+  {
+    "key": "categories.airline",
+    "labelDe": "Fluggesellschaft",
+    "labelEn": "Airline"
+  },
+  {
+    "key": "categories.appliances",
+    "labelDe": "Haushaltsgeräte",
+    "labelEn": "Appliances"
+  },
+  {
+    "key": "categories.art",
+    "labelDe": "Kunst",
+    "labelEn": "Art"
+  },
+  {
+    "key": "categories.automotive",
+    "labelDe": "Autozubehör",
+    "labelEn": "Automotive"
+  },
+  {
+    "key": "categories.baby",
+    "labelDe": "Baby",
+    "labelEn": "Baby"
+  },
+  {
+    "key": "categories.beauty",
+    "labelDe": "Beauty",
+    "labelEn": "Beauty"
+  },
+  {
+    "key": "categories.beer",
+    "labelDe": "Bier",
+    "labelEn": "Beer"
+  },
+  {
+    "key": "categories.bicycles",
+    "labelDe": "Fahrräder",
+    "labelEn": "Bicycles"
+  },
+  {
+    "key": "categories.books",
+    "labelDe": "Bücher",
+    "labelEn": "Books"
+  },
+  {
+    "key": "categories.casino",
+    "labelDe": "Casino",
+    "labelEn": "Casino"
+  },
+  {
+    "key": "categories.coffee",
+    "labelDe": "Kaffee",
+    "labelEn": "Coffee"
+  },
+  {
+    "key": "categories.cosmetics",
+    "labelDe": "Kosmetik",
+    "labelEn": "Cosmetics"
+  },
+  {
+    "key": "categories.doctor",
+    "labelDe": "Online ärzte",
+    "labelEn": "Online Doctors"
+  },
+  {
+    "key": "categories.education",
+    "labelDe": "Bildung",
+    "labelEn": "Education"
+  },
+  {
+    "key": "categories.electronics",
+    "labelDe": "Elektronik",
+    "labelEn": "Electronics"
+  },
+  {
+    "key": "categories.energy",
+    "labelDe": "Energie",
+    "labelEn": "Energy"
+  },
+  {
+    "key": "categories.esim",
+    "labelDe": "eSIM",
+    "labelEn": "eSIM"
+  },
+  {
+    "key": "categories.fashion",
+    "labelDe": "Mode",
+    "labelEn": "Fashion"
+  },
+  {
+    "key": "categories.finance",
+    "labelDe": "Finanzen",
+    "labelEn": "Finance"
+  },
+  {
+    "key": "categories.fitness",
+    "labelDe": "Fitness",
+    "labelEn": "Fitness"
+  },
+  {
+    "key": "categories.food",
+    "labelDe": "Lebensmittel",
+    "labelEn": "Food"
+  },
+  {
+    "key": "categories.furniture",
+    "labelDe": "Möbel",
+    "labelEn": "Furniture"
+  },
+  {
+    "key": "categories.gaming",
+    "labelDe": "Gaming",
+    "labelEn": "Gaming"
+  },
+  {
+    "key": "categories.garden",
+    "labelDe": "Garten",
+    "labelEn": "Garden"
+  },
+  {
+    "key": "categories.hotels",
+    "labelDe": "Hotels",
+    "labelEn": "Hotels"
+  },
+  {
+    "key": "categories.household",
+    "labelDe": "Haushalt",
+    "labelEn": "Household"
+  },
+  {
+    "key": "categories.insurance",
+    "labelDe": "Versicherung",
+    "labelEn": "Insurance"
+  },
+  {
+    "key": "categories.jewelry",
+    "labelDe": "Schmuck",
+    "labelEn": "Jewelry"
+  },
+  {
+    "key": "categories.lifestyle",
+    "labelDe": "Lifestyle",
+    "labelEn": "Lifestyle"
+  },
+  {
+    "key": "categories.lottery",
+    "labelDe": "Lotterie",
+    "labelEn": "Lottery"
+  },
+  {
+    "key": "categories.marketplace",
+    "labelDe": "Marktplatz",
+    "labelEn": "Marketplace"
+  },
+  {
+    "key": "categories.materials",
+    "labelDe": "Materialien",
+    "labelEn": "Materials"
+  },
+  {
+    "key": "categories.music",
+    "labelDe": "Musik",
+    "labelEn": "Music"
+  },
+  {
+    "key": "categories.office",
+    "labelDe": "Büro",
+    "labelEn": "Office"
+  },
+  {
+    "key": "categories.other",
+    "labelDe": "Sonstiges",
+    "labelEn": "Other"
+  },
+  {
+    "key": "categories.outdoor",
+    "labelDe": "Outdoor",
+    "labelEn": "Outdoor"
+  },
+  {
+    "key": "categories.pets",
+    "labelDe": "Haustiere",
+    "labelEn": "Pets"
+  },
+  {
+    "key": "categories.pharmacy",
+    "labelDe": "Apotheke",
+    "labelEn": "Pharmacy"
+  },
+  {
+    "key": "categories.photography",
+    "labelDe": "Fotografie",
+    "labelEn": "Photography"
+  },
+  {
+    "key": "categories.retail",
+    "labelDe": "Einzelhandel",
+    "labelEn": "Retail"
+  },
+  {
+    "key": "categories.security",
+    "labelDe": "Sicherheit",
+    "labelEn": "Security"
+  },
+  {
+    "key": "categories.shoes",
+    "labelDe": "Schuhe",
+    "labelEn": "Shoes"
+  },
+  {
+    "key": "categories.sneakers",
+    "labelDe": "Sneaker",
+    "labelEn": "Sneakers"
+  },
+  {
+    "key": "categories.software",
+    "labelDe": "Software",
+    "labelEn": "Software"
+  },
+  {
+    "key": "categories.spices",
+    "labelDe": "Gewürze",
+    "labelEn": "Spices"
+  },
+  {
+    "key": "categories.sportswear",
+    "labelDe": "Sportbekleidung",
+    "labelEn": "Sportswear"
+  },
+  {
+    "key": "categories.streaming",
+    "labelDe": "Streaming",
+    "labelEn": "Streaming"
+  },
+  {
+    "key": "categories.supplements",
+    "labelDe": "Supplemente",
+    "labelEn": "Supplements"
+  },
+  {
+    "key": "categories.telecom",
+    "labelDe": "Telekommunikation",
+    "labelEn": "Telecom"
+  },
+  {
+    "key": "categories.travel",
+    "labelDe": "Reisen",
+    "labelEn": "Travel"
+  },
+  {
+    "key": "categories.wine",
+    "labelDe": "Wein",
+    "labelEn": "Wine"
+  }
+]

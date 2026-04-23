@@ -8,7 +8,8 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "stores:sync": "node scripts/sync-stores.mjs"
   },
   "dependencies": {
     "@nuxt/eslint": "1.9.0",
@@ -26,7 +27,7 @@
     "algoliasearch": "^5.46.0",
     "eslint": "^9.0.0",
     "instantsearch.js": "^4.85.2",
-    "nuxt": "^4.3.0",
+    "nuxt": "^4.4.2",
     "tailwindcss": "^4.1.13",
     "typescript": "^5.6.3",
     "uuid": "^13.0.0",

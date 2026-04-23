@@ -1,0 +1,7901 @@
+{
+  "1-2-3-blumenversand": {
+    "category": "categories.retail",
+    "url": "https://www.123blumenversand.de",
+    "crawl": {
+      "searchUrl": "https://www.123blumenversand.de/search?search=ipad",
+      "cms": "shopware",
+      "crawlable": true
+    }
+  },
+  "1000books": {
+    "category": "categories.books",
+    "url": "https://www.1000books.de/",
+    "crawl": {
+      "searchUrl": "https://www.1000books.de/search?q=ipad",
+      "cms": "shopify",
+      "crawlable": true
+    }
+  },
+  "11-dsl-und-mobilfunk": {
+    "category": "categories.telecom",
+    "url": "https://www.1und1.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "shopify",
+      "crawlable": false
+    }
+  },
+  "1password": {
+    "category": "categories.security",
+    "url": "https://1password.com/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "custom",
+      "crawlable": false
+    }
+  },
+  "24mx-2": {
+    "category": "categories.retail",
+    "url": "https://www.24mx.eu",
+    "crawl": {
+      "searchUrl": "https://www.24mx.eu/search/result?query=ipad&page=1",
+      "cms": "custom",
+      "crawlable": true
+    }
+  },
+  "3-pagen": {
+    "category": "categories.furniture",
+    "url": "https://www.3pagen.de/",
+    "crawl": {
+      "searchUrl": "https://www.3pagen.de/search/?q=ipad&qc=&ms=true",
+      "cms": "custom",
+      "crawlable": true
+    }
+  },
+  "3ppp3": {
+    "category": "categories.office",
+    "url": "https://www.3ppp3.de/",
+    "crawl": {
+      "searchUrl": "https://www.3ppp3.de/de/search?query=ipad",
+      "cms": "custom",
+      "crawlable": true
+    }
+  },
+  "43einhalb": {
+    "category": "categories.shoes",
+    "url": "https://www.43einhalb.com",
+    "crawl": {
+      "searchUrl": "https://www.43einhalb.com/suche?searchstring=ipad",
+      "cms": "custom",
+      "crawlable": true
+    }
+  },
+  "ab-hof-weine": {
+    "category": "categories.wine",
+    "url": "https://www.ab-hof-weine.de/",
+    "crawl": {
+      "searchUrl": "https://www.ab-hof-weine.de/wein?text=ipad",
+      "cms": "custom",
+      "crawlable": true
+    }
+  },
+  "ab-in-den-urlaub": {
+    "category": "categories.travel",
+    "url": "https://www.ab-in-den-urlaub.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "custom",
+      "crawlable": false
+    }
+  },
+  "abelssoft-3": {
+    "category": "categories.security",
+    "url": "https://www.abelssoft.de/de/windows",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "custom",
+      "crawlable": false
+    }
+  },
+  "accor-hotels": {
+    "category": "categories.travel",
+    "url": "https://all.accor.com/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "custom",
+      "crawlable": false
+    }
+  },
+  "acer-10": {
+    "category": "categories.electronics",
+    "url": "https://www.acer.com",
+    "crawl": {
+      "searchUrl": "https://www.acer.com/us-en/search/search-explore?search=laptop",
+      "cms": "custom",
+      "crawlable": false
+    }
+  },
+  "acv": {
+    "category": "categories.automotive",
+    "url": "https://www.acv.de",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "custom",
+      "crawlable": false
+    }
+  },
+  "adidas-20": {
+    "category": "categories.sportswear",
+    "url": "https://www.adidas.com",
+    "crawl": {
+      "searchUrl": "https://www.adidas.com/us/search?q=ipad",
+      "cms": "custom",
+      "crawlable": true
+    }
+  },
+  "aeg-3": {
+    "category": "categories.appliances",
+    "url": "https://www.aeg.de",
+    "crawl": {
+      "searchUrl": "https://www.aeg.de/search/?q=toster&tab=All&landingcategory=true",
+      "cms": "custom",
+      "crawlable": false
+    }
+  },
+  "aegean-airlines": {
+    "category": "categories.airline",
+    "url": "https://en.aegeanair.com/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "custom",
+      "crawlable": false
+    }
+  },
+  "agoda": {
+    "category": "categories.travel",
+    "url": "https://www.agoda.com/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "custom",
+      "crawlable": false
+    }
+  },
+  "air-france": {
+    "category": "categories.airline",
+    "url": "https://wwws.airfrance.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "custom",
+      "crawlable": false
+    }
+  },
+  "air-india": {
+    "category": "categories.airline",
+    "url": "https://www.airindia.com/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "custom",
+      "crawlable": false
+    }
+  },
+  "airalo-6": {
+    "category": "categories.esim",
+    "url": "https://www.airalo.com/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "custom",
+      "crawlable": false
+    }
+  },
+  "airbaltic": {
+    "category": "categories.airline",
+    "url": "https://www.airbaltic.com/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "custom",
+      "crawlable": false
+    }
+  },
+  "airparks": {
+    "category": "categories.travel",
+    "url": "https://www.airparks.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "custom",
+      "crawlable": false
+    }
+  },
+  "aktion-mensch": {
+    "category": "categories.lottery",
+    "url": "https://www.aktion-mensch.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "custom",
+      "crawlable": false
+    }
+  },
+  "albers-food": {
+    "category": "categories.food",
+    "url": "https://www.albersfoodshop.de",
+    "crawl": {
+      "searchUrl": "https://www.albersfoodshop.de/de/search?page=search&page_action=query&desc=on&sdesc=on&keywords=ipad&submit=",
+      "cms": "custom",
+      "crawlable": true
+    }
+  },
+  "aldi-foto": {
+    "category": "categories.photography",
+    "url": "https://www.aldifotos.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "custom",
+      "crawlable": false
+    }
+  },
+  "algenliebe": {
+    "category": "categories.supplements",
+    "url": "https://www.algenliebe.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "custom",
+      "crawlable": false
+    }
+  },
+  "alibaba-12": {
+    "category": "categories.retail",
+    "url": "https://www.alibaba.com",
+    "crawl": {
+      "searchUrl": "https://www.alibaba.com/trade/search?spm=a2700.product_home_fy25.home_login_first_screen_fy23_pc_search_bar.keydown__Enter&tab=all&SearchText=ipad&has4Tab=true&from=pcHomeContent",
+      "cms": "custom",
+      "crawlable": true
+    }
+  },
+  "alibaba-5": {
+    "category": "categories.marketplace",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "custom",
+      "crawlable": false
+    }
+  },
+  "alibabacom-3": {
+    "category": "categories.airline",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "custom",
+      "crawlable": false
+    }
+  },
+  "aliexpress": {
+    "category": "categories.retail",
+    "url": "https://de.aliexpress.com",
+    "crawl": {
+      "searchUrl": "https://de.aliexpress.com/w/wholesale-ipad.html?spm=a2g0o.home.search.0",
+      "cms": "custom",
+      "crawlable": true
+    }
+  },
+  "aliva": {
+    "category": "categories.pharmacy",
+    "url": "https://www.aliva.de/",
+    "crawl": {
+      "searchUrl": "https://www.aliva.de/factfinder/result?query=ipad",
+      "cms": "custom",
+      "crawlable": true
+    }
+  },
+  "all-accor-live-limitless-3": {
+    "category": "categories.travel",
+    "url": "https://all.accor.com/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "custom",
+      "crawlable": false
+    }
+  },
+  "alsa-hundewelt": {
+    "category": "categories.pets",
+    "url": "https://www.alsa-hundewelt.de/",
+    "crawl": {
+      "searchUrl": "https://www.alsa-hundewelt.de/search?q=ipad",
+      "cms": "custom",
+      "crawlable": true
+    }
+  },
+  "alu-verkauf": {
+    "category": "categories.materials",
+    "url": "https://alu-verkauf.de",
+    "crawl": {
+      "searchUrl": "https://alu-verkauf.de/search?type=product%2Carticle&options%5Bprefix%5D=last&q=ipad",
+      "cms": "joomla",
+      "crawlable": true
+    }
+  },
+  "amazon-music-10": {
+    "category": "categories.streaming",
+    "url": "https://music.amazon.de",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "custom",
+      "crawlable": false
+    }
+  },
+  "amd-akademie-mode-design": {
+    "category": "categories.education",
+    "url": "https://www.amdnet.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "custom",
+      "crawlable": false
+    }
+  },
+  "amorelie-2": {
+    "category": "categories.retail",
+    "url": "https://www.amorelie.de/",
+    "crawl": {
+      "searchUrl": "https://www.amorelie.de/suchen?zoek=ipad",
+      "cms": "custom",
+      "crawlable": true
+    }
+  },
+  "anicanis": {
+    "category": "categories.pets",
+    "url": "https://anicanis.de",
+    "crawl": {
+      "searchUrl": "https://anicanis.de/?s=ipad&post_type=product",
+      "cms": "wordpress_woocommerce",
+      "crawlable": true
+    }
+  },
+  "animod": {
+    "category": "categories.hotels",
+    "url": "https://www.animod.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "custom",
+      "crawlable": false
+    }
+  },
+  "ankerkraut": {
+    "category": "categories.spices",
+    "url": "https://www.ankerkraut.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "shopify",
+      "crawlable": false,
+      "comment": "Special JS suche ohne search link. Erstmal ignorieren"
+    }
+  },
+  "anycubic-2": {
+    "category": "categories.3dprinting",
+    "url": "https://de.anycubic.com/",
+    "crawl": {
+      "searchUrl": "https://de.anycubic.com/search?q=ipad&options%5Bprefix%5D=last",
+      "cms": "shopify",
+      "crawlable": true,
+      "comment": "Other css config than other shopifys"
+    }
+  },
+  "anzugshop": {
+    "category": "categories.fashion",
+    "url": "https://anzugshop.com/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "custom",
+      "crawlable": false
+    }
+  },
+  "apo-discounter": {
+    "category": "categories.pharmacy",
+    "url": "https://www.apodiscounter.de",
+    "crawl": {
+      "searchUrl": "https://www.apodiscounter.de/search.php?query=ipad",
+      "cms": "shopify",
+      "crawlable": true,
+      "comment": "Other css config than other shopifys"
+    }
+  },
+  "apocom": {
+    "category": "categories.pharmacy",
+    "url": "https://www.apo.com",
+    "crawl": {
+      "searchUrl": "https://www.apo.com/search.php?query=ipad",
+      "cms": "custom",
+      "crawlable": true
+    }
+  },
+  "apothekede": {
+    "category": "categories.pharmacy",
+    "url": "https://www.apotheke.de",
+    "crawl": {
+      "searchUrl": "https://www.apotheke.de/search.php?query=ipad",
+      "cms": "custom",
+      "crawlable": true
+    }
+  },
+  "aras-energy": {
+    "category": "categories.energy",
+    "url": "https://www.arasenergy.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "custom",
+      "crawlable": false
+    }
+  },
+  "arbeitsbedarf24": {
+    "category": "categories.other",
+    "url": "https://www.arbeitsbedarf24.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "custom",
+      "crawlable": false,
+      "comment": "Special JS suche ohne search link. Erstmal ignorieren"
+    }
+  },
+  "arlo-security": {
+    "category": "categories.security",
+    "url": "https://us.arlo.com",
+    "crawl": {
+      "searchUrl": "https://us.arlo.com/search?q=ipad&options%5Bprefix%5D=last",
+      "cms": "shopify",
+      "crawlable": true,
+      "comment": "Other css config than other shopifys"
+    }
+  },
+  "artdeco": {
+    "category": "categories.cosmetics",
+    "crawl": {
+      "searchUrl": "https://artdeco.de/search?search=ipad",
+      "cms": "magneto",
+      "crawlable": true
+    }
+  },
+  "artsauna": {
+    "category": "categories.lifestyle",
+    "url": "https://artsauna.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "shopify",
+      "crawlable": false,
+      "comment": "Special JS suche ohne search link. Erstmal ignorieren"
+    }
+  },
+  "asambeauty-2": {
+    "category": "categories.cosmetics",
+    "crawl": {
+      "searchUrl": "https://www.asambeauty.com/de-de/search?query=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "asgoodasnew": {
+    "category": "categories.electronics",
+    "crawl": {
+      "searchUrl": "https://asgoodasnew.de/index.php?stoken=CCF3CBB1&lang=0&cl=search&makaira-search-active=true&searchparam=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "asics-13": {
+    "category": "categories.sportswear",
+    "crawl": {
+      "searchUrl": "https://www.asics.com/de/de-de/search/?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "asmc-2": {
+    "category": "categories.outdoor",
+    "crawl": {
+      "searchUrl": "https://www.asmc.de/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "asviva": {
+    "category": "categories.fitness",
+    "crawl": {
+      "searchUrl": "https://www.asviva.de/search?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "atp-autoteile": {
+    "category": "categories.automotive",
+    "crawl": {
+      "searchUrl": "https://www.atp-autoteile.de/de/search/t-ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "atu-2": {
+    "category": "categories.automotive",
+    "url": "https://www.atu.de",
+    "crawl": {
+      "searchUrl": "https://www.atu.de/shop/liste.html?csrfToken=67C7C3B4941FC463ABC72AF589EFE1454E73BF910AF08C95AB9DF337F697DF9D&searchterm=ipad",
+      "cms": "custom",
+      "crawlable": true
+    }
+  },
+  "auranatura": {
+    "category": "categories.supplements",
+    "crawl": {
+      "searchUrl": "https://www.auranatura.de/search?q=ipad&options%5Bprefix%5D=last&type=product",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "aurox-health": {
+    "category": "categories.supplements",
+    "crawl": {
+      "searchUrl": "https://auroxhealth.com/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "auspuffanlagede": {
+    "category": "categories.automotive",
+    "crawl": {
+      "searchUrl": "https://www.auspuffanlage.de/public/catalog_xmlxslproductsearch.aspx?qs=ipad&art=SetSearch&SearchButton=Absenden&suid=8758&zid=1a9e4e97-5d74-40d4-b8d1-094e6698f8a4",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "austrian-airlines": {
+    "category": "categories.airline",
+    "url": "https://www.austrian.com/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "auto-europe": {
+    "category": "categories.automotive",
+    "url": "https://www.autoeurope.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "autobatterien-markt": {
+    "category": "categories.automotive",
+    "crawl": {
+      "searchUrl": "https://autobatterie-markt.de/search?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "autoteile-preiswert-3": {
+    "category": "categories.automotive",
+    "url": "https://www.autoteile-preiswert.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "prüfen",
+      "crawlable": true
+    }
+  },
+  "avast-antivirus": {
+    "category": "categories.security",
+    "url": "https://www.avast.com/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "avianca": {
+    "category": "categories.airline",
+    "url": "https://www.avianca.com/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "avon-cosmetics": {
+    "category": "categories.cosmetics",
+    "crawl": {
+      "searchUrl": "https://www.avon.de/search/results/?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "axa-versicherungen": {
+    "category": "categories.security",
+    "crawl": {
+      "searchUrl": "https://boc24.de/pages/search-results?q=ipad&type=product",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "babymarkt": {
+    "category": "categories.baby",
+    "crawl": {
+      "searchUrl": "https://www.babymarkt.com/de/suche/?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "babys-natur": {
+    "category": "categories.baby",
+    "crawl": {
+      "searchUrl": "https://www.babysnatur.de/search/?qs=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "babyshopde": {
+    "category": "categories.baby",
+    "crawl": {
+      "searchUrl": "https://www.babyshop.de/advanced_search_result.php?keywords=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "babywalz": {
+    "category": "categories.baby",
+    "crawl": {
+      "searchUrl": "https://www.baby-walz.de/suche/?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "badenova": {
+    "category": "categories.energy",
+    "crawl": {
+      "searchUrl": "https://www.badenova.de/suche?page=1&q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "bader-2": {
+    "category": "categories.fashion",
+    "url": "https://www.bader.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "prüfen",
+      "crawlable": true
+    }
+  },
+  "baker-ross": {
+    "category": "categories.retail",
+    "crawl": {
+      "searchUrl": "https://www.bakerross.de/catalogsearch/result/?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "baldur-garten": {
+    "category": "categories.retail",
+    "crawl": {
+      "searchUrl": "https://www.baldur-garten.de/search/result.html?query=ipad&_nonnative_=1&searchButton=",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "baltz": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.baltz.de/catalogsearch/result/?q=ipad&product_list_order=neuheiten_sort",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "banggood-11": {
+    "category": "categories.other",
+    "url": "DOPPELT",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "banggood-9": {
+    "category": "categories.retail",
+    "crawl": {
+      "searchUrl": "https://www.banggood.com/search/ipad.html?from=nav",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "bar-schuhe": {
+    "category": "categories.shoes",
+    "crawl": {
+      "searchUrl": "https://www.baer-schuhe.de/search?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "barclays": {
+    "category": "categories.software",
+    "url": "SELTSAM",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "barebarics-3": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.barebarics.eu/products/search/?term=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "batterie24": {
+    "category": "categories.automotive",
+    "crawl": {
+      "searchUrl": "https://batterie24.de/search?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "baur": {
+    "category": "categories.retail",
+    "crawl": {
+      "searchUrl": "https://www.baur.de/s/ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "baustoffhandel-carstensen": {
+    "category": "categories.materials",
+    "crawl": {
+      "searchUrl": "https://www.trapezblech-onlineshop.de/search?qs=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "bavariadirekt": {
+    "category": "categories.insurance",
+    "url": "https://www.bavariadirekt.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false,
+      "comment": "Prüfen"
+    }
+  },
+  "bb-hotels-3": {
+    "category": "categories.hotels",
+    "url": "https://www.hotel-bb.com/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "be-lenka-2": {
+    "category": "categories.shoes",
+    "crawl": {
+      "searchUrl": "https://www.belenka.de/products/search/?term=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "bear-family-records-store": {
+    "category": "categories.music",
+    "crawl": {
+      "searchUrl": "https://www.bear-family.de/search?sSearch=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "beautylove": {
+    "category": "categories.beauty",
+    "url": "https://beautylove.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "beautywelt": {
+    "category": "categories.beauty",
+    "crawl": {
+      "searchUrl": "https://www.beautywelt.de/suche?qs=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "bedrop": {
+    "category": "categories.beauty",
+    "crawl": {
+      "searchUrl": "https://bedrop.de/search?type=product%2Carticle&options%5Bprefix%5D=last&q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "belkin-7": {
+    "category": "categories.electronics",
+    "url": "ADDON",
+    "crawl": {
+      "searchUrl": "https://www.belkin.com/de/search/?q=ipad&lang=de_DE",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "bergzeit-3": {
+    "category": "categories.outdoor",
+    "crawl": {
+      "searchUrl": "https://www.bergzeit.de/search/?q=ipad&ms=true",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "berliner-kaffeerosterei": {
+    "category": "categories.food",
+    "crawl": {
+      "searchUrl": "https://shop.berliner-kaffeeroesterei.de/search?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "bershka-10": {
+    "category": "categories.fashion",
+    "url": "https://www.bershka.com/at/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "best-western-6": {
+    "category": "categories.hotels",
+    "url": "https://www.bestwestern.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "bett1-2": {
+    "category": "categories.household",
+    "url": "https://www.bett1.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "betten-prinz": {
+    "category": "categories.household",
+    "url": "https://www.betten-prinz.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true,
+      "comment": "Prüfen"
+    }
+  },
+  "bettenrid": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://www.bettenrid.de/index.php?stoken=&sid=&lang=0&cl=search&searchparam=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "bettmer": {
+    "category": "categories.office",
+    "crawl": {
+      "searchUrl": "https://www.bettmer.de/index.php?stoken=da80244c643240e4527cba0349903305&sid=9700fhh75konkbenimhr44br79&lang=0&cl=search&usersearch=true&mkz=2101&searchparam=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "beyerdynamic": {
+    "category": "categories.electronics",
+    "crawl": {
+      "searchUrl": "https://www.beyerdynamic.de/search",
+      "cms": "",
+      "crawlable": true,
+      "comment": "prrüfen"
+    }
+  },
+  "big-bus-tours-3": {
+    "category": "categories.travel",
+    "url": "https://www.bigbustours.com/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false,
+      "comment": "prüfen"
+    }
+  },
+  "big-green-smile-2": {
+    "category": "categories.beauty",
+    "crawl": {
+      "searchUrl": "https://www.biggreensmile.de/search.aspx?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "bige": {
+    "category": "categories.furniture",
+    "crawl": {
+      "searchUrl": "https://www.bige.de/advanced_search_result.php?keywords=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "bike-components-2": {
+    "category": "categories.bicycles",
+    "crawl": {
+      "searchUrl": "https://www.bike-components.de/de/s/?keywords=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "bild-der-wissenschaft": {
+    "category": "categories.retail",
+    "crawl": {
+      "searchUrl": "https://www.wissenschaft-shop.de/search?options%5Bprefix%5D=last&q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "bildplus": {
+    "category": "categories.other",
+    "url": "https://www.bild.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "billiger-mietwagen": {
+    "category": "categories.automotive",
+    "url": "https://www.billiger-mietwagen.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "billigflug": {
+    "category": "categories.airline",
+    "url": "https://www.billigflug.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "bioethanol-kamin-shopde": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://www.bioethanol-kamin-shop.de/produktsuche_2023.html?searchword=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "bioloka": {
+    "category": "categories.retail",
+    "url": "NICHT AUFRUFBAR",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "biovea": {
+    "category": "categories.supplements",
+    "url": "https://www.biovea.net/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true,
+      "comment": "Prüfen"
+    }
+  },
+  "bitdefender-15": {
+    "category": "categories.security",
+    "url": "https://www.bitdefender.com/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "bitpanda-7": {
+    "category": "categories.finance",
+    "url": "https://www.bitpanda.com/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "black-leaf-2": {
+    "category": "categories.lifestyle",
+    "crawl": {
+      "searchUrl": "https://blackleaf.de/search?sSearch=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "bleywaren": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://bleywaren.de/search?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "blitzhandel24-2": {
+    "category": "categories.electronics",
+    "crawl": {
+      "searchUrl": "https://www.blitzhandel24.de/search?sSearch=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "bloom-wild-3": {
+    "category": "categories.garden",
+    "url": "https://www.bloomandwild.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "blume2000": {
+    "category": "categories.garden",
+    "crawl": {
+      "searchUrl": "https://www.blume2000.de/suche?env%3Aproduction_products_market%3ADE_locale%3Ade-DE%5Bquery%5D=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "blumenversand-edelweiss": {
+    "category": "categories.garden",
+    "crawl": {
+      "searchUrl": "https://www.blumenversand-edelweiss.de/blumen-verschicken?volltextsuche=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "boc": {
+    "category": "categories.bicycles",
+    "crawl": {
+      "searchUrl": "https://boc24.de/pages/search-results?q=mountainbike&type=product",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "body-attack": {
+    "category": "categories.supplements",
+    "url": "https://www.body-attack.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true,
+      "comment": "Prüfen"
+    }
+  },
+  "bodylab24": {
+    "category": "categories.supplements",
+    "url": "ADDON Springt nicht an",
+    "crawl": {
+      "searchUrl": "https://www.bodylab24.de/search?q=ipad&type=product",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "bodystriker": {
+    "category": "categories.supplements",
+    "crawl": {
+      "searchUrl": "https://www.bodystriker.de/search?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "bofrost-3": {
+    "category": "categories.food",
+    "crawl": {
+      "searchUrl": "https://www.bofrost.de/search?text=ipad&searchType=product",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "bogner": {
+    "category": "categories.sportswear",
+    "crawl": {
+      "searchUrl": "https://www.bogner.com/de-de/suche/?q=ipad&genderCookie=",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "boohooman-2": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.boohooman.com/de/search?text=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "boohooman-3": {
+    "category": "categories.fashion",
+    "url": "DOPPELT",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "booking": {
+    "category": "categories.accommodation",
+    "url": "https://www.booking.com/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "booklooker": {
+    "category": "categories.books",
+    "crawl": {
+      "searchUrl": "https://www.booklooker.de/B%C3%BCcher/Angebote/titel=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "bosch-hausgerate": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://www.bosch-home.com/de/de/search?term=ipad&empathyOrigin=search_box",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "boxxcocom": {
+    "category": "categories.materials",
+    "url": "ADDON springt nicht an",
+    "crawl": {
+      "searchUrl": "https://www.boxxco.com/search/?qs=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "braun": {
+    "category": "categories.beauty",
+    "crawl": {
+      "searchUrl": "https://www.braun.de/de-de/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "braun-haushalt": {
+    "category": "categories.retail",
+    "url": "https://www.braunhousehold.com/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true,
+      "comment": "prüfen"
+    }
+  },
+  "brax-3": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.brax.com/de/de/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "bremer-gewuerzhandel": {
+    "category": "categories.spices",
+    "crawl": {
+      "searchUrl": "https://www.bremer-gewuerzhandel.de/search?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "brewdog-2": {
+    "category": "categories.beer",
+    "crawl": {
+      "searchUrl": "https://brewdog.com/search?type=product&q=ipad&page=1&sort=manual",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "brigitte-hachenburg": {
+    "category": "categories.retail",
+    "crawl": {
+      "searchUrl": "https://www.brigitte-hachenburg.de/p/apple-ipad-10gen-671609215fd27f0419ee4ceb_23142.html?color=SILBER&size=Universalgr%C3%B6%C3%9Fe&originSearchValue=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "bruno-banani": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://brunobanani.com/search?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "bstn-7": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.bstn.com/eu_de/catalogsearch/result?q=ipad&categories=Men",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "buecherde": {
+    "category": "categories.books",
+    "crawl": {
+      "searchUrl": "https://www.buecher.de/suche?sq=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "bugaboo-2": {
+    "category": "categories.baby",
+    "crawl": {
+      "searchUrl": "https://www.bugaboo.com/de-de/search/?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "bulk": {
+    "category": "categories.supplements",
+    "crawl": {
+      "searchUrl": "https://www.bulk.com/de/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "bundeswehr-und-mehr-shop": {
+    "category": "categories.security",
+    "url": "ADDON",
+    "crawl": {
+      "searchUrl": "https://www.bundeswehr-und-mehr.de/suchergebnisse?query=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "burgerme-2": {
+    "category": "categories.food",
+    "url": "https://www.burgerme.de/"
+  },
+  "burlington": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.burlington.de/de_de/search/?q=ipad&ms=true",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "burnhard-4": {
+    "category": "categories.garden",
+    "url": "https://de.burnhard.com/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true,
+      "comment": "prüfen"
+    }
+  },
+  "buroplusde": {
+    "category": "categories.office",
+    "crawl": {
+      "searchUrl": "https://www.bueroplus.de/suche/ipad?mkz=240",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "buroshop24": {
+    "category": "categories.office",
+    "url": "ADDON schlägt nicht an",
+    "crawl": {
+      "searchUrl": "https://www.bueroshop24.de/suche/ipad?mkz=224",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "butch": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://www.butch.de/de/catalogsearch/result/?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "buttinette": {
+    "category": "categories.retail",
+    "url": "ADDON",
+    "crawl": {
+      "searchUrl": "https://basteln-de.buttinette.com/shop/suchen?query=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "c24-bank-2": {
+    "category": "categories.finance",
+    "url": "https://www.c24.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "calm-elephant-2": {
+    "category": "categories.retail",
+    "url": "https://calmelephant.com/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "camp-david-soccx-2": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.campdavid-soccx.de/index.php?stoken=9F1B5978&sid=3baa2a1f65c95a41bc3a9a9490ca142b&lang=0&cl=search&searchparam=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "cannalin": {
+    "category": "categories.supplements",
+    "url": "https://cannalin.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "cantura-onlineshop": {
+    "category": "categories.supplements",
+    "url": "https://cantura.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "carters-5": {
+    "category": "categories.baby",
+    "crawl": {
+      "searchUrl": "https://www.carters.com/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "casamoda": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.casamoda.com/de/de/search?query=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "cathay-pacific-airways-4": {
+    "category": "categories.airline",
+    "url": "https://www.cathaypacific.com/cx/de_DE.html",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "cbdnol": {
+    "category": "categories.supplements",
+    "crawl": {
+      "searchUrl": "https://www.cbdnol.com/search?type=product%2Carticle%2Cpage%2Ccollection&q=ipad*",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "cdkeys": {
+    "category": "categories.gaming",
+    "url": "https://www.loaded.com/",
+    "crawl": {
+      "searchUrl": "Addon schlägt  nicht an",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "cellavent": {
+    "category": "categories.supplements",
+    "crawl": {
+      "searchUrl": "https://cellavent.de/search?q=ipad&type=product",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "center-parcs": {
+    "category": "categories.travel",
+    "url": "https://www.centerparcs.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "centercourt": {
+    "category": "categories.sportswear",
+    "crawl": {
+      "searchUrl": "https://www.centercourt.de/search?q=ipad&options%5Bprefix%5D=last",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "cewe": {
+    "category": "categories.photography",
+    "url": "https://www.cewe.de/index.html",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true,
+      "comment": "Prüfen"
+    }
+  },
+  "channel21": {
+    "category": "categories.retail",
+    "url": "https://www.channel21.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true,
+      "comment": "Prüfen"
+    }
+  },
+  "charles-colby": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.charles-colby.com/index.php?stoken=99B1AB8C&lang=0&cl=search&search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "cheapoair": {
+    "category": "categories.airline",
+    "url": "https://www.cheapoair.com/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "cheaptickets-2": {
+    "category": "categories.airline",
+    "url": "https://www.cheaptickets.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "chefkoch": {
+    "category": "categories.food",
+    "crawl": {
+      "searchUrl": "https://www.chefkoch.de/rs/s0/ipad/Rezepte.html",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "chili-food": {
+    "category": "categories.food",
+    "crawl": {
+      "searchUrl": "https://www.chili-shop24.de/search?sSearch=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "chris-farrell": {
+    "category": "categories.cosmetics",
+    "crawl": {
+      "searchUrl": "https://chris-farrell.com/en/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "christ": {
+    "category": "categories.jewelry",
+    "crawl": {
+      "searchUrl": "https://www.christ.de/search/?text=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "christina-kosmetik": {
+    "category": "categories.cosmetics",
+    "crawl": {
+      "searchUrl": "https://christina-kosmetik.de/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "citizenm-3": {
+    "category": "categories.hotels",
+    "url": "https://www.marriott.com/brands/citizenm.mi",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "ck-modelcars": {
+    "category": "categories.other",
+    "crawl": {
+      "searchUrl": "https://ck-modelcars.de/en/l/t-suche/a-18/?s=Ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "clav": {
+    "category": "categories.supplements",
+    "crawl": {
+      "searchUrl": "https://clav-health.de/search?q=ipad&type=product,page,article&options[prefix]=last",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "click-licht": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://www.click-licht.de/?jtl_token=9fb07f8cef9035749918aa5d51ffd637e3a0fa6a87fdd74bfe3575bea2b78f14&qs=ipad&search=",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "climaqx": {
+    "category": "categories.sportswear",
+    "crawl": {
+      "searchUrl": "https://climaqx.com/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "club-of-spirits": {
+    "category": "categories.food",
+    "crawl": {
+      "searchUrl": "https://www.club-of-spirits.de/suche?searchPhrase=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "club-of-wine": {
+    "category": "categories.food",
+    "crawl": {
+      "searchUrl": "https://www.club-of-wine.de/suche?searchPhrase=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "coffee-friend-7": {
+    "category": "categories.food",
+    "crawl": {
+      "searchUrl": "https://www.coffeefriend.de/?s=ipad&post_type=product",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "comma": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.comma-store.de/search/?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "como-fashion": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.modische-berufsbekleidung.de/advanced_search_result.php?keywords=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "companydepot": {
+    "category": "categories.other",
+    "crawl": {
+      "searchUrl": "https://www.companydepot.de/catalogsearch/result/?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "computeruniverse": {
+    "category": "categories.electronics",
+    "crawl": {
+      "searchUrl": "https://www.computeruniverse.net/de/search?query=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "comspot": {
+    "category": "categories.electronics",
+    "crawl": {
+      "searchUrl": "https://www.comspot.de/search?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "condor-18": {
+    "category": "categories.airline",
+    "url": "DOPPELT",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "condor-7": {
+    "category": "categories.airline",
+    "url": "https://www.condor.com/de",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "confiserie-lauenstein-pralinen-schokolade": {
+    "category": "categories.food",
+    "crawl": {
+      "searchUrl": "https://www.lauensteiner.de/de/search/?input_search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "congstar": {
+    "category": "categories.travel",
+    "url": "https://www.congstar.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false,
+      "comment": "PRÜFEN"
+    }
+  },
+  "connox-2": {
+    "category": "categories.furniture",
+    "crawl": {
+      "searchUrl": "https://www.connox.com/search.html?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "coolblue": {
+    "category": "categories.electronics",
+    "crawl": {
+      "searchUrl": "https://www.coolblue.de/tablets/apple-ipad?redirect=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "coolblue-5": {
+    "category": "categories.marketplace",
+    "url": "DOPPELT",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "corendon-airlines-2": {
+    "category": "categories.airline",
+    "url": "https://www.corendonairlines.com/de",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "cosori-2": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://cosori.de/search?q=ipad&type=product",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "costa-kreuzfahrten": {
+    "category": "categories.travel",
+    "url": "https://www.costakreuzfahrten.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "cover4rentals": {
+    "category": "categories.insurance",
+    "url": "https://cover4rentals.com/",
+    "crawl": {
+      "searchUrl": "ADDON",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "crazy-factory": {
+    "category": "categories.jewelry",
+    "crawl": {
+      "searchUrl": "https://www.crazy-factory.com/product_listing_ng.php?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "creamy-fabrics-3": {
+    "category": "categories.fashion",
+    "url": "https://creamyfabrics.com/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "cretanoil": {
+    "category": "categories.food",
+    "crawl": {
+      "searchUrl": "https://www.cretanoil.de/index.php?jtl_token=d28e341aeb6f81e0e0a7ab7f6b8ce41e74ff83afd8a9c3d06bb4bacab96fb5ac&qs=ipad&search=",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "crocs-20": {
+    "category": "categories.shoes",
+    "crawl": {
+      "searchUrl": "https://www.crocs.de/on/demandware.store/Sites-crocs_de-Site/de_DE/Search-Show?q=ipad&x-kpsdk-ct=0bY86FggoMoSDUnTwZhNkMhDUXGjMDcHb4XPs2glE41Cbeu1qQX9qxwDl06ToYBDd33p3EnU8jQpY9jmvQ79UQMGGy9JZPjWWUJHsK4dOCOLBrt0aQcOnfq34AIFtVSfH2Sbtuk8CFfUrcZ1zynJRw283HvYvfcDPLS2582nQCRAm25&x-kpsdk-v=j-1.2.170&x-kpsdk-h=01Ec7J6IvDE%2F1PWkmPphEl38PCzyE%3D&x-kpsdk-ct=0bY86FggoMoSDUnTwZhNkMhDUXGjMDcHb4XPs2glE41Cbeu1qQX9qxwDl06ToYBDd33p3EnU8jQpY9jmvQ79UQMGGy9JZPjWWUJHsK4dOCOLBrt0aQcOnfq34AIFtVSfH2Sbtuk8CFfUrcZ1zynJRw283HvYvfcDPLS2582nQCRAm25&x-kpsdk-v=j-1.2.170&x-kpsdk-h=01Ec7J6IvDE%2F1PWkmPphEl38PCzyE%3D",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "cyberport": {
+    "category": "categories.electronics",
+    "crawl": {
+      "searchUrl": "https://www.cyberport.de/tools/search?query=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "da-direkt": {
+    "category": "categories.insurance",
+    "url": "https://www.da-direkt.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "daily-bikers": {
+    "category": "categories.automotive",
+    "url": "https://daily-bikers.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true,
+      "comment": "Prüfen"
+    }
+  },
+  "dainese-2": {
+    "category": "categories.sportswear",
+    "crawl": {
+      "searchUrl": "https://www.dainese.com/de/de/search/?q=ipad&lang=de_DE",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "danubius-hotels": {
+    "category": "categories.hotels",
+    "url": "https://www.danubiushotels.com/",
+    "crawl": {
+      "searchUrl": "ADDON",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "das-perfekte-bild": {
+    "category": "categories.art",
+    "crawl": {
+      "searchUrl": "https://www.das-perfekte-bild.de/search?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "dauerbrotde": {
+    "category": "categories.food",
+    "crawl": {
+      "searchUrl": "https://www.dauerbrot.de/search?qs=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "dc-shoes": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.dcshoes.de/on/demandware.store/Sites-DC-DE-Site/de_DE/Search-Show?q=ipad&searchtype=typed",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "dealclub": {
+    "category": "categories.retail",
+    "url": "ADDON",
+    "crawl": {
+      "searchUrl": "https://www.dealclub.de/?match=all&subcats=Y&pcode_from_q=Y&pshort=Y&pfull=Y&pname=Y&pkeywords=Y&search_performed=Y&q=ipad&dispatch=products.search&security_hash=c80c17bfb55166d3964374fe29da57a8",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "decathlon": {
+    "category": "categories.outdoor",
+    "url": "ADDon",
+    "crawl": {
+      "searchUrl": "https://www.decathlon.de/search?Ntt=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "deindesign": {
+    "category": "categories.other",
+    "url": "https://www.deindesign.de/de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true,
+      "comment": "Prüfen"
+    }
+  },
+  "deinhandy": {
+    "category": "categories.electronics",
+    "url": "https://www.deinhandy.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "dekormaison": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://www.dekormaison.com/search?q=ipad&type=product",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "delife-3": {
+    "category": "categories.furniture",
+    "url": "https://www.delife.de/",
+    "crawl": {
+      "searchUrl": "ADDON",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "delinat": {
+    "category": "categories.wine",
+    "crawl": {
+      "searchUrl": "https://www.delinat.com/indexsuche.html?suchtext=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "delta-bike": {
+    "category": "categories.bicycles",
+    "crawl": {
+      "searchUrl": "https://www.delta-bike.de/de/suche/?s=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "demmelhuber": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://www.demmelhuber.net/search?sSearch=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "deporvillage-2": {
+    "category": "categories.outdoor",
+    "crawl": {
+      "searchUrl": "https://www.deporvillage.de/catalogsearch/result?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "depot": {
+    "category": "categories.retail",
+    "url": "Satsback Link inaktiv",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "design-bestseller-2": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://www.design-bestseller.de/catalogsearch/results#twn|?tn_q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "desktronic": {
+    "category": "categories.furniture",
+    "url": "https://desktronic.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "deubaxxl-2": {
+    "category": "categories.furniture",
+    "crawl": {
+      "searchUrl": "https://www.deubaxxl.de/?vsaisearch=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "devita": {
+    "category": "categories.furniture",
+    "url": "https://www.devita-online.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true,
+      "comment": "Prüfen"
+    }
+  },
+  "dfds": {
+    "category": "categories.travel",
+    "url": "https://www.dfds.com/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "dickies-life-2": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://eu.dickies.com/de-de/search?find=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "die-bayerische": {
+    "category": "categories.insurance",
+    "crawl": {
+      "searchUrl": "https://www.diebayerische.de/suche/?q=ipad",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "die-kaffeefreunde": {
+    "category": "categories.coffee",
+    "url": "https://diekaffeefreunde.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "die-moderne-hausfrau": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://www.moderne-hausfrau.de/suche/?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "disneyland-paris-3": {
+    "category": "categories.travel",
+    "url": "https://www.disneylandparis.com/de-de",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "docmorris": {
+    "category": "categories.pharmacy",
+    "crawl": {
+      "searchUrl": "https://www.docmorris.de/search?query=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "doktorabc-2": {
+    "category": "categories.doctor",
+    "url": "https://www.doktorabc.com/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "douglas-2": {
+    "category": "categories.beauty",
+    "crawl": {
+      "searchUrl": "https://www.douglas.de/de/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "dr-grandel": {
+    "category": "categories.beauty",
+    "crawl": {
+      "searchUrl": "https://www.grandel.de/F=suche?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "dr-martens-3": {
+    "category": "categories.shoes",
+    "url": "https://www.drmartens.com/de/de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true,
+      "comment": "Prüfen"
+    }
+  },
+  "dreame-2": {
+    "category": "categories.other",
+    "crawl": {
+      "searchUrl": "nicht vorhanden",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "dress-for-less-4": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.dress-for-less.de/search/ipad/",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "drpetcarede": {
+    "category": "categories.pharmacy",
+    "crawl": {
+      "searchUrl": "https://www.drpetcare.de/#sqr:(q[ipad])",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "druckerpatronenexpress": {
+    "category": "categories.office",
+    "crawl": {
+      "searchUrl": "https://www.druckerpatronenexpress.de/index.php?jtl_token=60b73d14b9d2790a2979897a2c7a8cd46e6c4c83d3585230ea115d1907e15ae5&qs=ipad&search=",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "druckerzubehoer": {
+    "category": "categories.office",
+    "crawl": {
+      "searchUrl": "https://www.druckerzubehoer.de/onsearch?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "dryrobe-7": {
+    "category": "categories.outdoor",
+    "crawl": {
+      "searchUrl": "https://eu.dryrobe.com/de-de/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "dxracer": {
+    "category": "categories.gaming",
+    "crawl": {
+      "searchUrl": "https://www.dxracer.com/collections?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "dyson-6": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://www.dyson.de/suchergebnisse?searchText=ipad%3Arelevance",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "e-lektron": {
+    "category": "categories.electronics",
+    "url": "ADDON",
+    "crawl": {
+      "searchUrl": "https://e-lektron.de/pages/search-results-page?q=pad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "e-wie-einfach-2": {
+    "category": "categories.energy",
+    "url": "https://www.e-wie-einfach.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "eaglefit": {
+    "category": "categories.fitness",
+    "crawl": {
+      "searchUrl": "https://www.eaglefit.de/search?q=ipad&options%5Bprefix%5D=last",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "easeus-3": {
+    "category": "categories.software",
+    "url": "https://www.easeus.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "ebay-de": {
+    "category": "categories.retail",
+    "crawl": {
+      "searchUrl": "https://www.ebay.de/sch/i.html?_nkw=ipad&_sacat=0&_from=R40&_trksid=p4624852.m570.l1313",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "ebook-2": {
+    "category": "categories.books",
+    "crawl": {
+      "searchUrl": "https://www.ebook.de/de/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "ecco-verde": {
+    "category": "categories.beauty",
+    "crawl": {
+      "searchUrl": "https://www.ecco-verde.de/suche?keyword=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "edeka24": {
+    "category": "categories.retail",
+    "crawl": {
+      "searchUrl": "https://www.edeka24.de/#search:query=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "edelnice-trachtenmode": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.trachtenmode.eu/?vsaisearch=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "edreams-3": {
+    "category": "categories.airline",
+    "url": "https://www.edreams.com/",
+    "crawl": {
+      "searchUrl": "ADDON",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "einfach-eauto": {
+    "category": "categories.automotive",
+    "url": "https://einfacheauto.de/",
+    "crawl": {
+      "searchUrl": "ADDON",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "eintracht-frankfurt": {
+    "category": "categories.lifestyle",
+    "crawl": {
+      "searchUrl": "https://www.eintracht.de/suche?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "eis": {
+    "category": "categories.retail",
+    "crawl": {
+      "searchUrl": "https://www.eis.de/suche?fss=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "elegoo-3": {
+    "category": "categories.3dprinting",
+    "crawl": {
+      "searchUrl": "https://de.elegoo.com/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "eleonto": {
+    "category": "categories.electronics",
+    "url": "ADDon",
+    "crawl": {
+      "searchUrl": "https://www.eleonto.com/de-DE/search/?text=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "elv": {
+    "category": "categories.electronics",
+    "url": "ADDon",
+    "crawl": {
+      "searchUrl": "https://de.elv.com/search?q=ipad&ms=true",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "emirates": {
+    "category": "categories.airline",
+    "url": "DOPPELT",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "emirates-3": {
+    "category": "categories.airline",
+    "url": "https://www.emirates.com/de/german/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "emp": {
+    "category": "categories.fashion",
+    "url": "https://www.emp.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true,
+      "comment": "prüfen"
+    }
+  },
+  "engelhorn": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.engelhorn.de/de-de/suche?q=ipad&cgid=",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "entega": {
+    "category": "categories.energy",
+    "url": "https://www.entega.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "enterprise": {
+    "category": "categories.automotive",
+    "url": "https://www.enterprise.de/en/home.html",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "entradascom": {
+    "category": "categories.other",
+    "crawl": {
+      "searchUrl": "https://www.entradas.com/search/?affiliate=EES&searchterm=ipad&tab=1",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "eon-2": {
+    "category": "categories.energy",
+    "url": "https://www.eon.de/de/pk.html",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "eprimo": {
+    "category": "categories.energy",
+    "url": "https://www.eprimo.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "erovibes": {
+    "category": "categories.retail",
+    "crawl": {
+      "searchUrl": "https://www.erovibes.de/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "erwin-muller": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://de.erwinmueller.com/search?s=1&q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "eschuhe": {
+    "category": "categories.shoes",
+    "crawl": {
+      "searchUrl": "https://eschuhe.de/s/ipad?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "esdownload": {
+    "category": "categories.software",
+    "crawl": {
+      "searchUrl": "https://esdownload.de/de/suche?controller=search&orderby=position&orderway=desc&search-cat-select=0&search_query=ipad&submit_search=",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "eset-2": {
+    "category": "categories.security",
+    "url": "https://www.eset.com/de/katalog/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "esrgear": {
+    "category": "categories.electronics",
+    "url": "ADDON",
+    "crawl": {
+      "searchUrl": "https://eu.esrtech.com/de-de/search?options%5Bunavailable_products%5D=last&options%5Bprefix%5D=last&options%5Bfields%5D=title%2Cvendor%2Cproduct_type%2Cvariants.title&q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "eterna-2": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.eterna.de/de/suche/?query=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "etsy-5": {
+    "category": "categories.retail",
+    "url": "ADDON",
+    "crawl": {
+      "searchUrl": "https://www.etsy.com/de/search?q=ipad&ref=search_bar",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "eufylife": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://www.eufy.com/eu-de/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "euroflorist-4": {
+    "category": "categories.other",
+    "url": "https://www.euroflorist.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "euronics": {
+    "category": "categories.electronics",
+    "crawl": {
+      "searchUrl": "https://www.euronics.de/search?sSearch=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "europ-assistance-2": {
+    "category": "categories.insurance",
+    "url": "https://www.europ-assistance.de/privatkunden",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "europcar-2": {
+    "category": "categories.automotive",
+    "url": "https://www.europcar.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "eurotops-5": {
+    "category": "categories.retail",
+    "crawl": {
+      "searchUrl": "https://www.eurotops.de/index.php?stoken=FDECD5BD&force_sid=e197cf02fc3f0c33bd53d2d7d7735e0c&lang=0&cl=search&searchparam=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "eurowings-flights": {
+    "category": "categories.airline",
+    "url": "https://www.eurowings.com/de.html",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "eurowings-holidays": {
+    "category": "categories.travel",
+    "url": "https://holidays.eurowings.com/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "everdrop": {
+    "category": "categories.beauty",
+    "crawl": {
+      "searchUrl": "https://www.everdrop.de/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "evm": {
+    "category": "categories.energy",
+    "url": "https://www.evm.de/privatkunden/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "ewanto": {
+    "category": "categories.energy",
+    "crawl": {
+      "searchUrl": "https://ewanto.de/search?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "expedia-65": {
+    "category": "categories.travel",
+    "url": "https://www.expedia.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "expert-3": {
+    "category": "categories.electronics",
+    "crawl": {
+      "searchUrl": "https://www.expert.de/shop/unsere-produkte/computer-zubehor/tablets/apple-ipads?undefined=&sq=ipad&queryType=hardlink",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "expressvpn-8": {
+    "category": "categories.security",
+    "url": "https://www.expressvpn.com/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "exquisit": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://www.exquisit.de/?s=ipad&post_type=product&dgwt_wcas=1",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "f1-store-2": {
+    "category": "categories.fashion",
+    "url": "ADDON",
+    "crawl": {
+      "searchUrl": "https://f1store2.formula1.com/en/?query=ipad&_ref=p-HP:m-SEARCH",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "fackelmann": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://www.fackelmann.de/search?search=ipad#/qs/ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "fahrradteile-shop": {
+    "category": "categories.bicycles",
+    "url": "https://fahrrad-teile.shop/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true,
+      "comment": "Prüfen"
+    }
+  },
+  "fairnatural": {
+    "category": "categories.supplements",
+    "crawl": {
+      "searchUrl": "https://www.fairnatural.de/search?q=ipad*",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "fairtoner": {
+    "category": "categories.activities",
+    "url": "https://www.fairtoner.de/",
+    "crawl": {
+      "searchUrl": "ADDON",
+      "cms": "",
+      "crawlable": true,
+      "comment": "prüfen"
+    }
+  },
+  "falke-2": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.falke.com/de_de/search/?q=ipad&ms=true&q=ipad&ms=true",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "fanatical-3": {
+    "category": "categories.gaming",
+    "crawl": {
+      "searchUrl": "https://www.fanatical.com/de/search?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "farfetch": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.farfetch.com/de/shopping/women/search/items.aspx?q=ipad&ffref=Search%7C%7C%7C&qr=3",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "fashionette": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.fashionette.de/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "fc-bayern": {
+    "category": "categories.lifestyle",
+    "crawl": {
+      "searchUrl": "https://fcbayern.com/de/search/ipad",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "fc-schalke-04": {
+    "category": "categories.lifestyle",
+    "crawl": {
+      "searchUrl": "https://schalke04.de/suche/index.html?search=ipad",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "feeling4home": {
+    "category": "categories.furniture",
+    "crawl": {
+      "searchUrl": "https://www.feeling4home.de/",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "feierweltde": {
+    "category": "categories.lifestyle",
+    "crawl": {
+      "searchUrl": "https://www.feierwelt.de/searchResult2.php?query=ipad&mot=",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "fellby": {
+    "category": "categories.pets",
+    "crawl": {
+      "searchUrl": "https://www.fellby.de/suchergebnisse?query=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "fera-3": {
+    "category": "categories.pets",
+    "url": "ADDon",
+    "crawl": {
+      "searchUrl": "https://fera24.de/?subcats=Y&pcode_from_q=Y&pshort=Y&pfull=Y&pname=Y&pkeywords=Y&search_performed=Y&q=ipad&dispatch=2lm_elasticsearch.search",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "ferienwohnungen": {
+    "category": "categories.hotels",
+    "url": "https://www.ferienwohnungen.de/",
+    "crawl": {
+      "searchUrl": "ADDON",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "feuertischshopcom": {
+    "category": "categories.garden",
+    "crawl": {
+      "searchUrl": "https://www.feuertischshop.com/search/ipad/",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "fielmann": {
+    "category": "categories.other",
+    "crawl": {
+      "searchUrl": "https://www.fielmann.de/search/?term=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "finn": {
+    "category": "categories.automotive",
+    "url": "https://www.finn.com/de-DE",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "fitness-first": {
+    "category": "categories.fitness",
+    "url": "https://www.fitnessfirst.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "flaschenbauer": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://www.flaschenbauer.de/#7a2d/fullscreen/m=f&q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "fletcher-hotels": {
+    "category": "categories.hotels",
+    "url": "https://www.fletcher.nl/de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "flexispot-11": {
+    "category": "categories.furniture",
+    "crawl": {
+      "searchUrl": "https://www.flexispot.de/search?keyword=ipad&searchType=item",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "fliegende-pillen": {
+    "category": "categories.retail",
+    "url": "ADDon",
+    "crawl": {
+      "searchUrl": "https://www.fliegende-pillen.de/search/result.html?term=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "flink-app": {
+    "category": "categories.food",
+    "url": "https://www.goflink.com/shop/de-DE/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "flixbus-8": {
+    "category": "categories.travel",
+    "url": "https://www.flixbus.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "floordirekt": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://floordirekt.com/search?type=product&options%5Bprefix%5D=last&options%5Bunavailable_products%5D=hide&q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "floraprima": {
+    "category": "categories.other",
+    "crawl": {
+      "searchUrl": "https://www.floraprima.de/en/trbo/?searchquery=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "flowrecovery": {
+    "category": "categories.fitness",
+    "crawl": {
+      "searchUrl": "https://flowrecovery.de/search?q=ipad*",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "fluege": {
+    "category": "categories.airline",
+    "url": "https://go.fluege.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "flugladende": {
+    "category": "categories.airline",
+    "url": "https://www.flugladen.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "foot-locker-2": {
+    "category": "categories.sneakers",
+    "crawl": {
+      "searchUrl": "https://www.footlocker.de/de/search?query=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "fotokasten": {
+    "category": "categories.photography",
+    "url": "https://www.fotokasten.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "frankfurt-airport-shopping": {
+    "category": "categories.food",
+    "crawl": {
+      "searchUrl": "https://shop.frankfurt-airport.com/de-DE/search?query=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "freenet": {
+    "category": "categories.telecom",
+    "url": "https://www.freenet.de/",
+    "crawl": {
+      "searchUrl": "ADDOn",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "fressnapf": {
+    "category": "categories.pets",
+    "crawl": {
+      "searchUrl": "https://www.fressnapf.de/search/?text=ipcam&correctedText=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "fuchs-gruppe-shop": {
+    "category": "categories.spices",
+    "crawl": {
+      "searchUrl": "https://fuchsgruppe.shop/search?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "funkelkram": {
+    "category": "categories.lifestyle",
+    "url": "addon",
+    "crawl": {
+      "searchUrl": "https://www.funkelkram.de/search?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "funkklingel24": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://www.funkklingel24.de/search/?qs=ipad&search=",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "futterplatzde": {
+    "category": "categories.pets",
+    "url": "https://www.futterplatz.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true,
+      "comment": "prüfen"
+    }
+  },
+  "fyrst-grunderkonto": {
+    "category": "categories.finance",
+    "crawl": {
+      "searchUrl": "https://www.fyrst.de/suche.html?query=ipad&c=6962829067",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "fyve": {
+    "category": "categories.telecom",
+    "url": "https://www.fyve.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "g-data": {
+    "category": "categories.security",
+    "url": "https://www.gdata.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "g-star-3": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.g-star.com/de_de/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "g-star-raw-outlet-3": {
+    "category": "categories.retail",
+    "url": "-",
+    "crawl": {
+      "searchUrl": "-",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "g2a-10": {
+    "category": "categories.gaming",
+    "crawl": {
+      "searchUrl": "https://www.g2a.com/de/search?query=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "g2a-9": {
+    "category": "categories.marketplace",
+    "url": "doppelt",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "galaxus": {
+    "category": "categories.electronics",
+    "crawl": {
+      "searchUrl": "https://www.galaxus.de/de/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "galeria": {
+    "category": "categories.fashion",
+    "url": "ADDON",
+    "crawl": {
+      "searchUrl": "https://www.galeria.de/suche?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "gameseal": {
+    "category": "categories.gaming",
+    "crawl": {
+      "searchUrl": "https://gameseal.com/de/search?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "garten-schluter": {
+    "category": "categories.travel",
+    "url": "nicht erreichbar",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "gebruder-gotz": {
+    "category": "categories.shoes",
+    "crawl": {
+      "searchUrl": "https://www.gebrueder-goetz.de/search/?text=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "geox": {
+    "category": "categories.retail",
+    "url": "DOPPELT"
+  },
+  "geox-8": {
+    "category": "categories.shoes",
+    "crawl": {
+      "searchUrl": "https://www.geox.com/de-DE/search?q=ipad&lang=null",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "geruchskontrolle": {
+    "category": "categories.retail",
+    "crawl": {
+      "searchUrl": "https://www.geruchskontrolle.de/search?options%5Bprefix%5D=last&q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "geschenkratsel": {
+    "category": "categories.retail",
+    "url": "http://geschenkraetsel.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false,
+      "comment": "Prüfen"
+    }
+  },
+  "getsafe": {
+    "category": "categories.insurance",
+    "url": "https://www.hellogetsafe.com/de-de",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "getyourguide-14": {
+    "category": "categories.travel",
+    "crawl": {
+      "searchUrl": "https://www.getyourguide.de/s/?q=ipad&searchSource=3&src=search_bar",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "getyourguide-8": {
+    "category": "categories.airline",
+    "url": "DOPPELT",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "geuther": {
+    "category": "categories.furniture",
+    "crawl": {
+      "searchUrl": "https://www.geuther.de/search?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "gewuerzwerk": {
+    "category": "categories.food",
+    "crawl": {
+      "searchUrl": "https://gewuerzwerk.de/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "giga-reifen": {
+    "category": "categories.retail",
+    "url": "https://www.giga-reifen.de/",
+    "crawl": {
+      "searchUrl": "ADDON",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "gina-tricot-2": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.ginatricot.com/eu/search/ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "godaddycom": {
+    "category": "categories.other",
+    "crawl": {
+      "searchUrl": "https://www.godaddy.com/de/domainsearch/find?isc=GOGERMANY&domainToCheck=ipad&tmskey=in_viral_offer",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "gog": {
+    "category": "categories.gaming",
+    "crawl": {
+      "searchUrl": "https://www.gog.com/de/games?query=ipad&order=desc:score",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "gogcom-4": {
+    "category": "categories.activities",
+    "url": "DOPPELT"
+  },
+  "golf-und-gunstig": {
+    "category": "categories.sportswear",
+    "crawl": {
+      "searchUrl": "https://www.golfundguenstig.de/index.php?lang=0&cl=search&searchparam=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "gourvita": {
+    "category": "categories.food",
+    "crawl": {
+      "searchUrl": "https://www.gourvita.com/catalogsearch/result/?q=Ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "govee-4": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://eu.govee.com/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "green-itshop": {
+    "category": "categories.electronics",
+    "crawl": {
+      "searchUrl": "https://green-it.shop/suche/ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "greenwich-3": {
+    "category": "categories.travel",
+    "crawl": {
+      "searchUrl": "https://www.maletasgreenwich.com/de-de/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "gregas-imkerei": {
+    "category": "categories.food",
+    "url": "https://gregas-imkerei.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "groupon-16": {
+    "category": "categories.other",
+    "crawl": {
+      "searchUrl": "https://www.groupon.de/search?query=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "guthaben": {
+    "category": "categories.marketplace",
+    "url": "https://www.guthaben.de/",
+    "crawl": {
+      "searchUrl": "ADDON",
+      "cms": "",
+      "crawlable": true,
+      "comment": "Prüfen"
+    }
+  },
+  "gutmarkiert": {
+    "category": "categories.other",
+    "crawl": {
+      "searchUrl": "https://www.gutmarkiert.de/search?query=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "gymqueen-2": {
+    "category": "categories.supplements",
+    "crawl": {
+      "searchUrl": "https://www.gymqueen.de/search?q=ipad&type=product",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "gymshark-3": {
+    "category": "categories.sportswear",
+    "crawl": {
+      "searchUrl": "https://eu.gymshark.com/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "handyhuellende": {
+    "category": "categories.lifestyle",
+    "crawl": {
+      "searchUrl": "https://www.handyhuellen.de/ipad-huellen/",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "handyvertragde": {
+    "category": "categories.telecom",
+    "crawl": {
+      "searchUrl": "https://www.handyvertrag.de/suche?s=ipad",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "hanfosande": {
+    "category": "categories.supplements",
+    "url": "ADDON",
+    "crawl": {
+      "searchUrl": "https://www.hanfosan.de/search?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "hansemerkur-versicherungsgruppe": {
+    "category": "categories.insurance",
+    "crawl": {
+      "searchUrl": "https://www.hansemerkur.de/service/search/hmde/25894?query=ipad",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "happy420": {
+    "category": "categories.other",
+    "crawl": {
+      "searchUrl": "https://happy-420.de/search?type=product&q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "happysize-3": {
+    "category": "categories.other",
+    "url": "nicht verfügbar",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "hardware-online-shop": {
+    "category": "categories.electronics",
+    "crawl": {
+      "searchUrl": "https://www.hardware-online-shop.de/tablets/apple/ipad-160?originalSearchTerm=ipad&ti=tczaybz9wwj6lj82",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "harecker-pfannen": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://www.harecker.de/index.php?jtl_token=e1ede42f5fc753f0ab88eed951346cf21b2cc80e729db3b46b1dd317d4bed499&qs=ipad&search=",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "harrys-3": {
+    "category": "categories.beauty",
+    "url": "ADDON",
+    "crawl": {
+      "searchUrl": "https://de.harrys.com/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "hawes-curtis": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.hawesandcurtis.de/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "hawesko": {
+    "category": "categories.wine",
+    "crawl": {
+      "searchUrl": "https://www.hawesko.de/search/?q=ipad&qc=&ms=true",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "heideman-schmuck": {
+    "category": "categories.jewelry",
+    "crawl": {
+      "searchUrl": "https://heideman-store.de/search?q=ipad&options%5Bprefix%5D=last",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "heima24": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://www.heima24.de/shop/system/?func=searchdo&cache=1771960660&qsearch=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "heine-2": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.heine.de/search?q=ipad&searchOrigin=searchField&searchTerm=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "helbrecht": {
+    "category": "categories.other",
+    "crawl": {
+      "searchUrl": "https://www.helbrecht.com/index.php?jtl_token=4ae5b1e3b9dd687cbb53d1a1162c2b100e9fb8a01f4e13313d8de5f7840b8310&sp_additional_mail=&qs=ipad&search=",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "heli-c-check": {
+    "category": "categories.other",
+    "url": "nicht verfügbar",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "hellofresh-3": {
+    "category": "categories.food",
+    "url": "https://www.hellofresh.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "hemdende": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.hemden.de/search?sSearch=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "herrenausstatter": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.herrenausstatter.de/search?query=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "hessnatur": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.hessnatur.com/de/search?text=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "hideme-vpn": {
+    "category": "categories.security",
+    "url": "https://hide.me/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "hifi-regler-2": {
+    "category": "categories.electronics",
+    "crawl": {
+      "searchUrl": "https://www.hifi-regler.de/suche/?origin=search&term=ipad&ff_ot%5B%5D=pr&ff_ot%5B%5D=bn&ff_ot%5B%5D=pp",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "hoefer-shop": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://hoefer-shop.com/pages/search-results-page?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "hoffmann": {
+    "category": "categories.food",
+    "crawl": {
+      "searchUrl": "https://hoffmann-germany.de/",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "hofmanns": {
+    "category": "categories.other",
+    "url": "DOPPELT",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "hohenhorn": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://store.hoehenhorn.de/search?sSearch=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "hoka": {
+    "category": "categories.shoes",
+    "crawl": {
+      "searchUrl": "https://www.hoka.com/on/demandware.store/Sites-HOKA-EMEA-Site/de_DE/Coveo-Show?q=ipad&lang=de_DE",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "holiday-park-plopsa": {
+    "category": "categories.travel",
+    "url": "https://www.plopsa.com/de",
+    "crawl": {
+      "searchUrl": "ADDON",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "holidaycheck": {
+    "category": "categories.travel",
+    "crawl": {
+      "searchUrl": "https://www.holidaycheck.de/",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "hollister-co": {
+    "category": "categories.retail",
+    "url": "ADDON",
+    "crawl": {
+      "searchUrl": "https://www.hollisterco.com/shop/eu-de/search?facet=gender%3A%28%22Damen%22+%22Herren%22%29&searchTerm=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "honor": {
+    "category": "categories.electronics",
+    "url": "ADDON",
+    "crawl": {
+      "searchUrl": "https://www.honor.com/de/search/?keyword=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "horner": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://hoerner-group.de/?s=ipad&post_type=product&lang=de",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "hostinger-9": {
+    "category": "categories.other",
+    "url": "https://www.hostinger.com/de",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "hotelde": {
+    "category": "categories.other",
+    "url": "DOPPELT",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "hotelde-2": {
+    "category": "categories.hotels",
+    "url": "https://www.hotel.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "hotelscom-50": {
+    "category": "categories.hotels",
+    "url": "https://www.hotels.com/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "hp-3": {
+    "category": "categories.electronics",
+    "crawl": {
+      "searchUrl": "https://www.hp.com/de-de/shop/search.aspx?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "hp-store": {
+    "category": "categories.other",
+    "url": "Doppelt",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "hrs-6": {
+    "category": "categories.hotels",
+    "url": "https://www.hrs.de/",
+    "crawl": {
+      "searchUrl": "ADDON",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "hse": {
+    "category": "categories.lifestyle",
+    "crawl": {
+      "searchUrl": "https://www.hse.de/dpl/m/search?query=ipad&st=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "hudson-reed-3": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://de.hudsonreed.com/search/?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "hugendubel": {
+    "category": "categories.books",
+    "crawl": {
+      "searchUrl": "https://www.hugendubel.de/de/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "hund-unterwegs": {
+    "category": "categories.pets",
+    "url": "ADDON",
+    "crawl": {
+      "searchUrl": "https://www.hund-unterwegs.de/search?sSearch=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "hunkemoller-3": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.hunkemoller.de/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "hutshopping": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.hutshopping.de/Hut_Suche.html#q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "hygide": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://www.hygi.de/produktsuche?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "i-run-2": {
+    "category": "categories.sportswear",
+    "crawl": {
+      "searchUrl": "https://www.i-run.de/suche.html?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "iberia-5": {
+    "category": "categories.airline",
+    "url": "https://www.iberia.com/de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "ibood-3": {
+    "category": "categories.retail",
+    "url": "addon",
+    "crawl": {
+      "searchUrl": "https://www.ibood.com/de/s-de/find-offer?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "igo3d": {
+    "category": "categories.3dprinting",
+    "url": "https://www.igo3d.com/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "iherb-20": {
+    "category": "categories.activities",
+    "url": "läd nicht",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "iherb-23": {
+    "category": "categories.other",
+    "url": "doppelt",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "ihg-hotels-resorts-4": {
+    "category": "categories.travel",
+    "url": "https://www.ihg.com/hotels/de/de/reservation",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "ihrelinsenat": {
+    "category": "categories.other",
+    "url": "nicht auffindbar",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "impericon-2": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.impericon.com/de/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "imusic": {
+    "category": "categories.music",
+    "crawl": {
+      "searchUrl": "https://imusic.de/page/search?query=ipad",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "incogni-4": {
+    "category": "categories.security",
+    "url": "https://incogni.com/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "insenio": {
+    "category": "categories.lifestyle",
+    "crawl": {
+      "searchUrl": "https://www.insenio.de/suche?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "intersport": {
+    "category": "categories.sportswear",
+    "crawl": {
+      "searchUrl": "https://www.intersport.de/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "intimissimi-2": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.intimissimi.com/de/herren/?q=ipad&lang=de_DE",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "isolicht-2": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://www.isolicht.com/catalogsearch/result/?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "it-versandcom": {
+    "category": "categories.electronics",
+    "crawl": {
+      "searchUrl": "https://it-versand.com/search?q=ipad&options%5Bprefix%5D=last&form_type=product&utf8=%E2%9C%93&id=54954783048065&product-id=15227748024705&section-id=predictive-search",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "ita-airways-4": {
+    "category": "categories.airline",
+    "url": "https://www.ita-airways.com/de_de",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "jack-jones-4": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.jackjones.com/de-de/suche?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "jacob-elektronik-2": {
+    "category": "categories.electronics",
+    "crawl": {
+      "searchUrl": "https://www.jacob.de/apple-ipad-familie/",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "jalousiescout": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://www.jalousiescout.de/search?query=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "jan-vanderstorm-2": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.janvanderstorm.de/index.php?stoken=CAC5346&lang=0&cl=search&search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "janado": {
+    "category": "categories.electronics",
+    "crawl": {
+      "searchUrl": "https://www.janado.de/search?q=ipad&type=product",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "jarmino-4": {
+    "category": "categories.supplements",
+    "crawl": {
+      "searchUrl": "https://jarmino.de/search?q=ipad&options%5Bprefix%5D=last",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "jbl-9": {
+    "category": "categories.electronics",
+    "crawl": {
+      "searchUrl": "https://de.jbl.com/search?q=ipad&search-button=",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "jd-sports-4": {
+    "category": "categories.sportswear",
+    "crawl": {
+      "searchUrl": "https://www.jdsports.de/search/ipad/",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "jeanlen": {
+    "category": "categories.beauty",
+    "crawl": {
+      "searchUrl": "https://www.jeanlen.de/search?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "jeans-fritz-2": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.jeans-fritz.de/catalogsearch/result/?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "jochen-schweizer": {
+    "category": "categories.travel",
+    "url": "https://www.jochen-schweizer.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "joe-nimble": {
+    "category": "categories.shoes",
+    "crawl": {
+      "searchUrl": "https://www.joe-nimble.com/de/search?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "joom-24": {
+    "category": "categories.lifestyle",
+    "crawl": {
+      "searchUrl": "https://www.joom.com/de/search/q.ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "josef-seibel": {
+    "category": "categories.shoes",
+    "crawl": {
+      "searchUrl": "https://www.josef-seibel.de/#search?query=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "jotex": {
+    "category": "categories.furniture",
+    "crawl": {
+      "searchUrl": "https://www.jotex.de/search?term=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "joybuy-7": {
+    "category": "categories.retail",
+    "url": "ADDON",
+    "crawl": {
+      "searchUrl": "https://www.joybuy.de/s?k=ipad&st=active+search&keywordsEventType=0",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "joyn": {
+    "category": "categories.other",
+    "crawl": {
+      "searchUrl": "https://www.joyn.de/suche?referer=%2F&q=ipad",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "jp1880-menswear": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.jp1880.de/de/jp_noresults",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "jugend-tours": {
+    "category": "categories.travel",
+    "url": "https://www.jugendtours.de/jugendreisen/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "kaercher": {
+    "category": "categories.garden",
+    "crawl": {
+      "searchUrl": "https://www.kaercher.com/de/suchergebnis.html?query=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "kaffee24": {
+    "category": "categories.coffee",
+    "crawl": {
+      "searchUrl": "https://www.kaffee24.de/?gad_campaignid=776561417#d842/embedded/m=f&q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "kaffeegenuss-shop": {
+    "category": "categories.coffee",
+    "crawl": {
+      "searchUrl": "https://kaffeegenuss-shop.de/search?q=ipad&options%5Bprefix%5D=last",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "kaffeetechnik-shopde": {
+    "category": "categories.coffee",
+    "crawl": {
+      "searchUrl": "https://www.kaffeetechnik-shop.de/search?cat=&search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "kaiser-kraft-4": {
+    "category": "categories.office",
+    "crawl": {
+      "searchUrl": "https://www.kaiserkraft.de/search?text=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "kaisers": {
+    "category": "categories.garden",
+    "url": "ADDON",
+    "crawl": {
+      "searchUrl": "https://kaisers.jetzt/a/search?q=ipad&options%5Bprefix%5D=last",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "karl-lagerfeld": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.karllagerfeld.com/de-de/search?type=product&q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "kartedirektde": {
+    "category": "categories.gaming",
+    "url": "https://kartedirekt.de/",
+    "crawl": {
+      "searchUrl": "ADDON",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "kaspersky-3": {
+    "category": "categories.security",
+    "crawl": {
+      "searchUrl": "https://www.kaspersky.de/search?query=ipad",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "kautionsfrei": {
+    "category": "categories.finance",
+    "url": "https://kautionsfrei.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "kayak": {
+    "category": "categories.travel",
+    "url": "https://www.kayak.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "kfzteile24": {
+    "category": "categories.automotive",
+    "crawl": {
+      "searchUrl": "https://www.kfzteile24.de/artikelsuche?search=ipad&searchType=artnrOenr",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "kicker-shop-2": {
+    "category": "categories.sportswear",
+    "crawl": {
+      "searchUrl": "https://shop.kicker.de/de-de/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "kickz-2": {
+    "category": "categories.retail",
+    "url": "nicht erreichbar",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "kiehls": {
+    "category": "categories.beauty",
+    "crawl": {
+      "searchUrl": "https://www.kiehls.de/on/demandware.store/Sites-kiehls-de-Site/de_DE/Search-Show?q=ipad&lang=",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "kiko": {
+    "category": "categories.beauty",
+    "crawl": {
+      "searchUrl": "https://www.kikocosmetics.com/de-de/search/?917_de-DE%5Bquery%5D=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "kitchenaid-5": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://www.kitchenaid.de/ka-suche?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "kiwicom-9": {
+    "category": "categories.airline",
+    "url": "https://www.kiwi.com/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "klarmobil": {
+    "category": "categories.telecom",
+    "url": "https://www.klarmobil.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "klarsolar": {
+    "category": "categories.energy",
+    "url": "https://klarsolar.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "kleberkerlchen-namensetiketten": {
+    "category": "categories.household",
+    "url": "https://www.namensetiketten.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "klingel-3": {
+    "category": "categories.retail",
+    "crawl": {
+      "searchUrl": "https://www.klingel.de/p/apple-ipad-10gen-671609215fd27f0419ee4ceb_23142.html?color=SILBER&size=Universalgr%C3%B6%C3%9Fe&originSearchValue=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "klm-germany": {
+    "category": "categories.airline",
+    "url": "https://www.klm.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "kneipp": {
+    "category": "categories.beauty",
+    "crawl": {
+      "searchUrl": "https://www.kneipp.com/de_de/search/?q=ipad&search-button=&lang=de_DE",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "koawach": {
+    "category": "categories.food",
+    "crawl": {
+      "searchUrl": "https://www.koawach.de/search?q=ipad&type=product,page,article&options[prefix]=last",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "kochform": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://www.kochform.de/Suche-0-ipad.html",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "kofferexpress24": {
+    "category": "categories.travel",
+    "url": "nicht erreichbar",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "kofferworld": {
+    "category": "categories.travel",
+    "url": "ADDON",
+    "crawl": {
+      "searchUrl": "https://hallerstede.de/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "kolner-haie": {
+    "category": "categories.lifestyle",
+    "url": "https://www.haie.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "konsolenkost": {
+    "category": "categories.gaming",
+    "crawl": {
+      "searchUrl": "https://www.konsolenkost.de/suche/?query=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "la-redoute-5": {
+    "category": "categories.furniture",
+    "crawl": {
+      "searchUrl": "https://www.laredoute.de/errors/searchnoresults.aspx?keyword=ipad&ssid=1791&sskey=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "laminatdepot": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://laminatdepot.de/search?SearchTerm=ipad&search=#fromSearch=true&searchbarType=Header&query=ipad;;",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "lampenonline": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://www.lampenonline.de/catalogsearch/result/?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "lampenwelt": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://www.lampenwelt.de/catalogsearch/result/?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "landal-greenparks-2": {
+    "category": "categories.travel",
+    "url": "https://www.landal.com/",
+    "crawl": {
+      "searchUrl": "ADDON",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "landkaufhaus-mayer": {
+    "category": "categories.lifestyle",
+    "crawl": {
+      "searchUrl": "https://lkh-gesundleben.de/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "landmetzger-schiessl": {
+    "category": "categories.retail",
+    "url": "nicht erreichbar",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "landseife": {
+    "category": "categories.cosmetics",
+    "crawl": {
+      "searchUrl": "https://www.landseife.de/search?q=ipad&options%5Bprefix%5D=last",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "lascana-2": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.lascana.de/suche/?searchparam=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "lastminute": {
+    "category": "categories.travel",
+    "url": "https://www.lastminute.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "lastpass": {
+    "category": "categories.software",
+    "url": "https://www.lastpass.com/",
+    "crawl": {
+      "searchUrl": "ADDON",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "laufbar": {
+    "category": "categories.shoes",
+    "crawl": {
+      "searchUrl": "https://www.lauf-bar.de/#search?query=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "lava": {
+    "category": "categories.other",
+    "crawl": {
+      "searchUrl": "https://la-va.com/#8e63/fullscreen/m=f&q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "lavazza": {
+    "category": "categories.coffee",
+    "url": "ADDON",
+    "crawl": {
+      "searchUrl": "https://www.lavazza.de/de/suchen",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "leasingdeal": {
+    "category": "categories.automotive",
+    "url": "https://leasingdeal.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "lebara": {
+    "category": "categories.telecom",
+    "url": "https://www.lebara.de",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "lebkuchen-schmidt": {
+    "category": "categories.food",
+    "crawl": {
+      "searchUrl": "https://www.lebkuchen-schmidt.com/de/search/?input_search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "lego-23": {
+    "category": "categories.other",
+    "crawl": {
+      "searchUrl": "https://www.lego.com/de-de/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "leifheit-2": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://www.leifheit.de/de-de/search?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "leitermann": {
+    "category": "categories.garden",
+    "crawl": {
+      "searchUrl": "https://www.leitermann.de/search?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "lenovo": {
+    "category": "categories.other",
+    "url": "DOPPELT",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "lenovo-7": {
+    "category": "categories.electronics",
+    "url": "ADDON",
+    "crawl": {
+      "searchUrl": "https://www.lenovo.com/de/de/search?fq=&text=ipad&rows=20&sort=relevance",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "lenstore": {
+    "category": "categories.lifestyle",
+    "crawl": {
+      "searchUrl": "https://www.lenstore.co.uk/search/ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "lentiamo-3": {
+    "category": "categories.lifestyle",
+    "crawl": {
+      "searchUrl": "https://www.lentiamo.de/suchen.html?query=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "leonardo-hotels": {
+    "category": "categories.hotels",
+    "url": "https://www.leonardo-hotels.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "leovegas": {
+    "category": "categories.casino",
+    "url": "https://www.leovegas.de/de-de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "levis-14": {
+    "category": "categories.fashion",
+    "url": "ADDON",
+    "crawl": {
+      "searchUrl": "https://www.levi.com/DE/de_DE/search/ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "lexoffice": {
+    "category": "categories.software",
+    "url": "ADDON",
+    "crawl": {
+      "searchUrl": "https://www.lexware.de/suche/?search%5Bterm%5D=ipad",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "lg-electronics": {
+    "category": "categories.electronics",
+    "crawl": {
+      "searchUrl": "https://www.lg.com/de/search/?search=ipad&tab=alle",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "licht-erlebnisse": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://www.licht-erlebnisse.de/search?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "lichterkettenshop24de": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://www.lichterkettenshop24.de/de/search?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "lidl": {
+    "category": "categories.retail",
+    "crawl": {
+      "searchUrl": "https://www.lidl.de/q/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "liebeskind": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://de.liebeskind-berlin.com/search/?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "lieblingsfoto": {
+    "category": "categories.photography",
+    "url": "https://www.lieblingsfoto.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "lieferando": {
+    "category": "categories.food",
+    "url": "https://www.lieferando.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "lieferando-2": {
+    "category": "categories.other",
+    "url": "Doppelt",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "life-extension-4": {
+    "category": "categories.supplements",
+    "url": "ADDON",
+    "crawl": {
+      "searchUrl": "https://www.lifeextensioneurope.de/#%7B%22hr-search%22%3A%7B%22search_term%22%3A%22ipad%22%2C%22filters%22%3A%5B%5D%2C%22sorting%22%3A%5B%5D%2C%22offsets%22%3A%7B%22category%22%3A12%2C%22blog_post%22%3A12%2C%22product%22%3A42%7D%7D%7D",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "linsenplatz": {
+    "category": "categories.lifestyle",
+    "crawl": {
+      "searchUrl": "https://www.linsenplatz.de/search3.php?search_str=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "linvosges-5": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://www.linvosges.com/de/services/mot_cle/ipad/suchen.htm",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "liquid-life": {
+    "category": "categories.bicycles",
+    "crawl": {
+      "searchUrl": "https://www.liquid-life.de/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "lizensio": {
+    "category": "categories.software",
+    "crawl": {
+      "searchUrl": "https://www.lizensio.de/search?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "lizenzguru": {
+    "category": "categories.software",
+    "url": "https://lizenzguru.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true,
+      "comment": "Prüfen"
+    }
+  },
+  "loberon-2": {
+    "category": "categories.furniture",
+    "crawl": {
+      "searchUrl": "https://www.loberon.de/search?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "loccitane-3": {
+    "category": "categories.cosmetics",
+    "crawl": {
+      "searchUrl": "https://de.loccitane.com/eau-de-parfum-eau-diparie-23EP050IPR25.html?searchPhrase=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "logitech-3": {
+    "category": "categories.electronics",
+    "crawl": {
+      "searchUrl": "https://www.logitech.com/de-de/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "london-kurztrip": {
+    "category": "categories.travel",
+    "crawl": {
+      "searchUrl": "https://www.london-kurztrip.de/suche.php?field-keywords=ipad",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "lookfantastic-4": {
+    "category": "categories.beauty",
+    "crawl": {
+      "searchUrl": "https://www.lookfantastic.de/search/?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "lounge-by-zalando-3": {
+    "category": "categories.fashion",
+    "url": "https://www.zalando-lounge.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "ltur": {
+    "category": "categories.travel",
+    "url": "https://www.ltur.com/de/index",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "ludwig-von-kapff": {
+    "category": "categories.wine",
+    "url": "ADDON",
+    "crawl": {
+      "searchUrl": "https://www.ludwig-von-kapff.de/suche?searchPhrase=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "lufthansa-13": {
+    "category": "categories.airline",
+    "crawl": {
+      "searchUrl": "https://www.lufthansa.com/de/de/homepage",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "lufthansa-9": {
+    "category": "categories.other",
+    "url": "DOPPELT",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "lululemon-2": {
+    "category": "categories.fashion",
+    "url": "ADDON",
+    "crawl": {
+      "searchUrl": "https://www.lululemon.de/en-de/search?q=ipad&lang=en_DE&searchType=manualSearch",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "lusini-2": {
+    "category": "categories.garden",
+    "crawl": {
+      "searchUrl": "https://www.lusini.com/en/search/#q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "lyko-2": {
+    "category": "categories.beauty",
+    "crawl": {
+      "searchUrl": "https://lyko.com/de/sok?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "lyra-pet": {
+    "category": "categories.pets",
+    "crawl": {
+      "searchUrl": "https://lyra-pet.de/search/?qs=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "mac-cosmetics": {
+    "category": "categories.beauty",
+    "crawl": {
+      "searchUrl": "https://www.maccosmetics.de/search?query=ipad&search-type=standard",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "mactrade": {
+    "category": "categories.electronics",
+    "crawl": {
+      "searchUrl": "https://www.mactrade.de/search?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "macys": {
+    "category": "categories.retail",
+    "crawl": {
+      "searchUrl": "https://www.macys.com/shop/featured/ipad?ss=true",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "mailchimp-2": {
+    "category": "categories.other",
+    "url": "https://mailchimp.com/de",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "maingau-energie": {
+    "category": "categories.energy",
+    "url": "https://www.maingau-energie.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "malen-nach-zahlen-fur-erwachsene": {
+    "category": "categories.lifestyle",
+    "crawl": {
+      "searchUrl": "https://malennachzahlen-erwachsene.de/search?q=ipad&type=product",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "manomano": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://www.manomano.de/suche/ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "markenkoffer": {
+    "category": "categories.travel",
+    "crawl": {
+      "searchUrl": "https://www.markenkoffer.de/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "marks-and-spencer-4": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.marksandspencer.com/search?searchTerm=ipad&intid=normal&langId=-24&storeId=10151&catalogId=10051&searchType=normal",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "marktkauf": {
+    "category": "categories.retail",
+    "url": "ADDON",
+    "crawl": {
+      "searchUrl": "https://www.marktkauf.de/INTERSHOP/web/WFS/Plus-Marktkauf-Site/de_DE/-/EUR/ViewMMPParametricSearch-SimpleOfferSearch?SearchTerm=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "marriott-bonvoy-2": {
+    "category": "categories.hotels",
+    "crawl": {
+      "searchUrl": "https://www.marriott.com/de/default.mi",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "marriott-bonvoy-5": {
+    "category": "categories.other",
+    "url": "doppelt",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "massive-naturmoebel": {
+    "category": "categories.furniture",
+    "crawl": {
+      "searchUrl": "https://massive-naturmoebel.de/catalogsearch/result/?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "matratzen-concord": {
+    "category": "categories.furniture",
+    "crawl": {
+      "searchUrl": "https://www.matratzen-concord.de/search?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "matratzen-discount": {
+    "category": "categories.furniture",
+    "crawl": {
+      "searchUrl": "https://matratzen.discount/search/product/search",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "mcbuerode": {
+    "category": "categories.office",
+    "crawl": {
+      "searchUrl": "https://mcbuero.de/mcb/suchen/iPads/",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "mcparking": {
+    "category": "categories.other",
+    "url": "https://mcparking.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "mcrepair": {
+    "category": "categories.electronics",
+    "url": "https://www.mcrepair.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "meaco": {
+    "category": "categories.household",
+    "url": "https://eu.meaco.com/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "mediashop": {
+    "category": "categories.retail",
+    "crawl": {
+      "searchUrl": "https://www.mediashop.tv/search-results?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "medimops": {
+    "category": "categories.books",
+    "crawl": {
+      "searchUrl": "https://www.medimops.de/produkte-C0/?fcIsSearch=1&searchparam=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "medpets-tierapotheke-online": {
+    "category": "categories.pets",
+    "crawl": {
+      "searchUrl": "https://www.medpets.de/suchen?query=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "medpex-by-docmorris": {
+    "category": "categories.pharmacy",
+    "crawl": {
+      "searchUrl": "https://www.medpex.de/search?query=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "mein-saunashop": {
+    "category": "categories.lifestyle",
+    "crawl": {
+      "searchUrl": "https://www.mein-saunashop.de/suche?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "meinauto": {
+    "category": "categories.automotive",
+    "url": "https://www.meinauto.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "meinfoto-2": {
+    "category": "categories.photography",
+    "url": "https://www.meinfoto.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "meinteller": {
+    "category": "categories.other",
+    "url": "im neuaufbau",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "melitta": {
+    "category": "categories.coffee",
+    "crawl": {
+      "searchUrl": "https://www.melitta.de/search?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "memolife": {
+    "category": "categories.retail",
+    "crawl": {
+      "searchUrl": "https://www.memolife.de/search?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "mepal": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://www.mepal.com/de#sqr:(q[ipad])",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "meravino": {
+    "category": "categories.wine",
+    "crawl": {
+      "searchUrl": "https://www.meravino.de/suche/?cl=search&searchparam=ipad&type=article",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "meta-2": {
+    "category": "categories.electronics",
+    "url": "https://www.meta.com/de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "mey-3": {
+    "category": "categories.fashion",
+    "url": "https://www.mey.com/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "mey-edlich": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.mey-edlich.de/search/noresults?text=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "mi-heat-heizsysteme": {
+    "category": "categories.energy",
+    "crawl": {
+      "searchUrl": "https://infrarot-fussboden.de/search/?qs=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "michaelnoll": {
+    "category": "categories.other",
+    "url": "nicht  auffindbar",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "mietwagencheck": {
+    "category": "categories.automotive",
+    "url": "https://www.mietwagen-check.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "mobel-hoffner": {
+    "category": "categories.furniture",
+    "crawl": {
+      "searchUrl": "https://www.hoeffner.de/suche?anfrage=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "mobel-inhofer": {
+    "category": "categories.furniture",
+    "crawl": {
+      "searchUrl": "https://www.inhofer.de/search?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "modivo": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://modivo.de/s/ipad?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "momox": {
+    "category": "categories.marketplace",
+    "url": "https://www.momox.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "momox-fashion": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.momoxfashion.com/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "monster-hopups": {
+    "category": "categories.other",
+    "url": "nicht erreichbar",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "motatos-2": {
+    "category": "categories.food",
+    "crawl": {
+      "searchUrl": "https://www.motatos.de/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "motointegrator-5": {
+    "category": "categories.automotive",
+    "crawl": {
+      "searchUrl": "https://www.motointegrator.de/produkte/ipad.html",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "mountain-warehouse-5": {
+    "category": "categories.sportswear",
+    "crawl": {
+      "searchUrl": "https://www.mountainwarehouse.com/search/ipad/",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "muji-4": {
+    "category": "categories.retail",
+    "crawl": {
+      "searchUrl": "https://germany.muji.eu/search.php?search_query=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "musement": {
+    "category": "categories.travel",
+    "crawl": {
+      "searchUrl": "https://www.musement.com/us/search/?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "musikhaus-kirstein": {
+    "category": "categories.music",
+    "crawl": {
+      "searchUrl": "https://www.kirstein.de/?type=search&query=ipad&cl=search_result",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "mustang": {
+    "category": "categories.fashion",
+    "url": "ADDON",
+    "crawl": {
+      "searchUrl": "https://www.mustang.de/search?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "mycandymixde": {
+    "category": "categories.food",
+    "url": "https://www.mycandymix.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "mydays": {
+    "category": "categories.travel",
+    "crawl": {
+      "searchUrl": "https://www.mydays.de/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "myheritage-7": {
+    "category": "categories.other",
+    "url": "https://www.myheritage.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "myphotobook": {
+    "category": "categories.photography",
+    "url": "https://www.myphotobook.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "myposter-3": {
+    "category": "categories.photography",
+    "url": "https://www.myposter.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "myprotein-28": {
+    "category": "categories.other",
+    "url": "doppelt",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "myprotein-7": {
+    "category": "categories.supplements",
+    "crawl": {
+      "searchUrl": "https://de.myprotein.com/search/?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "myspiritseu": {
+    "category": "categories.food",
+    "crawl": {
+      "searchUrl": "https://www.myspirits.eu/factfinder/result/?type=search&query=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "myticket": {
+    "category": "categories.lifestyle",
+    "url": "ADDON",
+    "crawl": {
+      "searchUrl": "https://www.myticket.de/de/suche?keywords=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "mytime": {
+    "category": "categories.food",
+    "url": "https://www.mytime.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true,
+      "comment": "prüfen"
+    }
+  },
+  "myvitamins-2": {
+    "category": "categories.supplements",
+    "crawl": {
+      "searchUrl": "https://www.myvitamins.de/search/?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "n26-2": {
+    "category": "categories.finance",
+    "url": "https://n26.com/de-de",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "namecheap": {
+    "category": "categories.other",
+    "url": "https://www.namecheap.com/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "naturzeit": {
+    "category": "categories.sportswear",
+    "crawl": {
+      "searchUrl": "https://www.naturzeit.com/search?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "nespresso": {
+    "category": "categories.coffee",
+    "crawl": {
+      "searchUrl": "https://www.nespresso.com/de/de/suchergebnisse?q=ipad&tab=Articles&p=1",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "netgear-8": {
+    "category": "categories.electronics",
+    "crawl": {
+      "searchUrl": "https://www.netgear.com/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "netto-marken-discount": {
+    "category": "categories.retail",
+    "crawl": {
+      "searchUrl": "https://www.netto-online.de/INTERSHOP/web/WFS/Plus-NettoDE-Site/de_DE/-/EUR/ViewMMPParametricSearch-SimpleOfferSearch?SearchTerm=ipad&Region=1&MeatMarketType=2&KW=09",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "netto-reisen": {
+    "category": "categories.travel",
+    "url": "https://www.netto-reisen.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "new-era-cap": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.neweracap.eu/de-de/search?q=ipad&options%5Bprefix%5D=last&sort_by=relevance&type=product",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "new-one": {
+    "category": "categories.jewelry",
+    "crawl": {
+      "searchUrl": "https://www.newone-shop.com/de/catalogsearch/result/?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "nh-hotels-3": {
+    "category": "categories.hotels",
+    "url": "https://www.nh-hotels.com/de",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "ninja-2": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://www.ninjakitchen.de/INTERSHOP/web/WFS/SharkNinja-DE-Site/de_DE/ninja-responsive/EUR/ViewParametricSearch-SimpleOfferSearch?SearchTerm=ipad&search=",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "niyok": {
+    "category": "categories.cosmetics",
+    "crawl": {
+      "searchUrl": "https://niyok.de/search?type=product&q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "nkd": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.nkd.com/de_de/productsearch/results/?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "noblechairs": {
+    "category": "categories.gaming",
+    "url": "https://www.noblechairs.de/en-de",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "nordpass-4": {
+    "category": "categories.security",
+    "url": "https://nordpass.com/de/pass-site/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "nordvpn": {
+    "category": "categories.security",
+    "url": "https://nordvpn.com/de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "nordvpn-20": {
+    "category": "categories.other",
+    "url": "doppelt",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "nordvpn-27": {
+    "category": "categories.other",
+    "url": "doppelt",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "norma24": {
+    "category": "categories.retail",
+    "crawl": {
+      "searchUrl": "https://www.norma24.de/search?sSearch=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "norton-16": {
+    "category": "categories.security",
+    "crawl": {
+      "searchUrl": "https://de.norton.com/search?query=ipad",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "notebookgalerie": {
+    "category": "categories.electronics",
+    "crawl": {
+      "searchUrl": "https://www.notebookgalerie.de/catalogsearch/result/?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "notebooksbilliger": {
+    "category": "categories.electronics",
+    "url": "ADDON",
+    "crawl": {
+      "searchUrl": "https://www.notebooksbilliger.de/produkte/ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "notino-13": {
+    "category": "categories.beauty",
+    "url": "ADDON",
+    "crawl": {
+      "searchUrl": "https://www.notino.de/search.asp?exps=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "o2": {
+    "category": "categories.telecom",
+    "crawl": {
+      "searchUrl": "https://www.o2online.de/suche/consumer/?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "obi": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://www.obi.de/search/ipad/",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "octopusenergy": {
+    "category": "categories.energy",
+    "url": "https://octopusenergy.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "odiporo": {
+    "category": "categories.retail",
+    "crawl": {
+      "searchUrl": "https://odiporo.de/search?options%5Bprefix%5D=last&q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "office-discount": {
+    "category": "categories.office",
+    "crawl": {
+      "searchUrl": "https://www.office-discount.de/suche/ipad?mkz=245",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "office-partner": {
+    "category": "categories.office",
+    "crawl": {
+      "searchUrl": "https://www.office-partner.de/search?sSearch=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "oh-my-fantasy": {
+    "category": "categories.lifestyle",
+    "crawl": {
+      "searchUrl": "https://ohmyfantasy.com/search?q=ipad&options%5Bprefix%5D=last",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "olight": {
+    "category": "categories.outdoor",
+    "crawl": {
+      "searchUrl": "https://de.olight.com/search?keyword=ipad&searchType=enter&t=1772120420987",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "olmuhle-solling": {
+    "category": "categories.food",
+    "url": "ADDON",
+    "crawl": {
+      "searchUrl": "https://www.oelmuehle-solling.de/search?s=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "olympusom-system": {
+    "category": "categories.photography",
+    "url": "https://explore.omsystem.com/de/de/",
+    "crawl": {
+      "searchUrl": "ADDON",
+      "cms": "",
+      "crawlable": true,
+      "comment": "prüfen"
+    }
+  },
+  "omega3zone": {
+    "category": "categories.supplements",
+    "crawl": {
+      "searchUrl": "https://omega3zone.de/search?q=ipad&type=product",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "oneplus-3": {
+    "category": "categories.electronics",
+    "crawl": {
+      "searchUrl": "https://www.oneplus.com/de/store",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "online-batterien-2": {
+    "category": "categories.energy",
+    "crawl": {
+      "searchUrl": "https://online-batterien.de/search?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "opodo": {
+    "category": "categories.airline",
+    "url": "https://www.opodo.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "oral-b-10": {
+    "category": "categories.other",
+    "url": "doppelt",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "oral-b-2": {
+    "category": "categories.cosmetics",
+    "url": "https://www.oralb.de/de-de",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "orca-tauchreisen": {
+    "category": "categories.travel",
+    "url": "https://orca.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "osprey-2": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.osprey.com/catalogsearch/result/?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "ostermann": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://www.ostermann.de/search?sSearch=vviinn&query=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "otterbox": {
+    "category": "categories.security",
+    "crawl": {
+      "searchUrl": "https://www.otterbox.de/de-de/suchen?q=ipad&search-button=&lang=de_DE",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "otto-office-2": {
+    "category": "categories.retail",
+    "crawl": {
+      "searchUrl": "https://www.otto-office.com/de/app/search/index?wkid=OO-2-DE2U9K51692LgvJQ1Q&plid=nav-search&query%5Bquery%5D=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "outlet46": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.outlet46.de/search/?query=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "outletcity": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.outletcity.com/en/metzingen/#/search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "paddock-legends": {
+    "category": "categories.lifestyle",
+    "crawl": {
+      "searchUrl": "https://www.paddock-legends.com/en/suche/?suche=ipad&submit=",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "padel-point": {
+    "category": "categories.fitness",
+    "crawl": {
+      "searchUrl": "https://www.padel-point.de/",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "pallhuber": {
+    "category": "categories.wine",
+    "crawl": {
+      "searchUrl": "https://www.pallhuber-genuss.de/search?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "paper-markt": {
+    "category": "categories.office",
+    "crawl": {
+      "searchUrl": "https://www.paper-markt.de/search?sSearch=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "parallels-2": {
+    "category": "categories.software",
+    "url": "https://www.parallels.com/de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "parfuemerie": {
+    "category": "categories.beauty",
+    "crawl": {
+      "searchUrl": "https://www.parfuemerie.de/catalogsearch/result/?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "parfumdreams-6": {
+    "category": "categories.beauty",
+    "crawl": {
+      "searchUrl": "https://www.parfumdreams.de/?m=5&search=ipad&vertex=0",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "parfumerie-pieper": {
+    "category": "categories.beauty",
+    "url": "https://www.pieper.de/",
+    "crawl": {
+      "searchUrl": "ADDON",
+      "cms": "",
+      "crawlable": true,
+      "comment": "prüfen"
+    }
+  },
+  "parfumgroup": {
+    "category": "categories.beauty",
+    "url": "https://parfumgroup.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true,
+      "comment": "prüfen"
+    }
+  },
+  "parfums-club-2": {
+    "category": "categories.beauty",
+    "url": "https://www.parfumsclub.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true,
+      "comment": "prüfen"
+    }
+  },
+  "parken-am-flughafen": {
+    "category": "categories.travel",
+    "url": "https://parkenamflughafen.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "parken-und-fliegen": {
+    "category": "categories.travel",
+    "url": "https://www.parken-und-fliegen.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "passandude": {
+    "category": "categories.furniture",
+    "url": "https://passandu.de/",
+    "crawl": {
+      "searchUrl": "ADDON",
+      "cms": "",
+      "crawlable": true,
+      "comment": "prüfen"
+    }
+  },
+  "passiontec": {
+    "category": "categories.garden",
+    "url": "ADDON",
+    "crawl": {
+      "searchUrl": "https://www.passiontec.de/schnellsuche/ipad/alle/alle/alle/",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "pati-versand": {
+    "category": "categories.other",
+    "url": "nicht erreichbar",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "paulas-choice-7": {
+    "category": "categories.cosmetics",
+    "url": "https://www.paulaschoice.de/de",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "paulmann-licht": {
+    "category": "categories.household",
+    "url": "https://de.paulmann.com/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true,
+      "comment": "prüfen"
+    }
+  },
+  "pearlco": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://pearlco.de/search?q=ipad&options%5Bprefix%5D=last",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "pentagon-sports-2": {
+    "category": "categories.bicycles",
+    "url": "ADDON",
+    "crawl": {
+      "searchUrl": "https://www.pentagonsports.de/search?query=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "pepe-jeans-5": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.pepejeans.com/de/de_de/search?q=ipad&lang=de_DE",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "perfumetrader-5": {
+    "category": "categories.beauty",
+    "crawl": {
+      "searchUrl": "https://www.perfumetrader.de/de/catalogsearch/result/?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "petcrew": {
+    "category": "categories.pets",
+    "crawl": {
+      "searchUrl": "https://www.petcrew.de/search?q=ipad&type=product",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "peter-hahn-3": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.peterhahn.de/search.php?query=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "pferdefutter": {
+    "category": "categories.pets",
+    "crawl": {
+      "searchUrl": "https://www.pferdefutter.de/de/search/?shop_category=search&input_search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "pflanzeplus": {
+    "category": "categories.other",
+    "url": "nicht gefunden",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "philips-hue-11": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://www.philips-hue.com/de-de/search?query=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "philips-korperpflege": {
+    "category": "categories.electronics",
+    "crawl": {
+      "searchUrl": "https://www.philips.de/c-w/search.html?context=b2c#q=ipad&cq=%40ps_contenttype_key%3D%3Dproduct",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "piercingline": {
+    "category": "categories.beauty",
+    "crawl": {
+      "searchUrl": "https://www.piercingline.com/en/ff/search?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "pinko-3": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.pinko.com/de-de/search?resources%5Btype%5D=query%2Ccollection%2Cproduct%2Cpage%2Carticle&resources%5Blimit%5D=4&resources%5Blimit_scope%5D=each&resources%5Boptions%5D%5Bunavailable_products%5D=last&resources%5Boptions%5D%5Bfields%5D=author%2Cbody%2Cproduct_type%2Ctag%2Ctitle%2Cvariants.barcode%2Cvariants.sku%2Cvariants.title%2Cvendor&q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "pixum-2": {
+    "category": "categories.photography",
+    "url": "https://www.pixum.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "playstation-direct-6": {
+    "category": "categories.other",
+    "url": "nicht auffindbar",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "pme-legend-2": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.pme-legend.com/de/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "poco": {
+    "category": "categories.furniture",
+    "url": "https://www.poco.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true,
+      "comment": "prüfen"
+    }
+  },
+  "pokalspezialist": {
+    "category": "categories.lifestyle",
+    "crawl": {
+      "searchUrl": "https://pokalspezialist.de/search?query=ipad",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "polar-3": {
+    "category": "categories.fitness",
+    "url": "https://www.polar.com/de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "pollin-electronic": {
+    "category": "categories.electronics",
+    "crawl": {
+      "searchUrl": "https://www.pollin.de/search?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "polo-motorrad": {
+    "category": "categories.automotive",
+    "url": "https://www.polo-motorrad.com/de-de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true,
+      "comment": "prüfen"
+    }
+  },
+  "poolsellerde": {
+    "category": "categories.garden",
+    "url": "https://www.poolseller.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true,
+      "comment": "prüfen"
+    }
+  },
+  "porzellantreff": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://www.porzellantreff.de/de/catalogsearch/result/?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "postcode-lotterie": {
+    "category": "categories.casino",
+    "url": "https://www.postcode-lotterie.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "posterxxl": {
+    "category": "categories.photography",
+    "url": "https://www.posterxxl.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "preisvergleich": {
+    "category": "categories.retail",
+    "crawl": {
+      "searchUrl": "https://www.preisvergleich.de/search/result/query/ipad?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "priceline": {
+    "category": "categories.travel",
+    "url": "https://www.priceline.com/",
+    "crawl": {
+      "searchUrl": "ADDON",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "prime-video-11": {
+    "category": "categories.marketplace",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false,
+      "comment": "prüfen"
+    }
+  },
+  "printabout-3": {
+    "category": "categories.office",
+    "crawl": {
+      "searchUrl": "https://www.printabout.de/suche/?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "printplanet": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://www.printplanet.de/search/result?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "printroyalde": {
+    "category": "categories.other",
+    "url": "nicht auffindbar",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "printus": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://www.printus.de/suche/ipad?mkz=220",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "pro-emit": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://www.pro-emit.de/?s=Ipad",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "proshop-5": {
+    "category": "categories.electronics",
+    "crawl": {
+      "searchUrl": "https://www.proshop.de/?s=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "protein-works-3": {
+    "category": "categories.supplements",
+    "crawl": {
+      "searchUrl": "https://www.theproteinworks.com/search/ipad?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "protonvpn": {
+    "category": "categories.security",
+    "url": "https://protonvpn.com/de",
+    "crawl": {
+      "searchUrl": "ADDON",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "pull-bear": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.pullandbear.com/de/?q=Ipad&filter=hierarchical_category%3A1030616351&page=1",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "purelei": {
+    "category": "categories.jewelry",
+    "crawl": {
+      "searchUrl": "https://purelei.com/search?type=product&q=ipad&options%5Bprefix%5D=last",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "purish": {
+    "category": "categories.cosmetics",
+    "crawl": {
+      "searchUrl": "https://purish.com/search?q=ipad&type=product",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "pyur": {
+    "category": "categories.telecom",
+    "url": "https://www.pyur.com/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "qobuz": {
+    "category": "categories.music",
+    "url": "https://www.qobuz.com/de-de/discover",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "quelle": {
+    "category": "categories.retail",
+    "crawl": {
+      "searchUrl": "https://www.quelle.de/s/ipad/",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "quiksilver-2": {
+    "category": "categories.sportswear",
+    "crawl": {
+      "searchUrl": "https://www.quiksilver.de/on/demandware.store/Sites-QS-DE-Site/de_DE/Search-Show?q=ipadd&searchtype=typed",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "r-ray-ban-5": {
+    "category": "categories.other",
+    "crawl": {
+      "searchUrl": "https://www.ray-ban.com/germany?query=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "radisson-hotels-27": {
+    "category": "categories.hotels",
+    "url": "https://www.radissonhotels.com/de-de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "radisson-hotels-45": {
+    "category": "categories.other",
+    "url": "doppelt",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "radisson-hotels-emea": {
+    "category": "categories.other",
+    "url": "doppelt",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "rajapack": {
+    "category": "categories.office",
+    "url": "ADDON",
+    "crawl": {
+      "searchUrl": "https://www.rajapack.de/?query=ipad&SearchCat=natural&SearchQuery=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "ralph-lauren-5": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.ralphlauren.de/de/search?lang=de_DE&rootLevelCat=&br=t&q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "rameder": {
+    "category": "categories.automotive",
+    "url": "https://www.rameder.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true,
+      "comment": "prüfen"
+    }
+  },
+  "ravensburger-2": {
+    "category": "categories.gaming",
+    "url": "ADDON",
+    "crawl": {
+      "searchUrl": "https://www.ravensburger.de/de-DE/suche?query=ipad&productCategories=Ravensburger&productCategories=BRIO&productCategories=",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "raw-powders": {
+    "category": "categories.supplements",
+    "crawl": {
+      "searchUrl": "https://rawpowders.de/index.php?route=product/search&search=ipad&description=1",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "ray-ban-2": {
+    "category": "categories.other",
+    "url": "doppelt",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "rc-multistore": {
+    "category": "categories.lifestyle",
+    "crawl": {
+      "searchUrl": "https://www.rc-multistore.com/Hersteller#6698/fullscreen/m=f&q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "readly-9": {
+    "category": "categories.other",
+    "url": "https://de.readly.com/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "rebuy-7": {
+    "category": "categories.electronics",
+    "crawl": {
+      "searchUrl": "https://www.rebuy.de/kaufen/suchen?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "refurbiestorede": {
+    "category": "categories.electronics",
+    "crawl": {
+      "searchUrl": "https://refurbiestore.de/?s=ipad&post_type=product&dgwt_wcas=1",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "reichelt-elektronik": {
+    "category": "categories.electronics",
+    "crawl": {
+      "searchUrl": "https://www.reichelt.de/de/de/shop/kategorie/ipad-6717",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "reifen24": {
+    "category": "categories.automotive",
+    "url": "https://www.reifen24.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "reifencom": {
+    "category": "categories.automotive",
+    "crawl": {
+      "searchUrl": "https://www.reifen.com/de-de/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "reifendirektde": {
+    "category": "categories.automotive",
+    "url": "https://www.reifendirekt.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "reifentiefpreis": {
+    "category": "categories.automotive",
+    "url": "https://www.reifentiefpreis.de/",
+    "crawl": {
+      "searchUrl": "ADDON",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "rememberde": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://www.remember.de/?show_omnisearch=true&clerk_query=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "reolink": {
+    "category": "categories.security",
+    "crawl": {
+      "searchUrl": "https://reolink.com/sitesearch/?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "rewe": {
+    "category": "categories.retail",
+    "url": "https://www.rewe.de/",
+    "crawl": {
+      "searchUrl": "ADDON",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "roastmarket": {
+    "category": "categories.coffee",
+    "crawl": {
+      "searchUrl": "https://www.roastmarket.de/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "rolladen7": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://rolladen7.de/catalogsearch/result/?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "roompot": {
+    "category": "categories.travel",
+    "url": "https://www.roompot.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "rosetta-stone-2": {
+    "category": "categories.other",
+    "url": "https://de.rosettastone.com/",
+    "crawl": {
+      "searchUrl": "ADDON",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "roter-hahn-112": {
+    "category": "categories.other",
+    "crawl": {
+      "searchUrl": "https://www.roter-hahn-112.de/search?sSearch=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "ruggable": {
+    "category": "categories.furniture",
+    "crawl": {
+      "searchUrl": "https://ruggable.de/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "rumundcode": {
+    "category": "categories.food",
+    "crawl": {
+      "searchUrl": "https://www.rumundco.de/search?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "running-point": {
+    "category": "categories.shoes",
+    "crawl": {
+      "searchUrl": "https://www.running-point.de/search?q=ipad&options%5Bprefix%5D=last",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "saily-4": {
+    "category": "categories.esim",
+    "url": "https://saily.com/de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true,
+      "comment": "prüfen"
+    }
+  },
+  "samsung-shop": {
+    "category": "categories.electronics",
+    "crawl": {
+      "searchUrl": "https://www.samsung.com/de/aisearch/?searchvalue=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "sandisk-europe": {
+    "category": "categories.electronics",
+    "crawl": {
+      "searchUrl": "https://www.sandisk.com/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "saniweb-2": {
+    "category": "categories.furniture",
+    "crawl": {
+      "searchUrl": "https://www.saniweb.de/catalogsearch/result/?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "santander-consumer-bank-kreditkarte": {
+    "category": "categories.finance",
+    "url": "https://www.santander.de/privatkunden/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "santos-grills": {
+    "category": "categories.garden",
+    "crawl": {
+      "searchUrl": "https://www.santosgrills.de/search?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "satorisan": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://eu.satorisan.com/search?q=ipad&type=product",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "schafer-shop-3": {
+    "category": "categories.retail",
+    "crawl": {
+      "searchUrl": "https://www.schaefer-shop.de/product/search?query=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "scheppach": {
+    "category": "categories.household",
+    "url": "https://www.scheppach.com/de",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "schleich": {
+    "category": "categories.gaming",
+    "crawl": {
+      "searchUrl": "https://de.schleich-s.com/search?q=ipad&options%5Bprefix%5D=last&type=product",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "schraub-doc": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://schraub-doc.de/catalogsearch/result/?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "schuhcenter": {
+    "category": "categories.shoes",
+    "crawl": {
+      "searchUrl": "https://www.schuhcenter.de/?query=ipad&cl=search_result",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "schuhe24": {
+    "category": "categories.shoes",
+    "url": "nicht auffindbar",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "sconto": {
+    "category": "categories.furniture",
+    "crawl": {
+      "searchUrl": "https://www.sconto.de/suche?anfrage=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "secret-escapes-2": {
+    "category": "categories.travel",
+    "url": "https://www.secretescapes.com/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "senifone-2": {
+    "category": "categories.electronics",
+    "crawl": {
+      "searchUrl": "https://senifone.de/search?q=ipad&type=product&options[prefix]=last",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "sephora": {
+    "category": "categories.cosmetics",
+    "crawl": {
+      "searchUrl": "https://www.sephora.de/suche?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "shark-2": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://www.sharkclean.de/INTERSHOP/web/WFS/SharkNinja-DE-Site/de_DE/-/EUR/ViewParametricSearch-SimpleOfferSearch?SearchTerm=ipad&search=",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "sheego": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.sheego.de/search?q=ipad&searchOrigin=searchField&searchTerm=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "shop-apotheke": {
+    "category": "categories.pharmacy",
+    "crawl": {
+      "searchUrl": "https://www.shop-apotheke.com/search.htm?eventName=search-submit&i=1&q=ipad&searchChannel=algolia",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "shop4runners": {
+    "category": "categories.shoes",
+    "url": "https://shop4runners.com/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "prüfen",
+      "crawlable": true
+    }
+  },
+  "shopbrosdeals-2": {
+    "category": "categories.retail",
+    "crawl": {
+      "searchUrl": "https://shop.bros.deals/?s=ipad&post_type=product&product_cat=",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "shopify-2": {
+    "category": "categories.software",
+    "url": "https://www.shopify.com/de",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "shopinbit": {
+    "category": "categories.retail",
+    "url": "https://shopinbit.com",
+    "crawl": {
+      "searchUrl": "https://shopinbit.com/de/search?search=ipad",
+      "cms": "shopware",
+      "crawlable": true
+    }
+  },
+  "shutterstock": {
+    "category": "categories.photography",
+    "crawl": {
+      "searchUrl": "https://www.shutterstock.com/de/search/ipad",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "silkes-weinkeller": {
+    "category": "categories.wine",
+    "crawl": {
+      "searchUrl": "https://www.silkes-weinkeller.de/suche/?cl=search&searchparam=ipad&type=article",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "sim24": {
+    "category": "categories.telecom",
+    "url": "https://www.sim24.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "simde": {
+    "category": "categories.telecom",
+    "url": "https://www.sim.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "simon-mobile": {
+    "category": "categories.telecom",
+    "url": "https://www.simonmobile.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "simyo-4": {
+    "category": "categories.telecom",
+    "url": "https://www.simyo.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "sinful-3": {
+    "category": "categories.lifestyle",
+    "crawl": {
+      "searchUrl": "https://www.sinful.de/search?query=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "sixt-2": {
+    "category": "categories.other",
+    "url": "doppelt",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "sixt-6": {
+    "category": "categories.automotive",
+    "url": "https://www.sixt.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "size": {
+    "category": "categories.shoes",
+    "crawl": {
+      "searchUrl": "https://www.sizeofficial.de/search/ipad/",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "skillshare": {
+    "category": "categories.other",
+    "crawl": {
+      "searchUrl": "https://www.skillshare.com/en/search/classes?query=ipad",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "slimcenter-2": {
+    "category": "categories.supplements",
+    "crawl": {
+      "searchUrl": "https://www.slimcenter.de/suchergebnisse.html?search_key=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "smartphoto-6": {
+    "category": "categories.photography",
+    "crawl": {
+      "searchUrl": "https://www.smartphoto.de/search?searchterm=ipad",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "smartsteuer": {
+    "category": "categories.other",
+    "url": "https://www.smartsteuer.de/online/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "smash-me": {
+    "category": "categories.lifestyle",
+    "crawl": {
+      "searchUrl": "https://smashme.de/#617a/fullscreen/m=and&q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "smava-2": {
+    "category": "categories.finance",
+    "url": "https://www.smava.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "softperten": {
+    "category": "categories.software",
+    "crawl": {
+      "searchUrl": "https://www.softperten.de/search?sSearch=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "software-dealz": {
+    "category": "categories.software",
+    "crawl": {
+      "searchUrl": "https://software-dealz.de/search?type=product&q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "software-solution-24": {
+    "category": "categories.software",
+    "crawl": {
+      "searchUrl": "https://softwaresolution24.com/search?type=product&q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "softwarehunter": {
+    "category": "categories.software",
+    "crawl": {
+      "searchUrl": "https://www.softwarehunter.de/search?sSearch=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "solarway": {
+    "category": "categories.energy",
+    "url": "https://solarway.shop/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "soliver-4": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.soliver.de/search/?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "songmics-5": {
+    "category": "categories.furniture",
+    "crawl": {
+      "searchUrl": "https://www.songmics.de/search?type=product&options%5Bunavailable_products%5D=last&options%5Bprefix%5D=none&q=ipad*",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "sonos-14": {
+    "category": "categories.electronics",
+    "crawl": {
+      "searchUrl": "https://www.sonos.com/de-de/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "soundcore-4": {
+    "category": "categories.electronics",
+    "crawl": {
+      "searchUrl": "https://www.soundcore.com/eu/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "space-nk-9": {
+    "category": "categories.cosmetics",
+    "crawl": {
+      "searchUrl": "https://www.spacenk.com/uk/search?q=ipad&search-button=&lang=en_GB",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "spar-mit-reisen": {
+    "category": "categories.travel",
+    "crawl": {
+      "searchUrl": "https://www.spar-mit.com/suche?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "sparhandy": {
+    "category": "categories.electronics",
+    "url": "https://www.sparhandy.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "speedcube-3": {
+    "category": "categories.gaming",
+    "crawl": {
+      "searchUrl": "https://www.speedcube.nl/de/#fac5/fullscreen/product/m=f&q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "spitzbubde": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://spitzbub.de/",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "sport-bittl": {
+    "category": "categories.sportswear",
+    "crawl": {
+      "searchUrl": "https://www.sport-bittl.com/de/#search:query=ipad&first=0&count=40",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "sports-direct-5": {
+    "category": "categories.lifestyle",
+    "url": "addon",
+    "crawl": {
+      "searchUrl": "https://www.sportsdirect.com/searchresults?descriptionfilter=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "sportscheck": {
+    "category": "categories.sportswear",
+    "crawl": {
+      "searchUrl": "https://www.sportscheck.com/search/?q=ipad&lang=null",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "sportstech": {
+    "category": "categories.fitness",
+    "url": "https://www.sportstech.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "prüfen",
+      "crawlable": true
+    }
+  },
+  "spreadshirt-5": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.spreadshirt.de/shop/s/ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "starmobile": {
+    "category": "categories.electronics",
+    "crawl": {
+      "searchUrl": "https://starmobile.de/suche/ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "startselect": {
+    "category": "categories.other",
+    "crawl": {
+      "searchUrl": "https://startselect.com/de-en/search?phrase=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "startselect-7": {
+    "category": "categories.other",
+    "url": "doppelt",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "steve-madden-2": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.stevemadden.com/pages/search-results?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "stockx-2": {
+    "category": "categories.retail",
+    "crawl": {
+      "searchUrl": "https://stockx.com/de-de/search?s=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "stockx-5": {
+    "category": "categories.other",
+    "url": "doppelt",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "street-one-3": {
+    "category": "categories.fashion",
+    "url": "https://www.street-one.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "strunz": {
+    "category": "categories.supplements",
+    "crawl": {
+      "searchUrl": "https://www.strunz.com/catalogsearch/result/?q=ipad&honey_spam_form=search-mini-form",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "stylevana-2": {
+    "category": "categories.cosmetics",
+    "crawl": {
+      "searchUrl": "https://www.stylevana.com/de_DE/catalogsearch/result/?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "suewagde": {
+    "category": "categories.energy",
+    "crawl": {
+      "searchUrl": "https://www.suewag.de/privatkunden/suchergebnisse?q=ipad",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "suitableshop-3": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.suitableshop.com/search/?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "sunny-cars": {
+    "category": "categories.automotive",
+    "url": "https://www.sunnycars.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "sunparks-2": {
+    "category": "categories.travel",
+    "url": "https://www.sunparks.com/de-de",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "sunwebde-wintersport": {
+    "category": "categories.travel",
+    "url": "https://www.sunweb.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "superdry-3": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.superdry.de/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "surfshark-3": {
+    "category": "categories.other",
+    "url": "doppelt",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "surfshark-8": {
+    "category": "categories.security",
+    "url": "https://surfshark.com/de",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "swarovski": {
+    "category": "categories.jewelry",
+    "url": "https://www.swarovski.com/de-DE/",
+    "crawl": {
+      "searchUrl": "ADDON",
+      "cms": "Prüfen",
+      "crawlable": true
+    }
+  },
+  "sweet24": {
+    "category": "categories.food",
+    "crawl": {
+      "searchUrl": "https://www.sweet24.de/index.php?lang=0&cl=search&searchparam=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "swiss-airlines": {
+    "category": "categories.airline",
+    "url": "https://www.swiss.com/de/de/homepage",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "tackenberg": {
+    "category": "categories.pets",
+    "url": "https://www.tackenberg.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "prüfen",
+      "crawlable": true
+    }
+  },
+  "tadaazde": {
+    "category": "categories.other",
+    "crawl": {
+      "searchUrl": "https://tadaaz.de/de/product-search/ipad",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "tado0-2": {
+    "category": "categories.energy",
+    "url": "https://www.tado.com/de",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "tamaris-3": {
+    "category": "categories.shoes",
+    "crawl": {
+      "searchUrl": "https://tamaris.com/de-DE/suche/?q=ipad&lang=de_DE",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "tapir": {
+    "category": "categories.sportswear",
+    "crawl": {
+      "searchUrl": "https://www.tapir-store.de/search?sSearch=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "tapo": {
+    "category": "categories.security",
+    "crawl": {
+      "searchUrl": "https://de.store.tapo.com/search?q=ipad&type=product",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "tarifcheck": {
+    "category": "categories.finance",
+    "url": "https://www.tarifcheck.de/",
+    "crawl": {
+      "searchUrl": "ADDON",
+      "cms": "Prüfen",
+      "crawlable": false
+    }
+  },
+  "tarifcheck-kfz-versicherung": {
+    "category": "categories.other",
+    "url": "doppelt",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "taschenkaufhaus": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.taschenkaufhaus.de/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "tassimo": {
+    "category": "categories.coffee",
+    "url": "ADDON",
+    "crawl": {
+      "searchUrl": "https://www.tassimo.com/de/search/ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "tchibo": {
+    "category": "categories.retail",
+    "crawl": {
+      "searchUrl": "https://www.tchibo.de/search?query=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "tee-handelskontor-bremen": {
+    "category": "categories.food",
+    "crawl": {
+      "searchUrl": "https://www.tee-handelskontor-bremen.de/search?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "tee-versandhandelcom": {
+    "category": "categories.other",
+    "url": "nicht erreichbar",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "teeshop-ronnefeldt": {
+    "category": "categories.food",
+    "url": "ADDON",
+    "crawl": {
+      "searchUrl": "https://www.ronnefeldt.com/teeshop/de/shop/?shop_category=search&query=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "tefal-2": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://www.tefal.de/search?text=ipad&query=ipad&lb_page=1&lb_size=24&lb_offset=0&lb_sort=&lb_refined=%5B%5D&lb_refined_removed=%5B%5D&lb_qu=0&lb_facets=%7B%7D",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "tempur-3": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://de.tempur.com/search?q=ipad&lang=de_DE",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "temu-19": {
+    "category": "categories.retail",
+    "crawl": {
+      "searchUrl": "https://www.temu.com/search_result.html?search_key=ipad&search_method=user&refer_page_el_sn=200010&srch_enter_source=top_search_entrance_10005&refer_page_name=home&refer_page_id=10005_1772360623776_dat07uwbo7&refer_page_sn=10005&_x_sessn_id=bb1ppsuyvx",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "temu-4": {
+    "category": "categories.other",
+    "url": "doppelt",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "tennis-point-3": {
+    "category": "categories.sportswear",
+    "crawl": {
+      "searchUrl": "https://www.tennis-point.de/search/?q=ipad&lang=de_DE",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "teppichde": {
+    "category": "categories.furniture",
+    "crawl": {
+      "searchUrl": "https://www.teppich.de/search?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "terra-canis": {
+    "category": "categories.pets",
+    "url": "addon",
+    "crawl": {
+      "searchUrl": "https://www.terracanis.com/en-eu/search?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "terravision": {
+    "category": "categories.airline",
+    "url": "https://www.terravision.eu/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "the-scotch-malt-whisky-society-3": {
+    "category": "categories.food",
+    "url": "addon",
+    "crawl": {
+      "searchUrl": "https://smws.eu/search.php?search_query=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "tibber-2": {
+    "category": "categories.energy",
+    "url": "https://tibber.com/de",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "ticketmaster-2": {
+    "category": "categories.lifestyle",
+    "crawl": {
+      "searchUrl": "https://www.ticketmaster.de/search?keyword=ipad",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "tink-3": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://www.tink.de/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "tintencenter": {
+    "category": "categories.office",
+    "url": "https://www.tintencenter.com/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "tiqets-8": {
+    "category": "categories.travel",
+    "crawl": {
+      "searchUrl": "https://www.tiqets.com/en/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "tirendo-7": {
+    "category": "categories.automotive",
+    "url": "https://www.tirendo.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "tischwelt": {
+    "category": "categories.furniture",
+    "crawl": {
+      "searchUrl": "https://www.tischwelt.de/shop/Suche/?q=ipad&search=Suchen",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "tom-tailor-3": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.tom-tailor.de/search?query=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "tommy-hilfiger-4": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://de.tommy.com/search?searchTerm=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "tonermacher": {
+    "category": "categories.office",
+    "crawl": {
+      "searchUrl": "https://www.tonermacher.de/search/index?query=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "tonerofficede": {
+    "category": "categories.office",
+    "crawl": {
+      "searchUrl": "https://toneroffice.de/search/?qs=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "tonerpartnerde": {
+    "category": "categories.office",
+    "crawl": {
+      "searchUrl": "https://www.tonerpartner.de/index.php?lang=0&cl=search&idbrand=&iditem=&oxid=&type=&searchparam=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "toolineo": {
+    "category": "categories.other",
+    "url": "https://toolineo.de/home",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "prüfen",
+      "crawlable": true
+    }
+  },
+  "toom-baumarkt-2": {
+    "category": "categories.other",
+    "crawl": {
+      "searchUrl": "https://toom.de/s/ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "topp-kreativ": {
+    "category": "categories.books",
+    "crawl": {
+      "searchUrl": "https://www.topp-kreativ.de/search?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "trainline-6": {
+    "category": "categories.travel",
+    "url": "https://www.thetrainline.com/de",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "trainpal-4": {
+    "category": "categories.travel",
+    "url": "https://www.mytrainpal.com/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "tranquillo": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://tranquillo-shop.de/search?q=ipad&type=product",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "trend-micro-7": {
+    "category": "categories.security",
+    "url": "https://de.shop.trendmicro.com/de_de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "trendyol": {
+    "category": "categories.other",
+    "url": "inaktiv, addon",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "tripcom-13": {
+    "category": "categories.travel",
+    "url": "https://de.trip.com/?locale=de-DE&curr=EUR",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "triumph": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://de.triumph.com/on/demandware.store/Sites-DE-Site/de_DE/Search-Show?q=ipad&simplesearch=Los",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "trolleyde": {
+    "category": "categories.travel",
+    "url": "https://www.trolley.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "prüfen",
+      "crawlable": true
+    }
+  },
+  "trotec-3": {
+    "category": "categories.household",
+    "url": "ADDON",
+    "crawl": {
+      "searchUrl": "https://de.trotec.com/shop/catalogsearch/result/?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "tuicom": {
+    "category": "categories.travel",
+    "url": "https://www.tui.com/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "turklingel-shop": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://www.tuerklingel-shop.de/search/?qs=ipad&search=",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "ugg": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.ugg.com/eu/de/de/suchen/?q=ipad&lang=de_DE",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "unboundvr": {
+    "category": "categories.electronics",
+    "url": "https://unboundxr.de/",
+    "crawl": {
+      "searchUrl": "ADDON",
+      "cms": "prüfen",
+      "crawlable": true
+    }
+  },
+  "under-armour-27": {
+    "category": "categories.sportswear",
+    "crawl": {
+      "searchUrl": "https://www.underarmour.de/de-de/search/?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "united-kiosk": {
+    "category": "categories.books",
+    "crawl": {
+      "searchUrl": "https://www.united-kiosk.de/search/ALL/ipad/?new=1",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "urlaubstransfers": {
+    "category": "categories.airline",
+    "url": "https://www.urlaubstransfers.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "valmano-2": {
+    "category": "categories.jewelry",
+    "crawl": {
+      "searchUrl": "https://www.valmano.de/search/?text=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "velo-store-2": {
+    "category": "categories.bicycles",
+    "url": "https://velo-store-de.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "prüfen",
+      "crawlable": true
+    }
+  },
+  "vereinsexpress": {
+    "category": "categories.sportswear",
+    "crawl": {
+      "searchUrl": "https://www.vereinsexpress.de/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "vergolst": {
+    "category": "categories.automotive",
+    "url": "https://vergoelst.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "versandapo": {
+    "category": "categories.pharmacy",
+    "crawl": {
+      "searchUrl": "https://www.versandapo.de/search.php?query=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "vertbaudet-3": {
+    "category": "categories.baby",
+    "crawl": {
+      "searchUrl": "https://www.vertbaudet.de/search=ipad.htm",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "vertical-extreme": {
+    "category": "categories.sportswear",
+    "crawl": {
+      "searchUrl": "https://www.verticalextreme.de/en/suche?query=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "vevor-7": {
+    "category": "categories.lifestyle",
+    "crawl": {
+      "searchUrl": "https://eur.vevor.com/s/ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "viator": {
+    "category": "categories.travel",
+    "url": "https://www.viator.com/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "videobuster": {
+    "category": "categories.other",
+    "crawl": {
+      "searchUrl": "https://www.videobuster.de/titlesearch.php?search_title=ipad&search_business_cases=1&x=0&y=0",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "viking-3": {
+    "category": "categories.office",
+    "crawl": {
+      "searchUrl": "https://www.viking.de/de/computertechnik-zubehor-c-101/pcs-laptops-tablets-c-10104/tablets-c-10104004?text=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "vinos": {
+    "category": "categories.wine",
+    "crawl": {
+      "searchUrl": "https://www.vinos.de/miriade-by-pago-de-vallegarcia-P112653/?articleNo=35858",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "vistaexpert": {
+    "category": "categories.lifestyle",
+    "crawl": {
+      "searchUrl": "https://vistaexpert.it/de/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "vita-world": {
+    "category": "categories.supplements",
+    "crawl": {
+      "searchUrl": "https://vita-world24.de/search?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "vitaminexpress-7": {
+    "category": "categories.supplements",
+    "crawl": {
+      "searchUrl": "https://www.vitaminexpress.org/de/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "vodafone-callya-freikarte": {
+    "category": "categories.telecom",
+    "url": "https://www.vodafone.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "voelkner": {
+    "category": "categories.household",
+    "url": "addon",
+    "crawl": {
+      "searchUrl": "https://www.voelkner.de/search/search.html?keywords=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "volders": {
+    "category": "categories.other",
+    "url": "https://www.volders.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "volksversand-apotheke": {
+    "category": "categories.pharmacy",
+    "crawl": {
+      "searchUrl": "https://volksversand.de/search?sSearch=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "vorteilshop": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://vorteilshop.com/?websale8=grenzenlosdirekt.12-01&act=search&query=ipad&sid=02681e617749a5f50bcde6d01f3452",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "voye": {
+    "category": "categories.esim",
+    "url": "https://voyeglobal.com/de/?currency=EUR",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "vrbo-8": {
+    "category": "categories.travel",
+    "url": "https://www.vrbo.com/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "waiputv": {
+    "category": "categories.telecom",
+    "url": "https://www.waipu.tv/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "warehouse-one": {
+    "category": "categories.sportswear",
+    "crawl": {
+      "searchUrl": "https://www.warehouse-one.de/en/search/?query=ipad&sid=4NvWoLUe2CkeGmbpBDvTXjpH7YTnM3&lang=1&cl=search&searchparam=ipad&hitsPerPage=60",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "wassersport": {
+    "category": "categories.fitness",
+    "url": "https://www.watersport.eu/de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "prüfen",
+      "crawlable": true
+    }
+  },
+  "wechselpilot-2": {
+    "category": "categories.energy",
+    "url": "https://www.wechselpilot.com/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "wegde": {
+    "category": "categories.travel",
+    "url": "https://www.weg.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "weinfreunde": {
+    "category": "categories.wine",
+    "crawl": {
+      "searchUrl": "https://www.weinfreunde.de/search?sSearch=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "weinfurst": {
+    "category": "categories.wine",
+    "crawl": {
+      "searchUrl": "https://www.weinfuerst.de/search?type=product&q=NOT+tag%3A__gift+AND+NOT+tag%3A__gold_club+AND+NOT+tag%3A__goldstatus+AND+NOT+tag%3A__search_hidden+AND+NOT+tag%3A__hide_search+AND+NOT+tag%3A__hidden+AND+ipad*",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "werkzeugstore24": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://werkzeugstore24.de/search?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "wero": {
+    "category": "categories.security",
+    "crawl": {
+      "searchUrl": "https://www.wero.de/search?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "westlotto": {
+    "category": "categories.casino",
+    "url": "https://www.westlotto.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "whisky-fox": {
+    "category": "categories.other",
+    "crawl": {
+      "searchUrl": "https://www.videobuster.de/titlesearch.php?search_title=ipad&search_business_cases=1&x=0&y=0",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "wilhelm-buchner-hochschule": {
+    "category": "categories.other",
+    "url": "https://www.wb-fernstudium.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "wirkaufens-2": {
+    "category": "categories.marketplace",
+    "url": "https://wirkaufens.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "wisch-star": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://www.wisch-star.de/search/?suchausdruck=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "wish-13": {
+    "category": "categories.retail",
+    "crawl": {
+      "searchUrl": "https://www.wish.com/search/ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "witt-weiden": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.witt-weiden.de/search?q=ipad&searchOrigin=searchField&searchTerm=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "wmf": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://www.wmf.com/de/de/catalogsearch/result/?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "wohnorama": {
+    "category": "categories.furniture",
+    "url": "https://www.wohnorama.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "prüfen",
+      "crawlable": true
+    }
+  },
+  "wolfsblut": {
+    "category": "categories.pets",
+    "crawl": {
+      "searchUrl": "https://www.wolfsblut.com/suche/?searchPhrase=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "wondershare-2": {
+    "category": "categories.software",
+    "url": "https://www.wondershare.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "prüfen",
+      "crawlable": false
+    }
+  },
+  "world-of-sweets": {
+    "category": "categories.food",
+    "crawl": {
+      "searchUrl": "https://www.worldofsweets.de/index.php?cl=fcfatsearch_productlist&noresult=true&usedsearchparam=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "wow-2": {
+    "category": "categories.other",
+    "url": "https://www.wowtv.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "wurth-modyf": {
+    "category": "categories.fashion",
+    "crawl": {
+      "searchUrl": "https://www.modyf.de/catalogsearch/result/?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "x-sense": {
+    "category": "categories.security",
+    "url": "addon",
+    "crawl": {
+      "searchUrl": "https://de.x-sense.com/search?q=ipad&type=product&page=1",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "xiaomi": {
+    "category": "categories.retail",
+    "crawl": {
+      "searchUrl": "https://www.mi.com/de/search/ipad?tab=product",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "xlmoebelde": {
+    "category": "categories.furniture",
+    "crawl": {
+      "searchUrl": "https://www.xlmoebel.de/search/?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "xspo": {
+    "category": "categories.sportswear",
+    "crawl": {
+      "searchUrl": "https://www.xspo.de/search?name=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "xtra-fuel": {
+    "category": "categories.supplements",
+    "crawl": {
+      "searchUrl": "https://xtrafuel.de/search?q=ipad&options%5Bprefix%5D=last&type=product",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "xucker": {
+    "category": "categories.food",
+    "crawl": {
+      "searchUrl": "https://xucker.de/search?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "yello-3": {
+    "category": "categories.energy",
+    "url": "https://www.yello.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": false
+    }
+  },
+  "yesstyle-2": {
+    "category": "categories.cosmetics",
+    "crawl": {
+      "searchUrl": "https://www.yesstyle.com/de/list.html?q=ipad&bpt=48",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "yfood-2": {
+    "category": "categories.food",
+    "crawl": {
+      "searchUrl": "https://yfood.com/search?q=ipad&options%5Bprefix%5D=last",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "yourhealthfit": {
+    "category": "categories.lifestyle",
+    "crawl": {
+      "searchUrl": "https://www.yourhealthfit.de/search?sSearch=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "yoursuprise": {
+    "category": "categories.photography",
+    "url": "https://www.yoursurprise.de/",
+    "crawl": {
+      "searchUrl": "",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "yuplay-7": {
+    "category": "categories.gaming",
+    "crawl": {
+      "searchUrl": "https://www.yuplay.com/products/?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "yves-rocher-10": {
+    "category": "categories.cosmetics",
+    "crawl": {
+      "searchUrl": "https://www.yves-rocher.de/search?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "zelesta-2": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://zelesta.de/search?q=ipad&options%5Bprefix%5D=last",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "zizzz": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://www.zizzz.de/catalogsearch/result/index/?_q=ipad&a=0&o=ipad&q=imag",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "zoologo": {
+    "category": "categories.pets",
+    "url": "addon",
+    "crawl": {
+      "searchUrl": "https://www.zoologo.de/suche?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "zooplus-10": {
+    "category": "categories.pets",
+    "crawl": {
+      "searchUrl": "https://www.zooplus.de/search/results?q=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "zooroyal": {
+    "category": "categories.pets",
+    "crawl": {
+      "searchUrl": "https://www.zooroyal.de/search?sSearch=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "zotter-schokoladen-manufaktur": {
+    "category": "categories.food",
+    "crawl": {
+      "searchUrl": "https://www.zotter.at/online-shop/geschenke/geschenksets/ei-pad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "zurbruggen": {
+    "category": "categories.furniture",
+    "crawl": {
+      "searchUrl": "https://www.zurbrueggen.de/search?search=ipad",
+      "cms": "",
+      "crawlable": true
+    }
+  },
+  "zwilling": {
+    "category": "categories.household",
+    "crawl": {
+      "searchUrl": "https://www.zwilling.com/de/search/?q=ipad&lang=de_DE",
+      "cms": "",
+      "crawlable": true
+    }
+  }
+}

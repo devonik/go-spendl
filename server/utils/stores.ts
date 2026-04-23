@@ -1,25 +1,30 @@
-import type { Store } from '~~/types/types'
-import { detectCategory } from '../lib/store-category-matcher'
+import type { Store, StoreCrawlData } from '~~/types/types'
+import overridesJson from '~~/server/data/store-overrides.json'
 
-async function extendStores(stores: Store[]) {
-  return stores.map((store: any) => {
-    const detectCategoryResult = detectCategory(store.description || '')
-    if (detectCategoryResult.confidence === 0) {
-      console.warn('Map category to store: Could not detect category for store', { slug: store.slug, description: store.description })
-    }
+interface StoreOverride {
+  category: string
+  url?: string
+  crawl?: StoreCrawlData
+}
+
+const storeOverrides = overridesJson as Record<string, StoreOverride>
+
+function extendStores(stores: Store[]): Store[] {
+  return stores.map((store) => {
+    const override = storeOverrides[store.slug]
     return {
       ...store,
       group: store.group ?? 'satsback',
-      category: detectCategoryResult.category,
-      categoryConfidence: detectCategoryResult.confidence,
+      category: override?.category ?? 'categories.other',
+      ...(override?.url ? { url: override.url } : {}),
+      ...(override?.crawl ? { crawl: override.crawl } : {}),
     }
   })
 }
+
 export const cachedStores = defineCachedFunction(async (country: string) => {
-  // Get satsback stores
   const data = await $fetch<Store[]>(`https://satsback.com/api/v2/gospendl/stores/${country}`)
 
-  // Add shopinbit
   data.unshift({
     name: 'Shopinbit',
     text: '3% BTC Rabatt',
@@ -31,11 +36,12 @@ export const cachedStores = defineCachedFunction(async (country: string) => {
     store_id: 'shopinbit',
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
+    category: 'categories.retail',
   })
 
   return extendStores(data)
 }, {
-  maxAge: import.meta.dev ? 5 * 1000 : 24 * 60 * 60 * 1000, // 5 seconds in dev, 24 hours in prod
+  maxAge: import.meta.dev ? 5 * 1000 : 24 * 60 * 60 * 1000,
   name: 'satsbackStores',
   getKey: (country: string) => country,
 })

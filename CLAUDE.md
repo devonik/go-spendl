@@ -5,9 +5,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Commands
 
 ```bash
-pnpm dev          # Start dev server
-pnpm build        # Production build
-pnpm postinstall  # nuxt prepare (regenerates types, run after install)
+pnpm dev               # Start dev server
+pnpm build             # Production build
+pnpm postinstall       # nuxt prepare (regenerates types, run after install)
+pnpm stores:sync <cat.csv> <stores.csv>  # Import store + category data from Satsback Excel exports
 ```
 
 No dedicated lint or test commands — linting is via ESLint (`eslint.config.mjs`), tests via `@nuxt/test-utils`.
@@ -40,6 +41,24 @@ Users authenticate via browser extensions (nos2x / Alby) that implement `window.
 **Server auth middleware**
 `server/middleware/auth.ts` extracts `Authorization` header and stores in `event.context.authToken`. Server routes for `/api/satsback/user/*` use this to forward the token to the Satsback upstream API.
 
+**Store + category management**
+Store list and categories come from two CSV exports of the Satsback Excel sheet (colleague maintains):
+1. **Categories CSV** — all available categories with i18nKeys and labels
+2. **Germany CSV** — store list joined with manual curation: category assignments, official URLs, crawler metadata (`searchUrl`, `cms`, `crawlable`, `comment`)
+
+The import flow:
+- Place updated CSVs in any directory (e.g. colleague sends via email/Drive)
+- Run `pnpm stores:sync <categories.csv> <germany.csv>`
+- Script generates:
+  - `server/data/categories.json` — committed list of active categories (pruned to only those with stores)
+  - `server/data/store-overrides.json` — per-store overrides by slug
+  - `i18n/locales/categories.{de,en}.json` — i18n keys for the UI filter
+- Commit the generated files; CSVs stay local (git-ignored)
+- On re-run, existing EN translations are preserved; new categories fall back to `SEED_EN` in the script or auto-titlecase
+- Categories with zero stores are pruned and logged (colleague updates the Excel to remove them)
+
+`server/utils/stores.ts` merges Satsback API data with overrides by slug → each store gets `category`, optional `url`, optional `crawl` metadata.
+
 ### Directory layout
 
 ```
@@ -51,9 +70,13 @@ app/
 server/
   api/satsback/     # Proxy routes to Satsback API
   api/crawl/        # Crawl4AI integration
-  lib/              # algolia.ts, send-slack-message.ts, store-category-matcher.ts
+  data/             # Generated: categories.json, store-overrides.json (from pnpm stores:sync)
+  lib/              # algolia.ts, send-slack-message.ts
   middleware/auth.ts
-  utils/stores.ts   # Store list with category matching, 24h server cache
+  utils/stores.ts   # Merges Satsback API data with store-overrides.json, 24h server cache
+i18n/locales/       # Generated: categories.de.json, categories.en.json (from pnpm stores:sync)
+scripts/
+  sync-stores.mjs   # CSV importer: parses Categories + Germany CSVs, generates data files
 types/              # satsback.d.ts, algolia.d.ts, crawler.ts
 ```
 
@@ -73,6 +96,8 @@ types/              # satsback.d.ts, algolia.d.ts, crawler.ts
 
 - **`withAuth<T>(call)`** in `useSatsbackApi` wraps any API call with auth: `await ensureAuth(); return await call()`. Never add retry logic inside `withAuth` — the 401 path is handled in the plugin.
 - **Server user routes** (`clicks`, `history`, `payouts`) must wrap the upstream `$fetch` in try/catch and rethrow with `createError({ statusCode })` — otherwise h3 returns 500 instead of 401.
+- **Store data flow**: `cachedStores(country)` in `server/utils/stores.ts` fetches from Satsback API, merges in `store-overrides.json` by slug, defaults unmapped stores to `categories.other`. After CSV updates, restart the dev server (`rm -rf .nuxt && pnpm dev`) to reload the module and pick up new overrides.
+- **Store shape**: `{ name, slug, group, image, description, category, url?, crawl? }` where `category` is the i18nKey (e.g. `categories.retail`), and `crawl` groups internal metadata: `{ searchUrl, cms, crawlable, comment? }`.
 - **Store slugs in Algolia** must be in bare format (e.g. `baur`, not `baur.de`) to match `store.slug` from the Satsback store list.
 - **i18n**: `de` is default locale. Route `/` is German; `/en` is English.
 - **Nuxt UI components** use TanStack Table format for columns: `{ accessorKey, header }` — not the old `{ key, label }` format.

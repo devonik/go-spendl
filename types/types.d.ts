@@ -1,3 +1,10 @@
+export interface StoreCrawlData {
+  searchUrl: string
+  cms: string
+  crawlable: boolean
+  comment?: string
+}
+
 export interface Store {
   name: string
   text: string
@@ -9,6 +16,7 @@ export interface Store {
   store_id: string
   created_at: string
   updated_at: string
-  category?: string
-  categoryConfidence?: number
+  category: string
+  url?: string
+  crawl?: StoreCrawlData
 }

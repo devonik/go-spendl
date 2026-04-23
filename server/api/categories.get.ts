@@ -1,7 +1,5 @@
-import { CATEGORY_RULES } from '~~/server/lib/store-category-matcher'
+import categories from '~~/server/data/categories.json'
 
-export default defineEventHandler(async (event) => {
-  return CATEGORY_RULES.map((rule) => {
-    return rule.category
-  })
+export default defineEventHandler(async () => {
+  return categories.map(c => c.key)
 })
