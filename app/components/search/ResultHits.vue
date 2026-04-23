@@ -5,7 +5,7 @@ import { AisInfiniteHits } from 'vue-instantsearch/vue3/es'
 
 const localePath = useLocalePath()
 const { data: stores } = useStores()
-const { locale } = useI18n()
+const { locale, t } = useI18n()
 const toast = useToast()
 
 const page = defineModel('page', {
@@ -23,6 +23,18 @@ const serverMessages = ref<{
 }[]>([])
 
 const emptyResultsCatchedOnce = ref(false)
+const crawlFailed = ref(false)
+
+const matchingStores = computed(() => {
+  const q = query.value?.trim().toLowerCase()
+  if (!q || !stores.value) return []
+  return stores.value.filter((store) => {
+    const name = store.name?.toLowerCase() ?? ''
+    const description = store.description?.toLowerCase() ?? ''
+    const categoryLabel = store.category ? t(store.category).toLowerCase() : ''
+    return name.includes(q) || description.includes(q) || categoryLabel.includes(q)
+  })
+})
 
 const handleItemsDataChangeDebounce = useDebounceFn((items: AlgoliaProduct[]) => {
   serverMessages.value = []
@@ -33,6 +45,7 @@ const handleItemsDataChangeDebounce = useDebounceFn((items: AlgoliaProduct[]) =>
       color: 'primary',
       icon: 'i-lucide-search',
     })
+    crawlFailed.value = false
     $fetch('/api/crawl', {
       method: 'POST',
       body: {
@@ -41,6 +54,8 @@ const handleItemsDataChangeDebounce = useDebounceFn((items: AlgoliaProduct[]) =>
         // Test single domain or 'all' default
         domain: 'baur.de',
       },
+    }).catch(() => {
+      crawlFailed.value = true
     })
     emptyResultsCatchedOnce.value = true
   }
@@ -100,16 +115,28 @@ onMounted(() => {
         />
       </div> -->
 
-      <div v-if="items.length > 0" class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-        <SearchProductCard
-          v-for="product in items"
-          :key="product.objectID"
-          :product="product"
-          @click-order="sendEvent('conversion', product, 'User clicked on order button')"
-        />
+      <div v-if="items.length > 0">
+        <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+          <SearchProductCard
+            v-for="product in items"
+            :key="product.objectID"
+            :product="product"
+            @click-order="sendEvent('conversion', product, 'User clicked on order button')"
+          />
+        </div>
+        <div v-if="matchingStores.length > 0" class="mt-8 grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+          <SearchStoreCard
+            v-for="(shop, index) in matchingStores"
+            :key="index"
+            :store="shop"
+          />
+        </div>
       </div>
       <div v-else>
-        <div v-if="serverMessages.length === 0" class="mb-3 flex items-center gap-3">
+        <div v-if="crawlFailed" class="mb-3 flex items-center gap-3">
+          <strong>Crawler is not available, please go directly to the shop</strong>
+        </div>
+        <div v-else-if="serverMessages.length === 0" class="mb-3 flex items-center gap-3">
           <div class="w-6 h-6 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
           We'll search for it in the background... <strong>In the meanwhile you can go directly visit one of the shop's</strong>
         </div>
@@ -127,7 +154,7 @@ onMounted(() => {
 
         <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
           <SearchStoreCard
-            v-for="(shop, index) in stores"
+            v-for="(shop, index) in (matchingStores.length > 0 ? matchingStores : stores)"
             :key="index"
             :store="shop"
           />
