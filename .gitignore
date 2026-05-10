@@ -27,3 +27,6 @@ logs
 .data
 
 /server/api/test/
+
+# Probe output (Phase 1 of crawl redesign — local-only inspection data)
+tmp/

@@ -1,13 +1,16 @@
 export interface AlgoliaProduct extends Record<string, unknown> {
   name: string
-  sourceUrl: string
+  productUrl: string
   brand: string
   description?: string
-  price: string
+  price?: string
   imageSrc?: string
+  imageAlt?: string
   imageSrcset?: string
+  model?: string
   shopDomain: string
   group: string
+  category?: string
   colors?: string
   objectID?: string
   _highlightResult?: HighlightResult

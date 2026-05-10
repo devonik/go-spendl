@@ -11,7 +11,7 @@ const jsonContent = ref<{ initialQuery: string, items: Schema }>()
 const schema = z.array(
   z.object({
     name: z.string('Required'),
-    sourceUrl: z.url('Must be a URL'),
+    productUrl: z.url('Must be a URL'),
     brand: z.string().optional(),
     description: z.string().optional(),
     price: z.string('Required'),
@@ -87,8 +87,8 @@ function declineCrawl() {
           <UFormField label="Product name" :name="`${index}.name`" required>
             <UInput v-model="product.name" />
           </UFormField>
-          <UFormField label="Source Url" :name="`${index}.sourceUrl`" hint="Link to the product. Used for order button" required>
-            <UInput v-model="product.sourceUrl" />
+          <UFormField label="Product Url" :name="`${index}.productUrl`" hint="Link to the product. Used for order button" required>
+            <UInput v-model="product.productUrl" />
           </UFormField>
           <UFormField label="Brand" :name="`${index}.brand`">
             <UInput v-model="product.brand" />

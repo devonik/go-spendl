@@ -3,7 +3,11 @@ import type { BrowserConfig, CrawlerRunConfig, CrawlerWebhookPayload, CrawlJobPa
 import { randomUUID } from 'node:crypto'
 import { v4 as uuidv4 } from 'uuid'
 import sendSlackMessage from '../../lib/send-slack-message'
-import shopConfig from '../../utils/shop-config'
+import { cachedStores } from '../../utils/stores'
+
+// Placeholder string used in `crawl.searchUrl` templates (see store-overrides.json).
+// Substituted with the user's URL-encoded query at request time.
+const SEARCH_URL_PLACEHOLDER = 'ipad'
 
 interface ParticalCrawlInfo {
   domain: string
@@ -89,7 +93,18 @@ function generateJSLoadMoreScript(loadMoreSelector: string): string {
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig()
-  const body = await readBody<{ query: string, locale: Locale, domain: keyof typeof shopConfig }>(event)
+  const body = await readBody<{
+    query: string
+    locale: Locale
+    slug?: string
+    /**
+     * Restrict the crawl fan-out to stores whose `category` matches one of
+     * these i18n keys (e.g. ['categories.electronics']). When omitted we
+     * fall back to crawling every store with a schema, which is fine for a
+     * handful but doesn't scale once hundreds of shops are wired up.
+     */
+    categories?: string[]
+  }>(event)
 
   if (!body.query || !body.locale)
     throw new Error('Body must contain query and locale')
@@ -169,52 +184,66 @@ export default defineEventHandler(async (event) => {
     shops: [],
   }
 
-  let testOnlyDomains
+  // Pull stores from the Satsback list merged with `store-overrides.json`.
+  // A store is crawlable iff it has crawl.crawlable + crawl.searchUrl + crawl.schema.
+  // Country is the Satsback API's value (e.g. "germany"), distinct from the
+  // i18n locale ("de"/"en") on the body.
+  const allStores = await cachedStores('germany')
+  const crawlableStores = allStores.filter(s => s.crawl?.crawlable && s.crawl.searchUrl && s.crawl.schema)
+  const targetStores = body.slug
+    ? crawlableStores.filter(s => s.slug === body.slug)
+    : body.categories?.length
+      ? crawlableStores.filter(s => body.categories!.includes(s.category))
+      : crawlableStores
 
-  // Test only one domain
-  if (body.domain && shopConfig[body.domain]) {
-    testOnlyDomains = { [body.domain]: shopConfig[body.domain] }
+  if (targetStores.length === 0) {
+    throw new Error(body.slug
+      ? `No crawlable store found for slug "${body.slug}" — needs crawl.crawlable + crawl.searchUrl + crawl.schema in overrides.`
+      : body.categories?.length
+        ? `No crawlable stores match categories ${JSON.stringify(body.categories)}.`
+        : 'No crawlable stores configured (need crawl.crawlable + crawl.searchUrl + crawl.schema in overrides).')
   }
 
-  console.info(`Crawl - starting crawl on ${testOnlyDomains ? Object.keys(testOnlyDomains) : Object.keys(shopConfig)} domains`)
-  const domains = Object.entries(testOnlyDomains || shopConfig)
-  for (const [key, value] of domains) {
-    webhook_config.webhook_headers['X-Domain'] = key
-    webhook_config.webhook_headers['X-Group'] = value.group
+  const filterNote = body.slug
+    ? `slug=${body.slug}`
+    : body.categories?.length
+      ? `categories=${body.categories.join(',')}`
+      : 'no filter'
+  console.info(`Crawl - starting crawl on ${targetStores.length}/${crawlableStores.length} stores [${filterNote}]: ${targetStores.map(s => s.slug).join(', ')}`)
 
-    const partialCrawlInfo: ParticalCrawlInfo = {
-      domain: key,
-    }
+  for (const store of targetStores) {
+    const slug = store.slug
+    webhook_config.webhook_headers['X-Domain'] = slug
+    webhook_config.webhook_headers['X-Group'] = store.group
+    webhook_config.webhook_headers['X-Category'] = store.category
+
+    const partialCrawlInfo: ParticalCrawlInfo = { domain: slug }
 
     crawler_config_payload.params.extraction_strategy = {
       type: 'JsonCssExtractionStrategy',
       params: {
-        schema: value.productCssShema,
+        schema: store.crawl!.schema,
         verbose: true,
       },
     }
 
-    const searchURLs = [value.searchURL(body.query, body.locale)]
-    // PAGING handling
-    // pageQueryParam is set if we can simplay add a query param to get page 2,3,4...
-    // loadMoreSelector is set if we need to click a button to load more items
-    if (value.paging) {
-      if (value.paging.pageQueryParam) {
-        // Add paging pages
-        const url = new URL(searchURLs[0])
-        url.searchParams.set(value.paging.pageQueryParam, '2')
+    // Substitute the literal "ipad" placeholder with the user's URL-encoded query.
+    const baseUrl = store.crawl!.searchUrl.replaceAll(SEARCH_URL_PLACEHOLDER, encodeURIComponent(body.query))
+    const searchURLs = [baseUrl]
+
+    const paging = store.crawl?.paging
+    if (paging) {
+      if (paging.pageQueryParam) {
+        const url = new URL(baseUrl)
+        url.searchParams.set(paging.pageQueryParam, '2')
         console.info(`Crawl - added paging param to url: ${url.toString()}`)
         searchURLs.push(url.toString())
       }
-      else if (value.paging.loadMoreSelector) {
-        // If paging is configured as loadMoreSelector add js code
-        if (value.paging && value.paging.loadMoreSelector) {
-          // Do not scan full page if we add js lazy load (cause it also scrolls after pressing the button)
-          // crawler_config_payload.params.scan_full_page = false
-          crawler_config_payload.params.js_code = [generateJSLoadMoreScript(value.paging.loadMoreSelector)]
-          crawler_config_payload.params.wait_for = 'js: () => window.finish === true'
-          crawler_config_payload.params.js_only = false
-        }
+      else if (paging.loadMoreSelector) {
+        // Click-to-load: drive the page via injected JS and wait for window.finish.
+        crawler_config_payload.params.js_code = [generateJSLoadMoreScript(paging.loadMoreSelector)]
+        crawler_config_payload.params.wait_for = 'js: () => window.finish === true'
+        crawler_config_payload.params.js_only = false
       }
     }
 
@@ -225,9 +254,7 @@ export default defineEventHandler(async (event) => {
       webhook_config,
     }
 
-    const response: {
-      task_id: string
-    } = await $fetch(`${config.crawl4AiUrl}/crawl/job`, {
+    const response: { task_id: string } = await $fetch(`${config.crawl4AiUrl}/crawl/job`, {
       method: 'post',
       body: crawl_payload,
     })

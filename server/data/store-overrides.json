@@ -648,7 +648,31 @@
     "crawl": {
       "searchUrl": "https://www.badenova.de/suche?page=1&q=ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": true,
+      "schema": {
+        "type": "dict",
+        "value": {
+          "baseSelector": "ul > li.group",
+          "fields": [
+            {
+              "name": "name",
+              "selector": "a.link-full-cover",
+              "type": "text"
+            },
+            {
+              "name": "productUrl",
+              "selector": "a.link-full-cover",
+              "type": "attribute",
+              "attribute": "href"
+            },
+            {
+              "name": "description",
+              "selector": "p.text-c1",
+              "type": "text"
+            }
+          ]
+        }
+      }
     }
   },
   "bader-2": {
@@ -739,7 +763,52 @@
     "crawl": {
       "searchUrl": "https://www.baur.de/s/ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": true,
+      "schema": {
+        "type": "dict",
+        "value": {
+          "baseSelector": "li.product-card",
+          "fields": [
+            {
+              "name": "name",
+              "selector": "a.product-card-name",
+              "type": "text"
+            },
+            {
+              "name": "brand",
+              "selector": ".product-card-brand",
+              "type": "text"
+            },
+            {
+              "name": "price",
+              "selector": ".price-value",
+              "type": "text"
+            },
+            {
+              "name": "productUrl",
+              "selector": "a.product-card-name",
+              "type": "attribute",
+              "attribute": "href"
+            },
+            {
+              "name": "imageSrc",
+              "selector": ".product-card-image img",
+              "type": "attribute",
+              "attribute": "src"
+            },
+            {
+              "name": "imageAlt",
+              "selector": ".product-card-image img",
+              "type": "attribute",
+              "attribute": "alt"
+            }
+          ]
+        }
+      },
+      "paging": {
+        "loadMoreSelector": "main > div:nth-child(6) > div:nth-child(6) > div:nth-child(2) > section > div:nth-child(1) > div:nth-child(3) > button",
+        "pageQueryParam": "p"
+      }
     }
   },
   "baustoffhandel-carstensen": {
@@ -912,7 +981,48 @@
     "crawl": {
       "searchUrl": "https://www.biggreensmile.de/search.aspx?q=ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": true,
+      "schema": {
+        "type": "dict",
+        "value": {
+          "baseSelector": ".product-item",
+          "fields": [
+            {
+              "name": "name",
+              "selector": ".product-title a",
+              "type": "text"
+            },
+            {
+              "name": "price",
+              "selector": ".price",
+              "type": "text"
+            },
+            {
+              "name": "productUrl",
+              "selector": ".product-title a",
+              "type": "attribute",
+              "attribute": "href"
+            },
+            {
+              "name": "imageSrc",
+              "selector": ".img-holder img",
+              "type": "attribute",
+              "attribute": "src"
+            },
+            {
+              "name": "imageAlt",
+              "selector": ".img-holder img",
+              "type": "attribute",
+              "attribute": "alt"
+            },
+            {
+              "name": "availability",
+              "selector": ".product-item",
+              "type": "text"
+            }
+          ]
+        }
+      }
     }
   },
   "bige": {
@@ -1391,16 +1501,58 @@
     "crawl": {
       "searchUrl": "https://www.cbdnol.com/search?type=product%2Carticle%2Cpage%2Ccollection&q=ipad*",
       "cms": "",
-      "crawlable": true
+      "crawlable": true,
+      "schema": {
+        "type": "dict",
+        "value": {
+          "baseSelector": ".product-card-item-js",
+          "fields": [
+            {
+              "name": "name",
+              "selector": ".grid-product__title",
+              "type": "text"
+            },
+            {
+              "name": "price",
+              "selector": ".grid-product__price",
+              "type": "text"
+            },
+            {
+              "name": "productUrl",
+              "selector": "a.grid-product__link",
+              "type": "attribute",
+              "attribute": "href"
+            },
+            {
+              "name": "imageSrc",
+              "selector": "img.lazyloaded",
+              "type": "attribute",
+              "attribute": "src"
+            },
+            {
+              "name": "imageAlt",
+              "selector": "img.lazyloaded",
+              "type": "attribute",
+              "attribute": "alt"
+            },
+            {
+              "name": "availability",
+              "selector": ".grid-product__tag--sold-out",
+              "type": "text"
+            }
+          ]
+        }
+      }
     }
   },
   "cdkeys": {
     "category": "categories.gaming",
     "url": "https://www.loaded.com/",
     "crawl": {
-      "searchUrl": "Addon schlägt  nicht an",
+      "searchUrl": "",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "Marked addon in spreadsheet — needs real searchUrl"
     }
   },
   "cellavent": {
@@ -1710,9 +1862,10 @@
     "category": "categories.insurance",
     "url": "https://cover4rentals.com/",
     "crawl": {
-      "searchUrl": "ADDON",
+      "searchUrl": "",
       "cms": "",
-      "crawlable": false
+      "crawlable": false,
+      "comment": "Marked addon in spreadsheet — needs real searchUrl"
     }
   },
   "crazy-factory": {
@@ -1787,9 +1940,10 @@
     "category": "categories.hotels",
     "url": "https://www.danubiushotels.com/",
     "crawl": {
-      "searchUrl": "ADDON",
+      "searchUrl": "",
       "cms": "",
-      "crawlable": false
+      "crawlable": false,
+      "comment": "Marked addon in spreadsheet — needs real searchUrl"
     }
   },
   "das-perfekte-bild": {
@@ -1865,9 +2019,10 @@
     "category": "categories.furniture",
     "url": "https://www.delife.de/",
     "crawl": {
-      "searchUrl": "ADDON",
+      "searchUrl": "",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "Marked addon in spreadsheet — needs real searchUrl"
     }
   },
   "delinat": {
@@ -2144,7 +2299,48 @@
     "crawl": {
       "searchUrl": "https://www.ebay.de/sch/i.html?_nkw=ipad&_sacat=0&_from=R40&_trksid=p4624852.m570.l1313",
       "cms": "",
-      "crawlable": true
+      "crawlable": true,
+      "schema": {
+        "type": "dict",
+        "value": {
+          "baseSelector": "li.s-card",
+          "fields": [
+            {
+              "name": "name",
+              "selector": ".s-card__title",
+              "type": "text"
+            },
+            {
+              "name": "price",
+              "selector": ".s-card__price",
+              "type": "text"
+            },
+            {
+              "name": "productUrl",
+              "selector": "a.s-card__link",
+              "type": "attribute",
+              "attribute": "href"
+            },
+            {
+              "name": "imageSrc",
+              "selector": "img.s-card__image",
+              "type": "attribute",
+              "attribute": "src"
+            },
+            {
+              "name": "imageAlt",
+              "selector": "img.s-card__image",
+              "type": "attribute",
+              "attribute": "alt"
+            },
+            {
+              "name": "availability",
+              "selector": ".s-card__subtitle",
+              "type": "text"
+            }
+          ]
+        }
+      }
     }
   },
   "ebook-2": {
@@ -2183,18 +2379,20 @@
     "category": "categories.airline",
     "url": "https://www.edreams.com/",
     "crawl": {
-      "searchUrl": "ADDON",
+      "searchUrl": "",
       "cms": "",
-      "crawlable": false
+      "crawlable": false,
+      "comment": "Marked addon in spreadsheet — needs real searchUrl"
     }
   },
   "einfach-eauto": {
     "category": "categories.automotive",
     "url": "https://einfacheauto.de/",
     "crawl": {
-      "searchUrl": "ADDON",
+      "searchUrl": "",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "Marked addon in spreadsheet — needs real searchUrl"
     }
   },
   "eintracht-frankfurt": {
@@ -2391,7 +2589,48 @@
     "crawl": {
       "searchUrl": "https://www.eufy.com/eu-de/search?q=ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": true,
+      "schema": {
+        "type": "dict",
+        "value": {
+          "baseSelector": ".Search_search-product__e_bye",
+          "fields": [
+            {
+              "name": "name",
+              "selector": ".Search_product-name__YXd1y",
+              "type": "text"
+            },
+            {
+              "name": "price",
+              "selector": ".Search_cur-money__nlYZ1",
+              "type": "text"
+            },
+            {
+              "name": "productUrl",
+              "selector": "a",
+              "type": "attribute",
+              "attribute": "href"
+            },
+            {
+              "name": "imageSrc",
+              "selector": "img",
+              "type": "attribute",
+              "attribute": "src"
+            },
+            {
+              "name": "imageAlt",
+              "selector": "img",
+              "type": "attribute",
+              "attribute": "alt"
+            },
+            {
+              "name": "availability",
+              "selector": ".Search_product-price___uAto",
+              "type": "text"
+            }
+          ]
+        }
+      }
     }
   },
   "euroflorist-4": {
@@ -2553,10 +2792,10 @@
     "category": "categories.activities",
     "url": "https://www.fairtoner.de/",
     "crawl": {
-      "searchUrl": "ADDON",
+      "searchUrl": "",
       "cms": "",
-      "crawlable": true,
-      "comment": "prüfen"
+      "crawlable": false,
+      "comment": "prüfen | Marked addon in spreadsheet — needs real searchUrl"
     }
   },
   "falke-2": {
@@ -2610,9 +2849,10 @@
   "feeling4home": {
     "category": "categories.furniture",
     "crawl": {
-      "searchUrl": "https://www.feeling4home.de/",
+      "searchUrl": null,
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "Have a search but most likely no search result page"
     }
   },
   "feierweltde": {
@@ -2644,9 +2884,10 @@
     "category": "categories.hotels",
     "url": "https://www.ferienwohnungen.de/",
     "crawl": {
-      "searchUrl": "ADDON",
+      "searchUrl": "",
       "cms": "",
-      "crawlable": false
+      "crawlable": false,
+      "comment": "Marked addon in spreadsheet — needs real searchUrl"
     }
   },
   "feuertischshopcom": {
@@ -2806,9 +3047,10 @@
     "category": "categories.telecom",
     "url": "https://www.freenet.de/",
     "crawl": {
-      "searchUrl": "ADDOn",
+      "searchUrl": "",
       "cms": "",
-      "crawlable": false
+      "crawlable": false,
+      "comment": "Marked addon in spreadsheet — needs real searchUrl"
     }
   },
   "fressnapf": {
@@ -2919,7 +3161,58 @@
     "crawl": {
       "searchUrl": "https://www.galaxus.de/de/search?q=ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": true,
+      "paging": {
+        "loadMoreSelector": "#pageContent section > div:last-child button",
+        "customPagingQueryParam": "take"
+      },
+      "schema": {
+        "type": "dict",
+        "value": {
+          "baseSelector": "#pageContent section article",
+          "fields": [
+            {
+              "name": "name",
+              "selector": "div:nth-child(6) > p > span",
+              "type": "text",
+              "default": "Click the button below to see more"
+            },
+            {
+              "name": "productUrl",
+              "selector": "a",
+              "type": "attribute",
+              "attribute": "href"
+            },
+            {
+              "name": "brand",
+              "selector": "div:nth-child(6) > p strong",
+              "type": "text"
+            },
+            {
+              "name": "price",
+              "selector": "div:nth-child(5) span",
+              "type": "text"
+            },
+            {
+              "name": "imageSrc",
+              "selector": "picture img",
+              "type": "attribute",
+              "attribute": "src"
+            },
+            {
+              "name": "description",
+              "selector": "div:nth-child(6) > p:nth-child(2)",
+              "type": "text"
+            },
+            {
+              "name": "imageAlt",
+              "selector": "picture img",
+              "type": "attribute",
+              "attribute": "alt"
+            }
+          ]
+        }
+      }
     }
   },
   "galeria": {
@@ -3032,9 +3325,10 @@
     "category": "categories.retail",
     "url": "https://www.giga-reifen.de/",
     "crawl": {
-      "searchUrl": "ADDON",
+      "searchUrl": "",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "Marked addon in spreadsheet — needs real searchUrl"
     }
   },
   "gina-tricot-2": {
@@ -3126,10 +3420,10 @@
     "category": "categories.marketplace",
     "url": "https://www.guthaben.de/",
     "crawl": {
-      "searchUrl": "ADDON",
+      "searchUrl": "",
       "cms": "",
-      "crawlable": true,
-      "comment": "Prüfen"
+      "crawlable": false,
+      "comment": "Prüfen | Marked addon in spreadsheet — needs real searchUrl"
     }
   },
   "gutmarkiert": {
@@ -3351,7 +3645,8 @@
     "crawl": {
       "searchUrl": "https://hoffmann-germany.de/",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "JS-only search, no results URL — skip"
     }
   },
   "hofmanns": {
@@ -3383,9 +3678,10 @@
     "category": "categories.travel",
     "url": "https://www.plopsa.com/de",
     "crawl": {
-      "searchUrl": "ADDON",
+      "searchUrl": "",
       "cms": "",
-      "crawlable": false
+      "crawlable": false,
+      "comment": "Marked addon in spreadsheet — needs real searchUrl"
     }
   },
   "holidaycheck": {
@@ -3479,9 +3775,10 @@
     "category": "categories.hotels",
     "url": "https://www.hrs.de/",
     "crawl": {
-      "searchUrl": "ADDON",
+      "searchUrl": "",
       "cms": "",
-      "crawlable": false
+      "crawlable": false,
+      "comment": "Marked addon in spreadsheet — needs real searchUrl"
     }
   },
   "hse": {
@@ -3902,9 +4199,10 @@
     "category": "categories.gaming",
     "url": "https://kartedirekt.de/",
     "crawl": {
-      "searchUrl": "ADDON",
+      "searchUrl": "",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "Marked addon in spreadsheet — needs real searchUrl"
     }
   },
   "kaspersky-3": {
@@ -4123,16 +4421,53 @@
     "crawl": {
       "searchUrl": "https://www.lampenwelt.de/catalogsearch/result/?q=ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": true,
+      "schema": {
+        "type": "dict",
+        "value": {
+          "baseSelector": "div[data-testid='productItem']",
+          "fields": [
+            {
+              "name": "name",
+              "selector": "a[data-testid='productName']",
+              "type": "text"
+            },
+            {
+              "name": "productUrl",
+              "selector": "a[data-testid='productName']",
+              "type": "attribute",
+              "attribute": "href"
+            },
+            {
+              "name": "price",
+              "selector": "span[data-testid='productPrice']",
+              "type": "text"
+            },
+            {
+              "name": "imageSrc",
+              "selector": "img.product-image-photo",
+              "type": "attribute",
+              "attribute": "src"
+            },
+            {
+              "name": "imageAlt",
+              "selector": "img.product-image-photo",
+              "type": "attribute",
+              "attribute": "alt"
+            }
+          ]
+        }
+      }
     }
   },
   "landal-greenparks-2": {
     "category": "categories.travel",
     "url": "https://www.landal.com/",
     "crawl": {
-      "searchUrl": "ADDON",
+      "searchUrl": "",
       "cms": "",
-      "crawlable": false
+      "crawlable": false,
+      "comment": "Marked addon in spreadsheet — needs real searchUrl"
     }
   },
   "landkaufhaus-mayer": {
@@ -4181,9 +4516,10 @@
     "category": "categories.software",
     "url": "https://www.lastpass.com/",
     "crawl": {
-      "searchUrl": "ADDON",
+      "searchUrl": "",
       "cms": "",
-      "crawlable": false
+      "crawlable": false,
+      "comment": "Marked addon in spreadsheet — needs real searchUrl"
     }
   },
   "laufbar": {
@@ -4889,7 +5225,49 @@
     "crawl": {
       "searchUrl": "https://www.inhofer.de/search?search=ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": true,
+      "schema": {
+        "type": "dict",
+        "value": {
+          "baseSelector": ".cms-listing-row .cms-listing-col",
+          "fields": [
+            {
+              "name": "name",
+              "selector": ".product-name",
+              "type": "text"
+            },
+            {
+              "name": "productUrl",
+              "selector": ".product-name",
+              "type": "attribute",
+              "attribute": "href"
+            },
+            {
+              "name": "price",
+              "selector": ".product-price",
+              "type": "text"
+            },
+            {
+              "name": "imageSrc",
+              "selector": ".product-image",
+              "type": "attribute",
+              "attribute": "src"
+            },
+            {
+              "name": "imageAlt",
+              "selector": ".product-image",
+              "type": "attribute",
+              "attribute": "alt"
+            },
+            {
+              "name": "sku",
+              "selector": "input[name='sku']",
+              "type": "attribute",
+              "attribute": "value"
+            }
+          ]
+        }
+      }
     }
   },
   "modivo": {
@@ -5352,10 +5730,10 @@
     "category": "categories.photography",
     "url": "https://explore.omsystem.com/de/de/",
     "crawl": {
-      "searchUrl": "ADDON",
+      "searchUrl": "",
       "cms": "",
-      "crawlable": true,
-      "comment": "prüfen"
+      "crawlable": false,
+      "comment": "prüfen | Marked addon in spreadsheet — needs real searchUrl"
     }
   },
   "omega3zone": {
@@ -5371,7 +5749,8 @@
     "crawl": {
       "searchUrl": "https://www.oneplus.com/de/store",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "No search bar / no search-results URL on the shop"
     }
   },
   "online-batterien-2": {
@@ -5477,9 +5856,46 @@
   "padel-point": {
     "category": "categories.fitness",
     "crawl": {
-      "searchUrl": "https://www.padel-point.de/",
+      "searchUrl": "https://www.padel-point.de/search?q=ipad&options%5Bprefix%5D=last",
       "cms": "",
-      "crawlable": true
+      "crawlable": true,
+      "sampleQuery": "racket",
+      "schema": {
+        "type": "dict",
+        "value": {
+          "baseSelector": "li.grid__item",
+          "fields": [
+            {
+              "name": "name",
+              "selector": ".card__heading",
+              "type": "text"
+            },
+            {
+              "name": "price",
+              "selector": ".tp-card-product__price",
+              "type": "text"
+            },
+            {
+              "name": "productUrl",
+              "selector": "a.full-unstyled-link",
+              "type": "attribute",
+              "attribute": "href"
+            },
+            {
+              "name": "imageSrc",
+              "selector": "img.motion-reduce",
+              "type": "attribute",
+              "attribute": "src"
+            },
+            {
+              "name": "imageAlt",
+              "selector": "img.motion-reduce",
+              "type": "attribute",
+              "attribute": "alt"
+            }
+          ]
+        }
+      }
     }
   },
   "pallhuber": {
@@ -5527,10 +5943,10 @@
     "category": "categories.beauty",
     "url": "https://www.pieper.de/",
     "crawl": {
-      "searchUrl": "ADDON",
+      "searchUrl": "",
       "cms": "",
-      "crawlable": true,
-      "comment": "prüfen"
+      "crawlable": false,
+      "comment": "prüfen | Marked addon in spreadsheet — needs real searchUrl"
     }
   },
   "parfumgroup": {
@@ -5575,10 +5991,10 @@
     "category": "categories.furniture",
     "url": "https://passandu.de/",
     "crawl": {
-      "searchUrl": "ADDON",
+      "searchUrl": "",
       "cms": "",
-      "crawlable": true,
-      "comment": "prüfen"
+      "crawlable": false,
+      "comment": "prüfen | Marked addon in spreadsheet — needs real searchUrl"
     }
   },
   "passiontec": {
@@ -5640,7 +6056,43 @@
     "crawl": {
       "searchUrl": "https://www.pepejeans.com/de/de_de/search?q=ipad&lang=de_DE",
       "cms": "",
-      "crawlable": true
+      "crawlable": true,
+      "schema": {
+        "type": "dict",
+        "value": {
+          "baseSelector": "li.grid-tile",
+          "fields": [
+            {
+              "name": "name",
+              "selector": ".c-product-tile__name a",
+              "type": "text"
+            },
+            {
+              "name": "price",
+              "selector": ".o-price__sales",
+              "type": "text"
+            },
+            {
+              "name": "productUrl",
+              "selector": ".thumb-link",
+              "type": "attribute",
+              "attribute": "href"
+            },
+            {
+              "name": "imageSrc",
+              "selector": "img.js-image",
+              "type": "attribute",
+              "attribute": "src"
+            },
+            {
+              "name": "imageAlt",
+              "selector": "img.js-image",
+              "type": "attribute",
+              "attribute": "alt"
+            }
+          ]
+        }
+      }
     }
   },
   "perfumetrader-5": {
@@ -5835,9 +6287,10 @@
     "category": "categories.travel",
     "url": "https://www.priceline.com/",
     "crawl": {
-      "searchUrl": "ADDON",
+      "searchUrl": "",
       "cms": "",
-      "crawlable": false
+      "crawlable": false,
+      "comment": "Marked addon in spreadsheet — needs real searchUrl"
     }
   },
   "prime-video-11": {
@@ -5910,9 +6363,10 @@
     "category": "categories.security",
     "url": "https://protonvpn.com/de",
     "crawl": {
-      "searchUrl": "ADDON",
+      "searchUrl": "",
       "cms": "",
-      "crawlable": false
+      "crawlable": false,
+      "comment": "Marked addon in spreadsheet — needs real searchUrl"
     }
   },
   "pull-bear": {
@@ -6132,9 +6586,10 @@
     "category": "categories.automotive",
     "url": "https://www.reifentiefpreis.de/",
     "crawl": {
-      "searchUrl": "ADDON",
+      "searchUrl": "",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "Marked addon in spreadsheet — needs real searchUrl"
     }
   },
   "rememberde": {
@@ -6157,9 +6612,10 @@
     "category": "categories.retail",
     "url": "https://www.rewe.de/",
     "crawl": {
-      "searchUrl": "ADDON",
+      "searchUrl": "",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "Marked addon in spreadsheet — needs real searchUrl"
     }
   },
   "roastmarket": {
@@ -6191,9 +6647,10 @@
     "category": "categories.other",
     "url": "https://de.rosettastone.com/",
     "crawl": {
-      "searchUrl": "ADDON",
+      "searchUrl": "",
       "cms": "",
-      "crawlable": false
+      "crawlable": false,
+      "comment": "Marked addon in spreadsheet — needs real searchUrl"
     }
   },
   "roter-hahn-112": {
@@ -6225,7 +6682,48 @@
     "crawl": {
       "searchUrl": "https://www.running-point.de/search?q=ipad&options%5Bprefix%5D=last",
       "cms": "",
-      "crawlable": true
+      "crawlable": true,
+      "schema": {
+        "type": "dict",
+        "value": {
+          "baseSelector": ".item-list-element",
+          "fields": [
+            {
+              "name": "name",
+              "selector": ".product-description",
+              "type": "text"
+            },
+            {
+              "name": "productUrl",
+              "selector": "a:nth-child(1)",
+              "type": "attribute",
+              "attribute": "href"
+            },
+            {
+              "name": "brand",
+              "selector": ".brand-name",
+              "type": "text"
+            },
+            {
+              "name": "price",
+              "selector": ".sales > .value",
+              "type": "text"
+            },
+            {
+              "name": "imageSrc",
+              "selector": ".product-main-image picture img",
+              "type": "attribute",
+              "attribute": "src"
+            },
+            {
+              "name": "imageAlt",
+              "selector": ".product-main-image picture img",
+              "type": "attribute",
+              "attribute": "alt"
+            }
+          ]
+        }
+      }
     }
   },
   "saily-4": {
@@ -6426,7 +6924,52 @@
     "crawl": {
       "searchUrl": "https://shopinbit.com/de/search?search=ipad",
       "cms": "shopware",
-      "crawlable": true
+      "crawlable": true,
+      "schema": {
+        "type": "dict",
+        "value": {
+          "baseSelector": ".cms-element-product-listing .product-box",
+          "fields": [
+            {
+              "name": "name",
+              "selector": ".product-name",
+              "type": "text"
+            },
+            {
+              "name": "productUrl",
+              "selector": ".product-name",
+              "type": "attribute",
+              "attribute": "href"
+            },
+            {
+              "name": "brand",
+              "selector": ".product-manufacturer",
+              "type": "text"
+            },
+            {
+              "name": "price",
+              "selector": ".product-price",
+              "type": "text"
+            },
+            {
+              "name": "imageSrc",
+              "selector": ".product-image",
+              "type": "attribute",
+              "attribute": "src"
+            },
+            {
+              "name": "imageAlt",
+              "selector": ".product-image",
+              "type": "attribute",
+              "attribute": "alt"
+            }
+          ]
+        }
+      },
+      "paging": {
+        "loadMoreSelector": ".page-next",
+        "pageQueryParam": "p"
+      }
     }
   },
   "shutterstock": {
@@ -6869,9 +7412,10 @@
     "category": "categories.jewelry",
     "url": "https://www.swarovski.com/de-DE/",
     "crawl": {
-      "searchUrl": "ADDON",
+      "searchUrl": "",
       "cms": "Prüfen",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "Marked addon in spreadsheet — needs real searchUrl"
     }
   },
   "sweet24": {
@@ -6945,9 +7489,10 @@
     "category": "categories.finance",
     "url": "https://www.tarifcheck.de/",
     "crawl": {
-      "searchUrl": "ADDON",
+      "searchUrl": "",
       "cms": "Prüfen",
-      "crawlable": false
+      "crawlable": false,
+      "comment": "Marked addon in spreadsheet — needs real searchUrl"
     }
   },
   "tarifcheck-kfz-versicherung": {
@@ -6989,7 +7534,49 @@
     "crawl": {
       "searchUrl": "https://www.tee-handelskontor-bremen.de/search?search=ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": true,
+      "schema": {
+        "type": "dict",
+        "value": {
+          "baseSelector": "div[role='listitem']",
+          "fields": [
+            {
+              "name": "name",
+              "selector": "a.product-name",
+              "type": "text"
+            },
+            {
+              "name": "price",
+              "selector": ".product-price",
+              "type": "text"
+            },
+            {
+              "name": "productUrl",
+              "selector": "a.product-name",
+              "type": "attribute",
+              "attribute": "href"
+            },
+            {
+              "name": "imageSrc",
+              "selector": "img.product-image",
+              "type": "attribute",
+              "attribute": "src"
+            },
+            {
+              "name": "imageAlt",
+              "selector": "img.product-image",
+              "type": "attribute",
+              "attribute": "alt"
+            },
+            {
+              "name": "sku",
+              "selector": "input[name='sku']",
+              "type": "attribute",
+              "attribute": "value"
+            }
+          ]
+        }
+      }
     }
   },
   "tee-versandhandelcom": {
@@ -7233,7 +7820,48 @@
     "crawl": {
       "searchUrl": "https://tranquillo-shop.de/search?q=ipad&type=product",
       "cms": "",
-      "crawlable": true
+      "crawlable": true,
+      "schema": {
+        "type": "dict",
+        "value": {
+          "baseSelector": "product-card",
+          "fields": [
+            {
+              "name": "name",
+              "selector": ".product-card__title a",
+              "type": "text"
+            },
+            {
+              "name": "productUrl",
+              "selector": ".product-card__title a",
+              "type": "attribute",
+              "attribute": "href"
+            },
+            {
+              "name": "price",
+              "selector": ".price-list",
+              "type": "text"
+            },
+            {
+              "name": "imageSrc",
+              "selector": "img.product-card__image",
+              "type": "attribute",
+              "attribute": "src"
+            },
+            {
+              "name": "imageAlt",
+              "selector": "img.product-card__image",
+              "type": "attribute",
+              "attribute": "alt"
+            },
+            {
+              "name": "sku",
+              "selector": ".product-code",
+              "type": "text"
+            }
+          ]
+        }
+      }
     }
   },
   "trend-micro-7": {
@@ -7318,9 +7946,10 @@
     "category": "categories.electronics",
     "url": "https://unboundxr.de/",
     "crawl": {
-      "searchUrl": "ADDON",
+      "searchUrl": "",
       "cms": "prüfen",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "Marked addon in spreadsheet — needs real searchUrl"
     }
   },
   "under-armour-27": {

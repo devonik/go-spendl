@@ -48,6 +48,7 @@ export default {
   product: {
     btcDiscount: '{value} BTC Rabatt',
     order: 'Zum Shop',
+    priceUnavailable: 'Preis im Shop',
   },
   search: {
     title: 'Suchergebnisse',
@@ -62,6 +63,7 @@ export default {
       label: 'Filter',
       clearAllFilters: 'Zurücksetzen',
       categories: 'Kategorien',
+      allCategories: 'Alle Kategorien',
       brands: 'Marken',
       colors: 'Farben',
       priceRange: 'Preisbereich',

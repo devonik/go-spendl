@@ -49,6 +49,7 @@ export default {
   product: {
     btcDiscount: '{value} BTC Discount',
     order: 'Go to shop',
+    priceUnavailable: 'See price in shop',
   },
   search: {
     title: 'Search results',
@@ -63,6 +64,7 @@ export default {
       label: 'Filter',
       clearAllFilters: 'Reset',
       categories: 'Categories',
+      allCategories: 'All categories',
       brands: 'Brands',
       colors: 'Colors',
       priceRange: 'Price Range',
