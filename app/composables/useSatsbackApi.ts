@@ -7,6 +7,36 @@ type NostrWindow = Window & { nostr?: { signEvent: (event: object) => Promise<ob
 
 let authInProgress: Promise<void> | null = null
 
+// Best-effort browser detection used to promote the matching install link
+// in the missing-extension dialog. Chromium-family browsers (Edge, Brave,
+// Opera, Vivaldi) all accept Chrome Web Store extensions, so they fall
+// into the 'chrome' bucket. Returns null on SSR or unrecognised UAs — the
+// dialog then shows both links with no promotion.
+function detectBrowser(): 'chrome' | 'firefox' | null {
+  if (typeof navigator === 'undefined')
+    return null
+  const ua = navigator.userAgent.toLowerCase()
+  if (ua.includes('firefox'))
+    return 'firefox'
+  if (ua.includes('chrome') || ua.includes('chromium'))
+    return 'chrome'
+  return null
+}
+
+function buildExtensionLink(target: 'chrome' | 'firefox', href: string, current: 'chrome' | 'firefox' | null) {
+  const isCurrent = current === target
+  const labels = { chrome: 'Chrome', firefox: 'Firefox' }
+  const icons = { chrome: 'i-custom-chrome', firefox: 'i-custom-firefox' }
+  return {
+    label: isCurrent ? `${labels[target]} · Current` : labels[target],
+    icon: icons[target],
+    variant: (isCurrent ? 'solid' : 'outline') as 'solid' | 'outline',
+    color: (isCurrent ? 'primary' : undefined) as 'primary' | undefined,
+    href,
+    target: '_blank',
+  }
+}
+
 export function useSatsbackApi() {
   const toast = useToast()
   const confirm = useConfirmDialog()
@@ -39,42 +69,18 @@ export function useSatsbackApi() {
       }
       else if (String(error).includes('window.nostr is undefined')) {
         errorMessage = 'Cannot sign events cause Nostr authentification not possible. Need window.nostr that is given by browser extentions'
-        // TODO force user to install browser extentions
+        const browser = detectBrowser()
         await confirm({
           title: 'Missing browser extention for nostr authentification',
           description: 'Please install the browser extention "nos2x" or "Alby"',
           linkGroups: {
             nos2x: [
-              {
-                label: 'Chrome',
-                icon: 'i-custom-chrome',
-                variant: 'outline',
-                href: 'https://chromewebstore.google.com/detail/nos2x/kpgefcfmnafjgpblomihpgmejjdanjjp',
-                target: '_blank',
-              },
-              {
-                label: 'Firefox',
-                icon: 'i-custom-firefox',
-                variant: 'outline',
-                href: 'https://addons.mozilla.org/en-US/firefox/addon/nos2x-fox/',
-                target: '_blank',
-              },
+              buildExtensionLink('chrome', 'https://chromewebstore.google.com/detail/nos2x/kpgefcfmnafjgpblomihpgmejjdanjjp', browser),
+              buildExtensionLink('firefox', 'https://addons.mozilla.org/en-US/firefox/addon/nos2x-fox/', browser),
             ],
             Alby: [
-              {
-                label: 'Chrome',
-                icon: 'i-custom-chrome',
-                variant: 'outline',
-                href: 'https://chromewebstore.google.com/detail/alby-bitcoin-wallet-for-l/iokeahhehimjnekafflcihljlcjccdbe',
-                target: '_blank',
-              },
-              {
-                label: 'Firefox',
-                icon: 'i-custom-firefox',
-                variant: 'outline',
-                href: 'https://addons.mozilla.org/en-US/firefox/addon/alby/',
-                target: '_blank',
-              },
+              buildExtensionLink('chrome', 'https://chromewebstore.google.com/detail/alby-bitcoin-wallet-for-l/iokeahhehimjnekafflcihljlcjccdbe', browser),
+              buildExtensionLink('firefox', 'https://addons.mozilla.org/en-US/firefox/addon/alby/', browser),
             ],
           },
         })
