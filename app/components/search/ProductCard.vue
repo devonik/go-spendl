@@ -18,14 +18,23 @@ const shopDomain = computed(() =>
 const isSatsback = computed(() => shopDomain.value?.group === 'satsback' && shopDomain.value?.store_id)
 
 const isModalOpen = ref(false)
+const isMobileNoticeOpen = ref(false)
 const isRedirectLoading = ref(false)
 const copied = ref(false)
 
-const { getStoreLink, ensureAuth } = useSatsbackApi()
+const { getStoreLink, ensureAuth, hasNostrExtensionSupport } = useSatsbackApi()
 
 async function handleOrderClick() {
   if (!isSatsback.value) {
     window.open(props.product.sourceUrl, '_blank')
+    return
+  }
+  // Mobile browsers can't install the Nostr extension required for the
+  // satsback redirect (see hasNostrExtensionSupport for the matrix).
+  // Skip the install/auth prompts and offer a no-cashback bypass so the
+  // user can still get to the shop.
+  if (!hasNostrExtensionSupport()) {
+    isMobileNoticeOpen.value = true
     return
   }
   // Resolve nostr auth before showing the "open shop" modal so users
@@ -39,6 +48,11 @@ async function handleOrderClick() {
     return // toast/confirm already surfaced inside useSatsbackApi
   }
   isModalOpen.value = true
+}
+
+function continueWithoutCashback() {
+  isMobileNoticeOpen.value = false
+  window.open(props.product.sourceUrl, '_blank')
 }
 
 async function copyProductName() {
@@ -167,6 +181,31 @@ async function openStore() {
           @click="openStore"
         >
           Open {{ shopDomain?.name }}
+          <template #trailing>
+            <UIcon name="i-lucide-arrow-right" class="size-5" />
+          </template>
+        </UButton>
+      </div>
+    </template>
+  </UModal>
+
+  <!-- Mobile fallback: no nostr extension possible on iOS / most Android. -->
+  <UModal v-model:open="isMobileNoticeOpen">
+    <template #content>
+      <div class="p-6 space-y-4">
+        <h3 class="text-lg font-semibold">
+          {{ $t('product.mobileNoCashback.title') }}
+        </h3>
+        <p class="text-sm text-gray-500">
+          {{ $t('product.mobileNoCashback.description') }}
+        </p>
+        <UButton
+          block
+          color="primary"
+          icon="i-lucide-external-link"
+          @click="continueWithoutCashback"
+        >
+          {{ $t('product.mobileNoCashback.continue') }}
           <template #trailing>
             <UIcon name="i-lucide-arrow-right" class="size-5" />
           </template>

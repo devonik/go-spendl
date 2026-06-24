@@ -23,6 +23,30 @@ function detectBrowser(): 'chrome' | 'firefox' | null {
   return null
 }
 
+// Whether the current browser can install a Nostr-signing extension at all.
+// Mobile platforms mostly cannot:
+// - iOS: Safari/Chrome/Firefox all forbid WebExtensions, so no Nostr signing.
+// - Android Chrome / Brave / Edge mobile: no WebExtensions support.
+// - Android Firefox: supports WebExtensions including nos2x-fox + Alby.
+// - Kiwi Browser (Android, Chromium): supports Chrome extensions.
+// Desktop browsers return true. Returns true on SSR so the caller can fall
+// through to the regular extension-install flow (which detects missing nostr
+// at runtime anyway).
+function hasNostrExtensionSupport(): boolean {
+  if (typeof navigator === 'undefined')
+    return true
+  const ua = navigator.userAgent.toLowerCase()
+  const isMobile = /mobi|android|iphone|ipad|ipod/.test(ua)
+  if (!isMobile)
+    return true
+  // Niche Android browsers that do support extensions.
+  if (ua.includes('android') && ua.includes('firefox'))
+    return true
+  if (ua.includes('kiwi') || ua.includes('yandex'))
+    return true
+  return false
+}
+
 function buildExtensionLink(target: 'chrome' | 'firefox', href: string, current: 'chrome' | 'firefox' | null) {
   const isCurrent = current === target
   const labels = { chrome: 'Chrome', firefox: 'Firefox' }
@@ -219,5 +243,6 @@ export function useSatsbackApi() {
     getClicks,
     getHistory,
     getPayouts,
+    hasNostrExtensionSupport,
   }
 }
