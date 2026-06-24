@@ -17,6 +17,13 @@ export function useSatsbackApi() {
   async function getUserToken() {
     let signedEventGetToken
     try {
+      // The catch block below recognises this exact wording to surface
+      // the "install Nostr extension" confirm. Without this explicit
+      // check the `?.` would silently produce `undefined` and the
+      // downstream /api/satsback/get-token call would just 4xx with no
+      // visible feedback to the user.
+      if (!(window as NostrWindow).nostr)
+        throw new Error('window.nostr is undefined')
       signedEventGetToken = await (window as NostrWindow).nostr?.signEvent({
         kind: SATSBACK_NOSTR_GET_TOKEN_KIND,
         created_at: Math.floor(Date.now() / 1000),
@@ -201,6 +208,7 @@ export function useSatsbackApi() {
   }
 
   return {
+    ensureAuth,
     getStoreLink,
     getClicks,
     getHistory,

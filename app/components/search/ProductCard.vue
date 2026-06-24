@@ -21,15 +21,24 @@ const isModalOpen = ref(false)
 const isRedirectLoading = ref(false)
 const copied = ref(false)
 
-const { getStoreLink } = useSatsbackApi()
+const { getStoreLink, ensureAuth } = useSatsbackApi()
 
-function handleOrderClick() {
-  if (isSatsback.value) {
-    isModalOpen.value = true
-  }
-  else {
+async function handleOrderClick() {
+  if (!isSatsback.value) {
     window.open(props.product.sourceUrl, '_blank')
+    return
   }
+  // Resolve nostr auth before showing the "open shop" modal so users
+  // without the extension / without an account get the install or
+  // account-setup prompt up front, instead of clicking through a
+  // modal that silently fails on the redirect step.
+  try {
+    await ensureAuth()
+  }
+  catch {
+    return // toast/confirm already surfaced inside useSatsbackApi
+  }
+  isModalOpen.value = true
 }
 
 async function copyProductName() {
