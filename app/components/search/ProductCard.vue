@@ -18,7 +18,8 @@ const shopDomain = computed(() =>
 const isSatsback = computed(() => shopDomain.value?.group === 'satsback' && shopDomain.value?.store_id)
 
 const isModalOpen = ref(false)
-const isMobileNoticeOpen = ref(false)
+const isNoCashbackOpen = ref(false)
+const noCashbackReason = ref<'mobile' | 'no-extension'>('mobile')
 const isRedirectLoading = ref(false)
 const copied = ref(false)
 
@@ -34,7 +35,8 @@ async function handleOrderClick() {
   // Skip the install/auth prompts and offer a no-cashback bypass so the
   // user can still get to the shop.
   if (!hasNostrExtensionSupport()) {
-    isMobileNoticeOpen.value = true
+    noCashbackReason.value = 'mobile'
+    isNoCashbackOpen.value = true
     return
   }
   // Resolve nostr auth before showing the "open shop" modal so users
@@ -44,14 +46,22 @@ async function handleOrderClick() {
   try {
     await ensureAuth()
   }
-  catch {
-    return // toast/confirm already surfaced inside useSatsbackApi
+  catch (err) {
+    // If the install-extension confirm was dismissed (user doesn't want
+    // to install), offer the same "continue without cashback" escape
+    // hatch we show to mobile users. Other auth failures (declined
+    // signing, server errors) already surfaced their own toasts.
+    if (String(err).includes('Need window.nostr')) {
+      noCashbackReason.value = 'no-extension'
+      isNoCashbackOpen.value = true
+    }
+    return
   }
   isModalOpen.value = true
 }
 
 function continueWithoutCashback() {
-  isMobileNoticeOpen.value = false
+  isNoCashbackOpen.value = false
   window.open(props.product.sourceUrl, '_blank')
 }
 
@@ -189,15 +199,17 @@ async function openStore() {
     </template>
   </UModal>
 
-  <!-- Mobile fallback: no nostr extension possible on iOS / most Android. -->
-  <UModal v-model:open="isMobileNoticeOpen">
+  <!-- No-cashback escape hatch: shown either to mobile users (no extension
+       possible) or to desktop users who dismissed the install-extension
+       confirm without installing. -->
+  <UModal v-model:open="isNoCashbackOpen">
     <template #content>
       <div class="p-6 space-y-4">
         <h3 class="text-lg font-semibold">
-          {{ $t('product.mobileNoCashback.title') }}
+          {{ $t('product.noCashback.title') }}
         </h3>
         <p class="text-sm text-gray-500">
-          {{ $t('product.mobileNoCashback.description') }}
+          {{ $t(noCashbackReason === 'mobile' ? 'product.noCashback.mobileReason' : 'product.noCashback.noExtensionReason') }}
         </p>
         <UButton
           block
@@ -205,7 +217,7 @@ async function openStore() {
           icon="i-lucide-external-link"
           @click="continueWithoutCashback"
         >
-          {{ $t('product.mobileNoCashback.continue') }}
+          {{ $t('product.noCashback.continue') }}
           <template #trailing>
             <UIcon name="i-lucide-arrow-right" class="size-5" />
           </template>

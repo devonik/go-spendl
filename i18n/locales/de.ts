@@ -48,9 +48,10 @@ export default {
   product: {
     btcDiscount: '{value} BTC Rabatt',
     order: 'Zum Shop',
-    mobileNoCashback: {
-      title: 'Cashback nur am Desktop',
-      description: 'Satsback Cashback braucht eine Browser-Erweiterung (nos2x oder Alby), die auf mobilen Browsern nicht verfügbar ist. Mobile Unterstützung ist in Arbeit. Möchtest du den Shop ohne Cashback öffnen?',
+    noCashback: {
+      title: 'Ohne Cashback weiter zum Shop?',
+      mobileReason: 'Satsback Cashback braucht eine Browser-Erweiterung (nos2x oder Alby), die auf mobilen Browsern (noch) nicht verfügbar ist.',
+      noExtensionReason: 'Ohne installierte Nostr-Erweiterung können wir dir kein Satsback Cashback gewähren.',
       continue: 'Ohne Cashback weiter zum Shop',
     },
   },

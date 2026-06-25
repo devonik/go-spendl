@@ -49,9 +49,10 @@ export default {
   product: {
     btcDiscount: '{value} BTC Discount',
     order: 'Go to shop',
-    mobileNoCashback: {
-      title: 'Cashback is desktop-only for now',
-      description: 'Satsback cashback needs a browser extension (nos2x or Alby) which is not available on mobile browsers. Mobile support is in the works. Want to open the shop without cashback?',
+    noCashback: {
+      title: 'Continue to shop without cashback?',
+      mobileReason: 'Satsback cashback needs a browser extension (nos2x or Alby) which is not yet available on mobile browsers.',
+      noExtensionReason: 'Without the Nostr extension installed we can\'t grant you satsback cashback.',
       continue: 'Continue to shop without cashback',
     },
   },
