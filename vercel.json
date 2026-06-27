@@ -3,6 +3,10 @@
     {
       "path": "/api/cron/check-satsback-stores",
       "schedule": "0 4 * * *"
+    },
+    {
+      "path": "/api/cron/purge-disabled-algolia-records",
+      "schedule": "0 5 * * *"
     }
   ]
 }

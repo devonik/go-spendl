@@ -10,7 +10,8 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "stores:sync": "node scripts/sync-stores.mjs",
-    "stores:disable-missing": "node scripts/disable-missing-stores.mjs"
+    "stores:disable-missing": "node scripts/disable-missing-stores.mjs",
+    "algolia:purge-disabled": "node scripts/purge-disabled-algolia-records.mjs"
   },
   "dependencies": {
     "@nuxt/eslint": "1.9.0",
