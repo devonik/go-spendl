@@ -27,3 +27,7 @@ logs
 .data
 
 /server/api/test/
+
+# Local scratch space — probe results, generated schemas,
+# missing-stores snapshots, etc.
+tmp/
