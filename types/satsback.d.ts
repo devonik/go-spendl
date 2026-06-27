@@ -5,8 +5,11 @@ export interface VisitStoreResponse {
 }
 export interface GetTokenResponse {
   token: string
+  // The Nostr public key the user signed with — long hex string.
   user: string
-  public_id: string
+  // Short Satsback-internal user ID (e.g. "2nGv8GQ"), same format as
+  // store_id. This is what `/store/visit/{storeId}/{userId}` wants.
+  satsback_user_id: string
 }
 export interface CreateUserResponse {
   success: boolean

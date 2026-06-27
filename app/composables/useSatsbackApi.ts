@@ -214,7 +214,11 @@ export function useSatsbackApi() {
     if (!userId.value)
       return
 
-    const response = await $fetch<VisitStoreResponse>('/api/satsback/redirect', {
+    // `$satsbackFetch` (from `plugins/satsback-fetch.client.ts`) attaches
+    // the Authorization: Bearer ${token} header that the redirect route
+    // forwards upstream. Plain `$fetch` would skip it and Satsback's
+    // `/store/visit/...` would 404 us back.
+    const response = await $satsbackFetch<VisitStoreResponse>('/api/satsback/redirect', {
       method: 'post',
       body: { userId: userId.value, storeId },
     })
