@@ -55,6 +55,10 @@ export default {
       noExtensionReason: 'Without the Nostr extension installed we can\'t grant you satsback cashback.',
       continue: 'Continue to shop without cashback',
     },
+    cashbackUnavailable: {
+      title: 'Cashback link unavailable',
+      description: 'We could not generate a satsback link for this shop right now. Opening the shop without cashback.',
+    },
   },
   search: {
     title: 'Search results',

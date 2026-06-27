@@ -54,6 +54,10 @@ export default {
       noExtensionReason: 'Ohne installierte Nostr-Erweiterung können wir dir kein Satsback Cashback gewähren.',
       continue: 'Ohne Cashback weiter zum Shop',
     },
+    cashbackUnavailable: {
+      title: 'Cashback-Link nicht verfügbar',
+      description: 'Wir konnten gerade keinen Satsback-Link für diesen Shop erzeugen. Der Shop öffnet sich ohne Cashback.',
+    },
   },
   search: {
     title: 'Suchergebnisse',

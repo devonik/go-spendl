@@ -27,7 +27,9 @@ const { getStoreLink, ensureAuth, hasNostrExtensionSupport } = useSatsbackApi()
 
 async function handleOrderClick() {
   if (!isSatsback.value) {
-    window.open(props.product.sourceUrl, '_blank')
+    const url = resolveFallbackUrl()
+    if (url)
+      window.open(url, '_blank')
     return
   }
   // Mobile browsers can't install the Nostr extension required for the
@@ -62,7 +64,9 @@ async function handleOrderClick() {
 
 function continueWithoutCashback() {
   isNoCashbackOpen.value = false
-  window.open(props.product.sourceUrl, '_blank')
+  const url = resolveFallbackUrl()
+  if (url)
+    window.open(url, '_blank')
 }
 
 async function copyProductName() {
@@ -71,16 +75,62 @@ async function copyProductName() {
   setTimeout(() => copied.value = false, 2000)
 }
 
+const toast = useToast()
+const { t } = useI18n()
+
 async function openStore() {
   if (!shopDomain.value?.store_id) return
   isRedirectLoading.value = true
   try {
     const url = await getStoreLink(shopDomain.value.store_id)
-    if (url) window.open(url, '_blank')
+    if (url) {
+      window.open(url, '_blank')
+      isModalOpen.value = false
+    }
+    else {
+      // ensureAuth succeeded but no redirect URL came back — treat as failure.
+      openWithoutCashbackFallback()
+    }
+  }
+  catch (err) {
+    // Most common cause: Satsback's `/store/visit/...` 404s because the
+    // store_id is stale or the shop is no longer in their catalog. Don't
+    // leave the user staring at a frozen modal — toast it and fall back
+    // to opening the product URL directly.
+    console.warn('[satsback] getStoreLink failed', err)
+    openWithoutCashbackFallback()
   }
   finally {
     isRedirectLoading.value = false
   }
+}
+
+function resolveFallbackUrl(): string | null {
+  // Prefer the exact product page from the Algolia record…
+  if (props.product.sourceUrl)
+    return props.product.sourceUrl
+  // …else search for the product name on the shop using the same
+  // `searchUrl` template the crawl pipeline uses (literal "ipad"
+  // placeholder gets swapped for the URL-encoded product name)…
+  const template = shopDomain.value?.crawl?.searchUrl
+  if (template && props.product.name) {
+    return template.replaceAll('ipad', encodeURIComponent(props.product.name))
+  }
+  // …else just dump them on the shop homepage.
+  return shopDomain.value?.url ?? null
+}
+
+function openWithoutCashbackFallback() {
+  toast.add({
+    title: t('product.cashbackUnavailable.title'),
+    description: t('product.cashbackUnavailable.description'),
+    color: 'warning',
+    icon: 'i-lucide-triangle-alert',
+  })
+  const url = resolveFallbackUrl()
+  if (url)
+    window.open(url, '_blank')
+  isModalOpen.value = false
 }
 </script>
 
