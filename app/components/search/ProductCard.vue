@@ -18,23 +18,55 @@ const shopDomain = computed(() =>
 const isSatsback = computed(() => shopDomain.value?.group === 'satsback' && shopDomain.value?.store_id)
 
 const isModalOpen = ref(false)
+const isNoCashbackOpen = ref(false)
+const noCashbackReason = ref<'mobile' | 'no-extension'>('mobile')
 const isRedirectLoading = ref(false)
 const copied = ref(false)
 
-const { getStoreLink } = useSatsbackApi()
+const { getStoreLink, ensureAuth, hasNostrExtensionSupport } = useSatsbackApi()
 
-// Prefer the manufacturer's article/model code (e.g. "TSF02CREU") over the
-// marketing name when telling the user what to search for on the shop —
-// it's far more likely to return the exact product.
-const searchTerm = computed(() => props.product.model || props.product.name)
+async function handleOrderClick() {
+  if (!isSatsback.value) {
+    const url = resolveFallbackUrl()
+    if (url)
+      window.open(url, '_blank')
+    return
+  }
+  // Mobile browsers can't install the Nostr extension required for the
+  // satsback redirect (see hasNostrExtensionSupport for the matrix).
+  // Skip the install/auth prompts and offer a no-cashback bypass so the
+  // user can still get to the shop.
+  if (!hasNostrExtensionSupport()) {
+    noCashbackReason.value = 'mobile'
+    isNoCashbackOpen.value = true
+    return
+  }
+  // Resolve nostr auth before showing the "open shop" modal so users
+  // without the extension / without an account get the install or
+  // account-setup prompt up front, instead of clicking through a
+  // modal that silently fails on the redirect step.
+  try {
+    await ensureAuth()
+  }
+  catch (err) {
+    // If the install-extension confirm was dismissed (user doesn't want
+    // to install), offer the same "continue without cashback" escape
+    // hatch we show to mobile users. Other auth failures (declined
+    // signing, server errors) already surfaced their own toasts.
+    if (String(err).includes('Need window.nostr')) {
+      noCashbackReason.value = 'no-extension'
+      isNoCashbackOpen.value = true
+    }
+    return
+  }
+  isModalOpen.value = true
+}
 
-function handleOrderClick() {
-  if (isSatsback.value) {
-    isModalOpen.value = true
-  }
-  else {
-    window.open(props.product.productUrl, '_blank')
-  }
+function continueWithoutCashback() {
+  isNoCashbackOpen.value = false
+  const url = resolveFallbackUrl()
+  if (url)
+    window.open(url, '_blank')
 }
 
 async function copySearchTerm() {
@@ -43,16 +75,63 @@ async function copySearchTerm() {
   setTimeout(() => copied.value = false, 2000)
 }
 
+const toast = useToast()
+const { t } = useI18n()
+
 async function openStore() {
-  if (!shopDomain.value?.store_id) return
+  if (!shopDomain.value?.store_id)
+    return
   isRedirectLoading.value = true
   try {
     const url = await getStoreLink(shopDomain.value.store_id)
-    if (url) window.open(url, '_blank')
+    if (url) {
+      window.open(url, '_blank')
+      isModalOpen.value = false
+    }
+    else {
+      // ensureAuth succeeded but no redirect URL came back — treat as failure.
+      openWithoutCashbackFallback()
+    }
+  }
+  catch (err) {
+    // Most common cause: Satsback's `/store/visit/...` 404s because the
+    // store_id is stale or the shop is no longer in their catalog. Don't
+    // leave the user staring at a frozen modal — toast it and fall back
+    // to opening the product URL directly.
+    console.warn('[satsback] getStoreLink failed', err)
+    openWithoutCashbackFallback()
   }
   finally {
     isRedirectLoading.value = false
   }
+}
+
+function resolveFallbackUrl(): string | null {
+  // Prefer the exact product page from the Algolia record…
+  if (props.product.sourceUrl)
+    return props.product.sourceUrl
+  // …else search for the product name on the shop using the same
+  // `searchUrl` template the crawl pipeline uses (literal "ipad"
+  // placeholder gets swapped for the URL-encoded product name)…
+  const template = shopDomain.value?.crawl?.searchUrl
+  if (template && props.product.name) {
+    return template.replaceAll('ipad', encodeURIComponent(props.product.name))
+  }
+  // …else just dump them on the shop homepage.
+  return shopDomain.value?.url ?? null
+}
+
+function openWithoutCashbackFallback() {
+  toast.add({
+    title: t('product.cashbackUnavailable.title'),
+    description: t('product.cashbackUnavailable.description'),
+    color: 'warning',
+    icon: 'i-lucide-triangle-alert',
+  })
+  const url = resolveFallbackUrl()
+  if (url)
+    window.open(url, '_blank')
+  isModalOpen.value = false
 }
 </script>
 
@@ -164,6 +243,33 @@ async function openStore() {
           @click="openStore"
         >
           Open {{ shopDomain?.name }}
+          <template #trailing>
+            <UIcon name="i-lucide-arrow-right" class="size-5" />
+          </template>
+        </UButton>
+      </div>
+    </template>
+  </UModal>
+
+  <!-- No-cashback escape hatch: shown either to mobile users (no extension
+       possible) or to desktop users who dismissed the install-extension
+       confirm without installing. -->
+  <UModal v-model:open="isNoCashbackOpen">
+    <template #content>
+      <div class="p-6 space-y-4">
+        <h3 class="text-lg font-semibold">
+          {{ $t('product.noCashback.title') }}
+        </h3>
+        <p class="text-sm text-gray-500">
+          {{ $t(noCashbackReason === 'mobile' ? 'product.noCashback.mobileReason' : 'product.noCashback.noExtensionReason') }}
+        </p>
+        <UButton
+          block
+          color="primary"
+          icon="i-lucide-external-link"
+          @click="continueWithoutCashback"
+        >
+          {{ $t('product.noCashback.continue') }}
           <template #trailing>
             <UIcon name="i-lucide-arrow-right" class="size-5" />
           </template>

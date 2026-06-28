@@ -48,7 +48,16 @@ export default {
   product: {
     btcDiscount: '{value} BTC Rabatt',
     order: 'Zum Shop',
-    priceUnavailable: 'Preis im Shop',
+    noCashback: {
+      title: 'Ohne Cashback weiter zum Shop?',
+      mobileReason: 'Satsback Cashback braucht eine Browser-Erweiterung (nos2x oder Alby), die auf mobilen Browsern (noch) nicht verfügbar ist.',
+      noExtensionReason: 'Ohne installierte Nostr-Erweiterung können wir dir kein Satsback Cashback gewähren.',
+      continue: 'Ohne Cashback weiter zum Shop',
+    },
+    cashbackUnavailable: {
+      title: 'Cashback-Link nicht verfügbar',
+      description: 'Wir konnten gerade keinen Satsback-Link für diesen Shop erzeugen. Der Shop öffnet sich ohne Cashback.',
+    },
   },
   search: {
     title: 'Suchergebnisse',

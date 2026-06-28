@@ -12,6 +12,7 @@ export default defineNuxtConfig({
     },
     crawl4AiUrl: process.env.CRAWL4AI_URL,
     crawlWebhookSecret: process.env.CRAWL_WEBHOOK_SECRET,
+    cronSecret: process.env.CRON_SECRET,
     isCrawlUploadAutomaticEnabled: process.env.CRAWL_UPLOAD_AUTOMATIC,
     baseUrl: process.env.BASE_URL,
     vercelBlobStorageWriteToken: process.env.BLOB_READ_WRITE_TOKEN,

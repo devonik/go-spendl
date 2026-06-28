@@ -28,5 +28,6 @@ logs
 
 /server/api/test/
 
-# Probe output (Phase 1 of crawl redesign — local-only inspection data)
+# Local scratch space — probe results, generated schemas,
+# missing-stores snapshots, etc.
 tmp/

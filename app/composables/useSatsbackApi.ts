@@ -7,6 +7,60 @@ type NostrWindow = Window & { nostr?: { signEvent: (event: object) => Promise<ob
 
 let authInProgress: Promise<void> | null = null
 
+// Best-effort browser detection used to promote the matching install link
+// in the missing-extension dialog. Chromium-family browsers (Edge, Brave,
+// Opera, Vivaldi) all accept Chrome Web Store extensions, so they fall
+// into the 'chrome' bucket. Returns null on SSR or unrecognised UAs — the
+// dialog then shows both links with no promotion.
+function detectBrowser(): 'chrome' | 'firefox' | null {
+  if (typeof navigator === 'undefined')
+    return null
+  const ua = navigator.userAgent.toLowerCase()
+  if (ua.includes('firefox'))
+    return 'firefox'
+  if (ua.includes('chrome') || ua.includes('chromium'))
+    return 'chrome'
+  return null
+}
+
+// Whether the current browser can install a Nostr-signing extension at all.
+// Mobile platforms mostly cannot:
+// - iOS: Safari/Chrome/Firefox all forbid WebExtensions, so no Nostr signing.
+// - Android Chrome / Brave / Edge mobile: no WebExtensions support.
+// - Android Firefox: supports WebExtensions including nos2x-fox + Alby.
+// - Kiwi Browser (Android, Chromium): supports Chrome extensions.
+// Desktop browsers return true. Returns true on SSR so the caller can fall
+// through to the regular extension-install flow (which detects missing nostr
+// at runtime anyway).
+function hasNostrExtensionSupport(): boolean {
+  if (typeof navigator === 'undefined')
+    return true
+  const ua = navigator.userAgent.toLowerCase()
+  const isMobile = /mobi|android|iphone|ipad|ipod/.test(ua)
+  if (!isMobile)
+    return true
+  // Niche Android browsers that do support extensions.
+  if (ua.includes('android') && ua.includes('firefox'))
+    return true
+  if (ua.includes('kiwi') || ua.includes('yandex'))
+    return true
+  return false
+}
+
+function buildExtensionLink(target: 'chrome' | 'firefox', href: string, current: 'chrome' | 'firefox' | null) {
+  const isCurrent = current === target
+  const labels = { chrome: 'Chrome', firefox: 'Firefox' }
+  const icons = { chrome: 'i-custom-chrome', firefox: 'i-custom-firefox' }
+  return {
+    label: isCurrent ? `${labels[target]} · Current` : labels[target],
+    icon: icons[target],
+    variant: (isCurrent ? 'solid' : 'outline') as 'solid' | 'outline',
+    color: (isCurrent ? 'primary' : undefined) as 'primary' | undefined,
+    href,
+    target: '_blank',
+  }
+}
+
 export function useSatsbackApi() {
   const toast = useToast()
   const confirm = useConfirmDialog()
@@ -17,6 +71,13 @@ export function useSatsbackApi() {
   async function getUserToken() {
     let signedEventGetToken
     try {
+      // The catch block below recognises this exact wording to surface
+      // the "install Nostr extension" confirm. Without this explicit
+      // check the `?.` would silently produce `undefined` and the
+      // downstream /api/satsback/get-token call would just 4xx with no
+      // visible feedback to the user.
+      if (!(window as NostrWindow).nostr)
+        throw new Error('window.nostr is undefined')
       signedEventGetToken = await (window as NostrWindow).nostr?.signEvent({
         kind: SATSBACK_NOSTR_GET_TOKEN_KIND,
         created_at: Math.floor(Date.now() / 1000),
@@ -32,42 +93,18 @@ export function useSatsbackApi() {
       }
       else if (String(error).includes('window.nostr is undefined')) {
         errorMessage = 'Cannot sign events cause Nostr authentification not possible. Need window.nostr that is given by browser extentions'
-        // TODO force user to install browser extentions
+        const browser = detectBrowser()
         await confirm({
           title: 'Missing browser extention for nostr authentification',
           description: 'Please install the browser extention "nos2x" or "Alby"',
           linkGroups: {
             nos2x: [
-              {
-                label: 'Chrome',
-                icon: 'i-custom-chrome',
-                variant: 'outline',
-                href: 'https://chromewebstore.google.com/detail/nos2x/kpgefcfmnafjgpblomihpgmejjdanjjp',
-                target: '_blank',
-              },
-              {
-                label: 'Firefox',
-                icon: 'i-custom-firefox',
-                variant: 'outline',
-                href: 'https://addons.mozilla.org/en-US/firefox/addon/nos2x-fox/',
-                target: '_blank',
-              },
+              buildExtensionLink('chrome', 'https://chromewebstore.google.com/detail/nos2x/kpgefcfmnafjgpblomihpgmejjdanjjp', browser),
+              buildExtensionLink('firefox', 'https://addons.mozilla.org/en-US/firefox/addon/nos2x-fox/', browser),
             ],
             Alby: [
-              {
-                label: 'Chrome',
-                icon: 'i-custom-chrome',
-                variant: 'outline',
-                href: 'https://chromewebstore.google.com/detail/alby-bitcoin-wallet-for-l/iokeahhehimjnekafflcihljlcjccdbe',
-                target: '_blank',
-              },
-              {
-                label: 'Firefox',
-                icon: 'i-custom-firefox',
-                variant: 'outline',
-                href: 'https://addons.mozilla.org/en-US/firefox/addon/alby/',
-                target: '_blank',
-              },
+              buildExtensionLink('chrome', 'https://chromewebstore.google.com/detail/alby-bitcoin-wallet-for-l/iokeahhehimjnekafflcihljlcjccdbe', browser),
+              buildExtensionLink('firefox', 'https://addons.mozilla.org/en-US/firefox/addon/alby/', browser),
             ],
           },
         })
@@ -177,7 +214,11 @@ export function useSatsbackApi() {
     if (!userId.value)
       return
 
-    const response = await $fetch<VisitStoreResponse>('/api/satsback/redirect', {
+    // `$satsbackFetch` (from `plugins/satsback-fetch.client.ts`) attaches
+    // the Authorization: Bearer ${token} header that the redirect route
+    // forwards upstream. Plain `$fetch` would skip it and Satsback's
+    // `/store/visit/...` would 404 us back.
+    const response = await $satsbackFetch<VisitStoreResponse>('/api/satsback/redirect', {
       method: 'post',
       body: { userId: userId.value, storeId },
     })
@@ -201,9 +242,11 @@ export function useSatsbackApi() {
   }
 
   return {
+    ensureAuth,
     getStoreLink,
     getClicks,
     getHistory,
     getPayouts,
+    hasNostrExtensionSupport,
   }
 }

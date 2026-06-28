@@ -5,7 +5,8 @@
     "crawl": {
       "searchUrl": "https://www.123blumenversand.de/search?search=ipad",
       "cms": "shopware",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "1000books": {
@@ -50,7 +51,8 @@
     "crawl": {
       "searchUrl": "https://www.3pagen.de/search/?q=ipad&qc=&ms=true",
       "cms": "custom",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "3ppp3": {
@@ -68,7 +70,8 @@
     "crawl": {
       "searchUrl": "https://www.43einhalb.com/suche?searchstring=ipad",
       "cms": "custom",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "ab-hof-weine": {
@@ -248,7 +251,8 @@
     "crawl": {
       "searchUrl": "https://www.alibaba.com/trade/search?spm=a2700.product_home_fy25.home_login_first_screen_fy23_pc_search_bar.keydown__Enter&tab=all&SearchText=ipad&has4Tab=true&from=pcHomeContent",
       "cms": "custom",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "alibaba-5": {
@@ -373,8 +377,8 @@
     "crawl": {
       "searchUrl": "https://de.anycubic.com/search?q=ipad&options%5Bprefix%5D=last",
       "cms": "shopify",
-      "crawlable": true,
-      "comment": "Other css config than other shopifys"
+      "crawlable": false,
+      "comment": "Other css config than other shopifys | auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "anzugshop": {
@@ -523,7 +527,8 @@
     "crawl": {
       "searchUrl": "https://www.auranatura.de/search?q=ipad&options%5Bprefix%5D=last&type=product",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "aurox-health": {
@@ -624,7 +629,8 @@
     "crawl": {
       "searchUrl": "https://www.babysnatur.de/search/?qs=ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "babyshopde": {
@@ -816,7 +822,8 @@
     "crawl": {
       "searchUrl": "https://www.trapezblech-onlineshop.de/search?qs=ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "bavariadirekt": {
@@ -910,7 +917,8 @@
     "crawl": {
       "searchUrl": "",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "best-western-6": {
@@ -946,7 +954,8 @@
     "crawl": {
       "searchUrl": "https://www.bettenrid.de/index.php?stoken=&sid=&lang=0&cl=search&searchparam=ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "bettmer": {
@@ -1210,7 +1219,8 @@
     "crawl": {
       "searchUrl": "https://www.bofrost.de/search?text=ipad&searchType=product",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "bogner": {
@@ -1218,7 +1228,8 @@
     "crawl": {
       "searchUrl": "https://www.bogner.com/de-de/suche/?q=ipad&genderCookie=",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "boohooman-2": {
@@ -1252,7 +1263,8 @@
     "crawl": {
       "searchUrl": "https://www.booklooker.de/B%C3%BCcher/Angebote/titel=ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "bosch-hausgerate": {
@@ -1311,7 +1323,8 @@
     "crawl": {
       "searchUrl": "https://brewdog.com/search?type=product&q=ipad&page=1&sort=manual",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "brigitte-hachenburg": {
@@ -1368,7 +1381,8 @@
     "crawl": {
       "searchUrl": "https://www.bundeswehr-und-mehr.de/suchergebnisse?query=ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "burgerme-2": {
@@ -1468,7 +1482,8 @@
     "crawl": {
       "searchUrl": "",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "carters-5": {
@@ -1596,8 +1611,8 @@
     "crawl": {
       "searchUrl": "",
       "cms": "",
-      "crawlable": true,
-      "comment": "Prüfen"
+      "crawlable": false,
+      "comment": "Prüfen | auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "charles-colby": {
@@ -1647,7 +1662,8 @@
     "crawl": {
       "searchUrl": "https://chris-farrell.com/en/search?q=ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "christ": {
@@ -1663,7 +1679,8 @@
     "crawl": {
       "searchUrl": "https://christina-kosmetik.de/search?q=ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "citizenm-3": {
@@ -1696,7 +1713,8 @@
     "crawl": {
       "searchUrl": "https://www.click-licht.de/?jtl_token=9fb07f8cef9035749918aa5d51ffd637e3a0fa6a87fdd74bfe3575bea2b78f14&qs=ipad&search=",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "climaqx": {
@@ -1744,7 +1762,8 @@
     "crawl": {
       "searchUrl": "https://www.modische-berufsbekleidung.de/advanced_search_result.php?keywords=ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "companydepot": {
@@ -1752,7 +1771,8 @@
     "crawl": {
       "searchUrl": "https://www.companydepot.de/catalogsearch/result/?q=ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "computeruniverse": {
@@ -1829,7 +1849,8 @@
     "crawl": {
       "searchUrl": "",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "corendon-airlines-2": {
@@ -2022,7 +2043,7 @@
       "searchUrl": "",
       "cms": "",
       "crawlable": false,
-      "comment": "Marked addon in spreadsheet — needs real searchUrl"
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "delinat": {
@@ -2080,7 +2101,8 @@
     "crawl": {
       "searchUrl": "",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "deubaxxl-2": {
@@ -2097,8 +2119,8 @@
     "crawl": {
       "searchUrl": "",
       "cms": "",
-      "crawlable": true,
-      "comment": "Prüfen"
+      "crawlable": false,
+      "comment": "Prüfen | auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "dfds": {
@@ -2115,7 +2137,8 @@
     "crawl": {
       "searchUrl": "https://eu.dickies.com/de-de/search?find=ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "die-bayerische": {
@@ -2265,7 +2288,8 @@
     "crawl": {
       "searchUrl": "https://e-lektron.de/pages/search-results-page?q=pad",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "e-wie-einfach-2": {
@@ -2572,7 +2596,8 @@
     "crawl": {
       "searchUrl": "https://www.eterna.de/de/suche/?query=ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "etsy-5": {
@@ -2581,7 +2606,8 @@
     "crawl": {
       "searchUrl": "https://www.etsy.com/de/search?q=ipad&ref=search_bar",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "eufylife": {
@@ -2819,7 +2845,8 @@
     "crawl": {
       "searchUrl": "https://www.farfetch.com/de/shopping/women/search/items.aspx?q=ipad&ffref=Search%7C%7C%7C&qr=3",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "fashionette": {
@@ -2827,7 +2854,8 @@
     "crawl": {
       "searchUrl": "https://www.fashionette.de/search?q=ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "fc-bayern": {
@@ -2929,7 +2957,8 @@
     "crawl": {
       "searchUrl": "https://www.flaschenbauer.de/#7a2d/fullscreen/m=f&q=ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "fletcher-hotels": {
@@ -3040,7 +3069,8 @@
     "crawl": {
       "searchUrl": "https://shop.frankfurt-airport.com/de-DE/search?query=ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "freenet": {
@@ -3229,7 +3259,8 @@
     "crawl": {
       "searchUrl": "https://gameseal.com/de/search?search=ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "garten-schluter": {
@@ -3246,7 +3277,8 @@
     "crawl": {
       "searchUrl": "https://www.gebrueder-goetz.de/search/?text=ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "geox": {
@@ -3258,7 +3290,8 @@
     "crawl": {
       "searchUrl": "https://www.geox.com/de-DE/search?q=ipad&lang=null",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "geruchskontrolle": {
@@ -3431,7 +3464,8 @@
     "crawl": {
       "searchUrl": "https://www.gutmarkiert.de/search?query=ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "gymqueen-2": {
@@ -3505,7 +3539,8 @@
     "crawl": {
       "searchUrl": "https://www.hardware-online-shop.de/tablets/apple/ipad-160?originalSearchTerm=ipad&ti=tczaybz9wwj6lj82",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "harecker-pfannen": {
@@ -3513,7 +3548,8 @@
     "crawl": {
       "searchUrl": "https://www.harecker.de/index.php?jtl_token=e1ede42f5fc753f0ab88eed951346cf21b2cc80e729db3b46b1dd317d4bed499&qs=ipad&search=",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "harrys-3": {
@@ -3715,7 +3751,8 @@
     "crawl": {
       "searchUrl": "https://hoerner-group.de/?s=ipad&post_type=product&lang=de",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "hostinger-9": {
@@ -3955,7 +3992,8 @@
     "crawl": {
       "searchUrl": "https://www.intimissimi.com/de/herren/?q=ipad&lang=de_DE",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "isolicht-2": {
@@ -3996,7 +4034,8 @@
     "crawl": {
       "searchUrl": "https://www.jacob.de/apple-ipad-familie/",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "jalousiescout": {
@@ -4028,7 +4067,8 @@
     "crawl": {
       "searchUrl": "https://jarmino.de/search?q=ipad&options%5Bprefix%5D=last",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "jbl-9": {
@@ -4110,7 +4150,8 @@
     "crawl": {
       "searchUrl": "https://www.joybuy.de/s?k=ipad&st=active+search&keywordsEventType=0",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "joyn": {
@@ -4126,7 +4167,8 @@
     "crawl": {
       "searchUrl": "https://www.jp1880.de/de/jp_noresults",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "jugend-tours": {
@@ -4159,7 +4201,8 @@
     "crawl": {
       "searchUrl": "https://kaffeegenuss-shop.de/search?q=ipad&options%5Bprefix%5D=last",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "kaffeetechnik-shopde": {
@@ -4202,7 +4245,7 @@
       "searchUrl": "",
       "cms": "",
       "crawlable": false,
-      "comment": "Marked addon in spreadsheet — needs real searchUrl"
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "kaspersky-3": {
@@ -4413,7 +4456,8 @@
     "crawl": {
       "searchUrl": "https://www.lampenonline.de/catalogsearch/result/?q=ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "lampenwelt": {
@@ -4578,7 +4622,8 @@
     "crawl": {
       "searchUrl": "https://www.lego.com/de-de/search?q=ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "leifheit-2": {
@@ -4915,7 +4960,8 @@
     "crawl": {
       "searchUrl": "https://www.mactrade.de/search?search=ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "macys": {
@@ -5066,7 +5112,8 @@
     "crawl": {
       "searchUrl": "https://www.mediashop.tv/search-results?q=ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "medimops": {
@@ -5217,7 +5264,8 @@
     "crawl": {
       "searchUrl": "https://www.hoeffner.de/suche?anfrage=ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "mobel-inhofer": {
@@ -5309,7 +5357,8 @@
     "crawl": {
       "searchUrl": "https://www.motatos.de/search?q=ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "motointegrator-5": {
@@ -5436,7 +5485,8 @@
     "crawl": {
       "searchUrl": "https://www.myticket.de/de/suche?keywords=ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "mytime": {
@@ -5546,7 +5596,8 @@
     "crawl": {
       "searchUrl": "https://www.ninjakitchen.de/INTERSHOP/web/WFS/SharkNinja-DE-Site/de_DE/ninja-responsive/EUR/ViewParametricSearch-SimpleOfferSearch?SearchTerm=ipad&search=",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "niyok": {
@@ -5657,7 +5708,8 @@
     "crawl": {
       "searchUrl": "https://www.o2online.de/suche/consumer/?q=ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "obi": {
@@ -5706,7 +5758,8 @@
     "crawl": {
       "searchUrl": "https://ohmyfantasy.com/search?q=ipad&options%5Bprefix%5D=last",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "olight": {
@@ -5965,8 +6018,8 @@
     "crawl": {
       "searchUrl": "",
       "cms": "",
-      "crawlable": true,
-      "comment": "prüfen"
+      "crawlable": false,
+      "comment": "prüfen | auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "parken-am-flughafen": {
@@ -6100,7 +6153,8 @@
     "crawl": {
       "searchUrl": "https://www.perfumetrader.de/de/catalogsearch/result/?q=ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "petcrew": {
@@ -6108,7 +6162,8 @@
     "crawl": {
       "searchUrl": "https://www.petcrew.de/search?q=ipad&type=product",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "peter-hahn-3": {
@@ -6149,7 +6204,8 @@
     "crawl": {
       "searchUrl": "https://www.philips.de/c-w/search.html?context=b2c#q=ipad&cq=%40ps_contenttype_key%3D%3Dproduct",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "piercingline": {
@@ -6157,7 +6213,8 @@
     "crawl": {
       "searchUrl": "https://www.piercingline.com/en/ff/search?search=ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "pinko-3": {
@@ -6520,7 +6577,8 @@
     "crawl": {
       "searchUrl": "https://www.rc-multistore.com/Hersteller#6698/fullscreen/m=f&q=ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "readly-9": {
@@ -6545,7 +6603,8 @@
     "crawl": {
       "searchUrl": "https://refurbiestore.de/?s=ipad&post_type=product&dgwt_wcas=1",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "reichelt-elektronik": {
@@ -6674,7 +6733,8 @@
     "crawl": {
       "searchUrl": "https://www.rumundco.de/search?search=ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "running-point": {
@@ -6840,7 +6900,8 @@
     "crawl": {
       "searchUrl": "https://www.sconto.de/suche?anfrage=ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "secret-escapes-2": {
@@ -6857,7 +6918,8 @@
     "crawl": {
       "searchUrl": "https://senifone.de/search?q=ipad&type=product&options[prefix]=last",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "sephora": {
@@ -6873,7 +6935,8 @@
     "crawl": {
       "searchUrl": "https://www.sharkclean.de/INTERSHOP/web/WFS/SharkNinja-DE-Site/de_DE/-/EUR/ViewParametricSearch-SimpleOfferSearch?SearchTerm=ipad&search=",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "sheego": {
@@ -7423,7 +7486,8 @@
     "crawl": {
       "searchUrl": "https://www.sweet24.de/index.php?lang=0&cl=search&searchparam=ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "swiss-airlines": {
@@ -7466,7 +7530,8 @@
     "crawl": {
       "searchUrl": "https://tamaris.com/de-DE/suche/?q=ipad&lang=de_DE",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "tapir": {
@@ -7518,7 +7583,8 @@
     "crawl": {
       "searchUrl": "https://www.tassimo.com/de/search/ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "tchibo": {
@@ -7704,7 +7770,8 @@
     "crawl": {
       "searchUrl": "",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "tiqets-8": {
@@ -8073,7 +8140,8 @@
     "crawl": {
       "searchUrl": "https://www.vinos.de/miriade-by-pago-de-vallegarcia-P112653/?articleNo=35858",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "vistaexpert": {
@@ -8277,7 +8345,8 @@
     "crawl": {
       "searchUrl": "https://www.wisch-star.de/search/?suchausdruck=ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "wish-13": {
@@ -8377,7 +8446,8 @@
     "crawl": {
       "searchUrl": "https://www.xlmoebel.de/search/?search=ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": false,
+      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "xspo": {

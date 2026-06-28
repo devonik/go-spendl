@@ -49,7 +49,16 @@ export default {
   product: {
     btcDiscount: '{value} BTC Discount',
     order: 'Go to shop',
-    priceUnavailable: 'See price in shop',
+    noCashback: {
+      title: 'Continue to shop without cashback?',
+      mobileReason: 'Satsback cashback needs a browser extension (nos2x or Alby) which is not yet available on mobile browsers.',
+      noExtensionReason: 'Without the Nostr extension installed we can\'t grant you satsback cashback.',
+      continue: 'Continue to shop without cashback',
+    },
+    cashbackUnavailable: {
+      title: 'Cashback link unavailable',
+      description: 'We could not generate a satsback link for this shop right now. Opening the shop without cashback.',
+    },
   },
   search: {
     title: 'Search results',
