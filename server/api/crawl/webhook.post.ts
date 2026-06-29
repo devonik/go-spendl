@@ -146,15 +146,19 @@ export default defineEventHandler(async (event) => {
     }
 
     // Many German shops embed the manufacturer's model code inside the product
-    // name in chevron quotes, e.g. "Toaster »TSF02CREU« 2 lange Schlitze".
-    // The article number is more useful than the marketing name when the user
-    // wants to search the product on the shop, so extract it as `model` if the
-    // schema didn't already populate one.
+    // name in chevron quotes, e.g. "Toaster »TSF02CREU« 2 lange Schlitze" or
+    // "Smartwatch-Armband »Apple Strap, CS2009S1«". When the chevron content
+    // has comma-separated parts the article number is conventionally the last
+    // one, so we take that piece. Single-piece content (no comma) gets used
+    // verbatim — covers the simpler "TSF02CREU" case.
     for (const item of items) {
       if (!item.model && item.name) {
         const match = item.name.match(/»([^»«]+)«/)
-        if (match?.[1])
-          item.model = match[1].trim()
+        if (match?.[1]) {
+          const inside = match[1].trim()
+          const parts = inside.split(',').map(p => p.trim()).filter(Boolean)
+          item.model = parts.length > 0 ? parts[parts.length - 1] : inside
+        }
       }
     }
 
