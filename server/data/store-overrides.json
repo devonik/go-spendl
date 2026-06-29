@@ -3204,8 +3204,7 @@
             {
               "name": "name",
               "selector": "div:nth-child(6) > p > span",
-              "type": "text",
-              "default": "Click the button below to see more"
+              "type": "text"
             },
             {
               "name": "productUrl",
