@@ -27,7 +27,8 @@ const crawlFailed = ref(false)
 
 const matchingStores = computed(() => {
   const q = query.value?.trim().toLowerCase()
-  if (!q || !stores.value) return []
+  if (!q || !stores.value)
+    return []
   return stores.value.filter((store) => {
     const name = store.name?.toLowerCase() ?? ''
     const description = store.description?.toLowerCase() ?? ''
@@ -46,13 +47,15 @@ const handleItemsDataChangeDebounce = useDebounceFn((items: AlgoliaProduct[]) =>
       icon: 'i-lucide-search',
     })
     crawlFailed.value = false
+    const inferredCategories = inferCategoriesFromQuery(query.value)
     $fetch('/api/crawl', {
       method: 'POST',
       body: {
         query: encodeURIComponent(query.value),
         locale: locale.value,
-        // Test single domain or 'all' default
-        domain: 'baur.de',
+        // Narrow the fan-out by inferred categories — falling through to
+        // an unfiltered crawl when the query has no obvious match.
+        ...(inferredCategories.length > 0 ? { categories: inferredCategories } : {}),
       },
     }).catch(() => {
       crawlFailed.value = true
@@ -60,6 +63,63 @@ const handleItemsDataChangeDebounce = useDebounceFn((items: AlgoliaProduct[]) =>
     emptyResultsCatchedOnce.value = true
   }
 }, 1000)
+
+// Best-effort keyword → category mapping. The category i18n keys come from
+// `i18n/locales/categories.*.json` and are also what `store.category` holds.
+// Coverage is intentionally non-exhaustive: an unmatched query falls through
+// to an unfiltered crawl (current behaviour). Add entries as needed.
+const KEYWORD_TO_CATEGORIES: { keywords: string[], categories: string[] }[] = [
+  {
+    categories: ['categories.electronics'],
+    keywords: ['fernseher', 'tv', 'television', 'monitor', 'smartphone', 'handy', 'tablet', 'laptop', 'computer', 'kamera', 'camera', 'kopfhörer', 'kopfhoerer', 'headphones', 'console', 'konsole', 'playstation', 'xbox', 'nintendo', 'drucker', 'printer', 'router'],
+  },
+  {
+    categories: ['categories.fashion', 'categories.shoes'],
+    keywords: ['shirt', 'pullover', 'hose', 'jeans', 'kleid', 'dress', 'jacke', 'jacket', 'mantel', 'rock', 'skirt', 'schuhe', 'sneaker', 'shoes', 'stiefel', 'boots', 'cap', 'mütze', 'muetze'],
+  },
+  {
+    categories: ['categories.food'],
+    keywords: ['kaffee', 'coffee', 'tee', 'tea', 'wein', 'wine', 'bier', 'beer', 'schokolade', 'chocolate', 'kekse', 'pasta', 'olivenöl', 'olivenoel'],
+  },
+  {
+    categories: ['categories.beauty', 'categories.cosmetics'],
+    keywords: ['parfum', 'perfume', 'creme', 'cream', 'shampoo', 'lippenstift', 'lipstick', 'mascara', 'foundation'],
+  },
+  {
+    categories: ['categories.fitness'],
+    keywords: ['hantel', 'dumbbell', 'yoga', 'fitness', 'racket', 'schläger', 'schlaeger', 'tennis', 'padel', 'crossfit', 'training', 'sportbekleidung'],
+  },
+  {
+    categories: ['categories.furniture'],
+    keywords: ['sofa', 'couch', 'bett', 'bed', 'tisch', 'table', 'stuhl', 'chair', 'schrank', 'regal', 'shelf', 'matratze', 'mattress'],
+  },
+  {
+    categories: ['categories.household'],
+    keywords: ['toaster', 'küche', 'kueche', 'kitchen', 'staubsauger', 'vacuum', 'mixer', 'kaffeemaschine'],
+  },
+  {
+    categories: ['categories.supplements'],
+    keywords: ['vitamin', 'supplement', 'protein', 'creatin', 'creatine'],
+  },
+  {
+    categories: ['categories.energy'],
+    keywords: ['strom', 'gas', 'electricity', 'energy', 'tarif'],
+  },
+]
+
+function inferCategoriesFromQuery(q: string): string[] {
+  const lower = q?.trim().toLowerCase()
+  if (!lower)
+    return []
+  const matched = new Set<string>()
+  for (const entry of KEYWORD_TO_CATEGORIES) {
+    if (entry.keywords.some(k => lower.includes(k))) {
+      for (const c of entry.categories)
+        matched.add(c)
+    }
+  }
+  return [...matched]
+}
 
 interface WebsocketJsonMessage {
   source: string

@@ -73,6 +73,7 @@ export default {
       label: 'Filter',
       clearAllFilters: 'Reset',
       categories: 'Categories',
+      allCategories: 'All categories',
       brands: 'Brands',
       colors: 'Colors',
       priceRange: 'Price Range',

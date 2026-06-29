@@ -48,51 +48,65 @@ interface Crawl4AIData {
   tables: unknown[]
 }
 
+// Strip screen-reader labels that some shops (notably Shopify themes) emit
+// inside the price element, then collapse whitespace and pick the first
+// complete currency token. For sale items this gives the sale price (which
+// is what the user actually pays). Returns the cleaned input — never null —
+// so a partial cleanup is preferred over losing the value entirely.
+const PRICE_LABELS = /Verkaufspreis|Normaler\s*Preis|Angebotspreis|Sonderpreis|Grundpreis|UVP|Sale\s*price|Regular\s*price|From\s|Ab\s|Von\s/gi
+const PRICE_TOKEN = /[\d.,]+\s*(?:[€$£]|EUR|USD|CHF|GBP)/i
+
+function normalizePrice(raw: string): string {
+  if (!raw)
+    return raw
+  const stripped = raw.replace(PRICE_LABELS, ' ').replace(/\s+/g, ' ').trim()
+  const m = stripped.match(PRICE_TOKEN)
+  return m ? m[0].trim() : stripped
+}
+
+// Resolve a possibly-relative URL extracted from a shop's listing card
+// against the actual store origin. The shopDomain header carries the
+// store's *slug* (e.g. "padel-point"), not its hostname, so concatenating
+// it produces invalid URLs like https://padel-point/products/foo. We use
+// the search URL the crawl was started from to recover the real origin.
+function resolveProductUrl(maybeRelative: string, storeOrigin: string | null): string {
+  if (!maybeRelative)
+    return maybeRelative
+  if (/^https?:\/\//i.test(maybeRelative))
+    return maybeRelative
+  if (maybeRelative.startsWith('//'))
+    return `https:${maybeRelative}`
+  if (storeOrigin)
+    return `${storeOrigin}${maybeRelative.startsWith('/') ? '' : '/'}${maybeRelative}`
+  return maybeRelative
+}
+
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig()
 
+  // Auth first — bail before reading the body or doing anything else if
+  // the shared secret doesn't match. Mirrors the cron-handler pattern:
+  // collapse missing-vs-wrong into a single 401 so we don't leak which
+  // header was the problem to an unauthenticated caller.
+  if (!config.crawlWebhookSecret || getHeader(event, 'X-Webhook-Secret') !== config.crawlWebhookSecret) {
+    throw createError({ statusCode: 401, statusMessage: 'Unauthorized' })
+  }
+
   const body = await readBody<CompleteCrawlWebhookPayload>(event)
-  const headers = getRequestHeaders(event)
+  const group = getHeader(event, 'X-Group')
+  const domain = getHeader(event, 'X-Domain')
+  const category = getHeader(event, 'X-Category')
+  const initialQuery = getHeader(event, 'X-Initial-Query')
 
-  console.log('Webhook headers:', headers)
-  // TODO check secret header 'X-Webhook-Secret' here
-
-  const group = headers['X-Group'.toLowerCase()]
-  const domain = headers['X-Domain'.toLowerCase()]
-  const secret = headers['X-Webhook-Secret'.toLowerCase()]
-  const initialQuery = headers['X-Initial-Query'.toLowerCase()]
-  if (!group) {
-    throw createError({
-      statusCode: 400,
-      statusMessage: 'Header X-Group is missing',
-    })
-  }
-  if (!domain) {
-    throw createError({
-      statusCode: 400,
-      statusMessage: 'Header X-Domain is missing',
-    })
-  }
-  if (!secret) {
-    throw createError({
-      statusCode: 400,
-      statusMessage: 'Header X-Webhook-Secret is missing',
-    })
-  }
-  if (!initialQuery) {
-    throw createError({
-      statusCode: 400,
-      statusMessage: 'Header X-Initial-Query is missing',
-    })
-  }
-
-  if (secret !== config.crawlWebhookSecret) {
-    throw createError({
-      statusCode: 401,
-      statusMessage: 'Unauthorized',
-    })
-  }
-  console.log('webhook body', body.data?.results)
+  // The remaining headers are required for downstream business logic
+  // (Algolia object shape + Slack messages). 400 is honest here since
+  // the caller is already authenticated.
+  if (!group)
+    throw createError({ statusCode: 400, statusMessage: 'Header X-Group is missing' })
+  if (!domain)
+    throw createError({ statusCode: 400, statusMessage: 'Header X-Domain is missing' })
+  if (!initialQuery)
+    throw createError({ statusCode: 400, statusMessage: 'Header X-Initial-Query is missing' })
 
   if (body.status === 'failed') {
     console.error(`Crawl task ${body.task_id} failed with error`, body.error)
@@ -121,18 +135,54 @@ export default defineEventHandler(async (event) => {
       return accumulator.concat(json)
     }, [])
 
+    // Shopify-style shops often render the product title only as the image's
+    // `alt` attribute on listing cards (the visible heading is JS-rendered).
+    // If the schema didn't capture a `name` but did capture `imageAlt`, use
+    // that — must run before the model extractor below since model is parsed
+    // out of name.
+    for (const item of items) {
+      if ((!item.name || !item.name.trim()) && item.imageAlt?.trim())
+        item.name = item.imageAlt.trim()
+    }
+
+    // Many German shops embed the manufacturer's model code inside the product
+    // name in chevron quotes, e.g. "Toaster »TSF02CREU« 2 lange Schlitze".
+    // The article number is more useful than the marketing name when the user
+    // wants to search the product on the shop, so extract it as `model` if the
+    // schema didn't already populate one.
+    for (const item of items) {
+      if (!item.model && item.name) {
+        const match = item.name.match(/»([^»«]+)«/)
+        if (match?.[1])
+          item.model = match[1].trim()
+      }
+    }
+
+    // Normalize price strings so Algolia stores something usable.
+    // Shopify-style price elements often concatenate screen-reader labels
+    // and both sale + regular prices into one blob, e.g.
+    //   "Verkaufspreis59,95 €Normaler Preis150,00"
+    // We strip known labels and pick the first complete price token —
+    // for sale items that's the sale price (the one the user actually pays).
+    for (const item of items) {
+      if (item.price)
+        item.price = normalizePrice(item.price)
+    }
+
     let slackInfo = ''
 
     if (items.length === 0) {
-      sendSlackMessage(config.slackWebhookUrl, {
-        title: `:checkered_flag: *${body.task_id}* No products found by crawler`,
-        jsonString: `no items found. Check if the domain is correct. Either the URLs ${body.urls.join(', ')} is wrong, the CSS config is old oder there are just no items`,
-      })
+      // Crawl4AI succeeded; the shop simply returned zero matches for this
+      // query. That's a legitimate user-search outcome, not an error — log
+      // informationally and skip the Slack alarm. Genuine schema/auth
+      // failures are reported earlier in this handler (status === 'failed'
+      // or results[0].success === false), which still fire alerts.
+      console.warn(`Crawl ${body.task_id}: 0 items extracted from ${body.urls.join(', ')} — query returned no results`)
       return { success: true }
     }
     slackInfo = `Extracted ${items.length || 0} items. Search URLs ${body.urls.join(', ')}\n`
     items.filter(item => !item.price).forEach((item) => {
-      slackInfo += `- Item without price found: ${item.name} - ${item.sourceUrl}. Double check why price not crawled\n\n`
+      slackInfo += `- Item without price found: ${item.name} - ${item.productUrl}. Double check why price not crawled\n\n`
     })
 
     sendSlackMessage(config.slackWebhookUrl, {
@@ -140,7 +190,22 @@ export default defineEventHandler(async (event) => {
       jsonString: slackInfo,
     })
 
-    const formattedResults: AlgoliaProduct[] = items.filter(item => item.price).map((item) => {
+    // Items without a price are still indexed — the frontend renders a
+    // "see in shop" placeholder. The Slack notification above flags them
+    // so the schema's price selector can be corrected manually.
+    // The crawled search URLs all share the shop's origin; use it to
+    // resolve any relative productUrls extracted from cards.
+    let storeOrigin: string | null = null
+    try {
+      if (body.urls?.[0])
+        storeOrigin = new URL(body.urls[0]).origin
+    }
+    catch { }
+    // Stamp every upserted record with the time we last saw the product on
+    // the shop. The refresh + eviction crons range-filter on this — anything
+    // older than the eviction threshold gets purged from the index.
+    const lastCrawledAt = Math.floor(Date.now() / 1000)
+    const formattedResults: AlgoliaProduct[] = items.map((item) => {
       // Get a copy from item without the colors
       const { color1, color2, color3, colorMore, ...rest } = item
       let colors = item.color1
@@ -158,8 +223,10 @@ export default defineEventHandler(async (event) => {
         objectID: `${domain}-${descriptionSterilized ? `${itemNameSterilized}-${descriptionSterilized}` : itemNameSterilized}`,
         group,
         shopDomain: domain,
+        category,
         colors,
-        sourceUrl: !item.sourceUrl.includes('http') ? `https://${domain}${item.sourceUrl}` : item.sourceUrl,
+        productUrl: resolveProductUrl(item.productUrl, storeOrigin),
+        lastCrawledAt,
       }
     })
 
@@ -172,7 +239,7 @@ export default defineEventHandler(async (event) => {
       })
     }
     else {
-    // Create task for approvement
+      // Create task for approvement
       if (formattedResults.length === 0)
         return
       const { url } = await put(`crawl/to-approve/${config.public.algoliaProductIndex}-${body.task_id}.json`, JSON.stringify({ initialQuery, items: formattedResults }), { access: 'public', contentType: 'application/json' })

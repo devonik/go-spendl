@@ -1,14 +1,24 @@
 export interface AlgoliaProduct extends Record<string, unknown> {
   name: string
-  sourceUrl: string
+  productUrl: string
   brand: string
   description?: string
-  price: string
+  price?: string
   imageSrc?: string
+  imageAlt?: string
   imageSrcset?: string
+  model?: string
   shopDomain: string
   group: string
+  category?: string
   colors?: string
+  /**
+   * Unix timestamp (seconds) — set by the webhook whenever we (re)observe
+   * the product on a shop's listing. The eviction cron deletes records
+   * whose lastCrawledAt is older than the staleness threshold. Algolia
+   * needs this in `numericAttributesForFiltering` to range-filter on it.
+   */
+  lastCrawledAt?: number
   objectID?: string
   _highlightResult?: HighlightResult
 }

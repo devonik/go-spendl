@@ -33,10 +33,13 @@ Users authenticate via browser extensions (nos2x / Alby) that implement `window.
 - `useStores()` fetches the live store list from `/api/stores` and is used to match products to stores by slug.
 - When a user clicks a satsback-enabled product, `useSatsbackApi.getStoreLink(storeId)` is called after ensureAuth — this triggers Nostr auth on first use only.
 
-**Crawl pipeline**
-- `POST /api/crawl` triggers Crawl4AI to scrape product data
-- Results come back via `POST /api/crawl/webhook` (secured by `CRAWL_WEBHOOK_SECRET`)
-- Webhook parses and indexes products to Algolia
+**Crawl pipeline** (full reference: [CRAWL_PIPELINE.md](CRAWL_PIPELINE.md))
+
+- `POST /api/crawl` fans out across shops, filtered by `crawl.crawlable && crawl.searchUrl && crawl.schema` in `store-overrides.json`, optionally narrowed by `categories: string[]` in the body. Per-store the handler substitutes the literal `"ipad"` placeholder in `crawl.searchUrl` with the user's URL-encoded query.
+- Results come back via `POST /api/crawl/webhook` (secured by `CRAWL_WEBHOOK_SECRET`). Webhook normalises: `imageAlt → name` fallback (Shopify), model code extracted from `»…«` in the name, price stripped of screen-reader labels, relative `productUrl` resolved against the crawled search URL's origin.
+- Per-shop CSS extraction schemas live under `crawl.schema` in `store-overrides.json`. Generate via `pnpm gen:schema <slug>` (Gemini Flash Lite + Crawl4AI validation against the shop's listing page), persist via `pnpm save:schema <slug>`. The generator's Crawl4AI config must mirror the production one (`scan_full_page`, `Sec-CH-UA*` headers, `cache_mode: BYPASS`) or schemas validated under the generator break in prod.
+- Listing pages, not product detail, because listing cards are more uniform across shops. Always use Crawl4AI's raw `html` field (not `cleaned_html`) for the prompt — cleaned_html strips class names the LLM relies on.
+- Hygiene crons (`vercel.json`): `/api/cron/check-satsback-stores` daily at 04:00 UTC diffs overrides against the live Satsback catalog and Slacks stale slugs; `/api/cron/purge-disabled-algolia-records` at 05:00 UTC deletes Algolia records for `crawl.crawlable: false` shops. Both auth via `Authorization: Bearer ${CRON_SECRET}`. Ad-hoc CLIs: `pnpm stores:disable-missing`, `pnpm algolia:purge-disabled` (dry-run by default, `--apply` to act).
 
 **Server auth middleware**
 `server/middleware/auth.ts` extracts `Authorization` header and stores in `event.context.authToken`. Server routes for `/api/satsback/user/*` use this to forward the token to the Satsback upstream API.

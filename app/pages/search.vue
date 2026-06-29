@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useRouteQuery } from '@vueuse/router'
 import { liteClient as algoliasearch } from 'algoliasearch/lite'
-import { AisConfigure, AisInstantSearch, AisPoweredBy, AisSortBy, AisStateResults } from 'vue-instantsearch/vue3/es'
+import { AisConfigure, AisInstantSearch, AisMenuSelect, AisPoweredBy, AisSortBy, AisStateResults } from 'vue-instantsearch/vue3/es'
 
 definePageMeta({
   title: 'search.title',
@@ -19,6 +19,22 @@ const searchClient = algoliasearch(
 
 const pageModel = useRouteQuery('p', '1', { transform: Number })
 const queryModel = useRouteQuery('q', '')
+
+// Nuxt UI's USelect (radix-vue) refuses empty-string SelectItem values, so we
+// use a non-empty sentinel for the "All categories" option and translate
+// to/from Algolia's empty-string-clears-refinement convention at the boundary.
+const ALL_CATEGORIES = '__all__'
+
+function buildCategoryOptions(items: { value: string, count: number }[]) {
+  return [
+    { value: ALL_CATEGORIES, label: t('search.filter.allCategories') },
+    ...items.map(i => ({ value: i.value, label: `${t(i.value)} (${i.count})` })),
+  ]
+}
+
+function currentCategoryValue(items: { value: string, isRefined: boolean }[]) {
+  return items.find(i => i.isRefined)?.value ?? ALL_CATEGORIES
+}
 </script>
 
 <template>
@@ -58,11 +74,27 @@ const queryModel = useRouteQuery('q', '')
           </AisStateResults>
 
           <div class="flex flex-col gap-6 grow">
-            <SearchDebouncedSearchBox
-              v-model="queryModel"
-              :delay="500"
-              :placeholder="$t('search.placeholder')"
-            />
+            <!-- Amazon-style category prefix on the search bar. Lets the user narrow
+                 the result set (and any future crawl fan-out) before typing a query. -->
+            <div class="flex items-stretch gap-0">
+              <AisMenuSelect attribute="category" :limit="20">
+                <template #default="{ items, refine }">
+                  <USelect
+                    :model-value="currentCategoryValue(items)"
+                    :items="buildCategoryOptions(items)"
+                    class="rounded-r-none border-r-0 min-w-fit"
+                    :ui="{ content: 'min-w-fit' }"
+                    @update:model-value="(v) => refine(v === ALL_CATEGORIES ? '' : v)"
+                  />
+                </template>
+              </AisMenuSelect>
+              <SearchDebouncedSearchBox
+                v-model="queryModel"
+                :delay="500"
+                :placeholder="$t('search.placeholder')"
+                class="grow rounded-l-none"
+              />
+            </div>
             <div class="flex justify-between gap-4">
               <AisStateResults>
                 <template #default="{ status, state: { query }, results: { nbHits, processingTimeMS } }">

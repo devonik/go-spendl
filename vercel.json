@@ -7,6 +7,14 @@
     {
       "path": "/api/cron/purge-disabled-algolia-records",
       "schedule": "0 5 * * *"
+    },
+    {
+      "path": "/api/cron/refresh-shops",
+      "schedule": "0 6 * * 0"
+    },
+    {
+      "path": "/api/cron/evict-stale-products",
+      "schedule": "0 7 * * *"
     }
   ]
 }

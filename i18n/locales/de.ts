@@ -72,6 +72,7 @@ export default {
       label: 'Filter',
       clearAllFilters: 'Zurücksetzen',
       categories: 'Kategorien',
+      allCategories: 'Alle Kategorien',
       brands: 'Marken',
       colors: 'Farben',
       priceRange: 'Preisbereich',

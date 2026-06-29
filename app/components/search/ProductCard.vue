@@ -69,8 +69,8 @@ function continueWithoutCashback() {
     window.open(url, '_blank')
 }
 
-async function copyProductName() {
-  await navigator.clipboard.writeText(props.product.name)
+async function copySearchTerm() {
+  await navigator.clipboard.writeText(searchTerm.value)
   copied.value = true
   setTimeout(() => copied.value = false, 2000)
 }
@@ -79,7 +79,8 @@ const toast = useToast()
 const { t } = useI18n()
 
 async function openStore() {
-  if (!shopDomain.value?.store_id) return
+  if (!shopDomain.value?.store_id)
+    return
   isRedirectLoading.value = true
   try {
     const url = await getStoreLink(shopDomain.value.store_id)
@@ -166,7 +167,8 @@ function openWithoutCashbackFallback() {
     <!-- Price and Discount Section -->
     <div class="space-y-2">
       <div class="flex items-center justify-between">
-        <span class="text-lg font-bold dark:text-neutral">{{ product.price }}</span>
+        <span v-if="product.price" class="text-lg font-bold dark:text-neutral">{{ product.price }}</span>
+        <span v-else class="text-sm font-medium italic text-gray-500 dark:text-gray-400">{{ $t('product.priceUnavailable') }}</span>
 
         <!-- Bitcoin Discount Badge -->
         <UBadge
@@ -218,17 +220,17 @@ function openWithoutCashbackFallback() {
           Search for this product on {{ shopDomain?.name }}
         </h3>
         <p class="text-sm text-gray-500">
-          Copy the product name, then open the store and search for it to earn Satsback.
+          Copy the {{ product.model ? 'article number' : 'product name' }}, then open the store and search for it to earn Satsback.
         </p>
 
         <div class="flex items-center gap-2 rounded-md border px-3 py-2 bg-gray-50 dark:bg-gray-900">
-          <span class="flex-grow text-sm font-medium truncate">{{ product.name }}</span>
+          <span class="flex-grow text-sm font-medium truncate">{{ searchTerm }}</span>
           <UButton
             size="xs"
             variant="ghost"
             :icon="copied ? 'i-lucide-check' : 'i-lucide-copy'"
             :color="copied ? 'success' : 'neutral'"
-            @click="copyProductName"
+            @click="copySearchTerm"
           />
         </div>
 

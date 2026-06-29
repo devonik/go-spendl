@@ -89,6 +89,7 @@ export interface WebhookHeaders {
   'X-Webhook-Secret': string
   'X-Domain'?: string
   'X-Group'?: string
+  'X-Category'?: string
   'X-Initial-Query'?: string
 }
 export interface CrawlerWebhookPayload {
@@ -103,13 +104,14 @@ export interface CrawlerWebhookPayload {
 export interface CrawledItem {
   objectID: string
   name: string
-  sourceUrl: string
+  productUrl: string
   brand: string
-  price: string
+  price?: string
   description?: string
   imageSrc?: string
   imageSrcset?: string
   imageAlt?: string
+  model?: string
   shopDomain: string
   group: string
   color1?: string
