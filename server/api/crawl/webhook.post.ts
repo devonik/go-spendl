@@ -64,17 +64,6 @@ function normalizePrice(raw: string): string {
   return m ? m[0].trim() : stripped
 }
 
-// Names we know are schema-default sentinels, not real product names.
-// Crawl4AI's JsonCssExtractionStrategy lets a field set a `default`
-// value when the selector doesn't match — handy for absorbing missing
-// optional fields, but it also masks "this isn't a real card" cases
-// (e.g. Galaxus has Q&A `<article>` elements with no product info).
-// Add to this set whenever a new placeholder shows up in production.
-const NAME_BLOCKLIST: ReadonlySet<string> = new Set([
-  'Click the button below to see more',
-  'RVDISPLAYNAME',
-])
-
 // Path segments that clearly aren't product detail pages. Used to drop
 // items that snuck through with a non-product URL — Q&A, help, blog,
 // FAQ etc. Matches only as a whole path segment so we don't accidentally
@@ -88,20 +77,38 @@ const NON_PRODUCT_URL_PATH = /\/(?:questionandanswer|qa|q|help|support|service|b
 // without false-positiving real product URLs.
 const TEMPLATE_PLACEHOLDER_URL = /#[A-Z]{3,}|\{[A-Za-z][A-Za-z0-9]*\}/
 
+// A productUrl is "usable" if it actually navigates somewhere meaningful.
+// Catches placeholder anchors, empty paths, template variables and obvious
+// non-product paths. Doing this URL-level keeps the filter generic — new
+// shop quirks tend to emit junk URLs *and* junk names at the same time, so
+// blocking the URL is enough without maintaining per-shop name lists.
+function isUsableProductUrl(url?: string): boolean {
+  if (!url)
+    return false
+  if (url === '/' || url.startsWith('#'))
+    return false
+  if (TEMPLATE_PLACEHOLDER_URL.test(url))
+    return false
+  if (NON_PRODUCT_URL_PATH.test(url))
+    return false
+  try {
+    const path = new URL(url, 'http://placeholder').pathname
+    if (!path || path === '/')
+      return false
+  }
+  catch {
+    return false
+  }
+  return true
+}
+
 // Quick predicate for the upsert filter. Returns true when the item
 // looks like a real product card; false drops it before it reaches
 // Algolia.
 function isUsableProduct(item: { name?: string, productUrl?: string }): boolean {
-  const name = item.name?.trim()
-  if (!name)
+  if (!item.name?.trim())
     return false
-  if (NAME_BLOCKLIST.has(name))
-    return false
-  if (item.productUrl && NON_PRODUCT_URL_PATH.test(item.productUrl))
-    return false
-  if (item.productUrl && TEMPLATE_PLACEHOLDER_URL.test(item.productUrl))
-    return false
-  return true
+  return isUsableProductUrl(item.productUrl)
 }
 
 // Resolve a possibly-relative URL extracted from a shop's listing card
