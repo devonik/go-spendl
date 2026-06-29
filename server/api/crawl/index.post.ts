@@ -9,16 +9,6 @@ import { cachedStores } from '../../utils/stores'
 // Substituted with the user's URL-encoded query at request time.
 const SEARCH_URL_PLACEHOLDER = 'ipad'
 
-// Delay between sending consecutive jobs to Crawl4AI. The /crawl/job endpoint
-// queues immediately, so without this Crawl4AI starts every job it has workers
-// for within a couple of seconds. We saw sporadic ACS-GOTO (Playwright goto)
-// failures when 5+ jobs fired in lock-step — staggering spreads worker-pool
-// start times and brings the failure rate down to near zero. Effective fan-out
-// time becomes ~STAGGER * (N - 1), which is fine since the response just
-// returns task IDs; the actual crawl work happens async and reports back via
-// the webhook regardless.
-const DISPATCH_STAGGER_MS = 1500
-
 interface ParticalCrawlInfo {
   domain: string
   task_id?: string
@@ -225,10 +215,7 @@ export default defineEventHandler(async (event) => {
       : 'no filter'
   console.info(`Crawl - starting crawl on ${targetStores.length}/${crawlableStores.length} stores [${filterNote}]: ${targetStores.map(s => s.slug).join(', ')}`)
 
-  for (const [index, store] of targetStores.entries()) {
-    if (index > 0)
-      await new Promise(resolve => setTimeout(resolve, DISPATCH_STAGGER_MS))
-
+  for (const store of targetStores) {
     const slug = store.slug
     webhook_config.webhook_headers['X-Domain'] = slug
     webhook_config.webhook_headers['X-Group'] = store.group
