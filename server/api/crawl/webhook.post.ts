@@ -84,47 +84,29 @@ function resolveProductUrl(maybeRelative: string, storeOrigin: string | null): s
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig()
 
+  // Auth first — bail before reading the body or doing anything else if
+  // the shared secret doesn't match. Mirrors the cron-handler pattern:
+  // collapse missing-vs-wrong into a single 401 so we don't leak which
+  // header was the problem to an unauthenticated caller.
+  if (!config.crawlWebhookSecret || getHeader(event, 'X-Webhook-Secret') !== config.crawlWebhookSecret) {
+    throw createError({ statusCode: 401, statusMessage: 'Unauthorized' })
+  }
+
   const body = await readBody<CompleteCrawlWebhookPayload>(event)
-  const headers = getRequestHeaders(event)
+  const group = getHeader(event, 'X-Group')
+  const domain = getHeader(event, 'X-Domain')
+  const category = getHeader(event, 'X-Category')
+  const initialQuery = getHeader(event, 'X-Initial-Query')
 
-  // TODO check secret header 'X-Webhook-Secret' here
-
-  const group = headers['X-Group'.toLowerCase()]
-  const domain = headers['X-Domain'.toLowerCase()]
-  const category = headers['X-Category'.toLowerCase()]
-  const secret = headers['X-Webhook-Secret'.toLowerCase()]
-  const initialQuery = headers['X-Initial-Query'.toLowerCase()]
-  if (!group) {
-    throw createError({
-      statusCode: 400,
-      statusMessage: 'Header X-Group is missing',
-    })
-  }
-  if (!domain) {
-    throw createError({
-      statusCode: 400,
-      statusMessage: 'Header X-Domain is missing',
-    })
-  }
-  if (!secret) {
-    throw createError({
-      statusCode: 400,
-      statusMessage: 'Header X-Webhook-Secret is missing',
-    })
-  }
-  if (!initialQuery) {
-    throw createError({
-      statusCode: 400,
-      statusMessage: 'Header X-Initial-Query is missing',
-    })
-  }
-
-  if (secret !== config.crawlWebhookSecret) {
-    throw createError({
-      statusCode: 401,
-      statusMessage: 'Unauthorized',
-    })
-  }
+  // The remaining headers are required for downstream business logic
+  // (Algolia object shape + Slack messages). 400 is honest here since
+  // the caller is already authenticated.
+  if (!group)
+    throw createError({ statusCode: 400, statusMessage: 'Header X-Group is missing' })
+  if (!domain)
+    throw createError({ statusCode: 400, statusMessage: 'Header X-Domain is missing' })
+  if (!initialQuery)
+    throw createError({ statusCode: 400, statusMessage: 'Header X-Initial-Query is missing' })
 
   if (body.status === 'failed') {
     console.error(`Crawl task ${body.task_id} failed with error`, body.error)
