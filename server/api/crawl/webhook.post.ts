@@ -87,7 +87,6 @@ export default defineEventHandler(async (event) => {
   const body = await readBody<CompleteCrawlWebhookPayload>(event)
   const headers = getRequestHeaders(event)
 
-  console.log('Webhook headers:', headers)
   // TODO check secret header 'X-Webhook-Secret' here
 
   const group = headers['X-Group'.toLowerCase()]
@@ -126,15 +125,6 @@ export default defineEventHandler(async (event) => {
       statusMessage: 'Unauthorized',
     })
   }
-  // Drop the heavy raw-content fields before logging — html / fit_html /
-  // cleaned_html / markdown each weigh hundreds of KB and drown the log.
-  // Replace with a length summary so we keep observability.
-  const compactResults = body.data?.results.map((r) => {
-    const { html, fit_html, cleaned_html, ...rest } = r as Crawl4AIData & { markdown?: unknown }
-    delete (rest as { markdown?: unknown }).markdown
-    return { ...rest, _html_chars: html?.length ?? 0, _fit_html_chars: fit_html?.length ?? 0 }
-  })
-  console.log('webhook body', compactResults)
 
   if (body.status === 'failed') {
     console.error(`Crawl task ${body.task_id} failed with error`, body.error)
@@ -219,8 +209,8 @@ export default defineEventHandler(async (event) => {
     })
 
     // Items without a price are still indexed — the frontend renders a
-     // "see in shop" placeholder. The Slack notification above flags them
-     // so the schema's price selector can be corrected manually.
+    // "see in shop" placeholder. The Slack notification above flags them
+    // so the schema's price selector can be corrected manually.
     // The crawled search URLs all share the shop's origin; use it to
     // resolve any relative productUrls extracted from cards.
     let storeOrigin: string | null = null
@@ -228,7 +218,11 @@ export default defineEventHandler(async (event) => {
       if (body.urls?.[0])
         storeOrigin = new URL(body.urls[0]).origin
     }
-    catch {}
+    catch { }
+    // Stamp every upserted record with the time we last saw the product on
+    // the shop. The refresh + eviction crons range-filter on this — anything
+    // older than the eviction threshold gets purged from the index.
+    const lastCrawledAt = Math.floor(Date.now() / 1000)
     const formattedResults: AlgoliaProduct[] = items.map((item) => {
       // Get a copy from item without the colors
       const { color1, color2, color3, colorMore, ...rest } = item
@@ -250,6 +244,7 @@ export default defineEventHandler(async (event) => {
         category,
         colors,
         productUrl: resolveProductUrl(item.productUrl, storeOrigin),
+        lastCrawledAt,
       }
     })
 
@@ -262,7 +257,7 @@ export default defineEventHandler(async (event) => {
       })
     }
     else {
-    // Create task for approvement
+      // Create task for approvement
       if (formattedResults.length === 0)
         return
       const { url } = await put(`crawl/to-approve/${config.public.algoliaProductIndex}-${body.task_id}.json`, JSON.stringify({ initialQuery, items: formattedResults }), { access: 'public', contentType: 'application/json' })
