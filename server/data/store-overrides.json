@@ -6739,46 +6739,67 @@
   "running-point": {
     "category": "categories.shoes",
     "crawl": {
-      "searchUrl": "https://www.running-point.de/search?q=ipad&options%5Bprefix%5D=last",
+      "searchUrl": "https://www.running-point.de/search?q=ipad",
       "cms": "",
       "crawlable": true,
+      "sampleQuery": "laufschuhe",
       "schema": {
         "type": "dict",
         "value": {
-          "baseSelector": ".item-list-element",
+          "baseSelector": "li.grid__item",
           "fields": [
             {
               "name": "name",
-              "selector": ".product-description",
-              "type": "text"
+              "selector": "a.tp-card-product__title",
+              "type": "text",
+              "default": ""
             },
             {
               "name": "productUrl",
-              "selector": "a:nth-child(1)",
+              "selector": "a.tp-card-product__title",
               "type": "attribute",
-              "attribute": "href"
+              "attribute": "href",
+              "default": null
             },
             {
               "name": "brand",
-              "selector": ".brand-name",
-              "type": "text"
+              "selector": "p.tp-card-product__brand",
+              "type": "text",
+              "default": ""
             },
             {
               "name": "price",
-              "selector": ".sales > .value",
-              "type": "text"
+              "selector": ".card__information .tp-price-item--current",
+              "type": "text",
+              "default": ""
             },
             {
               "name": "imageSrc",
-              "selector": ".product-main-image picture img",
+              "selector": "img.tp-card-product__image",
               "type": "attribute",
-              "attribute": "src"
+              "attribute": "src",
+              "default": null
             },
             {
               "name": "imageAlt",
-              "selector": ".product-main-image picture img",
+              "selector": "img.tp-card-product__image",
               "type": "attribute",
-              "attribute": "alt"
+              "attribute": "alt",
+              "default": null
+            },
+            {
+              "name": "sku",
+              "selector": ".tp-product-card",
+              "type": "attribute",
+              "attribute": "data-tp-gtm-item-id",
+              "default": null
+            },
+            {
+              "name": "model",
+              "selector": ".tp-product-card",
+              "type": "attribute",
+              "attribute": "data-tp-gtm-item-id",
+              "default": null
             }
           ]
         }
