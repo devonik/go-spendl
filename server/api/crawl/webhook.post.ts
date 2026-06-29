@@ -64,6 +64,36 @@ function normalizePrice(raw: string): string {
   return m ? m[0].trim() : stripped
 }
 
+// Names we know are schema-default sentinels, not real product names.
+// Crawl4AI's JsonCssExtractionStrategy lets a field set a `default`
+// value when the selector doesn't match — handy for absorbing missing
+// optional fields, but it also masks "this isn't a real card" cases
+// (e.g. Galaxus has Q&A `<article>` elements with no product info).
+// Add to this set whenever a new placeholder shows up in production.
+const NAME_BLOCKLIST: ReadonlySet<string> = new Set([
+  'Click the button below to see more',
+])
+
+// Path segments that clearly aren't product detail pages. Used to drop
+// items that snuck through with a non-product URL — Q&A, help, blog,
+// FAQ etc. Matches only as a whole path segment so we don't accidentally
+// reject product slugs that contain one of these substrings.
+const NON_PRODUCT_URL_PATH = /\/(?:questionandanswer|qa|q|help|support|service|blog|blogs|magazin|magazine|ratgeber|guide|guides|faq|kontakt|impressum|agb|datenschutz|about|news|presse|jobs|karriere)\//i
+
+// Quick predicate for the upsert filter. Returns true when the item
+// looks like a real product card; false drops it before it reaches
+// Algolia.
+function isUsableProduct(item: { name?: string, productUrl?: string }): boolean {
+  const name = item.name?.trim()
+  if (!name)
+    return false
+  if (NAME_BLOCKLIST.has(name))
+    return false
+  if (item.productUrl && NON_PRODUCT_URL_PATH.test(item.productUrl))
+    return false
+  return true
+}
+
 // Resolve a possibly-relative URL extracted from a shop's listing card
 // against the actual store origin. The shopDomain header carries the
 // store's *slug* (e.g. "padel-point"), not its hostname, so concatenating
@@ -144,6 +174,20 @@ export default defineEventHandler(async (event) => {
       if ((!item.name || !item.name.trim()) && item.imageAlt?.trim())
         item.name = item.imageAlt.trim()
     }
+
+    // Drop items that aren't real products — schema-default sentinel
+    // names (e.g. Galaxus' "Click the button below to see more" leaking
+    // out of the catch-all `<article>` selector when a Q&A entry was
+    // matched) and items pointing at obvious non-product URLs (Q&A,
+    // help, blog, etc.). Runs after the imageAlt fallback so we don't
+    // throw away items that just need that fallback to populate name.
+    const droppedCount = items.length
+    const filteredItems = items.filter(isUsableProduct)
+    const dropped = droppedCount - filteredItems.length
+    if (dropped > 0)
+      console.warn(`[webhook] dropped ${dropped} non-product item(s) from ${domain} crawl`)
+    items.length = 0
+    items.push(...filteredItems)
 
     // Many German shops embed the manufacturer's model code inside the product
     // name in chevron quotes, e.g. "Toaster »TSF02CREU« 2 lange Schlitze" or
