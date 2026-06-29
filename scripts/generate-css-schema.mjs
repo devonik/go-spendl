@@ -401,6 +401,15 @@ async function runForSlug(slug, { verbose }) {
 
   log('2. Asking Gemini for listing schema…')
   const schema = await callGemini(trimmed)
+  // Stamp a default on every field so Crawl4AI's JsonCssExtractionStrategy
+  // returns a consistent list-of-strings shape even when a field's selector
+  // misses on some cards. Without this, missing matches surface as Python
+  // booleans and the internal merge step blows up with
+  // "unsupported operand type(s) for +: 'bool' and 'list'".
+  for (const field of schema?.value?.fields ?? []) {
+    if (field.default === undefined)
+      field.default = field.type === 'attribute' ? null : ''
+  }
   const baseSelector = schema?.value?.baseSelector
   log(`   baseSelector: ${baseSelector}`)
   log(`   fields:       ${(schema?.value?.fields || []).map(f => f.name).join(', ')}\n`)
