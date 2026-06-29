@@ -95,11 +95,13 @@ function isUsableProduct(item: { name?: string, productUrl?: string }): boolean 
 }
 
 // Resolve a possibly-relative URL extracted from a shop's listing card
-// against the actual store origin. The shopDomain header carries the
-// store's *slug* (e.g. "padel-point"), not its hostname, so concatenating
-// it produces invalid URLs like https://padel-point/products/foo. We use
+// against the actual store origin. Covers absolute URLs (returned as-is),
+// protocol-relative URLs (`//cdn.shop/x.jpg` from Shopify image srcs),
+// and root-relative paths. The shopDomain header carries the store's
+// *slug* (e.g. "padel-point"), not its hostname, so concatenating it
+// produces invalid URLs like https://padel-point/products/foo — we use
 // the search URL the crawl was started from to recover the real origin.
-function resolveProductUrl(maybeRelative: string, storeOrigin: string | null): string {
+function resolveUrl(maybeRelative: string, storeOrigin: string | null): string {
   if (!maybeRelative)
     return maybeRelative
   if (/^https?:\/\//i.test(maybeRelative))
@@ -273,7 +275,10 @@ export default defineEventHandler(async (event) => {
         shopDomain: domain,
         category,
         colors,
-        productUrl: resolveProductUrl(item.productUrl, storeOrigin),
+        productUrl: resolveUrl(item.productUrl, storeOrigin),
+        // Shopify embeds CDN image srcs as protocol-relative `//cdn.shop/…`;
+        // resolveUrl prepends https: so Algolia stores a usable absolute URL.
+        imageSrc: item.imageSrc ? resolveUrl(item.imageSrc, storeOrigin) : item.imageSrc,
         lastCrawledAt,
       }
     })
