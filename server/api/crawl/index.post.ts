@@ -158,7 +158,11 @@ export default defineEventHandler(async (event) => {
       // js_only: true,
       cache_mode: CacheMode.BYPASS,
       wait_for_images: true,
-      session_id: randomUUID(),
+      // Filled per-job inside the loop below so each crawl gets its own
+      // browser context. Sharing a session_id across the fan-out makes
+      // Crawl4AI try to navigate every shop in the same tab, which races
+      // and surfaces as ERR_ABORTED.
+      session_id: '',
       exclude_all_images: true,
       exclude_external_links: true,
       exclude_social_media_domains: true,
@@ -229,6 +233,7 @@ export default defineEventHandler(async (event) => {
     webhook_config.webhook_headers['X-Domain'] = slug
     webhook_config.webhook_headers['X-Group'] = store.group
     webhook_config.webhook_headers['X-Category'] = store.category
+    crawler_config_payload.params.session_id = randomUUID()
 
     const partialCrawlInfo: ParticalCrawlInfo = { domain: slug }
 
