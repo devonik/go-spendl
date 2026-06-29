@@ -25,6 +25,12 @@ const copied = ref(false)
 
 const { getStoreLink, ensureAuth, hasNostrExtensionSupport } = useSatsbackApi()
 
+// What we show in the "search this product on the shop" modal. Prefer the
+// manufacturer's article code (model) over the marketing name when we
+// have one — way more likely to land the user on the exact product on
+// the shop's own search than a long descriptive title.
+const searchTerm = computed(() => props.product.model?.trim() || props.product.name)
+
 async function handleOrderClick() {
   if (!isSatsback.value) {
     const url = resolveFallbackUrl()
