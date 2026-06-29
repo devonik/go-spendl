@@ -8,8 +8,11 @@ const { query } = useRoute()
 const status = ref<'loading' | 'loaded' | 'declined' | 'approved' | 'empty'>()
 
 const jsonContent = ref<{ initialQuery: string, items: Schema }>()
+// `z.looseObject` keeps webhook-set fields the reviewer doesn't edit
+// (category, model, lastCrawledAt, …) so they survive the approve flow
+// and land in Algolia. The default `z.object` silently strips them.
 const schema = z.array(
-  z.object({
+  z.looseObject({
     name: z.string('Required'),
     productUrl: z.url('Must be a URL'),
     brand: z.string().optional(),
