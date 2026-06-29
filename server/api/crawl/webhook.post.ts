@@ -72,6 +72,7 @@ function normalizePrice(raw: string): string {
 // Add to this set whenever a new placeholder shows up in production.
 const NAME_BLOCKLIST: ReadonlySet<string> = new Set([
   'Click the button below to see more',
+  'RVDISPLAYNAME',
 ])
 
 // Path segments that clearly aren't product detail pages. Used to drop
@@ -79,6 +80,13 @@ const NAME_BLOCKLIST: ReadonlySet<string> = new Set([
 // FAQ etc. Matches only as a whole path segment so we don't accidentally
 // reject product slugs that contain one of these substrings.
 const NON_PRODUCT_URL_PATH = /\/(?:questionandanswer|qa|q|help|support|service|blog|blogs|magazin|magazine|ratgeber|guide|guides|faq|kontakt|impressum|agb|datenschutz|about|news|presse|jobs|karriere)\//i
+
+// Server-side template placeholders that leaked into the rendered HTML
+// instead of being substituted. ASP.NET listing engines (biggreensmile)
+// emit `#RVLINK` style anchors on hidden template rows; older PHP sites
+// emit `{ProductUrl}` style curly braces. Both shapes can be detected
+// without false-positiving real product URLs.
+const TEMPLATE_PLACEHOLDER_URL = /#[A-Z]{3,}|\{[A-Za-z][A-Za-z0-9]*\}/
 
 // Quick predicate for the upsert filter. Returns true when the item
 // looks like a real product card; false drops it before it reaches
@@ -90,6 +98,8 @@ function isUsableProduct(item: { name?: string, productUrl?: string }): boolean 
   if (NAME_BLOCKLIST.has(name))
     return false
   if (item.productUrl && NON_PRODUCT_URL_PATH.test(item.productUrl))
+    return false
+  if (item.productUrl && TEMPLATE_PLACEHOLDER_URL.test(item.productUrl))
     return false
   return true
 }
