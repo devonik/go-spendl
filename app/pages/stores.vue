@@ -5,6 +5,15 @@ definePageMeta({
   title: 'welcome.title',
 })
 
+const { t } = useI18n()
+
+useSeoMeta({
+  title: () => t('seo.stores.title'),
+  description: () => t('seo.stores.description'),
+  ogTitle: () => t('seo.stores.title'),
+  ogDescription: () => t('seo.stores.description'),
+})
+
 const { data: stores, pending: storesPending } = useLazyFetch<Store[]>(`/api/stores?country=germany`)
 
 const selectedCategory = ref<string | null>(null)

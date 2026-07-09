@@ -25,8 +25,42 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     '@nuxt/fonts',
     '@vueuse/nuxt',
+    '@nuxtjs/seo',
   ],
   css: ['~/assets/css/main.css'],
+  site: {
+    url: 'https://gospendl.com',
+    name: 'GoSpendl',
+    description: 'Die Preisvergleichs-App rund um Bitcoin. Finde Onlineshops, in denen du direkt mit Bitcoin bezahlst oder Satsback-Cashback in Bitcoin erhältst.',
+    defaultLocale: 'de',
+    // twitter: '@gospendl',
+  },
+  sitemap: {
+    exclude: [
+      '/search',
+      '/en/search',
+      '/internal/**',
+      '/en/internal/**',
+    ],
+  },
+  robots: {
+    disallow: ['/internal/'],
+  },
+  routeRules: {
+    '/search': { robots: 'noindex, follow' },
+    '/en/search': { robots: 'noindex, follow' },
+    '/internal/**': { robots: 'noindex, nofollow' },
+    '/en/internal/**': { robots: 'noindex, nofollow' },
+  },
+  schemaOrg: {
+    identity: {
+      type: 'Organization',
+      name: 'GoSpendl',
+      url: 'https://gospendl.com',
+      logo: 'https://gospendl.com/logo-light.png',
+      email: 'info@gospendl.com',
+    },
+  },
   icon: {
     customCollections: [{
       prefix: 'custom',

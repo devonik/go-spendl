@@ -2,21 +2,28 @@
 import { Analytics } from '@vercel/analytics/nuxt'
 import { SpeedInsights } from '@vercel/speed-insights/nuxt'
 
-const { t } = useI18n()
-
-const title = t('welcome.title')
-const description = t('welcome.description')
+const { t, locale } = useI18n()
 
 useSeoMeta({
-  title,
-  titleTemplate: (titleChunk) => {
-    return titleChunk ? `${titleChunk} - GoSpendl` : 'GoSpendl'
-  },
-  ogTitle: title,
-  description,
-  ogDescription: description,
-  ogImage: '/logo-light.png',
+  titleTemplate: titleChunk => titleChunk ? `${titleChunk} – GoSpendl` : 'GoSpendl – Preisvergleich für Bitcoiner',
+  description: () => t('seo.site.description'),
+  ogSiteName: 'GoSpendl',
+  ogType: 'website',
+  ogLocale: () => locale.value === 'de' ? 'de_DE' : 'en_US',
   twitterCard: 'summary_large_image',
+})
+
+useSchemaOrg([
+  defineWebSite({
+    name: 'GoSpendl',
+    description: () => t('seo.site.description'),
+  }),
+  defineWebPage(),
+])
+
+defineOgImage('NuxtSeo.satori', {
+  theme: '#f7931a',
+  colorMode: 'dark',
 })
 </script>
 

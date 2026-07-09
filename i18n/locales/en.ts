@@ -90,5 +90,26 @@ export default {
     noMoreResults: 'No more results',
     loading: 'Loading...',
   },
+  seo: {
+    site: {
+      description: 'The Bitcoin price comparison app. Find online shops that accept Bitcoin directly or offer Satsback cashback paid in Bitcoin.',
+    },
+    home: {
+      title: 'Price comparison for Bitcoiners',
+      description: 'Compare products across 100+ online shops – pay directly with Bitcoin or earn Satsback cashback in Bitcoin on every purchase.',
+    },
+    stores: {
+      title: 'Bitcoin & Satsback shops',
+      description: 'All online shops that accept Bitcoin or pay Satsback cashback in Bitcoin – curated and filterable by category.',
+    },
+    about: {
+      title: 'About GoSpendl',
+      description: 'The independent search and comparison platform for Bitcoiners. Learn how we compare prices neutrally and help you save in Bitcoin.',
+    },
+    search: {
+      title: 'Product search',
+      description: 'Search products from Bitcoin- and Satsback-enabled online shops and compare prices.',
+    },
+  },
   categories,
 }

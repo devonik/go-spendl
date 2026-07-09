@@ -89,5 +89,26 @@ export default {
     noMoreResults: 'Keine weiteren Ergebnisse',
     loading: 'Lade...',
   },
+  seo: {
+    site: {
+      description: 'Die Preisvergleichs-App rund um Bitcoin. Finde Onlineshops, in denen du direkt mit Bitcoin bezahlst oder Satsback-Cashback in Bitcoin erhältst.',
+    },
+    home: {
+      title: 'Preisvergleich für Bitcoiner',
+      description: 'Vergleiche Produkte in über 100 Onlineshops – bezahle direkt mit Bitcoin oder sichere dir Satsback-Cashback in Bitcoin bei jedem Einkauf.',
+    },
+    stores: {
+      title: 'Bitcoin- & Satsback-Shops',
+      description: 'Alle Onlineshops, die Bitcoin akzeptieren oder Cashback in Bitcoin über Satsback ausschütten – kuratiert und nach Kategorie filterbar.',
+    },
+    about: {
+      title: 'Über GoSpendl',
+      description: 'Die unabhängige Such- und Vergleichsplattform für Bitcoiner. Erfahre, wie wir Preise neutral vergleichen und dir beim Sparen in Bitcoin helfen.',
+    },
+    search: {
+      title: 'Produktsuche',
+      description: 'Durchsuche Produkte aus Bitcoin- und Satsback-fähigen Onlineshops und vergleiche Preise.',
+    },
+  },
   categories,
 }

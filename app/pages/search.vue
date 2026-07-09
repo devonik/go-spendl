@@ -8,6 +8,12 @@ definePageMeta({
 })
 
 const { t } = useI18n()
+
+useSeoMeta({
+  title: () => t('seo.search.title'),
+  description: () => t('seo.search.description'),
+  robots: 'noindex, follow',
+})
 const { error } = await useFetch('/api/algolia/health')
 const { data } = await useFetch('/api/algolia/api')
 const config = useRuntimeConfig()

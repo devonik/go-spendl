@@ -2,6 +2,15 @@
 definePageMeta({
   title: 'about.aboutUs.title',
 })
+
+const { t } = useI18n()
+
+useSeoMeta({
+  title: () => t('seo.about.title'),
+  description: () => t('seo.about.description'),
+  ogTitle: () => t('seo.about.title'),
+  ogDescription: () => t('seo.about.description'),
+})
 </script>
 
 <template>
