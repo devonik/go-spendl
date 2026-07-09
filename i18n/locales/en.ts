@@ -110,6 +110,24 @@ export default {
       title: 'Product search',
       description: 'Search products from Bitcoin- and Satsback-enabled online shops and compare prices.',
     },
+    imprint: {
+      title: 'Legal notice',
+      description: 'Legal notice for GoSpendl as required by German § 5 TMG.',
+    },
+    privacy: {
+      title: 'Privacy policy',
+      description: 'How GoSpendl processes personal data under the GDPR.',
+    },
+  },
+  legal: {
+    imprint: {
+      title: 'Legal notice',
+      placeholder: 'Legal notice content is being prepared.',
+    },
+    privacy: {
+      title: 'Privacy policy',
+      placeholder: 'Privacy policy content is being prepared.',
+    },
   },
   categories,
 }

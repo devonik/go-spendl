@@ -109,6 +109,24 @@ export default {
       title: 'Produktsuche',
       description: 'Durchsuche Produkte aus Bitcoin- und Satsback-fähigen Onlineshops und vergleiche Preise.',
     },
+    imprint: {
+      title: 'Impressum',
+      description: 'Impressum und Anbieterkennzeichnung nach § 5 TMG für GoSpendl.',
+    },
+    privacy: {
+      title: 'Datenschutzerklärung',
+      description: 'Informationen zur Verarbeitung personenbezogener Daten auf GoSpendl nach DSGVO.',
+    },
+  },
+  legal: {
+    imprint: {
+      title: 'Impressum',
+      placeholder: 'Impressum wird ergänzt.',
+    },
+    privacy: {
+      title: 'Datenschutzerklärung',
+      placeholder: 'Datenschutzerklärung wird ergänzt.',
+    },
   },
   categories,
 }

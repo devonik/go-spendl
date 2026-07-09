@@ -3,14 +3,13 @@ import type { NavigationMenuItem } from '@nuxt/ui'
 import type { Locale } from 'vue-i18n'
 import { de, en } from '@nuxt/ui/locale'
 
-const { locale, setLocale, loadLocaleMessages } = useI18n()
-const items: NavigationMenuItem[] = [
-  /* {
-    label: 'Figma Kit',
-    to: 'https://go.nuxt.com/figma-ui',
-    target: '_blank'
-  }, */
-]
+const { t, locale, setLocale, loadLocaleMessages } = useI18n()
+const localePath = useLocalePath()
+
+const items = computed<NavigationMenuItem[]>(() => [
+  { label: t('legal.imprint.title'), to: localePath('/impressum') },
+  { label: t('legal.privacy.title'), to: localePath('/datenschutz') },
+])
 
 async function switchLanguage(lang: Locale) {
   await loadLocaleMessages(lang)
