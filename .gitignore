@@ -33,3 +33,9 @@ logs
 tmp/
 .vercel
 .env*
+
+# AI coding-assistant skill docs auto-pulled by Vercel Marketplace
+# integrations (Upstash etc.). Not project runtime; re-fetched on demand.
+.agents/
+.claude/
+skills-lock.json
