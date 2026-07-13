@@ -9,22 +9,13 @@ permissions:
     contents: write
     pull-requests: write
     issues: write
+    id-token: write
 
 jobs:
     claude:
         runs-on: ubuntu-latest
         timeout-minutes: 30
         steps:
-            - name: Check secret exists
-              run: |
-                  if [ -z "$API_KEY" ]; then
-                    echo "SECRET IS EMPTY"
-                  else
-                    echo "SECRET EXISTS (length: ${#API_KEY})"
-                  fi
-              env:
-                  API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-
             - uses: anthropics/claude-code-action@v1
               with:
                   anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
