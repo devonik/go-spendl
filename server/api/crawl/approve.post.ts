@@ -2,9 +2,8 @@ import type { AlgoliaProduct } from '~~/types/algolia'
 import { Redis } from '@upstash/redis'
 import { del } from '@vercel/blob'
 import { upsetAlgoliaObjects } from '../../lib/algolia'
+import { CRAWL_EVENTS_CHANNEL } from '../../lib/crawl-events-channel'
 import sendSlackMessage from '../../lib/send-slack-message'
-
-const CRAWL_EVENTS_CHANNEL = 'crawl:events'
 
 export default defineEventHandler(async (event) => {
   const body = await readBody<{ fileUrl: string, initialQuery: string, productsToUpload: AlgoliaProduct[] }>(event)

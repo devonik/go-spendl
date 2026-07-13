@@ -1,6 +1,5 @@
 import { Redis } from 'ioredis'
-
-const CRAWL_EVENTS_CHANNEL = 'crawl:events'
+import { CRAWL_EVENTS_CHANNEL } from '~~/server/lib/crawl-events-channel'
 
 // SSE bridge from Redis pub/sub to the browser. Each connection opens its
 // own ioredis subscriber because ioredis flips a connection into

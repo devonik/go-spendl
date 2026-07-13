@@ -3,12 +3,8 @@ import type { CrawledItem } from '~~/types/crawler'
 import { Redis } from '@upstash/redis'
 import { put } from '@vercel/blob'
 import { upsetAlgoliaObjects } from '~~/server/lib/algolia'
+import { CRAWL_EVENTS_CHANNEL } from '~~/server/lib/crawl-events-channel'
 import sendSlackMessage from '~~/server/lib/send-slack-message'
-
-// Shared with server/api/events.get.ts and server/api/crawl/approve.post.ts.
-// A change here must be mirrored in both — a mismatch silently breaks the
-// notification path without any error surfacing.
-const CRAWL_EVENTS_CHANNEL = 'crawl:events'
 
 interface CompleteCrawlWebhookPayload {
   task_id: string
