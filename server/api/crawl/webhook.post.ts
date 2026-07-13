@@ -1,9 +1,14 @@
 import type { AlgoliaProduct } from '~~/types/algolia'
 import type { CrawledItem } from '~~/types/crawler'
+import { Redis } from '@upstash/redis'
 import { put } from '@vercel/blob'
 import { upsetAlgoliaObjects } from '~~/server/lib/algolia'
 import sendSlackMessage from '~~/server/lib/send-slack-message'
-import { peers } from '~~/server/routes/ws'
+
+// Shared with server/api/events.get.ts and server/api/crawl/approve.post.ts.
+// A change here must be mirrored in both — a mismatch silently breaks the
+// notification path without any error surfacing.
+const CRAWL_EVENTS_CHANNEL = 'crawl:events'
 
 interface CompleteCrawlWebhookPayload {
   task_id: string
@@ -301,11 +306,28 @@ export default defineEventHandler(async (event) => {
     })
 
     if (config.isCrawlUploadAutomaticEnabled === 'true') {
-      upsetAlgoliaObjects(formattedResults, config).then((response) => {
+      upsetAlgoliaObjects(formattedResults, config).then(async (response) => {
+        const itemCount = response[0]?.objectIDs.length || 0
         sendSlackMessage(config.slackWebhookUrl, {
-          title: `:checkered_flag: *${body.task_id}* Algolia upload with *${response[0]?.objectIDs.length || 0}* items finished. @Marcel @niklas.grieger`,
+          title: `:checkered_flag: *${body.task_id}* Algolia upload with *${itemCount}* items finished. @Marcel @niklas.grieger`,
         })
-        peers.forEach(peer => peer.send(`{"source": "crawl.newData", "meta": { "itemCount": ${response[0]?.objectIDs.length || 0}, "initialQuery": "${formattedResults[0].name.substring(0, 5)}" } }`))
+        const kvUrl = config.kvRestApiUrl
+        const kvToken = config.kvRestApiToken
+        if (!kvUrl || !kvToken) {
+          console.warn('[webhook] Upstash Redis env vars missing — skipping crawl.newData publish')
+          return
+        }
+        const publisher = new Redis({ url: kvUrl, token: kvToken })
+        await publisher.publish(CRAWL_EVENTS_CHANNEL, {
+          source: 'crawl.newData',
+          meta: {
+            itemCount,
+            initialQuery,
+            domain,
+          },
+        }).catch((err: unknown) => {
+          console.error('[webhook] redis publish failed', err)
+        })
       })
     }
     else {

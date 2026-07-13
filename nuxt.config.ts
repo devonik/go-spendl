@@ -16,6 +16,11 @@ export default defineNuxtConfig({
     isCrawlUploadAutomaticEnabled: process.env.CRAWL_UPLOAD_AUTOMATIC,
     baseUrl: process.env.BASE_URL,
     vercelBlobStorageWriteToken: process.env.BLOB_READ_WRITE_TOKEN,
+    // Upstash Redis — REST endpoints for publish (webhook), TCP URL for
+    // SUBSCRIBE inside the SSE handler.
+    redisUrl: process.env.REDIS_URL,
+    kvRestApiUrl: process.env.KV_REST_API_URL,
+    kvRestApiToken: process.env.KV_REST_API_TOKEN,
   },
   modules: [
     '@nuxt/eslint',
@@ -75,10 +80,5 @@ export default defineNuxtConfig({
     defaultLocale: 'de',
     skipSettingLocaleOnNavigate: true,
     baseUrl: 'https://gospendl.com',
-  },
-  nitro: {
-    experimental: {
-      websocket: true,
-    },
   },
 })

@@ -1,0 +1,65 @@
+import { Redis } from 'ioredis'
+
+const CRAWL_EVENTS_CHANNEL = 'crawl:events'
+
+// SSE bridge from Redis pub/sub to the browser. Each connection opens its
+// own ioredis subscriber because ioredis flips a connection into
+// subscribe-only mode once SUBSCRIBE is issued — sharing one across peers
+// would serialize their messages incorrectly. The connection closes when
+// the client disconnects or the Vercel Function hits its max duration;
+// the EventSource client auto-reconnects.
+export default defineEventHandler(async (event) => {
+  const config = useRuntimeConfig()
+  if (!config.redisUrl) {
+    throw createError({ statusCode: 503, statusMessage: 'Realtime channel not configured' })
+  }
+
+  const res = event.node.res
+  res.writeHead(200, {
+    'Content-Type': 'text/event-stream; charset=utf-8',
+    'Cache-Control': 'no-cache, no-transform',
+    'Connection': 'keep-alive',
+    'X-Accel-Buffering': 'no',
+  })
+  res.flushHeaders?.()
+  // Initial comment flushes the headers to the client — writeHead + flushHeaders
+  // alone is not enough for the response to reach the socket in some Nitro/h3
+  // dev configurations. Also serves as the "SSE opened" signal for EventSource.
+  res.write(': connected\n\n')
+
+  const subscriber = new Redis(config.redisUrl, {
+    maxRetriesPerRequest: null,
+    lazyConnect: false,
+  })
+
+  subscriber.on('message', (_channel, message) => {
+    res.write(`data: ${message.replace(/\n/g, '\\n')}\n\n`)
+  })
+  subscriber.on('error', (err) => {
+    console.error('[events] redis subscriber error', err)
+  })
+
+  // Subscribe in the background so we don't block on Upstash's cold TLS
+  // handshake before the client gets the SSE headers.
+  subscriber.subscribe(CRAWL_EVENTS_CHANNEL).catch((err) => {
+    console.error('[events] subscribe failed', err)
+    res.end()
+  })
+
+  // Anti-idle heartbeat so intermediate proxies keep the connection open.
+  const heartbeat = setInterval(() => {
+    res.write(': ping\n\n')
+  }, 15000)
+
+  const cleanup = () => {
+    clearInterval(heartbeat)
+    subscriber.disconnect()
+  }
+  event.node.req.on('close', cleanup)
+  event.node.req.on('end', cleanup)
+
+  // We manage the response lifecycle manually; keep the promise pending so
+  // h3 doesn't try to finalize the response until the client disconnects.
+  event._handled = true
+  return new Promise<void>(() => {})
+})

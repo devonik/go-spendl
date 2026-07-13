@@ -121,34 +121,40 @@ function inferCategoriesFromQuery(q: string): string[] {
   return [...matched]
 }
 
-interface WebsocketJsonMessage {
+interface CrawlEventMessage {
   source: string
-  meta: Record<string, string>
+  meta: {
+    itemCount: number | string
+    initialQuery: string
+    domain?: string
+  }
 }
-const { open } = useWebSocket('/ws', {
+
+const { data: eventData, error: eventError, open: openEvents } = useEventSource('/api/events', [], {
   immediate: false,
-  async onMessage(ws, event) {
-    try {
-      const json: WebsocketJsonMessage = JSON.parse(event.data)
-      if (json.source === 'crawl.newData') {
-        serverMessages.value?.push({
-          text: `${json.meta.itemCount} new items available. You can search now for ${json.meta.initialQuery}`,
-          actionLink: `/search?q=${json.meta.initialQuery}`,
-        })
-      }
-      else {
-        serverMessages.value?.push({
-          text: typeof event.data === 'string' ? event.data : await event.data.text(),
-        })
-      }
+})
+watch(eventData, (raw) => {
+  if (!raw)
+    return
+  try {
+    const json = JSON.parse(raw) as CrawlEventMessage
+    if (json.source === 'crawl.newData') {
+      serverMessages.value?.push({
+        text: `${json.meta.itemCount} new items available${json.meta.domain ? ` from ${json.meta.domain}` : ''}. You can search now for ${json.meta.initialQuery}`,
+        actionLink: `/search?q=${json.meta.initialQuery}`,
+      })
     }
-    catch (error) {
-      console.error('Could not parse json from websocket image', error, event)
-    }
-  },
+  }
+  catch (error) {
+    console.error('Could not parse SSE message', error, raw)
+  }
+})
+watch(eventError, (err) => {
+  if (err)
+    console.warn('[events] SSE connection error', err)
 })
 onMounted(() => {
-  open()
+  openEvents()
 })
 </script>
 

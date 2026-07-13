@@ -31,3 +31,5 @@ logs
 # Local scratch space — probe results, generated schemas,
 # missing-stores snapshots, etc.
 tmp/
+.vercel
+.env*
