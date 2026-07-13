@@ -133,15 +133,37 @@ interface CrawlEventMessage {
 const { data: eventData, error: eventError, open: openEvents } = useEventSource('/api/events', [], {
   immediate: false,
 })
+// The webhook publishes the shop slug (`baur`), but users want to see the
+// domain (`baur.de`). We already have the store list from useStores();
+// prefer the curated `url` field, fall back to the hostname of
+// `crawl.searchUrl` (present on every crawlable shop, so this covers the
+// long tail where nobody wrote a url override), and finally to the slug.
+function slugToDomain(slug: string): string {
+  const store = stores.value?.find(s => s.slug === slug)
+  if (!store)
+    return slug
+  const raw = store.url || store.crawl?.searchUrl
+  if (!raw)
+    return slug
+  try {
+    return new URL(raw).hostname.replace(/^www\./, '')
+  }
+  catch {
+    return slug
+  }
+}
+
 watch(eventData, (raw) => {
   if (!raw)
     return
   try {
     const json = JSON.parse(raw) as CrawlEventMessage
     if (json.source === 'crawl.newData') {
+      const shopLabel = json.meta.domain ? slugToDomain(json.meta.domain) : null
+      const q = json.meta.initialQuery
       serverMessages.value?.push({
-        text: `${json.meta.itemCount} new items available${json.meta.domain ? ` from ${json.meta.domain}` : ''}. You can search now for ${json.meta.initialQuery}`,
-        actionLink: `/search?q=${json.meta.initialQuery}`,
+        text: `${json.meta.itemCount} new items available${shopLabel ? ` from “${shopLabel}”` : ''}. You can search now for “${q}”`,
+        actionLink: `/search?q=${q}`,
       })
     }
   }
@@ -156,6 +178,24 @@ watch(eventError, (err) => {
 onMounted(() => {
   openEvents()
 })
+
+function onSearchAgain(actionLink?: string) {
+  if (actionLink)
+    navigateTo(localePath(actionLink))
+  serverMessages.value = []
+  emptyResultsCatchedOnce.value = false
+}
+
+function bannerActions(actionLink?: string) {
+  return [{
+    label: 'Search',
+    color: 'info' as const,
+    variant: 'subtle' as const,
+    class: 'cursor-pointer',
+    leadingIcon: 'i-lucide-search',
+    onClick: () => onSearchAgain(actionLink),
+  }]
+}
 </script>
 
 <template>
@@ -207,14 +247,11 @@ onMounted(() => {
           We'll search for it in the background... <strong>In the meanwhile you can go directly visit one of the shop's</strong>
         </div>
         <UBanner
-          v-for="message in serverMessages" :key="message.text" :title="message.text" icon="i-lucide-info" :actions="[{
-            label: 'Search',
-            color: 'info',
-            variant: 'subtle',
-            class: 'cursor-pointer',
-            leadingIcon: 'i-lucide-search',
-            onClick: () => { message.actionLink ? navigateTo(localePath(message.actionLink)) : undefined },
-          }] "
+          v-for="message in serverMessages"
+          :key="message.text"
+          :title="message.text"
+          icon="i-lucide-info"
+          :actions="bannerActions(message.actionLink)"
           class="mb-3"
         />
 

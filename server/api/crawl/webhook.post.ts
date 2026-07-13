@@ -313,12 +313,25 @@ export default defineEventHandler(async (event) => {
           console.warn('[webhook] Upstash Redis env vars missing — skipping crawl.newData publish')
           return
         }
+        // Deep-link the banner back to a query that will actually surface
+        // the crawled records in Algolia. Shop on-site search often
+        // returns loosely related products whose text does not contain
+        // the user's original query — e.g. searching "staubsauger" turns
+        // up "Vorwerk Bodenwischer VB100". Re-searching the user's exact
+        // query would give the same 0 hits the crawl was fired to fix.
+        // Take the first word of the first crawled product name instead
+        // (fallback to the first 8 characters when the name has no
+        // whitespace); Algolia's prefix + typo tolerance handles the rest.
+        const firstName = formattedResults[0]?.name?.trim() ?? ''
+        const firstWord = firstName.split(/\s+/)[0] ?? ''
+        const searchQuery = firstWord.length >= 3 ? firstWord : (firstName.slice(0, 8) || initialQuery)
+
         const publisher = new Redis({ url: kvUrl, token: kvToken })
         await publisher.publish(CRAWL_EVENTS_CHANNEL, {
           source: 'crawl.newData',
           meta: {
             itemCount,
-            initialQuery,
+            initialQuery: searchQuery,
             domain,
           },
         }).catch((err: unknown) => {
