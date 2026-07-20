@@ -50,10 +50,35 @@ export default defineEventHandler(async (event) => {
     res.write(': ping\n\n')
   }, 15000)
 
+  let cleanedUp = false
+  let maxDurationTimer: NodeJS.Timeout | null = null
   const cleanup = () => {
+    if (cleanedUp)
+      return
+    cleanedUp = true
     clearInterval(heartbeat)
+    if (maxDurationTimer)
+      clearTimeout(maxDurationTimer)
     subscriber.disconnect()
   }
+
+  // Force our own teardown before Vercel's max-duration (300s) kills the
+  // function. Otherwise the ioredis TCP connection lingers as a zombie
+  // subscriber at Upstash and future publishes are delivered into a dead
+  // response, so the browser sees nothing. EventSource auto-reconnects.
+  maxDurationTimer = setTimeout(() => {
+    cleanup()
+    try {
+      res.end()
+    }
+    catch {
+      // Response may already be closed by the platform.
+    }
+  }, 250_000)
+
+  // On Vercel, response 'close' fires reliably when the platform tears the
+  // connection down; the request-side events don't always. Listen on both.
+  event.node.res.on('close', cleanup)
   event.node.req.on('close', cleanup)
   event.node.req.on('end', cleanup)
 
