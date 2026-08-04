@@ -468,7 +468,38 @@ Satsback partner catalog), so the cron explicitly excludes it from the
    endpoint requires a Bearer token forwarded upstream — without it,
    Satsback 404s.
 
-5. **The frontend always has a fallback URL**. `ProductCard.vue`'s
+5. **Hashed class names rot one field at a time.** Shops built on
+   CSS-module bundlers (Next.js and friends) emit selectors like
+   `.Search_cur-money__nlYZ1`. The hash rotates only when that module's
+   contents change, so a shop deploy typically kills *one* field while
+   the rest of the schema keeps extracting — the failure looks like
+   "price missing for every product", not "shop broken". eufy (#2) hit
+   exactly this.
+
+   When repairing or hand-tuning a schema, prefer an anchor that isn't a
+   build artifact:
+
+   - a semantic attribute — `[data-part="discount-price"]`, and `:has()`
+     to reach its container (`div:has(> div > [data-part="…"])`);
+   - failing that, pair the hash with a structural fallback in a CSS
+     group — `.Search_product-name__YXd1y, p:nth-of-type(2)`. Both
+     branches target the same element, so whichever survives wins.
+
+   **`baseSelector` is the exception** — keep its hash. The hash-free
+   form is too permissive: on eufy, `div:has(> a[href*="/products/"])`
+   matched top banners, nav-menu tiles and recommendation carousels,
+   turning 24 result cards into 44 items. Verify any baseSelector change
+   by item count, not just by field coverage.
+
+6. **Overrides are compiled in, so schema fixes need a deploy.**
+   `server/utils/stores.ts` imports `store-overrides.json` statically —
+   it lands in the server bundle, and there is no runtime read to
+   invalidate. The 24 h `cachedStores` TTL is unrelated: Nitro mounts
+   `cache:` to the filesystem for `devStorage` only, so production falls
+   back to in-memory storage, per function instance, empty on every new
+   deployment. Locally, `rm -rf .nuxt && pnpm dev`.
+
+7. **The frontend always has a fallback URL**. `ProductCard.vue`'s
    `resolveFallbackUrl()` tries `product.sourceUrl`, then a substituted
    shop search URL (using the same `"ipad"` template), then the shop
    homepage from overrides. Never opens `about:blank` from an undefined
