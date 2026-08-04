@@ -1,10 +1,9 @@
 import type { AlgoliaProduct } from '~~/types/algolia'
 import type { CrawledItem } from '~~/types/crawler'
 import { Redis } from '@upstash/redis'
-import { put } from '@vercel/blob'
 import { upsetAlgoliaObjects } from '~~/server/lib/algolia'
 import { CRAWL_EVENTS_CHANNEL } from '~~/server/lib/crawl-events-channel'
-import sendSlackMessage from '~~/server/lib/send-slack-message'
+import { recordShopResult } from '~~/server/lib/crawl-run'
 
 interface CompleteCrawlWebhookPayload {
   task_id: string
@@ -147,38 +146,53 @@ export default defineEventHandler(async (event) => {
   const domain = getHeader(event, 'X-Domain')
   const category = getHeader(event, 'X-Category')
   const initialQuery = getHeader(event, 'X-Initial-Query')
+  const runId = getHeader(event, 'X-Run-Id')
+  const runTotal = Number(getHeader(event, 'X-Run-Total'))
 
   // The remaining headers are required for downstream business logic
-  // (Algolia object shape + Slack messages). 400 is honest here since
-  // the caller is already authenticated.
+  // (Algolia object shape + run-summary correlation). 400 is honest here
+  // since the caller is already authenticated.
   if (!group)
     throw createError({ statusCode: 400, statusMessage: 'Header X-Group is missing' })
   if (!domain)
     throw createError({ statusCode: 400, statusMessage: 'Header X-Domain is missing' })
   if (!initialQuery)
     throw createError({ statusCode: 400, statusMessage: 'Header X-Initial-Query is missing' })
+  if (!runId)
+    throw createError({ statusCode: 400, statusMessage: 'Header X-Run-Id is missing' })
+  if (!runTotal || Number.isNaN(runTotal))
+    throw createError({ statusCode: 400, statusMessage: 'Header X-Run-Total is missing or invalid' })
+
+  const mode: 'auto' | 'approval' = config.isCrawlUploadAutomaticEnabled === 'true' ? 'auto' : 'approval'
 
   if (body.status === 'failed') {
     console.error(`Crawl task ${body.task_id} failed with error`, body.error)
-    sendSlackMessage(config.slackWebhookUrl, {
-      title: `:sob: *${body.task_id}* Crawl failed for domain ${domain}`,
-      jsonString: body.error,
+    await recordShopResult({
+      runId,
+      runTotal,
+      slackWebhookUrl: config.slackWebhookUrl,
+      baseUrl: config.baseUrl,
+      result: { slug: domain, status: 'failed', mode, itemCount: 0, error: body.error },
     })
     return { success: false, message: `Crawl task failed: ${body.error}` }
   }
   else if (body.status === 'completed') {
-    if (!body.data?.results[0].success) {
-      sendSlackMessage(config.slackWebhookUrl, {
-        title: `:sob: *${body.task_id}* Crawl failed for domain ${domain}`,
-        jsonString: 'Check crawler errors in railway or logs in vercel',
+    const firstResult = body.data?.results[0]
+    if (!firstResult?.success) {
+      console.error(`Crawl task ${body.task_id} failed with error`, firstResult?.error_message)
+      await recordShopResult({
+        runId,
+        runTotal,
+        slackWebhookUrl: config.slackWebhookUrl,
+        baseUrl: config.baseUrl,
+        result: { slug: domain, status: 'failed', mode, itemCount: 0, error: firstResult?.error_message || 'Check crawler errors in railway or logs in vercel' },
       })
-      console.error(`Crawl task ${body.task_id} failed with error`, body.data?.results[0].error_message)
       throw createError({
         statusCode: 500,
         statusMessage: 'Check crawler errors in railway',
       })
     }
-    const items: CrawledItem[] = body.data?.results.reduce((accumulator, currentObj) => {
+    const items: CrawledItem[] = (body.data?.results ?? []).reduce((accumulator, currentObj) => {
       if (!currentObj.extracted_content)
         return []
       const json = JSON.parse(currentObj.extracted_content)
@@ -237,25 +251,24 @@ export default defineEventHandler(async (event) => {
         item.price = normalizePrice(item.price)
     }
 
-    let slackInfo = ''
-
     if (items.length === 0) {
       // Crawl4AI succeeded; the shop simply returned zero matches for this
       // query. That's a legitimate user-search outcome, not an error — log
-      // informationally and skip the Slack alarm. Genuine schema/auth
-      // failures are reported earlier in this handler (status === 'failed'
-      // or results[0].success === false), which still fire alerts.
+      // informationally, still record it so the run's shop count stays
+      // accurate. Genuine schema/auth failures are reported earlier in this
+      // handler (status === 'failed' or results[0].success === false).
       console.warn(`Crawl ${body.task_id}: 0 items extracted from ${body.urls.join(', ')} — query returned no results`)
+      await recordShopResult({
+        runId,
+        runTotal,
+        slackWebhookUrl: config.slackWebhookUrl,
+        baseUrl: config.baseUrl,
+        result: { slug: domain, status: 'ok', mode, itemCount: 0, initialQuery },
+      })
       return { success: true }
     }
-    slackInfo = `Extracted ${items.length || 0} items. Search URLs ${body.urls.join(', ')}\n`
     items.filter(item => !item.price).forEach((item) => {
-      slackInfo += `- Item without price found: ${item.name} - ${item.productUrl}. Double check why price not crawled\n\n`
-    })
-
-    sendSlackMessage(config.slackWebhookUrl, {
-      title: `:wrench: *${body.task_id}* Crawl finish and ${items.length || 0} items were found`,
-      jsonString: slackInfo,
+      console.warn(`[webhook] item without price found for ${domain}: ${item.name} - ${item.productUrl}. Double check why price not crawled`)
     })
 
     // Items without a price are still indexed — the frontend renders a
@@ -302,17 +315,15 @@ export default defineEventHandler(async (event) => {
     })
 
     if (config.isCrawlUploadAutomaticEnabled === 'true') {
-      upsetAlgoliaObjects(formattedResults, config).then(async (response) => {
-        const itemCount = response[0]?.objectIDs.length || 0
-        sendSlackMessage(config.slackWebhookUrl, {
-          title: `:checkered_flag: *${body.task_id}* Algolia upload with *${itemCount}* items finished. @Marcel @niklas.grieger`,
-        })
-        const kvUrl = config.kvRestApiUrl
-        const kvToken = config.kvRestApiToken
-        if (!kvUrl || !kvToken) {
-          console.warn('[webhook] Upstash Redis env vars missing — skipping crawl.newData publish')
-          return
-        }
+      const response = await upsetAlgoliaObjects(formattedResults, config)
+      const itemCount = response[0]?.objectIDs.length || 0
+
+      const kvUrl = config.kvRestApiUrl
+      const kvToken = config.kvRestApiToken
+      if (!kvUrl || !kvToken) {
+        console.warn('[webhook] Upstash Redis env vars missing — skipping crawl.newData publish')
+      }
+      else {
         // Deep-link the banner back to a query that will actually surface
         // the crawled records in Algolia. Shop on-site search often
         // returns loosely related products whose text does not contain
@@ -337,17 +348,25 @@ export default defineEventHandler(async (event) => {
         }).catch((err: unknown) => {
           console.error('[webhook] redis publish failed', err)
         })
+      }
+
+      await recordShopResult({
+        runId,
+        runTotal,
+        slackWebhookUrl: config.slackWebhookUrl,
+        baseUrl: config.baseUrl,
+        result: { slug: domain, status: 'ok', mode, itemCount, initialQuery },
       })
     }
     else {
-      // Create task for approvement
-      if (formattedResults.length === 0)
-        return
-      const { url } = await put(`crawl/to-approve/${config.public.algoliaProductIndex}-${body.task_id}.json`, JSON.stringify({ initialQuery, items: formattedResults }), { access: 'public', contentType: 'application/json' })
-
-      sendSlackMessage(config.slackWebhookUrl, {
-        title: `:wrench: *${body.task_id}* Automatic Algolia update is disabled and task is waiting for appove of *${formattedResults.length}* items. @Marcel @niklas.grieger`,
-        approveUploadActionUrl: `${config.baseUrl}/internal/approve-crawl?fileUrl=${url}`,
+      // Stash for manual approval — the run summary Slack (fired once all
+      // shops in the run have reported in) links to the approval UI.
+      await recordShopResult({
+        runId,
+        runTotal,
+        slackWebhookUrl: config.slackWebhookUrl,
+        baseUrl: config.baseUrl,
+        result: { slug: domain, status: 'ok', mode, itemCount: formattedResults.length, initialQuery, items: formattedResults },
       })
     }
   }

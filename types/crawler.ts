@@ -91,6 +91,10 @@ export interface WebhookHeaders {
   'X-Group'?: string
   'X-Category'?: string
   'X-Initial-Query'?: string
+  /** Correlates every shop's webhook callback to the /api/crawl call that dispatched it. */
+  'X-Run-Id'?: string
+  /** Number of shops dispatched in this run — lets the last webhook detect it's the last one. */
+  'X-Run-Total'?: string
 }
 export interface CrawlerWebhookPayload {
   // Required. Your HTTP(S) endpoint to receive notifications

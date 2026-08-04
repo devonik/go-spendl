@@ -283,8 +283,49 @@ Steps:
    crawled search URL's origin (NOT the slug — that was a bug; the slug
    is `baur` not `baur.de`).
 9. Either `upsetAlgoliaObjects` (if `CRAWL_UPLOAD_AUTOMATIC=true`) or
-   stash in Vercel Blob and ping Slack for a manual approve in
+   stash in Vercel Blob for a manual approve in
    `app/pages/internal/approve-crawl.vue`.
+10. Record the shop's outcome for the run via `recordShopResult`
+    (`server/lib/crawl-run.ts`) — see "Run correlation" below.
+
+### Run correlation — 1 Slack thread + 1 approval page per run
+
+`POST /api/crawl` fans out one Crawl4AI job per shop, but each shop's
+webhook callback used to fire its own Slack message and (in manual-approve
+mode) its own approval page. At 15 shops that's ~30 Slack messages and 15
+approval clicks per search. To collapse that down to one run:
+
+- `/api/crawl` generates a `runId` (UUID) and counts `runTotal` (shops
+  dispatched), sent to Crawl4AI as `X-Run-Id` / `X-Run-Total` webhook
+  headers — Crawl4AI passes them through verbatim to the webhook call.
+- One Slack message fires at dispatch time
+  (`:arrow_forward: Run {runId}: N shops dispatched`).
+- Each webhook call writes its shop's outcome to Vercel Blob via
+  `recordShopResult` (`server/lib/crawl-run.ts`):
+  `crawl/runs/{runId}/{slug}.json` on success, `{slug}.error.json` on
+  failure — no per-shop Slack message. The blob for a manual-approve shop
+  also carries its `AlgoliaProduct[]` items; an auto-upload shop's blob is
+  metadata-only (items are already in Algolia by then).
+- After writing its own blob, `recordShopResult` lists everything under
+  `crawl/runs/{runId}/` — once the count matches `runTotal`, that webhook
+  call was the last one in and fires a single summary Slack message
+  (`:checkered_flag: Run {runId}: X ok (N items), Y failed (…)`), linking
+  to `/internal/approve-crawl?runId={runId}` when there's anything left to
+  approve. A `_summary-sent.lock` blob (written right before the summary
+  fires) guards against two webhooks racing to conclude "I'm the last
+  one" — worst case is two summary messages, never lost data.
+- `GET /api/crawl/runs/{runId}` (`server/api/crawl/runs/[runId].get.ts`)
+  lists and reads back every blob under the run's prefix for the approval
+  UI: one accordion entry per shop (failed shops show the error, no
+  approve button), plus global **Approve All** / **Decline All**.
+  `POST /api/crawl/approve` and `POST /api/crawl/decline` accept either
+  `{ runId, shops: [...] }` / `{ runId, slugs: [...] }` for the run-based
+  flow, or the legacy `{ fileUrl }` shape so pre-refactor in-flight
+  approval links keep working.
+
+Full design rationale: [`CRAWL_RUN_APPROVAL_PLAN.md`](CRAWL_RUN_APPROVAL_PLAN.md)
+(implemented; the "Stuck-Run Cron" item at the bottom is the one piece
+deliberately left for later).
 
 ## Data structures
 
@@ -447,10 +488,12 @@ scripts/
 server/
   api/
     crawl/
-      index.post.ts             # fan-out endpoint, /api/crawl
+      index.post.ts             # fan-out endpoint, /api/crawl — generates runId
       webhook.post.ts           # ingest Crawl4AI results, normalize, upsert Algolia
-      approve.post.ts           # manual-upload path
-      decline.post.ts
+      approve.post.ts           # run-based + legacy fileUrl approval
+      decline.post.ts           # run-based + legacy fileUrl decline
+      runs/
+        [runId].get.ts          # aggregates a run's shop blobs for the approval UI
     cron/
       check-satsback-stores.get.ts
       purge-disabled-algolia-records.get.ts
@@ -465,6 +508,7 @@ server/
   lib/
     algolia.ts                  # getClient, upsetAlgoliaObjects
     send-slack-message.ts
+    crawl-run.ts                # run-blob layout + recordShopResult (1 summary Slack/run)
   middleware/
     auth.ts                     # extracts Authorization → event.context.authToken
   utils/
@@ -484,7 +528,7 @@ app/
   pages/
     search.vue                  # AisInstantSearch + category prefix dropdown
     internal/
-      approve-crawl.vue         # manual-approval form
+      approve-crawl.vue         # 1 accordion per run (?runId=) + legacy ?fileUrl= form
       test.vue                  # satsback API playground
 
 types/

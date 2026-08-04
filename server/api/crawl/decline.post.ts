@@ -1,18 +1,32 @@
 import { del } from '@vercel/blob'
-
+import { shopResultBlobPath } from '../../lib/crawl-run'
 import sendSlackMessage from '../../lib/send-slack-message'
 
 export default defineEventHandler(async (event) => {
-  const body = await readBody<{ fileUrl: string }>(event)
+  const body = await readBody<{
+    // Legacy single-file decline — kept for in-flight pre-refactor links.
+    fileUrl?: string
+    // Run-based decline — one or more shops from the same crawl run.
+    runId?: string
+    slugs?: string[]
+  }>(event)
   const config = useRuntimeConfig()
 
-  if (!body.fileUrl)
-    throw new Error('fileUrl is missing')
+  if (body.fileUrl) {
+    await del(body.fileUrl)
+    sendSlackMessage(config.slackWebhookUrl, {
+      title: `:x: Crawl task declined. Data has been deleted. Old URL ${body.fileUrl}`,
+    })
+    return { success: true }
+  }
 
-  await del(body.fileUrl)
+  if (!body.runId || !body.slugs?.length)
+    throw createError({ statusCode: 400, statusMessage: 'runId and slugs are required' })
 
-  sendSlackMessage(config.slackWebhookUrl, {
-    title: `:x: Crawl task declined. Data has been deleted. Old URL ${body.fileUrl}`,
+  await del(body.slugs.map(slug => shopResultBlobPath(body.runId!, slug, 'ok')))
+
+  await sendSlackMessage(config.slackWebhookUrl, {
+    title: `:x: Run ${body.runId}: declined ${body.slugs.length} shop${body.slugs.length === 1 ? '' : 's'} (${body.slugs.join(', ')}). Data has been deleted.`,
   })
 
   return { success: true }
