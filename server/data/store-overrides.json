@@ -6793,13 +6793,6 @@
               "type": "attribute",
               "attribute": "data-tp-gtm-item-id",
               "default": null
-            },
-            {
-              "name": "model",
-              "selector": ".tp-product-card",
-              "type": "attribute",
-              "attribute": "data-tp-gtm-item-id",
-              "default": null
             }
           ]
         }
