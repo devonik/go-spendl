@@ -39,7 +39,11 @@ interface Crawl4AIData {
   error_message: string | null
   session_id: unknown
   response_headers: unknown
-  status_code: unknown
+  /**
+   * HTTP status of the crawled page. Present on completed crawls; see
+   * `isHttpFailure` — Crawl4AI reports `success: true` even for 4xx/5xx.
+   */
+  status_code: number | null
   ssl_certificate: unknown
   dispatch_result: unknown
   redirected_url: unknown
@@ -53,6 +57,17 @@ interface Crawl4AIData {
 // complete currency token. For sale items this gives the sale price (which
 // is what the user actually pays). Returns the cleaned input — never null —
 // so a partial cleanup is preferred over losing the value entirely.
+// Crawl4AI sets `success: true` whenever it managed to fetch *something*, so a
+// shop that rate-limits or blocks us still arrives here as a successful crawl
+// carrying an error page. The schema then extracts 0 items and the shop looks
+// indistinguishable from one that genuinely had no hits — which is how a
+// running-point 429 (`local_rate_limited`, ~169 bytes) read as a broken schema.
+// Treat any 4xx/5xx as a failed crawl instead: we never saw the listing.
+// Redirects (3xx) are normal — several shops 301 to a canonical search URL.
+function isHttpFailure(statusCode: number | null | undefined): boolean {
+  return typeof statusCode === 'number' && statusCode >= 400
+}
+
 const PRICE_LABELS = /Verkaufspreis|Normaler\s*Preis|Angebotspreis|Sonderpreis|Grundpreis|UVP|Sale\s*price|Regular\s*price|From\s|Ab\s|Von\s/gi
 const PRICE_TOKEN = /[\d.,]+\s*(?:[€$£]|EUR|USD|CHF|GBP)/i
 
@@ -179,14 +194,20 @@ export default defineEventHandler(async (event) => {
   }
   else if (body.status === 'completed') {
     const firstResult = body.data?.results[0]
-    if (!firstResult?.success) {
-      console.error(`Crawl task ${body.task_id} failed with error`, firstResult?.error_message)
+    const httpFailed = isHttpFailure(firstResult?.status_code)
+    if (!firstResult?.success || httpFailed) {
+      const error = httpFailed
+        // Name the status explicitly: the shop answered, we just never got the
+        // listing, so this is not something a schema change can fix.
+        ? `Shop returned HTTP ${firstResult!.status_code} — crawler never saw the listing (rate limit, block or shop error), schema not at fault`
+        : firstResult?.error_message || 'Check crawler errors in railway or logs in vercel'
+      console.error(`Crawl task ${body.task_id} failed for ${domain}:`, error)
       await recordShopResult({
         runId,
         runTotal,
         slackWebhookUrl: config.slackWebhookUrl,
         baseUrl: config.baseUrl,
-        result: { slug: domain, status: 'failed', mode, itemCount: 0, error: firstResult?.error_message || 'Check crawler errors in railway or logs in vercel', initialQuery, searchUrl },
+        result: { slug: domain, status: 'failed', mode, itemCount: 0, error, initialQuery, searchUrl },
       })
       throw createError({
         statusCode: 500,
