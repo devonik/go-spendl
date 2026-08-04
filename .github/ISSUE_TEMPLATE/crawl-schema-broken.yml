@@ -1,0 +1,121 @@
+name: Crawl result broken for a shop
+description: A shop returns missing, empty or wrong product data (usually a rotted CSS selector)
+title: "[crawl] <shop slug>: <what is wrong>"
+labels: ["bug", "ReadyForClaude"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this for **one shop at a time**. Separate issues for separate shops —
+        each one is a separate schema fix and a separate PR.
+
+  - type: input
+    id: slug
+    attributes:
+      label: Shop slug
+      description: >-
+        The key in `server/data/store-overrides.json`, not the domain.
+        These often differ — eufy.com is `eufylife`, baur.de is `baur`.
+      placeholder: eufylife
+    validations:
+      required: true
+
+  - type: input
+    id: search-url
+    attributes:
+      label: Search URL that produced the bad result
+      description: >-
+        The URL that was actually crawled, with the real query in it —
+        not the `ipad` placeholder from `crawl.searchUrl`.
+      placeholder: https://www.eufy.com/eu-de/search?q=kamera
+    validations:
+      required: true
+
+  - type: dropdown
+    id: fields
+    attributes:
+      label: Which fields are wrong?
+      description: >-
+        Not every shop's schema defines every field — pick what you see going
+        wrong. `model` is sometimes a real selector and sometimes derived from
+        `»…«` in the name, so name it here either way.
+      multiple: true
+      options:
+        - name
+        - price
+        - brand
+        - sku
+        - model
+        - productUrl
+        - imageSrc
+        - imageAlt
+        - availability
+        - No items extracted at all (baseSelector)
+        - Wrong items extracted (banners, nav tiles, carousels)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: scope
+    attributes:
+      label: How many products are affected?
+      description: >-
+        All vs. some matters a lot. All → the selector is dead.
+        Some → the shop renders more than one card variant, and the
+        selector only covers one of them.
+      options:
+        - All products
+        - Some products
+        - Not sure
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-actual
+    attributes:
+      label: Expected vs. actual
+      description: >-
+        What the shop's own page shows next to what the crawl produced.
+        A screenshot of the approval page can be pasted straight in here.
+      placeholder: |
+        Shop shows: 33,99€ (reduced from 39,99€)
+        Crawl produced: empty
+    validations:
+      required: true
+
+  - type: dropdown
+    id: regression
+    attributes:
+      label: Did this shop work before?
+      description: >-
+        A regression points at shop-side drift — a rotated CSS-module hash
+        or a redesign. Never-worked points at the generated schema itself.
+      options:
+        - It worked before and broke
+        - It never worked
+        - Not sure
+    validations:
+      required: true
+
+  - type: input
+    id: run-id
+    attributes:
+      label: Run ID (optional)
+      description: From the Slack run summary — lets the run and approval page be pulled up.
+      placeholder: 3f2a91c4-...
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything else (optional)
+      description: Cookie banner, geo-gate, login wall, infinite scroll, anything you noticed.
+
+  - type: checkboxes
+    id: done
+    attributes:
+      label: Before submitting
+      options:
+        - label: I opened the search URL in a normal browser and the data **is** visible there
+          required: true
+        - label: This is one shop, not several
+          required: true
