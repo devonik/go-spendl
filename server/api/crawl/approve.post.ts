@@ -3,7 +3,7 @@ import { Redis } from '@upstash/redis'
 import { del } from '@vercel/blob'
 import { upsetAlgoliaObjects } from '../../lib/algolia'
 import { CRAWL_EVENTS_CHANNEL } from '../../lib/crawl-events-channel'
-import { shopResultBlobPath } from '../../lib/crawl-run'
+import { purgeRunFolderIfDone, shopResultBlobPath } from '../../lib/crawl-run'
 import sendSlackMessage from '../../lib/send-slack-message'
 
 interface RunShopApproval {
@@ -69,6 +69,10 @@ export default defineEventHandler(async (event) => {
   await sendSlackMessage(config.slackWebhookUrl, {
     title: `:checkered_flag: Run ${body.runId}: approved ${body.shops.length} shop${body.shops.length === 1 ? '' : 's'}, *${totalItems}* items uploaded to Algolia`,
   })
+
+  // If this was the last pending shop across the run, reclaim the folder
+  // (empty/failed leftovers + lock kept as a straggler marker).
+  await purgeRunFolderIfDone(body.runId)
 
   return { success: true }
 })

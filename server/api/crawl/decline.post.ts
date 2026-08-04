@@ -1,5 +1,5 @@
 import { del } from '@vercel/blob'
-import { shopResultBlobPath } from '../../lib/crawl-run'
+import { purgeRunFolderIfDone, shopResultBlobPath } from '../../lib/crawl-run'
 import sendSlackMessage from '../../lib/send-slack-message'
 
 export default defineEventHandler(async (event) => {
@@ -28,6 +28,10 @@ export default defineEventHandler(async (event) => {
   await sendSlackMessage(config.slackWebhookUrl, {
     title: `:x: Run ${body.runId}: declined ${body.slugs.length} shop${body.slugs.length === 1 ? '' : 's'} (${body.slugs.join(', ')}). Data has been deleted.`,
   })
+
+  // Same as approve: if nothing else in this run still has items to decide,
+  // reclaim the folder now (lock kept as straggler marker).
+  await purgeRunFolderIfDone(body.runId)
 
   return { success: true }
 })

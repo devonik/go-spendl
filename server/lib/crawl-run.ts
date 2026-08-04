@@ -1,5 +1,5 @@
 import type { AlgoliaProduct } from '~~/types/algolia'
-import { list, put } from '@vercel/blob'
+import { del, list, put } from '@vercel/blob'
 import sendSlackMessage from './send-slack-message'
 
 export interface RunShopResult {
@@ -49,22 +49,45 @@ export async function recordShopResult(opts: {
   result: RunShopResult
 }): Promise<void> {
   const { runId, runTotal, slackWebhookUrl, baseUrl, result } = opts
+  const lockPath = summaryLockBlobPath(runId)
 
+  // Straggler check: if the summary lock is already there, this run has been
+  // wrapped up (and its folder likely purged). A late Crawl4AI retry must not
+  // repopulate the folder — otherwise a full re-fanout of retries could reach
+  // runTotal again and re-fire the summary. Ignore it entirely.
+  const preBlobs = (await list({ prefix: runBlobPrefix(runId) })).blobs
+  if (preBlobs.some(b => b.pathname === lockPath))
+    return
+
+  // allowOverwrite so Crawl4AI webhook retries for the same shop (same
+  // runId + slug + status) update the entry instead of crashing the handler
+  // — the latest attempt is the truth.
   await put(shopResultBlobPath(runId, result.slug, result.status), JSON.stringify(result), {
     access: 'public',
     contentType: 'application/json',
     addRandomSuffix: false,
+    allowOverwrite: true,
   })
 
+  // Re-list to include our just-written blob (and to catch the overwrite case
+  // where the preBlobs snapshot already contained our slug).
   const { blobs } = await list({ prefix: runBlobPrefix(runId) })
   const shopBlobs = blobs.filter(b => b.pathname.endsWith('.json'))
   if (shopBlobs.length < runTotal)
     return
 
-  const lockPath = summaryLockBlobPath(runId)
+  // Lock race handling: the check above isn't atomic, so two webhooks may both
+  // pass and both try to write. put() throws when the blob exists (no
+  // allowOverwrite here — the throw itself IS the race signal), so the loser
+  // silently bails and only the winner sends the summary.
   if (blobs.some(b => b.pathname === lockPath))
     return
-  await put(lockPath, 'locked', { access: 'public', addRandomSuffix: false })
+  try {
+    await put(lockPath, 'locked', { access: 'public', addRandomSuffix: false })
+  }
+  catch {
+    return
+  }
 
   const results = await Promise.all(shopBlobs.map(async (b) => {
     const res = await fetch(b.url)
@@ -95,4 +118,42 @@ export async function recordShopResult(opts: {
     title,
     ...(pendingApproval.length ? { approveUploadActionUrl: `${baseUrl}/internal/approve-crawl?runId=${runId}` } : {}),
   })
+
+  // Auto mode has nothing left to approve, so we can reclaim the folder now.
+  // Approval mode purges after the user has decided on the last shop (see
+  // purgeRunFolderIfDone). Either way the lock survives so late webhook
+  // retries can't re-fire the summary.
+  if (!pendingApproval.length)
+    await purgeRunFolder(runId, { keepLock: true })
+}
+
+/**
+ * Deletes every blob under a run's folder. Pass `keepLock: true` to retain
+ * the summary-sent marker — required whenever the run may still be reached
+ * by late Crawl4AI webhook retries, so the straggler check in
+ * recordShopResult stays authoritative.
+ */
+export async function purgeRunFolder(runId: string, opts?: { keepLock?: boolean }): Promise<void> {
+  const { blobs } = await list({ prefix: runBlobPrefix(runId) })
+  const lockPath = summaryLockBlobPath(runId)
+  const toDelete = opts?.keepLock ? blobs.filter(b => b.pathname !== lockPath) : blobs
+  if (toDelete.length > 0)
+    await del(toDelete.map(b => b.url))
+}
+
+/**
+ * Purges the run folder (keeping the lock) once no shop still has items
+ * waiting on a decision — i.e., every ok+items shop has been approved or
+ * declined. No-op while any pending approval remains.
+ */
+export async function purgeRunFolderIfDone(runId: string): Promise<void> {
+  const { blobs } = await list({ prefix: runBlobPrefix(runId) })
+  const actionable = blobs.filter(b => b.pathname.endsWith('.json') && !b.pathname.endsWith('.error.json'))
+  for (const b of actionable) {
+    const res = await fetch(b.url)
+    const shop = await res.json() as RunShopResult
+    if (shop.items && shop.items.length > 0)
+      return
+  }
+  await purgeRunFolder(runId, { keepLock: true })
 }
