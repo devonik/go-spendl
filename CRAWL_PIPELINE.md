@@ -577,8 +577,11 @@ nuxt.config.ts                  # runtimeConfig (CRAWL4AI_URL, CRON_SECRET, …)
 To verify the pipeline end-to-end locally:
 
 ```bash
-# 1. Make sure Crawl4AI is running locally (default http://localhost:11235).
-docker ps | grep crawl4ai
+# 1. Resolve the Crawl4AI instance. CRAWL4AI_URL wins when it is set —
+#    CI, sandboxes and agent runs get a hosted instance that way, and
+#    localhost is only the local Docker default. Never assume localhost.
+export CRAWL4AI_URL="${CRAWL4AI_URL:-http://localhost:11235}"
+curl -fsS "$CRAWL4AI_URL/health" || echo "unreachable at $CRAWL4AI_URL"
 
 # 2. Start the Nuxt dev server.
 pnpm dev   # listens on :3000
