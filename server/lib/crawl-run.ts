@@ -10,6 +10,11 @@ export interface RunShopResult {
   itemCount: number
   error?: string
   initialQuery?: string
+  /**
+   * Actual URL Crawl4AI hit — surfaced in the Slack summary so empty/failed
+   * shops can be inspected in one click.
+   */
+  searchUrl?: string
   /** Only set for mode: 'approval' with itemCount > 0. */
   items?: AlgoliaProduct[]
 }
@@ -66,15 +71,19 @@ export async function recordShopResult(opts: {
     return res.json() as Promise<RunShopResult>
   }))
 
-  const ok = results.filter(r => r.status === 'ok')
+  const ok = results.filter(r => r.status === 'ok' && r.itemCount > 0)
+  const empty = results.filter(r => r.status === 'ok' && r.itemCount === 0)
   const failed = results.filter(r => r.status === 'failed')
   const totalItems = ok.reduce((sum, r) => sum + (r.itemCount || 0), 0)
   const pendingApproval = ok.filter(r => r.mode === 'approval' && r.itemCount > 0)
 
-  const failedDetail = failed.length
-    ? ` (${failed.map(r => `${r.slug}: ${r.error || 'unknown error'}`).join(', ')})`
-    : ''
-  const title = `:checkered_flag: Run ${runId}: ${ok.length} ok (${totalItems} items), ${failed.length} failed${failedDetail}`
+  // Slack mrkdwn: `<url|label>` renders as a clickable link, `\n` breaks the
+  // line inside a section. Anything without a searchUrl falls back to a plain
+  // slug so we never link to `<undefined|slug>`.
+  const linkify = (r: RunShopResult) => r.searchUrl ? `<${r.searchUrl}|${r.slug}>` : r.slug
+  const emptyBlock = empty.length ? `\n\n*Empty:*\n${empty.map(r => `• ${linkify(r)}`).join('\n')}` : ''
+  const failedBlock = failed.length ? `\n\n*Failed:*\n${failed.map(r => `• ${linkify(r)}: ${r.error || 'unknown error'}`).join('\n')}` : ''
+  const title = `:checkered_flag: Run ${runId}: ${ok.length} ok (${totalItems} items), ${empty.length} empty, ${failed.length} failed${emptyBlock}${failedBlock}`
 
   await sendSlackMessage(slackWebhookUrl, {
     title,

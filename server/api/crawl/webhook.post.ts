@@ -164,6 +164,7 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: 400, statusMessage: 'Header X-Run-Total is missing or invalid' })
 
   const mode: 'auto' | 'approval' = config.isCrawlUploadAutomaticEnabled === 'true' ? 'auto' : 'approval'
+  const searchUrl = body.urls?.[0]
 
   if (body.status === 'failed') {
     console.error(`Crawl task ${body.task_id} failed with error`, body.error)
@@ -172,7 +173,7 @@ export default defineEventHandler(async (event) => {
       runTotal,
       slackWebhookUrl: config.slackWebhookUrl,
       baseUrl: config.baseUrl,
-      result: { slug: domain, status: 'failed', mode, itemCount: 0, error: body.error },
+      result: { slug: domain, status: 'failed', mode, itemCount: 0, error: body.error, searchUrl },
     })
     return { success: false, message: `Crawl task failed: ${body.error}` }
   }
@@ -185,7 +186,7 @@ export default defineEventHandler(async (event) => {
         runTotal,
         slackWebhookUrl: config.slackWebhookUrl,
         baseUrl: config.baseUrl,
-        result: { slug: domain, status: 'failed', mode, itemCount: 0, error: firstResult?.error_message || 'Check crawler errors in railway or logs in vercel' },
+        result: { slug: domain, status: 'failed', mode, itemCount: 0, error: firstResult?.error_message || 'Check crawler errors in railway or logs in vercel', searchUrl },
       })
       throw createError({
         statusCode: 500,
@@ -263,7 +264,7 @@ export default defineEventHandler(async (event) => {
         runTotal,
         slackWebhookUrl: config.slackWebhookUrl,
         baseUrl: config.baseUrl,
-        result: { slug: domain, status: 'ok', mode, itemCount: 0, initialQuery },
+        result: { slug: domain, status: 'ok', mode, itemCount: 0, initialQuery, searchUrl },
       })
       return { success: true }
     }
@@ -355,7 +356,7 @@ export default defineEventHandler(async (event) => {
         runTotal,
         slackWebhookUrl: config.slackWebhookUrl,
         baseUrl: config.baseUrl,
-        result: { slug: domain, status: 'ok', mode, itemCount, initialQuery },
+        result: { slug: domain, status: 'ok', mode, itemCount, initialQuery, searchUrl },
       })
     }
     else {
@@ -366,7 +367,7 @@ export default defineEventHandler(async (event) => {
         runTotal,
         slackWebhookUrl: config.slackWebhookUrl,
         baseUrl: config.baseUrl,
-        result: { slug: domain, status: 'ok', mode, itemCount: formattedResults.length, initialQuery, items: formattedResults },
+        result: { slug: domain, status: 'ok', mode, itemCount: formattedResults.length, initialQuery, searchUrl, items: formattedResults },
       })
     }
   }
