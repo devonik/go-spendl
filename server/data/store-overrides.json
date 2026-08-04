@@ -2623,12 +2623,12 @@
           "fields": [
             {
               "name": "name",
-              "selector": ".Search_product-name__YXd1y",
+              "selector": ".Search_product-name__YXd1y, p:nth-of-type(2)",
               "type": "text"
             },
             {
               "name": "price",
-              "selector": ".Search_cur-money__nlYZ1",
+              "selector": "[data-part=\"discount-price\"]",
               "type": "text"
             },
             {
@@ -2651,7 +2651,7 @@
             },
             {
               "name": "availability",
-              "selector": ".Search_product-price___uAto",
+              "selector": "div:has(> div > [data-part=\"discount-price\"])",
               "type": "text"
             }
           ]
