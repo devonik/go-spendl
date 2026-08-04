@@ -268,6 +268,11 @@ GENERAL RULES:
 - For productUrl, target the card's primary product anchor and read href. The href should look like a product detail path, not a category or search URL.
 - For imageSrc, prefer src; fall back to data-src or srcset only if src is empty.
 - Prefer semantic selectors (data attributes, itemprop, role) over fragile class chains when both are available.
+- Copy class names EXACTLY as they appear in the HTML. Never shorten, tidy or normalise one. If the element carries class="_tp-product-card__title-link_1s5ni_89", the selector is "._tp-product-card__title-link_1s5ni_89" — "._tp-product-card__title-link" matches nothing at all.
+- Classes shaped like <prefix>__<name>_<hash> come from a CSS-module bundler, and the trailing hash is regenerated on the shop's next deploy. Never emit such a class as-is. Rewrite it as a substring match on the stable middle, dropping prefix and hash:
+    "._tp-algolia-product-card__pricing_1f7zk_231 span"  ->  '[class*="__pricing"] span'
+    ".ProductCard_title__aB3xY"                          ->  '[class*="_title"]'
+  Better still, if a structural selector ("h3 a") or an unhashed framework/utility class ("li.ais-Hits-item", "img.tp-image__img") identifies the same element, use that instead — it depends on nothing the bundler generates.
 - If a field cannot be located reliably across cards, omit it from "fields" rather than guessing.
 - Always include "name" and "productUrl" if and only if you found a real card pattern.
 
