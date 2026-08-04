@@ -1,7 +1,6 @@
 import type { Locale } from 'vue-i18n'
 import type { BrowserConfig, CrawlerRunConfig, CrawlerWebhookPayload, CrawlJobPayload } from '~~/types/crawler'
 import { randomUUID } from 'node:crypto'
-import { v4 as uuidv4 } from 'uuid'
 import sendSlackMessage from '../../lib/send-slack-message'
 import { cachedStores } from '../../utils/stores'
 
@@ -109,13 +108,9 @@ export default defineEventHandler(async (event) => {
   if (!body.query || !body.locale)
     throw new Error('Body must contain query and locale')
 
-  const taskId = uuidv4()
-  const runConfig = { ...body, config: { taskId, isCrawlUploadAutomaticEnabled: config.isCrawlUploadAutomaticEnabled, crawlUrl: config.crawl4AiUrl } }
-  console.info('Crawl - START with body', runConfig)
-  sendSlackMessage(config.slackWebhookUrl, {
-    title: ':arrow_forward: *New Crawling started with*',
-    jsonString: JSON.stringify(runConfig),
-  })
+  const runId = randomUUID()
+  const runConfig = { ...body, config: { runId, isCrawlUploadAutomaticEnabled: config.isCrawlUploadAutomaticEnabled, crawlUrl: config.crawl4AiUrl } }
+  console.warn('Crawl - START with body', runConfig)
 
   const browser_config_payload: BrowserConfig = {
     type: 'BrowserConfig',
@@ -213,7 +208,14 @@ export default defineEventHandler(async (event) => {
     : body.categories?.length
       ? `categories=${body.categories.join(',')}`
       : 'no filter'
-  console.info(`Crawl - starting crawl on ${targetStores.length}/${crawlableStores.length} stores [${filterNote}]: ${targetStores.map(s => s.slug).join(', ')}`)
+  console.warn(`Crawl - starting crawl on ${targetStores.length}/${crawlableStores.length} stores [${filterNote}]: ${targetStores.map(s => s.slug).join(', ')}`)
+
+  webhook_config.webhook_headers['X-Run-Id'] = runId
+  webhook_config.webhook_headers['X-Run-Total'] = String(targetStores.length)
+
+  await sendSlackMessage(config.slackWebhookUrl, {
+    title: `:arrow_forward: Run ${runId}: ${targetStores.length} shop${targetStores.length === 1 ? '' : 's'} dispatched. Automatic upload is ${config.isCrawlUploadAutomaticEnabled === 'true' ? 'activated' : 'deactivated'}`,
+  })
 
   for (const store of targetStores) {
     const slug = store.slug
@@ -241,7 +243,7 @@ export default defineEventHandler(async (event) => {
       if (paging.pageQueryParam) {
         const url = new URL(baseUrl)
         url.searchParams.set(paging.pageQueryParam, '2')
-        console.info(`Crawl - added paging param to url: ${url.toString()}`)
+        console.warn(`Crawl - added paging param to url: ${url.toString()}`)
         searchURLs.push(url.toString())
       }
       else if (paging.loadMoreSelector) {
@@ -265,15 +267,12 @@ export default defineEventHandler(async (event) => {
     })
 
     partialCrawlInfo.task_id = response.task_id
-    console.info(`Crawl - Job with taskId ${partialCrawlInfo.task_id} started for domain ${partialCrawlInfo.domain}`)
+    console.warn(`Crawl - Job with taskId ${partialCrawlInfo.task_id} started for domain ${partialCrawlInfo.domain}`)
 
     runInfo.shops.push(partialCrawlInfo)
   }
 
-  await sendSlackMessage(config.slackWebhookUrl, {
-    title: `:wrench: Crawl Jobs started for *${runInfo.shops.length}* domains. Automatic upload is ${config.isCrawlUploadAutomaticEnabled === 'true' ? 'activated' : 'deactivated'}`,
-    richTextBody: runInfo.shops.map(shop => `- *${shop.task_id}* - ${shop.domain}`).join('\n'),
-  })
+  console.warn(`Crawl - Run ${runId}: all ${runInfo.shops.length} jobs dispatched`, runInfo.shops)
 
-  return { success: true }
+  return { success: true, runId }
 })
