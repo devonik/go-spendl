@@ -173,7 +173,7 @@ export default defineEventHandler(async (event) => {
       runTotal,
       slackWebhookUrl: config.slackWebhookUrl,
       baseUrl: config.baseUrl,
-      result: { slug: domain, status: 'failed', mode, itemCount: 0, error: body.error, searchUrl },
+      result: { slug: domain, status: 'failed', mode, itemCount: 0, error: body.error, initialQuery, searchUrl },
     })
     return { success: false, message: `Crawl task failed: ${body.error}` }
   }
@@ -186,7 +186,7 @@ export default defineEventHandler(async (event) => {
         runTotal,
         slackWebhookUrl: config.slackWebhookUrl,
         baseUrl: config.baseUrl,
-        result: { slug: domain, status: 'failed', mode, itemCount: 0, error: firstResult?.error_message || 'Check crawler errors in railway or logs in vercel', searchUrl },
+        result: { slug: domain, status: 'failed', mode, itemCount: 0, error: firstResult?.error_message || 'Check crawler errors in railway or logs in vercel', initialQuery, searchUrl },
       })
       throw createError({
         statusCode: 500,

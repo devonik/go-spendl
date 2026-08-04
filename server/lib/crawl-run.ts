@@ -77,13 +77,19 @@ export async function recordShopResult(opts: {
   const totalItems = ok.reduce((sum, r) => sum + (r.itemCount || 0), 0)
   const pendingApproval = ok.filter(r => r.mode === 'approval' && r.itemCount > 0)
 
+  // The user's search query is stamped on every shop result, but failed shops
+  // may lack it — read from the first result that has it. All shops in a run
+  // fan out from the same search, so any is representative.
+  const initialQuery = results.find(r => r.initialQuery)?.initialQuery
+  const queryLabel = initialQuery ? ` for "${initialQuery}"` : ''
+
   // Slack mrkdwn: `<url|label>` renders as a clickable link, `\n` breaks the
   // line inside a section. Anything without a searchUrl falls back to a plain
   // slug so we never link to `<undefined|slug>`.
   const linkify = (r: RunShopResult) => r.searchUrl ? `<${r.searchUrl}|${r.slug}>` : r.slug
   const emptyBlock = empty.length ? `\n\n*Empty:*\n${empty.map(r => `• ${linkify(r)}`).join('\n')}` : ''
   const failedBlock = failed.length ? `\n\n*Failed:*\n${failed.map(r => `• ${linkify(r)}: ${r.error || 'unknown error'}`).join('\n')}` : ''
-  const title = `:checkered_flag: Run ${runId}: ${ok.length} ok (${totalItems} items), ${empty.length} empty, ${failed.length} failed${emptyBlock}${failedBlock}`
+  const title = `:checkered_flag: Run ${runId}${queryLabel}: ${ok.length} ok (${totalItems} items), ${empty.length} empty, ${failed.length} failed${emptyBlock}${failedBlock}`
 
   await sendSlackMessage(slackWebhookUrl, {
     title,
