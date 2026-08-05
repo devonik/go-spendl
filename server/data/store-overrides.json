@@ -6108,7 +6108,8 @@
     "crawl": {
       "searchUrl": "https://www.pepejeans.com/de/de_de/search?q=ipad&lang=de_DE",
       "cms": "",
-      "crawlable": true,
+      "crawlable": false,
+      "comment": "pepejeans.com closed permanently, effective 2026-07-26 (#12) — still listed in the Satsback catalog",
       "schema": {
         "type": "dict",
         "value": {
