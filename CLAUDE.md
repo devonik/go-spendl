@@ -9,6 +9,7 @@ pnpm dev               # Start dev server
 pnpm build             # Production build
 pnpm postinstall       # nuxt prepare (regenerates types, run after install)
 pnpm stores:sync <cat.csv> <stores.csv>  # Import store + category data from Satsback Excel exports
+pnpm stores:export-csv # Write current store data back out as both CSVs (tmp/) for the colleague
 ```
 
 No dedicated lint or test commands — linting is via ESLint (`eslint.config.mjs`), tests via `@nuxt/test-utils`.
@@ -63,6 +64,11 @@ The import flow:
 - Commit the generated files; CSVs stay local (git-ignored)
 - On re-run, existing EN translations are preserved; new categories fall back to `SEED_EN` in the script or auto-titlecase
 - Categories with zero stores are pruned and logged (colleague updates the Excel to remove them)
+- `crawl.schema`/`paging`/`sampleQuery`/`emptyResultStatus` have no CSV column and are re-merged per slug from the existing `store-overrides.json` — a sync used to delete all of them
+
+**Export before you ask for a new sheet.** `pnpm stores:export-csv` writes the current committed data back out as both CSVs (`tmp/germany-export.csv`, `tmp/categories-export.csv`). Round-trip is lossless for everything the CSV can express — verified as 0 content differences across 930 entries. Use it so the colleague edits a sheet that already contains the repo's corrections: without it the sheet is the only source of truth and the repo a one-way copy, so every fix applied here (a dedupe, a disable, a corrected category) has to be replayed by hand in Excel or the next sync undoes it. That drift is what produced 186 stale slugs, 105 status flags in the URL column and duplicates like `lenovo`/`lenovo-7`.
+
+The export writes a dedicated `note` column. `sync-stores.mjs` prefers it and falls back to salvaging non-URL values out of the `url` column, so a pre-export sheet still imports correctly — the summary line says which path was taken.
 
 `server/utils/stores.ts` merges Satsback API data with overrides by slug → each store gets `category`, optional `url`, optional `crawl` metadata.
 
