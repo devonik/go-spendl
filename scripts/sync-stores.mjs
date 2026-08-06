@@ -12,6 +12,13 @@
 //
 // Re-running preserves existing labelEn from categories.json; new categories
 // fall back to SEED_EN below, so add entries there before running.
+//
+// It also preserves the parts of `crawl` that the CSV cannot express —
+// `schema`, `paging`, `sampleQuery`, `emptyResultStatus` — by reading the
+// current store-overrides.json back in and re-merging them per slug. Those
+// are produced by `pnpm gen:schema` / `pnpm save:schema` and by hand, never
+// by the colleague's spreadsheet, so rebuilding purely from the CSV used to
+// drop every one of them on the floor.
 
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
@@ -189,10 +196,34 @@ const storeRows = parseCSV(readFileSync(storesPath, 'utf8'))
 const [storeHeader, ...storeData] = storeRows
 const sIdx = Object.fromEntries(storeHeader.map((h, i) => [h.trim(), i]))
 
+// Crawl keys that only ever come from the generator or from hand-editing.
+// The CSV owns searchUrl/cms/crawlable/comment; everything here survives a
+// re-sync untouched. Ordered to match how the file already reads — the bulky
+// `schema` last — so re-syncing doesn't churn the diff.
+const PRESERVED_CRAWL_KEYS = ['emptyResultStatus', 'sampleQuery', 'paging', 'schema']
+
+let existingOverrides = {}
+if (existsSync(overridesOut)) {
+  existingOverrides = JSON.parse(readFileSync(overridesOut, 'utf8'))
+}
+
+function preservedCrawlFor(slug) {
+  const crawl = existingOverrides[slug]?.crawl
+  if (!crawl)
+    return {}
+  const kept = {}
+  for (const key of PRESERVED_CRAWL_KEYS) {
+    if (crawl[key] !== undefined)
+      kept[key] = crawl[key]
+  }
+  return kept
+}
+
 const overrides = {}
 const referencedCategories = new Set()
 let unknown = 0
 let total = 0
+let preservedCount = 0
 for (const row of storeData) {
   const slug = row[sIdx.slug]?.trim()
   if (!slug)
@@ -217,14 +248,24 @@ for (const row of storeData) {
   const crawlableRaw = row[sIdx.crawlable]?.trim().toUpperCase()
   const comment = row[sIdx.comment]?.trim()
 
+  // Carried over from the current file — the CSV has no column for any of it.
+  const preservedCrawl = preservedCrawlFor(slug)
+  const hasPreserved = Object.keys(preservedCrawl).length > 0
+  if (hasPreserved)
+    preservedCount++
+
+  // A store that has preserved metadata still needs its `crawl` block even
+  // when the CSV row carries none of the crawl columns — otherwise the block
+  // is dropped and the schema goes with it.
   const hasCrawl = searchUrl || cms || crawlableRaw === 'TRUE' || crawlableRaw === 'FALSE' || comment
-  const crawl = hasCrawl
+  const crawl = (hasCrawl || hasPreserved)
     ? {
-      searchUrl: searchUrl || '',
-      cms: cms || '',
-      crawlable: crawlableRaw === 'TRUE',
-      ...(comment ? { comment } : {}),
-    }
+        searchUrl: searchUrl || '',
+        cms: cms || '',
+        crawlable: crawlableRaw === 'TRUE',
+        ...(comment ? { comment } : {}),
+        ...preservedCrawl,
+      }
     : undefined
 
   overrides[slug] = {
@@ -253,8 +294,17 @@ const i18nEn = Object.fromEntries(categories.map(c => [c.key.replace('categories
 writeFileSync(resolve(i18nDir, 'categories.de.json'), `${JSON.stringify(i18nDe, null, 2)}\n`)
 writeFileSync(resolve(i18nDir, 'categories.en.json'), `${JSON.stringify(i18nEn, null, 2)}\n`)
 
+// The CSV stays the authority on which stores exist, so a slug it no longer
+// lists is still dropped — but dropping one that carried a generated schema
+// throws away real crawl work, and silently doing that is how it would go
+// unnoticed until the next crawl run came back empty.
+const droppedWithCrawlMeta = Object.keys(existingOverrides).filter(
+  slug => !(slug in overrides) && Object.keys(preservedCrawlFor(slug)).length > 0,
+)
+
 console.log(`✓ ${categories.length} categories → server/data/categories.json`)
 console.log(`✓ ${Object.keys(sortedOverrides).length}/${total} store overrides → server/data/store-overrides.json`)
+console.log(`✓ ${preservedCount} stores kept their generated crawl metadata (${PRESERVED_CRAWL_KEYS.join(', ')})`)
 console.log(`✓ i18n locales → i18n/locales/categories.{de,en}.json`)
 if (unknown)
   console.warn(`⚠ ${unknown} stores defaulted to categories.other (unknown category key)`)
@@ -262,4 +312,10 @@ if (unused.length) {
   console.warn(`⚠ ${unused.length} categories pruned (no stores reference them):`)
   unused.forEach(k => console.warn(`   - ${k}`))
   console.warn(`   → Remove them from the Categories sheet to keep both in sync.`)
+}
+if (droppedWithCrawlMeta.length) {
+  console.warn(`⚠ ${droppedWithCrawlMeta.length} store(s) with generated crawl metadata are not in the CSV and were dropped:`)
+  droppedWithCrawlMeta.forEach(k => console.warn(`   - ${k}`))
+  console.warn(`   → Their schemas are gone from store-overrides.json. Restore via git, or`)
+  console.warn(`     re-add the slug to the Germany sheet if the store should still be crawled.`)
 }
