@@ -2352,11 +2352,6 @@
               "selector": "img.s-card__image",
               "type": "attribute",
               "attribute": "alt"
-            },
-            {
-              "name": "availability",
-              "selector": ".s-card__subtitle",
-              "type": "text"
             }
           ]
         }
@@ -2644,11 +2639,6 @@
               "selector": "img",
               "type": "attribute",
               "attribute": "alt"
-            },
-            {
-              "name": "availability",
-              "selector": "div:has(> div > [data-part=\"discount-price\"])",
-              "type": "text"
             }
           ]
         }
