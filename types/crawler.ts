@@ -64,7 +64,6 @@ export interface CrawlerRunConfig {
     extraction_strategy: Record<string, unknown>
     virtual_scroll_config?: Record<string, unknown>
     proxy_config?: Record<string, unknown>
-    magic: boolean
     simulate_user: boolean
     override_navigator: boolean
     scan_full_page?: boolean
