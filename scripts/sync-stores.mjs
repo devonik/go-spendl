@@ -229,6 +229,7 @@ let unknown = 0
 let total = 0
 let preservedCount = 0
 let noteCount = 0
+let salvagedNoteCount = 0
 for (const row of storeData) {
   const slug = row[sIdx.slug]?.trim()
   if (!slug)
@@ -255,10 +256,20 @@ for (const row of storeData) {
   // ProductCard.vue hands it straight to window.open(), which would resolve
   // "ADDON" against our own origin. Keep `url` strictly a URL and park anything
   // else in `note` so the colleague's annotation survives the round trip.
+  // A dedicated `note` column takes precedence when the sheet has one — that
+  // is what `pnpm stores:export-csv` writes, so a sheet that came from an
+  // export keeps notes and URLs properly separated instead of relying on the
+  // fallback below.
   const url = isRealUrl(urlRaw) ? urlRaw : undefined
-  const note = !url && urlRaw ? urlRaw : undefined
+  const noteColumn = sIdx.note === undefined ? undefined : row[sIdx.note]?.trim()
+  const salvagedNote = !url && urlRaw ? urlRaw : undefined
+  const note = noteColumn || salvagedNote
   if (note)
     noteCount++
+  // Counted separately so the summary can say whether the sheet still needs
+  // the fallback, or has grown a proper `note` column.
+  if (!noteColumn && salvagedNote)
+    salvagedNoteCount++
   const searchUrl = row[sIdx['search url']]?.trim()
   const cms = row[sIdx.CMS]?.trim()
   const crawlableRaw = row[sIdx.crawlable]?.trim().toUpperCase()
@@ -322,8 +333,13 @@ const droppedWithCrawlMeta = Object.keys(existingOverrides).filter(
 console.log(`✓ ${categories.length} categories → server/data/categories.json`)
 console.log(`✓ ${Object.keys(sortedOverrides).length}/${total} store overrides → server/data/store-overrides.json`)
 console.log(`✓ ${preservedCount} stores kept their generated crawl metadata (${PRESERVED_CRAWL_KEYS.join(', ')})`)
-if (noteCount)
-  console.log(`✓ ${noteCount} non-URL values in the URL column moved to \`note\` (ADDON, DOPPELT, …)`)
+if (noteCount) {
+  console.log(`✓ ${noteCount} store note(s) recorded (ADDON, DOPPELT, …)`)
+  if (salvagedNoteCount) {
+    console.log(`   ${salvagedNoteCount} of them came from non-URL values in the URL column —`)
+    console.log(`   \`pnpm stores:export-csv\` writes a dedicated \`note\` column to retire that fallback.`)
+  }
+}
 console.log(`✓ i18n locales → i18n/locales/categories.{de,en}.json`)
 if (unknown)
   console.warn(`⚠ ${unknown} stores defaulted to categories.other (unknown category key)`)
