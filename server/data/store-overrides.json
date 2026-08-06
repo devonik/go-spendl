@@ -991,10 +991,11 @@
       "searchUrl": "https://www.biggreensmile.de/search.aspx?q=ipad",
       "cms": "",
       "crawlable": true,
+      "emptyResultStatus": 404,
       "schema": {
         "type": "dict",
         "value": {
-          "baseSelector": ".product-item",
+          "baseSelector": ".faceted-product-list .product-item",
           "fields": [
             {
               "name": "name",
@@ -1023,11 +1024,6 @@
               "selector": ".img-holder img",
               "type": "attribute",
               "attribute": "alt"
-            },
-            {
-              "name": "availability",
-              "selector": ".product-item",
-              "type": "text"
             }
           ]
         }

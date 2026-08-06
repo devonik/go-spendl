@@ -95,6 +95,12 @@ export interface WebhookHeaders {
   'X-Run-Id'?: string
   /** Number of shops dispatched in this run — lets the last webhook detect it's the last one. */
   'X-Run-Total'?: string
+  /**
+   * Mirrors `crawl.emptyResultStatus` from the store override, so the webhook
+   * can tell this shop's "no hits" status apart from a real HTTP failure
+   * without loading the store list. Empty string when the shop hasn't opted in.
+   */
+  'X-Empty-Result-Status'?: string
 }
 export interface CrawlerWebhookPayload {
   // Required. Your HTTP(S) endpoint to receive notifications
