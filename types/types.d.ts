@@ -67,5 +67,12 @@ export interface Store {
   updated_at: string
   category: string
   url?: string
+  /**
+   * Free-text status the colleague records in the spreadsheet's URL column
+   * instead of a link — "ADDON" (the Satsback browser extension doesn't
+   * trigger on this shop), "DOPPELT" (duplicate slug), "nicht erreichbar".
+   * Kept out of `url` because that is consumed as a real link.
+   */
+  note?: string
   crawl?: StoreCrawlData
 }

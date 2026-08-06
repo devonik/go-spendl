@@ -123,8 +123,12 @@ function resolveFallbackUrl(): string | null {
   if (template && props.product.name) {
     return template.replaceAll('ipad', encodeURIComponent(props.product.name))
   }
-  // …else just dump them on the shop homepage.
-  return shopDomain.value?.url ?? null
+  // …else just dump them on the shop homepage. Guard the shape: the URL
+  // column in the source spreadsheet doubles as a status field ("ADDON",
+  // "DOPPELT", "nicht erreichbar"), and window.open() would resolve one of
+  // those against our own origin instead of failing visibly.
+  const homepage = shopDomain.value?.url
+  return homepage && /^https?:\/\//i.test(homepage) ? homepage : null
 }
 
 function openWithoutCashbackFallback() {
