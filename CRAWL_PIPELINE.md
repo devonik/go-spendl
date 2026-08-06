@@ -499,7 +499,33 @@ Satsback partner catalog), so the cron explicitly excludes it from the
    back to in-memory storage, per function instance, empty on every new
    deployment. Locally, `rm -rf .nuxt && pnpm dev`.
 
-7. **The frontend always has a fallback URL**. `ProductCard.vue`'s
+7. **Some shops answer "no hits" with an error page, not an empty
+   listing.** `isHttpFailure` in `webhook.post.ts` treats any 4xx/5xx as
+   a failed crawl, because a rate-limited or blocked shop arrives here
+   as `success: true` carrying an error page and is otherwise
+   indistinguishable from a shop with zero matches (a running-point 429
+   once read as a broken schema). But biggreensmile.de **404s on a
+   zero-result search** and renders its generic not-found page, so a
+   niche shop crawled with a broad fan-out query reported `failed` on
+   every run it had no matches for — issue #14.
+
+   `crawl.emptyResultStatus` (a number, in the store override) exempts
+   *one* status for *one* shop: that status is recorded as an empty
+   result instead of a failure. Every other shop keeps alarming on 404,
+   which is what catches a `searchUrl` template going stale.
+
+   Before setting it, check what the error page's `baseSelector`
+   extracts. biggreensmile's not-found page carries a "Tolle grüne
+   Ideen" recommendation widget whose tiles matched the old
+   `.product-item` base — 6 phantom products (hand soap, diapers) that
+   only the 4xx guard was keeping out of Algolia. Scoping the base to
+   the real results container (`.faceted-product-list .product-item`)
+   takes the 404 page to 0 items, and also dropped a leaked
+   recommendation tile from every *successful* crawl: 37 → 36 items,
+   with price coverage going 36/37 → 36/36. That stray tile was the
+   source of the recurring `item without price` warnings for this shop.
+
+8. **The frontend always has a fallback URL**. `ProductCard.vue`'s
    `resolveFallbackUrl()` tries `product.sourceUrl`, then a substituted
    shop search URL (using the same `"ipad"` template), then the shop
    homepage from overrides. Never opens `about:blank` from an undefined

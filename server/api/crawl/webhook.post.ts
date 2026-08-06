@@ -64,8 +64,20 @@ interface Crawl4AIData {
 // running-point 429 (`local_rate_limited`, ~169 bytes) read as a broken schema.
 // Treat any 4xx/5xx as a failed crawl instead: we never saw the listing.
 // Redirects (3xx) are normal — several shops 301 to a canonical search URL.
-function isHttpFailure(statusCode: number | null | undefined): boolean {
-  return typeof statusCode === 'number' && statusCode >= 400
+//
+// `emptyResultStatus` is the per-shop exemption (see `crawl.emptyResultStatus`
+// in store-overrides.json): a few shops answer a zero-hit search with an error
+// page rather than an empty listing — biggreensmile.de 404s — so for those one
+// status this is a legitimately empty result, not a failure we should alarm on.
+function isHttpFailure(
+  statusCode: number | null | undefined,
+  emptyResultStatus?: number,
+): boolean {
+  if (typeof statusCode !== 'number')
+    return false
+  if (emptyResultStatus !== undefined && statusCode === emptyResultStatus)
+    return false
+  return statusCode >= 400
 }
 
 const PRICE_LABELS = /Verkaufspreis|Normaler\s*Preis|Angebotspreis|Sonderpreis|Grundpreis|UVP|Sale\s*price|Regular\s*price|From\s|Ab\s|Von\s/gi
@@ -163,6 +175,13 @@ export default defineEventHandler(async (event) => {
   const initialQuery = getHeader(event, 'X-Initial-Query')
   const runId = getHeader(event, 'X-Run-Id')
   const runTotal = Number(getHeader(event, 'X-Run-Total'))
+  // Optional: only sent (non-empty) for shops that opted out of the 4xx/5xx
+  // alarm for one status. Anything unparseable is ignored so a malformed
+  // header falls back to the strict default rather than muting failures.
+  const emptyResultStatusHeader = Number(getHeader(event, 'X-Empty-Result-Status'))
+  const emptyResultStatus = Number.isInteger(emptyResultStatusHeader) && emptyResultStatusHeader > 0
+    ? emptyResultStatusHeader
+    : undefined
 
   // The remaining headers are required for downstream business logic
   // (Algolia object shape + run-summary correlation). 400 is honest here
@@ -194,7 +213,12 @@ export default defineEventHandler(async (event) => {
   }
   else if (body.status === 'completed') {
     const firstResult = body.data?.results[0]
-    const httpFailed = isHttpFailure(firstResult?.status_code)
+    const httpFailed = isHttpFailure(firstResult?.status_code, emptyResultStatus)
+    // Leave a trace when the exemption is what kept this out of the failure
+    // branch, so an exempted status can still be told apart from a plain 200
+    // with no matches when reading the logs.
+    if (emptyResultStatus !== undefined && firstResult?.status_code === emptyResultStatus)
+      console.warn(`Crawl ${body.task_id}: ${domain} returned HTTP ${emptyResultStatus} — treated as an empty result per crawl.emptyResultStatus, not a failure`)
     if (!firstResult?.success || httpFailed) {
       const error = httpFailed
         // Name the status explicitly: the shop answered, we just never got the
