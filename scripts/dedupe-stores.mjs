@@ -31,10 +31,10 @@ const TMP_DIR = resolve(ROOT, 'tmp')
 // Slugs we inject ourselves in cachedStores() — Satsback won't return them.
 const STATIC_SLUGS = new Set(['shopinbit'])
 
-// The colleague uses the `url` column as a status flag as well as a URL
-// ("DOPPELT", "ADDON", "nicht erreichbar", …). Those are notes, not links —
-// `resolveFallbackUrl()` in ProductCard.vue would hand one straight to
-// window.open(). Treat anything that isn't http(s) as "no URL recorded".
+// Status flags the colleague writes in the spreadsheet's URL column
+// ("DOPPELT", "ADDON", …) now land in `note` rather than `url`. Keep the
+// guard anyway: this decides which row's URL is worth carrying over, and a
+// non-URL slipping through would otherwise look like curation worth keeping.
 function isRealUrl(value) {
   return typeof value === 'string' && /^https?:\/\//i.test(value.trim())
 }
@@ -147,6 +147,12 @@ for (const f of families.values()) {
   const url = [from.url, kept.url].find(isRealUrl)
   if (url)
     merged.url = url
+  // Keep the colleague's status note, except "DOPPELT" — that described the
+  // duplicate this merge is removing, so carrying it over would leave the
+  // surviving row flagged as a duplicate of something that no longer exists.
+  const note = [from.note, kept.note].find(n => n && n.trim().toLowerCase() !== 'doppelt')
+  if (note)
+    merged.note = note
   const crawl = [from.crawl, kept.crawl].find(c => c?.searchUrl || c?.schema) ?? from.crawl ?? kept.crawl
   if (crawl)
     merged.crawl = crawl
