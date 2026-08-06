@@ -24,6 +24,16 @@ const STATIC_SLUGS = new Set(['shopinbit'])
 // block-size limit when the list is huge.
 const SLACK_LIST_CAP = 50
 
+// Satsback slugs carry a trailing numeric suffix that rotates: the same
+// shop came back as `sixt-2` after we had recorded `sixt-6`, and
+// `getyourguide-8` after `getyourguide-14` (it moves in both directions,
+// so it isn't a version counter). A rotated slug is NOT a delisting — the
+// shop is still in the catalog and still pays out — but the override no
+// longer matches it, which is why the two cases need opposite fixes.
+function slugBase(slug: string): string {
+  return slug.replace(/-\d+$/, '')
+}
+
 // Periodic diff between `store-overrides.json` and the live Satsback
 // catalog. Flags slugs that we still mark `crawl.crawlable: true` but
 // that Satsback no longer returns — those are the shops whose
@@ -52,32 +62,85 @@ export default defineEventHandler(async (event) => {
     })
   const liveSlugs = new Set(liveStores.map(s => s.slug))
 
-  const overrides = overridesJson as Record<string, StoreOverride>
-  const crawlable = Object.entries(overrides).filter(([, s]) => s.crawl?.crawlable)
-  const missing: string[] = []
-  for (const [slug] of crawlable) {
-    if (STATIC_SLUGS.has(slug)) continue
-    if (liveSlugs.has(slug)) continue
-    missing.push(slug)
+  // Index the live catalog by slug base so a rotated suffix is resolvable.
+  const liveByBase = new Map<string, string[]>()
+  for (const slug of liveSlugs) {
+    const base = slugBase(slug)
+    const bucket = liveByBase.get(base)
+    if (bucket)
+      bucket.push(slug)
+    else
+      liveByBase.set(base, [slug])
   }
 
-  if (missing.length > 0) {
-    const shown = missing.slice(0, SLACK_LIST_CAP)
-    const overflow = missing.length - shown.length
-    const body = shown.map(s => `- ${s}`).join('\n')
-      + (overflow > 0 ? `\n…and ${overflow} more` : '')
-      + '\n\nNext step: set `crawl.crawlable: false` in store-overrides.json for these slugs (or remove them entirely if the colleague confirms they\'re gone for good).'
+  const overrides = overridesJson as Record<string, StoreOverride>
+  // Check *every* override, not just the crawlable ones. `extendStores()`
+  // merges overrides by slug, so a stale slug silently drops that store back
+  // to `categories.other` and loses its curated `url` — the category filter
+  // degrades with no error anywhere. Only looking at crawlable entries hid
+  // the large majority of these.
+  const renamed: { slug: string, candidates: string[], crawlable: boolean }[] = []
+  const gone: { slug: string, crawlable: boolean }[] = []
+  let checked = 0
+  for (const [slug, store] of Object.entries(overrides)) {
+    if (STATIC_SLUGS.has(slug))
+      continue
+    checked++
+    if (liveSlugs.has(slug))
+      continue
+    const crawlable = Boolean(store.crawl?.crawlable)
+    const candidates = (liveByBase.get(slugBase(slug)) ?? []).filter(c => c !== slug)
+    if (candidates.length > 0)
+      renamed.push({ slug, candidates, crawlable })
+    else
+      gone.push({ slug, crawlable })
+  }
+
+  // The two lists need opposite fixes, so they're reported separately —
+  // telling someone to disable a merely-renamed shop takes a working,
+  // still-partnered shop offline.
+  if (renamed.length > 0 || gone.length > 0) {
+    const mark = (crawlable: boolean) => crawlable ? ' *(crawlable)*' : ''
+    const sections: string[] = []
+
+    if (renamed.length > 0) {
+      const shown = renamed.slice(0, SLACK_LIST_CAP)
+      const overflow = renamed.length - shown.length
+      sections.push([
+        `*${renamed.length} slug(s) rotated — the shop is still live, do NOT disable*`,
+        ...shown.map(r => `- \`${r.slug}\` → \`${r.candidates.join('` or `')}\`${mark(r.crawlable)}`),
+        ...(overflow > 0 ? [`…and ${overflow} more`] : []),
+        '',
+        'Next step: rename the key in store-overrides.json (keep its category, url and crawl block).',
+      ].join('\n'))
+    }
+
+    if (gone.length > 0) {
+      const shown = gone.slice(0, SLACK_LIST_CAP)
+      const overflow = gone.length - shown.length
+      sections.push([
+        `*${gone.length} slug(s) with no live match — likely delisted*`,
+        ...shown.map(g => `- \`${g.slug}\`${mark(g.crawlable)}`),
+        ...(overflow > 0 ? [`…and ${overflow} more`] : []),
+        '',
+        'Next step: set `crawl.crawlable: false` (or remove the entry once the colleague confirms it\'s gone for good).',
+      ].join('\n'))
+    }
+
+    const staleTotal = renamed.length + gone.length
     await sendSlackMessage(config.slackWebhookUrl, {
-      title: `:warning: ${missing.length} crawlable shop(s) no longer in the Satsback catalog`,
-      richTextBody: body,
+      title: `:warning: ${staleTotal} store override(s) no longer match the Satsback catalog`,
+      richTextBody: sections.join('\n\n'),
     })
   }
 
   return {
     checkedAt: new Date().toISOString(),
     liveStoreCount: liveStores.length,
-    crawlableOverrideCount: crawlable.length,
-    missingCount: missing.length,
-    missing,
+    overrideCount: checked,
+    renamedCount: renamed.length,
+    goneCount: gone.length,
+    renamed,
+    gone,
   }
 })
