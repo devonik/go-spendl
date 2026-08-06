@@ -3324,17 +3324,13 @@
       "crawlable": true
     }
   },
-  "gog": {
+  "gogcom-4": {
     "category": "categories.gaming",
     "crawl": {
       "searchUrl": "https://www.gog.com/de/games?query=ipad&order=desc:score",
       "cms": "",
-      "crawlable": false
+      "crawlable": true
     }
-  },
-  "gogcom-4": {
-    "category": "categories.activities",
-    "note": "DOPPELT"
   },
   "golf-und-gunstig": {
     "category": "categories.sportswear",
@@ -3735,7 +3731,7 @@
     }
   },
   "hp-store": {
-    "category": "categories.other",
+    "category": "categories.electronics",
     "note": "Doppelt",
     "crawl": {
       "searchUrl": "",
