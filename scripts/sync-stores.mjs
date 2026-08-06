@@ -207,6 +207,10 @@ if (existsSync(overridesOut)) {
   existingOverrides = JSON.parse(readFileSync(overridesOut, 'utf8'))
 }
 
+function isRealUrl(value) {
+  return typeof value === 'string' && /^https?:\/\//i.test(value.trim())
+}
+
 function preservedCrawlFor(slug) {
   const crawl = existingOverrides[slug]?.crawl
   if (!crawl)
@@ -224,6 +228,7 @@ const referencedCategories = new Set()
 let unknown = 0
 let total = 0
 let preservedCount = 0
+let noteCount = 0
 for (const row of storeData) {
   const slug = row[sIdx.slug]?.trim()
   if (!slug)
@@ -242,7 +247,18 @@ for (const row of storeData) {
   }
   referencedCategories.add(category)
 
-  const url = row[sIdx.url]?.trim()
+  const urlRaw = row[sIdx.url]?.trim()
+  // The URL column doubles as a status field in the spreadsheet: "ADDON" (the
+  // Satsback browser extension doesn't trigger on this shop), "DOPPELT" (a
+  // duplicate of another slug), "nicht erreichbar", and so on. Those are notes,
+  // not links, and `url` is consumed as one — resolveFallbackUrl() in
+  // ProductCard.vue hands it straight to window.open(), which would resolve
+  // "ADDON" against our own origin. Keep `url` strictly a URL and park anything
+  // else in `note` so the colleague's annotation survives the round trip.
+  const url = isRealUrl(urlRaw) ? urlRaw : undefined
+  const note = !url && urlRaw ? urlRaw : undefined
+  if (note)
+    noteCount++
   const searchUrl = row[sIdx['search url']]?.trim()
   const cms = row[sIdx.CMS]?.trim()
   const crawlableRaw = row[sIdx.crawlable]?.trim().toUpperCase()
@@ -271,6 +287,7 @@ for (const row of storeData) {
   overrides[slug] = {
     category,
     ...(url ? { url } : {}),
+    ...(note ? { note } : {}),
     ...(crawl ? { crawl } : {}),
   }
 }
@@ -305,6 +322,8 @@ const droppedWithCrawlMeta = Object.keys(existingOverrides).filter(
 console.log(`✓ ${categories.length} categories → server/data/categories.json`)
 console.log(`✓ ${Object.keys(sortedOverrides).length}/${total} store overrides → server/data/store-overrides.json`)
 console.log(`✓ ${preservedCount} stores kept their generated crawl metadata (${PRESERVED_CRAWL_KEYS.join(', ')})`)
+if (noteCount)
+  console.log(`✓ ${noteCount} non-URL values in the URL column moved to \`note\` (ADDON, DOPPELT, …)`)
 console.log(`✓ i18n locales → i18n/locales/categories.{de,en}.json`)
 if (unknown)
   console.warn(`⚠ ${unknown} stores defaulted to categories.other (unknown category key)`)
