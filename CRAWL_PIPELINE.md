@@ -491,6 +491,16 @@ Satsback partner catalog), so the cron explicitly excludes it from the
    turning 24 result cards into 44 items. Verify any baseSelector change
    by item count, not just by field coverage.
 
+   **A field cannot target the base element itself.** Fields resolve
+   against the base's *descendants*, so a selector equal to the
+   `baseSelector` matches nothing, and `:scope` is not supported either
+   — both measured at 0/36 on biggreensmile. That makes state encoded on
+   the card root unreachable: biggreensmile marks stock as
+   `class="product-item … out-of-stock"` on the base element, with no
+   descendant carrying the signal (the "KAUFEN" button renders 36/36
+   either way). If you need such a flag, the base has to move up to a
+   wrapper element — otherwise the field is not fixable, only removable.
+
 6. **Overrides are compiled in, so schema fixes need a deploy.**
    `server/utils/stores.ts` imports `store-overrides.json` statically —
    it lands in the server bundle, and there is no runtime read to
