@@ -182,7 +182,7 @@
       "crawlable": false
     }
   },
-  "airalo-6": {
+  "airalo-8": {
     "category": "categories.esim",
     "url": "https://www.airalo.com/",
     "crawl": {
@@ -714,15 +714,6 @@
       "crawlable": true
     }
   },
-  "banggood-11": {
-    "category": "categories.other",
-    "note": "DOPPELT",
-    "crawl": {
-      "searchUrl": "",
-      "cms": "",
-      "crawlable": false
-    }
-  },
   "banggood-9": {
     "category": "categories.retail",
     "crawl": {
@@ -1210,7 +1201,7 @@
       "crawlable": true
     }
   },
-  "bofrost-3": {
+  "bofrost-4": {
     "category": "categories.food",
     "crawl": {
       "searchUrl": "https://www.bofrost.de/search?text=ipad&searchType=product",
@@ -1219,7 +1210,7 @@
       "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
-  "bogner": {
+  "bogner-5": {
     "category": "categories.sportswear",
     "crawl": {
       "searchUrl": "https://www.bogner.com/de-de/suche/?q=ipad&genderCookie=",
@@ -1234,15 +1225,6 @@
       "searchUrl": "https://www.boohooman.com/de/search?text=ipad",
       "cms": "",
       "crawlable": true
-    }
-  },
-  "boohooman-3": {
-    "category": "categories.fashion",
-    "note": "DOPPELT",
-    "crawl": {
-      "searchUrl": "",
-      "cms": "",
-      "crawlable": false
     }
   },
   "booking": {
@@ -1837,16 +1819,6 @@
       "searchUrl": "https://www.coolblue.de/tablets/apple-ipad?redirect=ipad",
       "cms": "",
       "crawlable": true
-    }
-  },
-  "coolblue-5": {
-    "category": "categories.marketplace",
-    "note": "DOPPELT",
-    "crawl": {
-      "searchUrl": "",
-      "cms": "",
-      "crawlable": false,
-      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "corendon-airlines-2": {
@@ -2731,7 +2703,7 @@
       "crawlable": true
     }
   },
-  "expedia-65": {
+  "expedia-75": {
     "category": "categories.travel",
     "url": "https://www.expedia.de/",
     "crawl": {
@@ -3267,10 +3239,6 @@
     }
   },
   "geox": {
-    "category": "categories.retail",
-    "note": "DOPPELT"
-  },
-  "geox-8": {
     "category": "categories.shoes",
     "crawl": {
       "searchUrl": "https://www.geox.com/de-DE/search?q=ipad&lang=null",
@@ -3740,15 +3708,6 @@
       "crawlable": false
     }
   },
-  "hotelde": {
-    "category": "categories.other",
-    "note": "DOPPELT",
-    "crawl": {
-      "searchUrl": "",
-      "cms": "",
-      "crawlable": false
-    }
-  },
   "hotelde-2": {
     "category": "categories.hotels",
     "url": "https://www.hotel.de/",
@@ -3889,15 +3848,6 @@
   "iherb-20": {
     "category": "categories.activities",
     "note": "läd nicht",
-    "crawl": {
-      "searchUrl": "",
-      "cms": "",
-      "crawlable": false
-    }
-  },
-  "iherb-23": {
-    "category": "categories.other",
-    "note": "doppelt",
     "crawl": {
       "searchUrl": "",
       "cms": "",
@@ -4120,7 +4070,7 @@
       "crawlable": true
     }
   },
-  "joybuy-7": {
+  "joybuy-10": {
     "category": "categories.retail",
     "note": "ADDON",
     "crawl": {
@@ -4618,15 +4568,6 @@
       "crawlable": true
     }
   },
-  "lenovo": {
-    "category": "categories.other",
-    "note": "DOPPELT",
-    "crawl": {
-      "searchUrl": "",
-      "cms": "",
-      "crawlable": false
-    }
-  },
   "lenovo-7": {
     "category": "categories.electronics",
     "note": "ADDON",
@@ -4740,15 +4681,6 @@
   "lieferando": {
     "category": "categories.food",
     "url": "https://www.lieferando.de/",
-    "crawl": {
-      "searchUrl": "",
-      "cms": "",
-      "crawlable": false
-    }
-  },
-  "lieferando-2": {
-    "category": "categories.other",
-    "note": "Doppelt",
     "crawl": {
       "searchUrl": "",
       "cms": "",
@@ -4881,15 +4813,6 @@
       "crawlable": false
     }
   },
-  "lufthansa-9": {
-    "category": "categories.other",
-    "note": "DOPPELT",
-    "crawl": {
-      "searchUrl": "",
-      "cms": "",
-      "crawlable": false
-    }
-  },
   "lululemon-2": {
     "category": "categories.fashion",
     "note": "ADDON",
@@ -5011,15 +4934,6 @@
     "category": "categories.hotels",
     "crawl": {
       "searchUrl": "https://www.marriott.com/de/default.mi",
-      "cms": "",
-      "crawlable": false
-    }
-  },
-  "marriott-bonvoy-5": {
-    "category": "categories.other",
-    "note": "doppelt",
-    "crawl": {
-      "searchUrl": "",
       "cms": "",
       "crawlable": false
     }
@@ -5430,15 +5344,6 @@
       "crawlable": true
     }
   },
-  "myprotein-28": {
-    "category": "categories.other",
-    "note": "doppelt",
-    "crawl": {
-      "searchUrl": "",
-      "cms": "",
-      "crawlable": false
-    }
-  },
   "myprotein-7": {
     "category": "categories.supplements",
     "crawl": {
@@ -5619,24 +5524,6 @@
       "crawlable": false
     }
   },
-  "nordvpn-20": {
-    "category": "categories.other",
-    "note": "doppelt",
-    "crawl": {
-      "searchUrl": "",
-      "cms": "",
-      "crawlable": false
-    }
-  },
-  "nordvpn-27": {
-    "category": "categories.other",
-    "note": "doppelt",
-    "crawl": {
-      "searchUrl": "",
-      "cms": "",
-      "crawlable": false
-    }
-  },
   "norma24": {
     "category": "categories.retail",
     "crawl": {
@@ -5793,15 +5680,6 @@
   "opodo": {
     "category": "categories.airline",
     "url": "https://www.opodo.de/",
-    "crawl": {
-      "searchUrl": "",
-      "cms": "",
-      "crawlable": false
-    }
-  },
-  "oral-b-10": {
-    "category": "categories.other",
-    "note": "doppelt",
     "crawl": {
       "searchUrl": "",
       "cms": "",
@@ -6464,15 +6342,6 @@
   "radisson-hotels-27": {
     "category": "categories.hotels",
     "url": "https://www.radissonhotels.com/de-de/",
-    "crawl": {
-      "searchUrl": "",
-      "cms": "",
-      "crawlable": false
-    }
-  },
-  "radisson-hotels-45": {
-    "category": "categories.other",
-    "note": "doppelt",
     "crawl": {
       "searchUrl": "",
       "cms": "",
@@ -7309,15 +7178,6 @@
       "crawlable": true
     }
   },
-  "startselect-7": {
-    "category": "categories.other",
-    "note": "doppelt",
-    "crawl": {
-      "searchUrl": "",
-      "cms": "",
-      "crawlable": false
-    }
-  },
   "steve-madden-2": {
     "category": "categories.fashion",
     "crawl": {
@@ -7332,15 +7192,6 @@
       "searchUrl": "https://stockx.com/de-de/search?s=ipad",
       "cms": "",
       "crawlable": true
-    }
-  },
-  "stockx-5": {
-    "category": "categories.other",
-    "note": "doppelt",
-    "crawl": {
-      "searchUrl": "",
-      "cms": "",
-      "crawlable": false
     }
   },
   "street-one-3": {
@@ -7417,15 +7268,6 @@
       "searchUrl": "https://www.superdry.de/search?q=ipad",
       "cms": "",
       "crawlable": true
-    }
-  },
-  "surfshark-3": {
-    "category": "categories.other",
-    "note": "doppelt",
-    "crawl": {
-      "searchUrl": "",
-      "cms": "",
-      "crawlable": false
     }
   },
   "surfshark-8": {
