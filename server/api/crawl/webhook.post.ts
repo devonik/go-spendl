@@ -41,7 +41,11 @@ interface Crawl4AIData {
   error_message: string | null
   session_id: unknown
   response_headers: unknown
-  status_code: unknown
+  /**
+   * HTTP status of the crawled page. Present on completed crawls; see
+   * `isHttpFailure` — Crawl4AI reports `success: true` even for 4xx/5xx.
+   */
+  status_code: number | null
   ssl_certificate: unknown
   dispatch_result: unknown
   redirected_url: unknown
@@ -55,6 +59,29 @@ interface Crawl4AIData {
 // complete currency token. For sale items this gives the sale price (which
 // is what the user actually pays). Returns the cleaned input — never null —
 // so a partial cleanup is preferred over losing the value entirely.
+// Crawl4AI sets `success: true` whenever it managed to fetch *something*, so a
+// shop that rate-limits or blocks us still arrives here as a successful crawl
+// carrying an error page. The schema then extracts 0 items and the shop looks
+// indistinguishable from one that genuinely had no hits — which is how a
+// running-point 429 (`local_rate_limited`, ~169 bytes) read as a broken schema.
+// Treat any 4xx/5xx as a failed crawl instead: we never saw the listing.
+// Redirects (3xx) are normal — several shops 301 to a canonical search URL.
+//
+// `emptyResultStatus` is the per-shop exemption (see `crawl.emptyResultStatus`
+// in store-overrides.json): a few shops answer a zero-hit search with an error
+// page rather than an empty listing — biggreensmile.de 404s — so for those one
+// status this is a legitimately empty result, not a failure we should alarm on.
+function isHttpFailure(
+  statusCode: number | null | undefined,
+  emptyResultStatus?: number,
+): boolean {
+  if (typeof statusCode !== 'number')
+    return false
+  if (emptyResultStatus !== undefined && statusCode === emptyResultStatus)
+    return false
+  return statusCode >= 400
+}
+
 const PRICE_LABELS = /Verkaufspreis|Normaler\s*Preis|Angebotspreis|Sonderpreis|Grundpreis|UVP|Sale\s*price|Regular\s*price|From\s|Ab\s|Von\s/gi
 const PRICE_TOKEN = /[\d.,]+\s*(?:[€$£]|EUR|USD|CHF|GBP)/i
 
@@ -150,6 +177,13 @@ export default defineEventHandler(async (event) => {
   const initialQuery = getHeader(event, 'X-Initial-Query')
   const runId = getHeader(event, 'X-Run-Id')
   const runTotal = Number(getHeader(event, 'X-Run-Total'))
+  // Optional: only sent (non-empty) for shops that opted out of the 4xx/5xx
+  // alarm for one status. Anything unparseable is ignored so a malformed
+  // header falls back to the strict default rather than muting failures.
+  const emptyResultStatusHeader = Number(getHeader(event, 'X-Empty-Result-Status'))
+  const emptyResultStatus = Number.isInteger(emptyResultStatusHeader) && emptyResultStatusHeader > 0
+    ? emptyResultStatusHeader
+    : undefined
 
   // The remaining headers are required for downstream business logic
   // (Algolia object shape + run-summary correlation). 400 is honest here
@@ -198,7 +232,7 @@ export default defineEventHandler(async (event) => {
         runTotal,
         slackWebhookUrl: config.slackWebhookUrl,
         baseUrl: config.baseUrl,
-        result: { slug: domain, status: 'failed', mode, itemCount: 0, error: firstResult?.error_message || 'Check crawler errors in railway or logs in vercel', initialQuery, searchUrl },
+        result: { slug: domain, status: 'failed', mode, itemCount: 0, error, initialQuery, searchUrl },
       })
       throw createError({
         statusCode: 500,

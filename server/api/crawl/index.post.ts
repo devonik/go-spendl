@@ -230,6 +230,12 @@ export default defineEventHandler(async (event) => {
     webhook_config.webhook_headers['X-Domain'] = slug
     webhook_config.webhook_headers['X-Group'] = store.group
     webhook_config.webhook_headers['X-Category'] = store.category
+    // `webhook_config` is reused across the fan-out, so this has to be written
+    // on every iteration — writing it only for opted-in shops would leak the
+    // previous store's status onto every shop dispatched after it.
+    webhook_config.webhook_headers['X-Empty-Result-Status'] = store.crawl?.emptyResultStatus
+      ? String(store.crawl.emptyResultStatus)
+      : ''
     crawler_config_payload.params.session_id = randomUUID()
 
     const partialCrawlInfo: ParticalCrawlInfo = { domain: slug }

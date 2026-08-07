@@ -182,7 +182,7 @@
       "crawlable": false
     }
   },
-  "airalo-6": {
+  "airalo-8": {
     "category": "categories.esim",
     "url": "https://www.airalo.com/",
     "crawl": {
@@ -714,15 +714,6 @@
       "crawlable": true
     }
   },
-  "banggood-11": {
-    "category": "categories.other",
-    "url": "DOPPELT",
-    "crawl": {
-      "searchUrl": "",
-      "cms": "",
-      "crawlable": false
-    }
-  },
   "banggood-9": {
     "category": "categories.retail",
     "crawl": {
@@ -741,7 +732,7 @@
   },
   "barclays": {
     "category": "categories.software",
-    "url": "SELTSAM",
+    "note": "SELTSAM",
     "crawl": {
       "searchUrl": "",
       "cms": "",
@@ -753,7 +744,7 @@
     "crawl": {
       "searchUrl": "https://www.barebarics.eu/products/search/?term=ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": false
     }
   },
   "batterie24": {
@@ -850,7 +841,7 @@
     "crawl": {
       "searchUrl": "https://www.belenka.de/products/search/?term=ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": false
     }
   },
   "bear-family-records-store": {
@@ -883,16 +874,16 @@
     "crawl": {
       "searchUrl": "https://bedrop.de/search?type=product%2Carticle&options%5Bprefix%5D=last&q=ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": false
     }
   },
   "belkin-7": {
     "category": "categories.electronics",
-    "url": "ADDON",
+    "note": "ADDON",
     "crawl": {
       "searchUrl": "https://www.belkin.com/de/search/?q=ipad&lang=de_DE",
       "cms": "",
-      "crawlable": true
+      "crawlable": false
     }
   },
   "bergzeit-3": {
@@ -991,10 +982,11 @@
       "searchUrl": "https://www.biggreensmile.de/search.aspx?q=ipad",
       "cms": "",
       "crawlable": true,
+      "emptyResultStatus": 404,
       "schema": {
         "type": "dict",
         "value": {
-          "baseSelector": ".product-item",
+          "baseSelector": ".faceted-product-list .product-item",
           "fields": [
             {
               "name": "name",
@@ -1023,11 +1015,6 @@
               "selector": ".img-holder img",
               "type": "attribute",
               "attribute": "alt"
-            },
-            {
-              "name": "availability",
-              "selector": ".product-item",
-              "type": "text"
             }
           ]
         }
@@ -1095,7 +1082,7 @@
   },
   "bioloka": {
     "category": "categories.retail",
-    "url": "NICHT AUFRUFBAR",
+    "note": "NICHT AUFRUFBAR",
     "crawl": {
       "searchUrl": "",
       "cms": "",
@@ -1199,7 +1186,7 @@
   },
   "bodylab24": {
     "category": "categories.supplements",
-    "url": "ADDON Springt nicht an",
+    "note": "ADDON Springt nicht an",
     "crawl": {
       "searchUrl": "https://www.bodylab24.de/search?q=ipad&type=product",
       "cms": "",
@@ -1214,7 +1201,7 @@
       "crawlable": true
     }
   },
-  "bofrost-3": {
+  "bofrost-4": {
     "category": "categories.food",
     "crawl": {
       "searchUrl": "https://www.bofrost.de/search?text=ipad&searchType=product",
@@ -1223,7 +1210,7 @@
       "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
-  "bogner": {
+  "bogner-5": {
     "category": "categories.sportswear",
     "crawl": {
       "searchUrl": "https://www.bogner.com/de-de/suche/?q=ipad&genderCookie=",
@@ -1238,15 +1225,6 @@
       "searchUrl": "https://www.boohooman.com/de/search?text=ipad",
       "cms": "",
       "crawlable": true
-    }
-  },
-  "boohooman-3": {
-    "category": "categories.fashion",
-    "url": "DOPPELT",
-    "crawl": {
-      "searchUrl": "",
-      "cms": "",
-      "crawlable": false
     }
   },
   "booking": {
@@ -1277,7 +1255,7 @@
   },
   "boxxcocom": {
     "category": "categories.materials",
-    "url": "ADDON springt nicht an",
+    "note": "ADDON springt nicht an",
     "crawl": {
       "searchUrl": "https://www.boxxco.com/search/?qs=ipad",
       "cms": "",
@@ -1377,7 +1355,7 @@
   },
   "bundeswehr-und-mehr-shop": {
     "category": "categories.security",
-    "url": "ADDON",
+    "note": "ADDON",
     "crawl": {
       "searchUrl": "https://www.bundeswehr-und-mehr.de/suchergebnisse?query=ipad",
       "cms": "",
@@ -1417,7 +1395,7 @@
   },
   "buroshop24": {
     "category": "categories.office",
-    "url": "ADDON schlägt nicht an",
+    "note": "ADDON schlägt nicht an",
     "crawl": {
       "searchUrl": "https://www.bueroshop24.de/suche/ipad?mkz=224",
       "cms": "",
@@ -1434,7 +1412,7 @@
   },
   "buttinette": {
     "category": "categories.retail",
-    "url": "ADDON",
+    "note": "ADDON",
     "crawl": {
       "searchUrl": "https://basteln-de.buttinette.com/shop/suchen?query=ipad",
       "cms": "",
@@ -1793,7 +1771,7 @@
   },
   "condor-18": {
     "category": "categories.airline",
-    "url": "DOPPELT",
+    "note": "DOPPELT",
     "crawl": {
       "searchUrl": "",
       "cms": "",
@@ -1841,16 +1819,6 @@
       "searchUrl": "https://www.coolblue.de/tablets/apple-ipad?redirect=ipad",
       "cms": "",
       "crawlable": true
-    }
-  },
-  "coolblue-5": {
-    "category": "categories.marketplace",
-    "url": "DOPPELT",
-    "crawl": {
-      "searchUrl": "",
-      "cms": "",
-      "crawlable": false,
-      "comment": "auto-disabled 2026-06-27: not in Satsback catalog"
     }
   },
   "corendon-airlines-2": {
@@ -1993,16 +1961,16 @@
   },
   "dealclub": {
     "category": "categories.retail",
-    "url": "ADDON",
+    "note": "ADDON",
     "crawl": {
       "searchUrl": "https://www.dealclub.de/?match=all&subcats=Y&pcode_from_q=Y&pshort=Y&pfull=Y&pname=Y&pkeywords=Y&search_performed=Y&q=ipad&dispatch=products.search&security_hash=c80c17bfb55166d3964374fe29da57a8",
       "cms": "",
-      "crawlable": true
+      "crawlable": false
     }
   },
   "decathlon": {
     "category": "categories.outdoor",
-    "url": "ADDon",
+    "note": "ADDon",
     "crawl": {
       "searchUrl": "https://www.decathlon.de/search?Ntt=ipad",
       "cms": "",
@@ -2080,7 +2048,7 @@
   },
   "depot": {
     "category": "categories.retail",
-    "url": "Satsback Link inaktiv",
+    "note": "Satsback Link inaktiv",
     "crawl": {
       "searchUrl": "",
       "cms": "",
@@ -2284,7 +2252,7 @@
   },
   "e-lektron": {
     "category": "categories.electronics",
-    "url": "ADDON",
+    "note": "ADDON",
     "crawl": {
       "searchUrl": "https://e-lektron.de/pages/search-results-page?q=pad",
       "cms": "",
@@ -2323,7 +2291,7 @@
     "crawl": {
       "searchUrl": "https://www.ebay.de/sch/i.html?_nkw=ipad&_sacat=0&_from=R40&_trksid=p4624852.m570.l1313",
       "cms": "",
-      "crawlable": true,
+      "crawlable": false,
       "schema": {
         "type": "dict",
         "value": {
@@ -2356,11 +2324,6 @@
               "selector": "img.s-card__image",
               "type": "attribute",
               "attribute": "alt"
-            },
-            {
-              "name": "availability",
-              "selector": ".s-card__subtitle",
-              "type": "text"
             }
           ]
         }
@@ -2445,7 +2408,7 @@
   },
   "eleonto": {
     "category": "categories.electronics",
-    "url": "ADDon",
+    "note": "ADDon",
     "crawl": {
       "searchUrl": "https://www.eleonto.com/de-DE/search/?text=ipad",
       "cms": "",
@@ -2454,7 +2417,7 @@
   },
   "elv": {
     "category": "categories.electronics",
-    "url": "ADDon",
+    "note": "ADDon",
     "crawl": {
       "searchUrl": "https://de.elv.com/search?q=ipad&ms=true",
       "cms": "",
@@ -2463,7 +2426,7 @@
   },
   "emirates": {
     "category": "categories.airline",
-    "url": "DOPPELT",
+    "note": "DOPPELT",
     "crawl": {
       "searchUrl": "",
       "cms": "",
@@ -2584,7 +2547,7 @@
   },
   "esrgear": {
     "category": "categories.electronics",
-    "url": "ADDON",
+    "note": "ADDON",
     "crawl": {
       "searchUrl": "https://eu.esrtech.com/de-de/search?options%5Bunavailable_products%5D=last&options%5Bprefix%5D=last&options%5Bfields%5D=title%2Cvendor%2Cproduct_type%2Cvariants.title&q=ipad",
       "cms": "",
@@ -2602,7 +2565,7 @@
   },
   "etsy-5": {
     "category": "categories.retail",
-    "url": "ADDON",
+    "note": "ADDON",
     "crawl": {
       "searchUrl": "https://www.etsy.com/de/search?q=ipad&ref=search_bar",
       "cms": "",
@@ -2648,11 +2611,6 @@
               "selector": "img",
               "type": "attribute",
               "attribute": "alt"
-            },
-            {
-              "name": "availability",
-              "selector": "div:has(> div > [data-part=\"discount-price\"])",
-              "type": "text"
             }
           ]
         }
@@ -2745,7 +2703,7 @@
       "crawlable": true
     }
   },
-  "expedia-65": {
+  "expedia-75": {
     "category": "categories.travel",
     "url": "https://www.expedia.de/",
     "crawl": {
@@ -2781,7 +2739,7 @@
   },
   "f1-store-2": {
     "category": "categories.fashion",
-    "url": "ADDON",
+    "note": "ADDON",
     "crawl": {
       "searchUrl": "https://f1store2.formula1.com/en/?query=ipad&_ref=p-HP:m-SEARCH",
       "cms": "",
@@ -2901,7 +2859,7 @@
   },
   "fera-3": {
     "category": "categories.pets",
-    "url": "ADDon",
+    "note": "ADDon",
     "crawl": {
       "searchUrl": "https://fera24.de/?subcats=Y&pcode_from_q=Y&pshort=Y&pfull=Y&pname=Y&pkeywords=Y&search_performed=Y&q=ipad&dispatch=2lm_elasticsearch.search",
       "cms": "",
@@ -2980,7 +2938,7 @@
   },
   "fliegende-pillen": {
     "category": "categories.retail",
-    "url": "ADDon",
+    "note": "ADDon",
     "crawl": {
       "searchUrl": "https://www.fliegende-pillen.de/search/result.html?term=ipad",
       "cms": "",
@@ -2993,7 +2951,7 @@
     "crawl": {
       "searchUrl": "",
       "cms": "",
-      "crawlable": true
+      "crawlable": false
     }
   },
   "flixbus-8": {
@@ -3101,7 +3059,7 @@
   },
   "funkelkram": {
     "category": "categories.lifestyle",
-    "url": "addon",
+    "note": "addon",
     "crawl": {
       "searchUrl": "https://www.funkelkram.de/search?search=ipad",
       "cms": "",
@@ -3162,7 +3120,7 @@
   },
   "g-star-raw-outlet-3": {
     "category": "categories.retail",
-    "url": "-",
+    "note": "-",
     "crawl": {
       "searchUrl": "-",
       "cms": "",
@@ -3174,12 +3132,12 @@
     "crawl": {
       "searchUrl": "https://www.g2a.com/de/search?query=ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": false
     }
   },
   "g2a-9": {
     "category": "categories.marketplace",
-    "url": "doppelt",
+    "note": "doppelt",
     "crawl": {
       "searchUrl": "",
       "cms": "",
@@ -3246,7 +3204,7 @@
   },
   "galeria": {
     "category": "categories.fashion",
-    "url": "ADDON",
+    "note": "ADDON",
     "crawl": {
       "searchUrl": "https://www.galeria.de/suche?q=ipad",
       "cms": "",
@@ -3264,7 +3222,7 @@
   },
   "garten-schluter": {
     "category": "categories.travel",
-    "url": "nicht erreichbar",
+    "note": "nicht erreichbar",
     "crawl": {
       "searchUrl": "",
       "cms": "",
@@ -3281,10 +3239,6 @@
     }
   },
   "geox": {
-    "category": "categories.retail",
-    "url": "DOPPELT"
-  },
-  "geox-8": {
     "category": "categories.shoes",
     "crawl": {
       "searchUrl": "https://www.geox.com/de-DE/search?q=ipad&lang=null",
@@ -3320,21 +3274,12 @@
       "crawlable": false
     }
   },
-  "getyourguide-14": {
+  "getyourguide-8": {
     "category": "categories.travel",
     "crawl": {
       "searchUrl": "https://www.getyourguide.de/s/?q=ipad&searchSource=3&src=search_bar",
       "cms": "",
       "crawlable": true
-    }
-  },
-  "getyourguide-8": {
-    "category": "categories.airline",
-    "url": "DOPPELT",
-    "crawl": {
-      "searchUrl": "",
-      "cms": "",
-      "crawlable": false
     }
   },
   "geuther": {
@@ -3379,17 +3324,13 @@
       "crawlable": true
     }
   },
-  "gog": {
+  "gogcom-4": {
     "category": "categories.gaming",
     "crawl": {
       "searchUrl": "https://www.gog.com/de/games?query=ipad&order=desc:score",
       "cms": "",
       "crawlable": true
     }
-  },
-  "gogcom-4": {
-    "category": "categories.activities",
-    "url": "DOPPELT"
   },
   "golf-und-gunstig": {
     "category": "categories.sportswear",
@@ -3501,7 +3442,7 @@
   },
   "hanfosande": {
     "category": "categories.supplements",
-    "url": "ADDON",
+    "note": "ADDON",
     "crawl": {
       "searchUrl": "https://www.hanfosan.de/search?search=ipad",
       "cms": "",
@@ -3526,7 +3467,7 @@
   },
   "happysize-3": {
     "category": "categories.other",
-    "url": "nicht verfügbar",
+    "note": "nicht verfügbar",
     "crawl": {
       "searchUrl": "",
       "cms": "",
@@ -3553,11 +3494,11 @@
   },
   "harrys-3": {
     "category": "categories.beauty",
-    "url": "ADDON",
+    "note": "ADDON",
     "crawl": {
       "searchUrl": "https://de.harrys.com/search?q=ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": false
     }
   },
   "hawes-curtis": {
@@ -3610,7 +3551,7 @@
   },
   "heli-c-check": {
     "category": "categories.other",
-    "url": "nicht verfügbar",
+    "note": "nicht verfügbar",
     "crawl": {
       "searchUrl": "",
       "cms": "",
@@ -3686,7 +3627,7 @@
   },
   "hofmanns": {
     "category": "categories.other",
-    "url": "DOPPELT",
+    "note": "DOPPELT",
     "crawl": {
       "searchUrl": "",
       "cms": "",
@@ -3729,7 +3670,7 @@
   },
   "hollister-co": {
     "category": "categories.retail",
-    "url": "ADDON",
+    "note": "ADDON",
     "crawl": {
       "searchUrl": "https://www.hollisterco.com/shop/eu-de/search?facet=gender%3A%28%22Damen%22+%22Herren%22%29&searchTerm=ipad",
       "cms": "",
@@ -3738,7 +3679,7 @@
   },
   "honor": {
     "category": "categories.electronics",
-    "url": "ADDON",
+    "note": "ADDON",
     "crawl": {
       "searchUrl": "https://www.honor.com/de/search/?keyword=ipad",
       "cms": "",
@@ -3757,15 +3698,6 @@
   "hostinger-9": {
     "category": "categories.other",
     "url": "https://www.hostinger.com/de",
-    "crawl": {
-      "searchUrl": "",
-      "cms": "",
-      "crawlable": false
-    }
-  },
-  "hotelde": {
-    "category": "categories.other",
-    "url": "DOPPELT",
     "crawl": {
       "searchUrl": "",
       "cms": "",
@@ -3799,8 +3731,8 @@
     }
   },
   "hp-store": {
-    "category": "categories.other",
-    "url": "Doppelt",
+    "category": "categories.electronics",
+    "note": "Doppelt",
     "crawl": {
       "searchUrl": "",
       "cms": "",
@@ -3843,7 +3775,7 @@
   },
   "hund-unterwegs": {
     "category": "categories.pets",
-    "url": "ADDON",
+    "note": "ADDON",
     "crawl": {
       "searchUrl": "https://www.hund-unterwegs.de/search?sSearch=ipad",
       "cms": "",
@@ -3893,7 +3825,7 @@
   },
   "ibood-3": {
     "category": "categories.retail",
-    "url": "addon",
+    "note": "addon",
     "crawl": {
       "searchUrl": "https://www.ibood.com/de/s-de/find-offer?q=ipad",
       "cms": "",
@@ -3911,16 +3843,7 @@
   },
   "iherb-20": {
     "category": "categories.activities",
-    "url": "läd nicht",
-    "crawl": {
-      "searchUrl": "",
-      "cms": "",
-      "crawlable": false
-    }
-  },
-  "iherb-23": {
-    "category": "categories.other",
-    "url": "doppelt",
+    "note": "läd nicht",
     "crawl": {
       "searchUrl": "",
       "cms": "",
@@ -3938,7 +3861,7 @@
   },
   "ihrelinsenat": {
     "category": "categories.other",
-    "url": "nicht auffindbar",
+    "note": "nicht auffindbar",
     "crawl": {
       "searchUrl": "",
       "cms": "",
@@ -4143,9 +4066,9 @@
       "crawlable": true
     }
   },
-  "joybuy-7": {
+  "joybuy-10": {
     "category": "categories.retail",
-    "url": "ADDON",
+    "note": "ADDON",
     "crawl": {
       "searchUrl": "https://www.joybuy.de/s?k=ipad&st=active+search&keywordsEventType=0",
       "cms": "",
@@ -4222,7 +4145,7 @@
   },
   "kaisers": {
     "category": "categories.garden",
-    "url": "ADDON",
+    "note": "ADDON",
     "crawl": {
       "searchUrl": "https://kaisers.jetzt/a/search?q=ipad&options%5Bprefix%5D=last",
       "cms": "",
@@ -4291,7 +4214,7 @@
   },
   "kickz-2": {
     "category": "categories.retail",
-    "url": "nicht erreichbar",
+    "note": "nicht erreichbar",
     "crawl": {
       "searchUrl": "",
       "cms": "",
@@ -4401,7 +4324,7 @@
   },
   "kofferexpress24": {
     "category": "categories.travel",
-    "url": "nicht erreichbar",
+    "note": "nicht erreichbar",
     "crawl": {
       "searchUrl": "",
       "cms": "",
@@ -4410,7 +4333,7 @@
   },
   "kofferworld": {
     "category": "categories.travel",
-    "url": "ADDON",
+    "note": "ADDON",
     "crawl": {
       "searchUrl": "https://hallerstede.de/search?q=ipad",
       "cms": "",
@@ -4523,7 +4446,7 @@
   },
   "landmetzger-schiessl": {
     "category": "categories.retail",
-    "url": "nicht erreichbar",
+    "note": "nicht erreichbar",
     "crawl": {
       "searchUrl": "",
       "cms": "",
@@ -4583,7 +4506,7 @@
   },
   "lavazza": {
     "category": "categories.coffee",
-    "url": "ADDON",
+    "note": "ADDON",
     "crawl": {
       "searchUrl": "https://www.lavazza.de/de/suchen",
       "cms": "",
@@ -4641,18 +4564,9 @@
       "crawlable": true
     }
   },
-  "lenovo": {
-    "category": "categories.other",
-    "url": "DOPPELT",
-    "crawl": {
-      "searchUrl": "",
-      "cms": "",
-      "crawlable": false
-    }
-  },
   "lenovo-7": {
     "category": "categories.electronics",
-    "url": "ADDON",
+    "note": "ADDON",
     "crawl": {
       "searchUrl": "https://www.lenovo.com/de/de/search?fq=&text=ipad&rows=20&sort=relevance",
       "cms": "",
@@ -4695,7 +4609,7 @@
   },
   "levis-14": {
     "category": "categories.fashion",
-    "url": "ADDON",
+    "note": "ADDON",
     "crawl": {
       "searchUrl": "https://www.levi.com/DE/de_DE/search/ipad",
       "cms": "",
@@ -4704,7 +4618,7 @@
   },
   "lexoffice": {
     "category": "categories.software",
-    "url": "ADDON",
+    "note": "ADDON",
     "crawl": {
       "searchUrl": "https://www.lexware.de/suche/?search%5Bterm%5D=ipad",
       "cms": "",
@@ -4769,22 +4683,13 @@
       "crawlable": false
     }
   },
-  "lieferando-2": {
-    "category": "categories.other",
-    "url": "Doppelt",
-    "crawl": {
-      "searchUrl": "",
-      "cms": "",
-      "crawlable": false
-    }
-  },
   "life-extension-4": {
     "category": "categories.supplements",
-    "url": "ADDON",
+    "note": "ADDON",
     "crawl": {
       "searchUrl": "https://www.lifeextensioneurope.de/#%7B%22hr-search%22%3A%7B%22search_term%22%3A%22ipad%22%2C%22filters%22%3A%5B%5D%2C%22sorting%22%3A%5B%5D%2C%22offsets%22%3A%7B%22category%22%3A12%2C%22blog_post%22%3A12%2C%22product%22%3A42%7D%7D%7D",
       "cms": "",
-      "crawlable": true
+      "crawlable": false
     }
   },
   "linsenplatz": {
@@ -4889,7 +4794,7 @@
   },
   "ludwig-von-kapff": {
     "category": "categories.wine",
-    "url": "ADDON",
+    "note": "ADDON",
     "crawl": {
       "searchUrl": "https://www.ludwig-von-kapff.de/suche?searchPhrase=ipad",
       "cms": "",
@@ -4904,18 +4809,9 @@
       "crawlable": false
     }
   },
-  "lufthansa-9": {
-    "category": "categories.other",
-    "url": "DOPPELT",
-    "crawl": {
-      "searchUrl": "",
-      "cms": "",
-      "crawlable": false
-    }
-  },
   "lululemon-2": {
     "category": "categories.fashion",
-    "url": "ADDON",
+    "note": "ADDON",
     "crawl": {
       "searchUrl": "https://www.lululemon.de/en-de/search?q=ipad&lang=en_DE&searchType=manualSearch",
       "cms": "",
@@ -5023,7 +4919,7 @@
   },
   "marktkauf": {
     "category": "categories.retail",
-    "url": "ADDON",
+    "note": "ADDON",
     "crawl": {
       "searchUrl": "https://www.marktkauf.de/INTERSHOP/web/WFS/Plus-Marktkauf-Site/de_DE/-/EUR/ViewMMPParametricSearch-SimpleOfferSearch?SearchTerm=ipad",
       "cms": "",
@@ -5034,15 +4930,6 @@
     "category": "categories.hotels",
     "crawl": {
       "searchUrl": "https://www.marriott.com/de/default.mi",
-      "cms": "",
-      "crawlable": false
-    }
-  },
-  "marriott-bonvoy-5": {
-    "category": "categories.other",
-    "url": "doppelt",
-    "crawl": {
-      "searchUrl": "",
       "cms": "",
       "crawlable": false
     }
@@ -5167,7 +5054,7 @@
   },
   "meinteller": {
     "category": "categories.other",
-    "url": "im neuaufbau",
+    "note": "im neuaufbau",
     "crawl": {
       "searchUrl": "",
       "cms": "",
@@ -5242,7 +5129,7 @@
   },
   "michaelnoll": {
     "category": "categories.other",
-    "url": "nicht  auffindbar",
+    "note": "nicht  auffindbar",
     "crawl": {
       "searchUrl": "",
       "cms": "",
@@ -5344,7 +5231,7 @@
   },
   "monster-hopups": {
     "category": "categories.other",
-    "url": "nicht erreichbar",
+    "note": "nicht erreichbar",
     "crawl": {
       "searchUrl": "",
       "cms": "",
@@ -5402,7 +5289,7 @@
   },
   "mustang": {
     "category": "categories.fashion",
-    "url": "ADDON",
+    "note": "ADDON",
     "crawl": {
       "searchUrl": "https://www.mustang.de/search?search=ipad",
       "cms": "",
@@ -5453,15 +5340,6 @@
       "crawlable": true
     }
   },
-  "myprotein-28": {
-    "category": "categories.other",
-    "url": "doppelt",
-    "crawl": {
-      "searchUrl": "",
-      "cms": "",
-      "crawlable": false
-    }
-  },
   "myprotein-7": {
     "category": "categories.supplements",
     "crawl": {
@@ -5480,7 +5358,7 @@
   },
   "myticket": {
     "category": "categories.lifestyle",
-    "url": "ADDON",
+    "note": "ADDON",
     "crawl": {
       "searchUrl": "https://www.myticket.de/de/suche?keywords=ipad",
       "cms": "",
@@ -5545,7 +5423,7 @@
     "crawl": {
       "searchUrl": "https://www.netgear.com/search?q=ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": false
     }
   },
   "netto-marken-discount": {
@@ -5642,24 +5520,6 @@
       "crawlable": false
     }
   },
-  "nordvpn-20": {
-    "category": "categories.other",
-    "url": "doppelt",
-    "crawl": {
-      "searchUrl": "",
-      "cms": "",
-      "crawlable": false
-    }
-  },
-  "nordvpn-27": {
-    "category": "categories.other",
-    "url": "doppelt",
-    "crawl": {
-      "searchUrl": "",
-      "cms": "",
-      "crawlable": false
-    }
-  },
   "norma24": {
     "category": "categories.retail",
     "crawl": {
@@ -5686,7 +5546,7 @@
   },
   "notebooksbilliger": {
     "category": "categories.electronics",
-    "url": "ADDON",
+    "note": "ADDON",
     "crawl": {
       "searchUrl": "https://www.notebooksbilliger.de/produkte/ipad",
       "cms": "",
@@ -5695,11 +5555,11 @@
   },
   "notino-13": {
     "category": "categories.beauty",
-    "url": "ADDON",
+    "note": "ADDON",
     "crawl": {
       "searchUrl": "https://www.notino.de/search.asp?exps=ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": false
     }
   },
   "o2": {
@@ -5771,7 +5631,7 @@
   },
   "olmuhle-solling": {
     "category": "categories.food",
-    "url": "ADDON",
+    "note": "ADDON",
     "crawl": {
       "searchUrl": "https://www.oelmuehle-solling.de/search?s=ipad",
       "cms": "",
@@ -5822,15 +5682,6 @@
       "crawlable": false
     }
   },
-  "oral-b-10": {
-    "category": "categories.other",
-    "url": "doppelt",
-    "crawl": {
-      "searchUrl": "",
-      "cms": "",
-      "crawlable": false
-    }
-  },
   "oral-b-2": {
     "category": "categories.cosmetics",
     "url": "https://www.oralb.de/de-de",
@@ -5854,7 +5705,7 @@
     "crawl": {
       "searchUrl": "https://www.osprey.com/catalogsearch/result/?q=ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": false
     }
   },
   "ostermann": {
@@ -5988,7 +5839,7 @@
     "crawl": {
       "searchUrl": "https://www.parfumdreams.de/?m=5&search=ipad&vertex=0",
       "cms": "",
-      "crawlable": true
+      "crawlable": false
     }
   },
   "parfumerie-pieper": {
@@ -6051,7 +5902,7 @@
   },
   "passiontec": {
     "category": "categories.garden",
-    "url": "ADDON",
+    "note": "ADDON",
     "crawl": {
       "searchUrl": "https://www.passiontec.de/schnellsuche/ipad/alle/alle/alle/",
       "cms": "",
@@ -6060,7 +5911,7 @@
   },
   "pati-versand": {
     "category": "categories.other",
-    "url": "nicht erreichbar",
+    "note": "nicht erreichbar",
     "crawl": {
       "searchUrl": "",
       "cms": "",
@@ -6096,7 +5947,7 @@
   },
   "pentagon-sports-2": {
     "category": "categories.bicycles",
-    "url": "ADDON",
+    "note": "ADDON",
     "crawl": {
       "searchUrl": "https://www.pentagonsports.de/search?query=ipad",
       "cms": "",
@@ -6108,7 +5959,8 @@
     "crawl": {
       "searchUrl": "https://www.pepejeans.com/de/de_de/search?q=ipad&lang=de_DE",
       "cms": "",
-      "crawlable": true,
+      "crawlable": false,
+      "comment": "pepejeans.com closed permanently, effective 2026-07-26 (#12) — still listed in the Satsback catalog",
       "schema": {
         "type": "dict",
         "value": {
@@ -6183,7 +6035,7 @@
   },
   "pflanzeplus": {
     "category": "categories.other",
-    "url": "nicht gefunden",
+    "note": "nicht gefunden",
     "crawl": {
       "searchUrl": "",
       "cms": "",
@@ -6235,7 +6087,7 @@
   },
   "playstation-direct-6": {
     "category": "categories.other",
-    "url": "nicht auffindbar",
+    "note": "nicht auffindbar",
     "crawl": {
       "searchUrl": "",
       "cms": "",
@@ -6376,7 +6228,7 @@
   },
   "printroyalde": {
     "category": "categories.other",
-    "url": "nicht auffindbar",
+    "note": "nicht auffindbar",
     "crawl": {
       "searchUrl": "",
       "cms": "",
@@ -6483,14 +6335,6 @@
       "crawlable": true
     }
   },
-  "r-ray-ban-5": {
-    "category": "categories.other",
-    "crawl": {
-      "searchUrl": "https://www.ray-ban.com/germany?query=ipad",
-      "cms": "",
-      "crawlable": true
-    }
-  },
   "radisson-hotels-27": {
     "category": "categories.hotels",
     "url": "https://www.radissonhotels.com/de-de/",
@@ -6500,18 +6344,9 @@
       "crawlable": false
     }
   },
-  "radisson-hotels-45": {
-    "category": "categories.other",
-    "url": "doppelt",
-    "crawl": {
-      "searchUrl": "",
-      "cms": "",
-      "crawlable": false
-    }
-  },
   "radisson-hotels-emea": {
     "category": "categories.other",
-    "url": "doppelt",
+    "note": "doppelt",
     "crawl": {
       "searchUrl": "",
       "cms": "",
@@ -6520,7 +6355,7 @@
   },
   "rajapack": {
     "category": "categories.office",
-    "url": "ADDON",
+    "note": "ADDON",
     "crawl": {
       "searchUrl": "https://www.rajapack.de/?query=ipad&SearchCat=natural&SearchQuery=ipad",
       "cms": "",
@@ -6547,7 +6382,7 @@
   },
   "ravensburger-2": {
     "category": "categories.gaming",
-    "url": "ADDON",
+    "note": "ADDON",
     "crawl": {
       "searchUrl": "https://www.ravensburger.de/de-DE/suche?query=ipad&productCategories=Ravensburger&productCategories=BRIO&productCategories=",
       "cms": "",
@@ -6564,11 +6399,10 @@
   },
   "ray-ban-2": {
     "category": "categories.other",
-    "url": "doppelt",
     "crawl": {
-      "searchUrl": "",
+      "searchUrl": "https://www.ray-ban.com/germany?query=ipad",
       "cms": "",
-      "crawlable": false
+      "crawlable": true
     }
   },
   "rc-multistore": {
@@ -6628,7 +6462,7 @@
     "crawl": {
       "searchUrl": "https://www.reifen.com/de-de/search?q=ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": false
     }
   },
   "reifendirektde": {
@@ -6746,60 +6580,46 @@
       "schema": {
         "type": "dict",
         "value": {
-          "baseSelector": "li.grid__item",
+          "baseSelector": "li.ais-Hits-item",
           "fields": [
             {
               "name": "name",
-              "selector": "a.tp-card-product__title",
+              "selector": "h3 a",
               "type": "text",
               "default": ""
             },
             {
-              "name": "productUrl",
-              "selector": "a.tp-card-product__title",
-              "type": "attribute",
-              "attribute": "href",
-              "default": null
-            },
-            {
               "name": "brand",
-              "selector": "p.tp-card-product__brand",
+              "selector": "[class*=\"__vendor\"]",
               "type": "text",
               "default": ""
             },
             {
               "name": "price",
-              "selector": ".card__information .tp-price-item--current",
+              "selector": "[class*=\"__pricing\"] > span:first-child",
               "type": "text",
               "default": ""
             },
             {
+              "name": "productUrl",
+              "selector": "h3 a",
+              "type": "attribute",
+              "attribute": "href",
+              "default": null
+            },
+            {
               "name": "imageSrc",
-              "selector": "img.tp-card-product__image",
+              "selector": "img.tp-image__img",
               "type": "attribute",
               "attribute": "src",
               "default": null
             },
             {
               "name": "imageAlt",
-              "selector": "img.tp-card-product__image",
+              "selector": "img.tp-image__img",
               "type": "attribute",
               "attribute": "alt",
-              "default": null
-            },
-            {
-              "name": "sku",
-              "selector": ".tp-product-card",
-              "type": "attribute",
-              "attribute": "data-tp-gtm-item-id",
-              "default": null
-            },
-            {
-              "name": "model",
-              "selector": ".tp-product-card",
-              "type": "attribute",
-              "attribute": "data-tp-gtm-item-id",
-              "default": null
+              "default": ""
             }
           ]
         }
@@ -6829,7 +6649,7 @@
     "crawl": {
       "searchUrl": "https://www.sandisk.com/search?q=ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": false
     }
   },
   "saniweb-2": {
@@ -6908,7 +6728,7 @@
   },
   "schuhe24": {
     "category": "categories.shoes",
-    "url": "nicht auffindbar",
+    "note": "nicht auffindbar",
     "crawl": {
       "searchUrl": "",
       "cms": "",
@@ -7116,15 +6936,6 @@
     }
   },
   "sixt-2": {
-    "category": "categories.other",
-    "url": "doppelt",
-    "crawl": {
-      "searchUrl": "",
-      "cms": "",
-      "crawlable": false
-    }
-  },
-  "sixt-6": {
     "category": "categories.automotive",
     "url": "https://www.sixt.de/",
     "crawl": {
@@ -7229,7 +7040,7 @@
     "crawl": {
       "searchUrl": "",
       "cms": "",
-      "crawlable": true
+      "crawlable": false
     }
   },
   "soliver-4": {
@@ -7315,11 +7126,11 @@
   },
   "sports-direct-5": {
     "category": "categories.lifestyle",
-    "url": "addon",
+    "note": "addon",
     "crawl": {
       "searchUrl": "https://www.sportsdirect.com/searchresults?descriptionfilter=ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": false
     }
   },
   "sportscheck": {
@@ -7363,15 +7174,6 @@
       "crawlable": true
     }
   },
-  "startselect-7": {
-    "category": "categories.other",
-    "url": "doppelt",
-    "crawl": {
-      "searchUrl": "",
-      "cms": "",
-      "crawlable": false
-    }
-  },
   "steve-madden-2": {
     "category": "categories.fashion",
     "crawl": {
@@ -7386,15 +7188,6 @@
       "searchUrl": "https://stockx.com/de-de/search?s=ipad",
       "cms": "",
       "crawlable": true
-    }
-  },
-  "stockx-5": {
-    "category": "categories.other",
-    "url": "doppelt",
-    "crawl": {
-      "searchUrl": "",
-      "cms": "",
-      "crawlable": false
     }
   },
   "street-one-3": {
@@ -7471,15 +7264,6 @@
       "searchUrl": "https://www.superdry.de/search?q=ipad",
       "cms": "",
       "crawlable": true
-    }
-  },
-  "surfshark-3": {
-    "category": "categories.other",
-    "url": "doppelt",
-    "crawl": {
-      "searchUrl": "",
-      "cms": "",
-      "crawlable": false
     }
   },
   "surfshark-8": {
@@ -7582,7 +7366,7 @@
   },
   "tarifcheck-kfz-versicherung": {
     "category": "categories.other",
-    "url": "doppelt",
+    "note": "doppelt",
     "crawl": {
       "searchUrl": "",
       "cms": "",
@@ -7599,7 +7383,7 @@
   },
   "tassimo": {
     "category": "categories.coffee",
-    "url": "ADDON",
+    "note": "ADDON",
     "crawl": {
       "searchUrl": "https://www.tassimo.com/de/search/ipad",
       "cms": "",
@@ -7667,7 +7451,7 @@
   },
   "tee-versandhandelcom": {
     "category": "categories.other",
-    "url": "nicht erreichbar",
+    "note": "nicht erreichbar",
     "crawl": {
       "searchUrl": "",
       "cms": "",
@@ -7676,7 +7460,7 @@
   },
   "teeshop-ronnefeldt": {
     "category": "categories.food",
-    "url": "ADDON",
+    "note": "ADDON",
     "crawl": {
       "searchUrl": "https://www.ronnefeldt.com/teeshop/de/shop/?shop_category=search&query=ipad",
       "cms": "",
@@ -7699,21 +7483,12 @@
       "crawlable": true
     }
   },
-  "temu-19": {
+  "temu-4": {
     "category": "categories.retail",
     "crawl": {
       "searchUrl": "https://www.temu.com/search_result.html?search_key=ipad&search_method=user&refer_page_el_sn=200010&srch_enter_source=top_search_entrance_10005&refer_page_name=home&refer_page_id=10005_1772360623776_dat07uwbo7&refer_page_sn=10005&_x_sessn_id=bb1ppsuyvx",
       "cms": "",
       "crawlable": true
-    }
-  },
-  "temu-4": {
-    "category": "categories.other",
-    "url": "doppelt",
-    "crawl": {
-      "searchUrl": "",
-      "cms": "",
-      "crawlable": false
     }
   },
   "tennis-point-3": {
@@ -7734,7 +7509,7 @@
   },
   "terra-canis": {
     "category": "categories.pets",
-    "url": "addon",
+    "note": "addon",
     "crawl": {
       "searchUrl": "https://www.terracanis.com/en-eu/search?search=ipad",
       "cms": "",
@@ -7752,7 +7527,7 @@
   },
   "the-scotch-malt-whisky-society-3": {
     "category": "categories.food",
-    "url": "addon",
+    "note": "addon",
     "crawl": {
       "searchUrl": "https://smws.eu/search.php?search_query=ipad",
       "cms": "",
@@ -7856,7 +7631,7 @@
     "crawl": {
       "searchUrl": "https://www.tonerpartner.de/index.php?lang=0&cl=search&idbrand=&iditem=&oxid=&type=&searchparam=ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": false
     }
   },
   "toolineo": {
@@ -7962,7 +7737,7 @@
   },
   "trendyol": {
     "category": "categories.other",
-    "url": "inaktiv, addon",
+    "note": "inaktiv, addon",
     "crawl": {
       "searchUrl": "",
       "cms": "",
@@ -7997,7 +7772,7 @@
   },
   "trotec-3": {
     "category": "categories.household",
-    "url": "ADDON",
+    "note": "ADDON",
     "crawl": {
       "searchUrl": "https://de.trotec.com/shop/catalogsearch/result/?q=ipad",
       "cms": "",
@@ -8185,7 +7960,7 @@
     "crawl": {
       "searchUrl": "https://www.vitaminexpress.org/de/search?q=ipad",
       "cms": "",
-      "crawlable": true
+      "crawlable": false
     }
   },
   "vodafone-callya-freikarte": {
@@ -8199,7 +7974,7 @@
   },
   "voelkner": {
     "category": "categories.household",
-    "url": "addon",
+    "note": "addon",
     "crawl": {
       "searchUrl": "https://www.voelkner.de/search/search.html?keywords=ipad",
       "cms": "",
@@ -8237,7 +8012,7 @@
     "crawl": {
       "searchUrl": "",
       "cms": "",
-      "crawlable": true
+      "crawlable": false
     }
   },
   "vrbo-8": {
@@ -8246,7 +8021,7 @@
     "crawl": {
       "searchUrl": "",
       "cms": "",
-      "crawlable": true
+      "crawlable": false
     }
   },
   "waiputv": {
@@ -8446,7 +8221,7 @@
   },
   "x-sense": {
     "category": "categories.security",
-    "url": "addon",
+    "note": "addon",
     "crawl": {
       "searchUrl": "https://de.x-sense.com/search?q=ipad&type=product&page=1",
       "cms": "",
@@ -8570,7 +8345,7 @@
   },
   "zoologo": {
     "category": "categories.pets",
-    "url": "addon",
+    "note": "addon",
     "crawl": {
       "searchUrl": "https://www.zoologo.de/suche?q=ipad",
       "cms": "",

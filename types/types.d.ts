@@ -34,6 +34,24 @@ export interface StoreCrawlData {
    * affect production crawls.
    */
   sampleQuery?: string
+  /**
+   * HTTP status this shop serves when a search has zero hits, for shops that
+   * answer "no results" with an error page instead of an empty listing
+   * (biggreensmile.de 404s and renders its generic not-found page).
+   *
+   * The webhook otherwise treats any 4xx/5xx as a failed crawl — see
+   * `isHttpFailure` — because a blocked or rate-limited shop is
+   * indistinguishable from one with no matches. Setting this opts a single
+   * shop out of that rule for one specific status, so a no-hit query is
+   * recorded as an empty result instead of a failure. Every other shop keeps
+   * alarming, which is what catches a `searchUrl` template going stale.
+   *
+   * Only set this once you've confirmed the shop returns the status for a
+   * genuinely empty search *and* its `baseSelector` extracts 0 items from
+   * that page — an error page carrying recommendation tiles would otherwise
+   * be indexed as search results.
+   */
+  emptyResultStatus?: number
 }
 
 export interface Store {
@@ -49,5 +67,12 @@ export interface Store {
   updated_at: string
   category: string
   url?: string
+  /**
+   * Free-text status the colleague records in the spreadsheet's URL column
+   * instead of a link — "ADDON" (the Satsback browser extension doesn't
+   * trigger on this shop), "DOPPELT" (duplicate slug), "nicht erreichbar".
+   * Kept out of `url` because that is consumed as a real link.
+   */
+  note?: string
   crawl?: StoreCrawlData
 }
