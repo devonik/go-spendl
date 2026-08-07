@@ -169,7 +169,15 @@ export default defineEventHandler(async (event) => {
 
   const webhook_config: CrawlerWebhookPayload = {
     webhook_url: `${config.baseUrl}/api/crawl/webhook`,
-    webhook_data_in_payload: true,
+    // Keep the webhook POST itself tiny (task_id/status only) and have the
+    // handler pull the real result from Crawl4AI's job-status endpoint.
+    // Embedding the full result (raw HTML, screenshots, etc. — easily
+    // multiple MB for a scan_full_page listing) routinely blew past Vercel's
+    // ~4.5MB serverless function request-body limit, which rejects the
+    // webhook with HTTP 413 before our handler ever runs. That shop's
+    // outcome was then never recorded, so the run's shop count never reached
+    // runTotal and the completion Slack message silently never fired.
+    webhook_data_in_payload: false,
     webhook_headers: {
       'X-Webhook-Secret': config.crawlWebhookSecret,
       'X-Initial-Query': body.query,
