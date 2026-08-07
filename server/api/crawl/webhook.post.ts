@@ -11,14 +11,16 @@ interface CompleteCrawlWebhookPayload {
   status: 'completed' | 'failed'
   timestamp: string
   urls: string[]
-  data?: {
-    success: true
-    results: Crawl4AIData[]
-    server_processing_time_s: number
-    server_memory_delta_mb: number
-    server_peak_memory_mb: number
-  }
+  data?: CrawlJobResult
   error?: string
+}
+
+interface CrawlJobResult {
+  success: true
+  results: Crawl4AIData[]
+  server_processing_time_s: number
+  server_memory_delta_mb: number
+  server_peak_memory_mb: number
 }
 
 interface Crawl4AIData {
@@ -178,7 +180,17 @@ export default defineEventHandler(async (event) => {
     return { success: false, message: `Crawl task failed: ${body.error}` }
   }
   else if (body.status === 'completed') {
-    const firstResult = body.data?.results[0]
+    // The dispatcher sends `webhook_data_in_payload: false` (see
+    // index.post.ts) so the webhook POST itself stays small enough to clear
+    // Vercel's serverless function request-body limit. Pull the real result
+    // — including `extracted_content` — from Crawl4AI's job-status endpoint.
+    const data = body.data ?? await $fetch<{ result?: CrawlJobResult }>(`${config.crawl4AiUrl}/crawl/job/${body.task_id}`)
+      .then(res => res.result)
+      .catch((err: unknown) => {
+        console.error(`[webhook] failed to fetch job result for task ${body.task_id}`, err)
+        return undefined
+      })
+    const firstResult = data?.results[0]
     if (!firstResult?.success) {
       console.error(`Crawl task ${body.task_id} failed with error`, firstResult?.error_message)
       await recordShopResult({
@@ -193,7 +205,7 @@ export default defineEventHandler(async (event) => {
         statusMessage: 'Check crawler errors in railway',
       })
     }
-    const items: CrawledItem[] = (body.data?.results ?? []).reduce((accumulator, currentObj) => {
+    const items: CrawledItem[] = (data?.results ?? []).reduce((accumulator, currentObj) => {
       if (!currentObj.extracted_content)
         return []
       const json = JSON.parse(currentObj.extracted_content)
