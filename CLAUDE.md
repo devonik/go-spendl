@@ -10,6 +10,7 @@ pnpm build             # Production build
 pnpm postinstall       # nuxt prepare (regenerates types, run after install)
 pnpm stores:sync <cat.csv> <stores.csv>  # Import store + category data from Satsback Excel exports
 pnpm stores:export-csv # Write current store data back out as both CSVs (tmp/) for the colleague
+pnpm stores:export-csv --include-uncovered  # ...plus live stores that have no override row yet
 ```
 
 No dedicated lint or test commands — linting is via ESLint (`eslint.config.mjs`), tests via `@nuxt/test-utils`.
@@ -48,7 +49,11 @@ Users authenticate via browser extensions (nos2x / Alby) that implement `window.
 
 **Delisting is the other half, and it is not the same fix.** When *no* member of a slug family is live the shop is gone, not renamed — `pnpm stores:prune-delisted` removes those rows (dry-run by default). It refuses to touch a slug whose family still has a live member, because that is a rotation and deleting it would throw away curation `stores:dedupe` would have folded over. A stale override is inert — `extendStores()` maps over the *live* catalog and reads `storeOverrides[store.slug]`, so a key nothing matches is never read — which is precisely why 159 of them accumulated unnoticed before the first cleanup. The script snapshots every removed entry to `tmp/delisted-stores-<date>.json` and writes `tmp/delisted-plan.csv`; as with dedupe, the Germany sheet has to lose the rows too or the next `stores:sync` restores them.
 
-**The damaging direction is the reverse one: a live store with no override row at all.** It falls back to `categories.other` and disappears from the category filter with no error anywhere — 122 stores were in this state as of 2026-08-07. `check-satsback-stores` reports these as their own Slack section. Note that `stores:export-csv` is overrides-driven and offline, so it does *not* seed uncovered stores into the sheet — the colleague has to add them from the Satsback export.
+**The damaging direction is the reverse one: a live store with no real category.** It resolves to `categories.other` and disappears from the category filter with no error anywhere — 159 stores were in this state as of 2026-08-07 (122 with no override row, 37 with a row explicitly set to `categories.other`). `check-satsback-stores` reports them as their own Slack section.
+
+The check keys on **the resolved category, not on the row existing**, and the difference is load-bearing. `{ category: 'categories.other' }` resolves to exactly what no override resolves to, and `pnpm stores:export-csv --include-uncovered` emits blank rows that re-import as precisely that — so a `slug in overrides` test would report 0 the moment the colleague re-imported the sheet, whether or not anyone had filled a single category in. Verified: across that re-import the row-based count collapses 122 → 0 while the category-based count holds at 159.
+
+`stores:export-csv` is overrides-driven and offline by default, which means it cannot surface a store that has no override — the sheet never learns those exist. `--include-uncovered` fetches the live catalog and interleaves a blank row per uncovered store, adding two informational columns (`name`, `status=NEU`). `sync-stores.mjs` indexes columns by header name, so both are ignored on re-import, and the default output stays byte-identical to before the flag existed.
 
 **Server auth middleware**
 `server/middleware/auth.ts` extracts `Authorization` header and stores in `event.context.authToken`. Server routes for `/api/satsback/user/*` use this to forward the token to the Satsback upstream API.

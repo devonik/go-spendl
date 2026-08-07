@@ -78,14 +78,21 @@ export default defineEventHandler(async (event) => {
   const overrides = overridesJson as Record<string, StoreOverride>
 
   // The opposite direction, and the one that actually degrades the app: a live
-  // store with no override row at all. `extendStores()` defaults it to
-  // `categories.other`, so it drops out of every category filter silently —
-  // no error, no log, nothing to notice. A stale override is inert by
-  // comparison (nothing ever reads the key), so this list is the one worth
+  // store with no real category. It drops out of every category filter
+  // silently — no error, no log, nothing to notice. A stale override is inert
+  // by comparison (nothing ever reads the key), so this list is the one worth
   // acting on first.
+  //
+  // Keyed on the category rather than on the row existing, because those are
+  // not the same condition and the difference is load-bearing: an override of
+  // `{ category: 'categories.other' }` resolves to exactly what no override at
+  // all resolves to, and `stores:export-csv --include-uncovered` emits blank
+  // rows that re-import as precisely that. Checking `slug in overrides` would
+  // therefore go quiet the moment the colleague re-imported the sheet, whether
+  // or not anyone had actually filled the categories in.
   const uncovered = liveStores
-    .filter(s => !(s.slug in overrides))
-    .map(s => ({ slug: s.slug, name: s.name }))
+    .filter(s => (overrides[s.slug]?.category ?? 'categories.other') === 'categories.other')
+    .map(s => ({ slug: s.slug, name: s.name, hasRow: s.slug in overrides }))
     .sort((a, b) => a.slug.localeCompare(b.slug))
 
   // Check *every* override, not just the crawlable ones. `extendStores()`
@@ -145,11 +152,11 @@ export default defineEventHandler(async (event) => {
       const shown = uncovered.slice(0, SLACK_LIST_CAP)
       const overflow = uncovered.length - shown.length
       sections.push([
-        `*${uncovered.length} live store(s) with no override — falling back to \`categories.other\`*`,
-        ...shown.map(u => `- \`${u.slug}\`${u.name ? ` — ${u.name}` : ''}`),
+        `*${uncovered.length} live store(s) stuck on \`categories.other\` — invisible to the category filter*`,
+        ...shown.map(u => `- \`${u.slug}\`${u.name ? ` — ${u.name}` : ''}${u.hasRow ? '' : ' *(no row in the sheet)*'}`),
         ...(overflow > 0 ? [`…and ${overflow} more`] : []),
         '',
-        'Next step: these need a category in the Germany sheet. Until then they are live and payable but invisible to the category filter.',
+        'Next step: these need a real category in the Germany sheet — they are live and payable, just unfindable by category. `pnpm stores:export-csv --include-uncovered` produces a sheet containing the *(no row)* ones, marked `NEU`.',
       ].join('\n'))
     }
 
