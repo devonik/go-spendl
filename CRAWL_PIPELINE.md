@@ -401,11 +401,12 @@ backs the prefix-dropdown category filter.
 | `pnpm gen:schema slug1 slug2 …` | Batch mode. Writes a `_summary.json`. |
 | `pnpm save:schema <slug>` | Persist a generated schema from `tmp/schemas/` into `store-overrides.json`. Skips ones where the LLM declined. |
 | `pnpm save:schema --all` | Persist every generated schema. |
-| `pnpm stores:disable-missing` | Dry-run: list crawlable overrides not in the live Satsback catalog. |
-| `pnpm stores:disable-missing --apply` | Flip `crawl.crawlable: false` and append a comment. Saves `tmp/missing-stores-<date>.json`. |
+| `pnpm stores:dedupe` | Resolve rotated slugs — fold curation onto the live member of each slug family. `--apply` to write. |
+| `pnpm stores:prune-delisted` | Remove overrides whose shop is gone from the catalog entirely. `--apply` to write. |
 | `pnpm algolia:purge-disabled` | Dry-run: how many Algolia records belong to disabled shops. |
 | `pnpm algolia:purge-disabled --apply` | Delete those records via `deleteByQuery`. Chunked. |
-| `pnpm probe:jsonld` | Earlier exploration tool — sitemap + JSON-LD probe. Not load-bearing; kept for reference. |
+
+`stores:disable-missing` and `probe:jsonld` were removed in 2026-08. The JSON-LD probe was a phase-1 exploration tool the CSS-schema pipeline replaced. `disable-missing` compared override slugs against the live catalog with **no rotation guard**, so `--apply` would flip `crawl.crawlable: false` on a shop that had merely rotated its suffix — disabling a live, paying shop. `stores:dedupe` (rotations) and `stores:prune-delisted` (real delistings) split that job in two and both handle the distinction.
 
 ## Cron jobs
 
@@ -547,10 +548,12 @@ Satsback partner catalog), so the cron explicitly excludes it from the
 scripts/
   generate-css-schema.mjs       # LLM-driven schema generation
   save-schema.mjs               # tmp/schemas → store-overrides.json
-  disable-missing-stores.mjs    # ad-hoc, mirrors the cron diff
+  dedupe-stores.mjs             # resolve rotated slugs
+  prune-delisted-stores.mjs     # remove overrides for shops that are gone
   purge-disabled-algolia-records.mjs   # ad-hoc Algolia cleanup
+  evict-stale-products.mjs      # ad-hoc stale-record eviction
   sync-stores.mjs               # CSV → overrides + i18n (pre-existing)
-  probe-jsonld.mjs              # earlier exploration, retained
+  export-stores-csv.mjs         # overrides + i18n → CSV, closes the loop
 
 server/
   api/
