@@ -35,9 +35,11 @@ function slugBase(slug: string): string {
 }
 
 // Periodic diff between `store-overrides.json` and the live Satsback
-// catalog. Flags slugs that we still mark `crawl.crawlable: true` but
-// that Satsback no longer returns — those are the shops whose
-// `/store/visit/...` redirect will 404 for our users.
+// catalog, in both directions:
+//   - overrides with no live store (rotated slug vs genuinely delisted —
+//     opposite fixes, so they're reported as separate lists)
+//   - live stores with no override, which silently fall back to
+//     `categories.other` and vanish from the category filter
 //
 // Wire this to a scheduler (Vercel cron / Railway scheduler / GitHub
 // Actions) and authenticate with `Authorization: Bearer ${CRON_SECRET}`.
@@ -74,6 +76,18 @@ export default defineEventHandler(async (event) => {
   }
 
   const overrides = overridesJson as Record<string, StoreOverride>
+
+  // The opposite direction, and the one that actually degrades the app: a live
+  // store with no override row at all. `extendStores()` defaults it to
+  // `categories.other`, so it drops out of every category filter silently —
+  // no error, no log, nothing to notice. A stale override is inert by
+  // comparison (nothing ever reads the key), so this list is the one worth
+  // acting on first.
+  const uncovered = liveStores
+    .filter(s => !(s.slug in overrides))
+    .map(s => ({ slug: s.slug, name: s.name }))
+    .sort((a, b) => a.slug.localeCompare(b.slug))
+
   // Check *every* override, not just the crawlable ones. `extendStores()`
   // merges overrides by slug, so a stale slug silently drops that store back
   // to `categories.other` and loses its curated `url` — the category filter
@@ -96,10 +110,10 @@ export default defineEventHandler(async (event) => {
       gone.push({ slug, crawlable })
   }
 
-  // The two lists need opposite fixes, so they're reported separately —
+  // The lists need different fixes, so they're reported separately —
   // telling someone to disable a merely-renamed shop takes a working,
   // still-partnered shop offline.
-  if (renamed.length > 0 || gone.length > 0) {
+  if (renamed.length > 0 || gone.length > 0 || uncovered.length > 0) {
     const mark = (crawlable: boolean) => crawlable ? ' *(crawlable)*' : ''
     const sections: string[] = []
 
@@ -123,13 +137,32 @@ export default defineEventHandler(async (event) => {
         ...shown.map(g => `- \`${g.slug}\`${mark(g.crawlable)}`),
         ...(overflow > 0 ? [`…and ${overflow} more`] : []),
         '',
-        'Next step: set `crawl.crawlable: false` (or remove the entry once the colleague confirms it\'s gone for good).',
+        'Next step: `pnpm stores:prune-delisted` (dry-run first) — it removes these and writes tmp/delisted-plan.csv for the Germany sheet, which has to lose the rows too or the next stores:sync restores them.',
       ].join('\n'))
     }
 
+    if (uncovered.length > 0) {
+      const shown = uncovered.slice(0, SLACK_LIST_CAP)
+      const overflow = uncovered.length - shown.length
+      sections.push([
+        `*${uncovered.length} live store(s) with no override — falling back to \`categories.other\`*`,
+        ...shown.map(u => `- \`${u.slug}\`${u.name ? ` — ${u.name}` : ''}`),
+        ...(overflow > 0 ? [`…and ${overflow} more`] : []),
+        '',
+        'Next step: these need a category in the Germany sheet. Until then they are live and payable but invisible to the category filter.',
+      ].join('\n'))
+    }
+
+    // Two independent problems, so the title counts them separately rather
+    // than summing into one number that means nothing.
     const staleTotal = renamed.length + gone.length
+    const headline = [
+      staleTotal > 0 ? `${staleTotal} stale override(s)` : '',
+      uncovered.length > 0 ? `${uncovered.length} uncovered live store(s)` : '',
+    ].filter(Boolean).join(', ')
+
     await sendSlackMessage(config.slackWebhookUrl, {
-      title: `:warning: ${staleTotal} store override(s) no longer match the Satsback catalog`,
+      title: `:warning: Satsback catalog drift — ${headline}`,
       richTextBody: sections.join('\n\n'),
     })
   }
@@ -140,7 +173,9 @@ export default defineEventHandler(async (event) => {
     overrideCount: checked,
     renamedCount: renamed.length,
     goneCount: gone.length,
+    uncoveredCount: uncovered.length,
     renamed,
     gone,
+    uncovered,
   }
 })

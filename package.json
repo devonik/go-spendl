@@ -15,6 +15,7 @@
     "save:schema": "node scripts/save-schema.mjs",
     "stores:disable-missing": "node scripts/disable-missing-stores.mjs",
     "stores:dedupe": "node scripts/dedupe-stores.mjs",
+    "stores:prune-delisted": "node scripts/prune-delisted-stores.mjs",
     "stores:export-csv": "node scripts/export-stores-csv.mjs",
     "algolia:purge-disabled": "node scripts/purge-disabled-algolia-records.mjs",
     "algolia:evict-stale": "node scripts/evict-stale-products.mjs"
