@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 // Delete Algolia records whose shopDomain matches a now-disabled slug
 // in `server/data/store-overrides.json` (crawl.crawlable === false).
-// Useful after running `pnpm stores:disable-missing --apply` to keep the
-// index tidy.
+// Useful after disabling shops by hand, or after `pnpm stores:dedupe
+// --apply` / `pnpm stores:prune-delisted --apply`, to keep the index tidy.
 //
 //   pnpm algolia:purge-disabled            # dry-run, shows per-shop counts
 //   pnpm algolia:purge-disabled --apply    # actually delete

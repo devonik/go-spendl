@@ -20,11 +20,6 @@
     "labelEn": "Airline"
   },
   {
-    "key": "categories.appliances",
-    "labelDe": "Haushaltsgeräte",
-    "labelEn": "Appliances"
-  },
-  {
     "key": "categories.art",
     "labelDe": "Kunst",
     "labelEn": "Art"
@@ -43,11 +38,6 @@
     "key": "categories.beauty",
     "labelDe": "Beauty",
     "labelEn": "Beauty"
-  },
-  {
-    "key": "categories.beer",
-    "labelDe": "Bier",
-    "labelEn": "Beer"
   },
   {
     "key": "categories.bicycles",

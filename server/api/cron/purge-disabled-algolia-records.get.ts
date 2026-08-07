@@ -15,8 +15,8 @@ const SLACK_LIST_CAP = 50
  * slug we've already disabled (`crawl.crawlable: false`) in
  * store-overrides.json. Pairs with /api/cron/check-satsback-stores —
  * the satsback check alerts about new dead shops; once a human flips
- * those entries to crawlable: false (e.g. via
- * `pnpm stores:disable-missing --apply`) and re-deploys, this cron
+ * those entries to crawlable: false (or removes them outright via
+ * `pnpm stores:prune-delisted --apply`) and re-deploys, this cron
  * cleans the matching records out of the index on the next run.
  *
  * Authenticated by Authorization: Bearer ${CRON_SECRET} the same way
